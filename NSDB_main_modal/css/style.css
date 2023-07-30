@@ -1,0 +1,257 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+/* transparent 는 투명을 의미한다. */
+.btn {
+    box-sizing: border-box;
+    appearance: none;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    margin: 16px;
+    padding: 8px 16px 8px 16px;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+/* 로그인 버튼 */
+.modalBtn{
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    border-radius: 2em;
+    &:hover,
+    &:focus {
+        background-color: #fff;
+        color: #212121;
+        outline: 0;
+    }
+}
+
+
+/* 전체를 감싸는 최상위 부모 div 태그 */
+#container {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #1B3455;
+    font-family: 'Noto Sans KR', 'GmarketSansMedium';
+}
+/* 네비게이션 바 설정 */
+#navbar {
+    height: 58px;
+    width: 100%;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    position: fixed;
+
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #212121;
+    color: #FFFFFF;
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+}
+
+/* 모달 팝업을 감싸고 있는 최상위 부모 */
+#modalWrap {
+    display: none;
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 7rem;
+    /*Location of the box*/
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* 모달 팝업창 */
+#modalBody {
+    width: 800px;
+    height: 500px;
+    padding: 30px 30px;
+    margin: 0 auto;
+    border: 1px solid #777;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+/* 닫기 버튼 */
+#closeBtn {
+    float: right;
+    font-weight: bold;
+    color: #777;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* 네비게이션 요소 구현 */
+.navLeft {
+    height: 100%;
+    display: flex;
+    align-items: center
+}
+
+.nav_logo {
+    font-weight: 1000;
+    font-size: large;
+    margin-left: 12px;
+}
+
+.navRight {
+    height: 100%;
+    display: flex;
+    align-items: center
+}
+
+.navRight>ul {
+    float: left;
+    margin: 0;
+}
+
+.navRight>ul>li {
+    list-style-type: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.navRight>ul>:first-child {
+    color: #d2d2d2;
+    padding-right: 6px;
+}
+
+.navRight>ul>:nth-child(2) {
+    color: #ffffff;
+    padding-right: 6px;
+}
+
+.popularSerch {
+    box-sizing: border-box;
+    padding-right: 32px;
+}
+
+
+/* 검색창 CSS */
+.search_wrapper {
+    width:100%;
+    margin-top: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* 검색버튼 */
+.submit_button{
+    background-color: transparent;
+    border: 1px solid #c2c2c2;
+    border-radius: 16px;
+
+    color: #FFFFFF;
+    padding: 4px 12px;
+    margin: 0 12px 0;
+    &:hover,
+    &:focus {
+        background-color: #fff;
+        color: #212121;
+        outline: 0;
+    }
+}
+#name {
+    width: 200px;
+    height: 20px;
+}  
+
+.invisible{
+    display: none;
+}
+
+
+#suggestion_box {
+    margin-top: 1px;
+    margin-right: 20px;
+    background: white;
+    padding: 0 10px;
+    border: 1px solid black;
+    border-radius: 12px;
+}
+
+#suggested_items{
+    height:100px;
+    width: 250px;
+    overflow: auto; /* 스크롤바 추가 */
+}
+#suggested_items::-webkit-scrollbar {
+    display: none; /* 크롬, 사파리, 오페라, 엣지_스크롤은 되지만 스크롤바X*/
+}
+/* 연관 검색창 마우스 올리면 색 변화 */
+.item:hover{
+    color: #fff;
+    background-color: lightgreen;
+}
+
+.pageWrap{
+    width:100%;
+    height:976px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    
+
+}
+/* 예제 설명 창 */
+.examWrap{
+    width: 30%;
+    height: 85%;
+    background-color: white;
+}
+/* 코드 출력 창 */
+.boxes{
+    width: 70%;
+    /* padding: 16px; */
+    height:85%;
+    background-color: #777;
+}
+.
+/* 코드 결과창 iframe 사용예정 */
+.resultDiv{
+    width: 100%;
+    /* height: 10%; */
+}

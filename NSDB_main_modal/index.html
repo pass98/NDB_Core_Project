@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NDB</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="./index.js"></script>
+
+</head>
+
+<body>
+    <div id="container">
+        <div id="modalWrap">
+            <div id="modalContent">
+                <div id="modalBody">
+                    <!-- 닫기 버튼 -->
+                    <span id="closeBtn">&times;</span>
+                    <!-- 팝업창 내 글귀 -->
+                    <p>modal-popup 입니다.</p>
+                </div>
+            </div>
+        </div>
+        <div>
+            <nav id="navbar">
+                <div class="navLeft">
+                    <div class="hamburger">
+                        <button>바</button>
+                    </div>
+                    <div class="nav_logo">
+                        <a href="#">NDB</a>
+                    </div>
+                </div>
+                <div class="navRight">
+                    <ul class="popularSerch">
+                        <li>
+                            <span>인기 검색어</span>
+                        </li>
+                        <li>|</li>
+                        <li>
+                            <a href="#">파이썬 반복문</a>
+                        </li>
+                    </ul>
+                    <div id="btnWrap">
+                        <!-- 팝업을 띄우기 위한 버튼 -->
+                        <button type="button" class="btn modalBtn">로그인</button>
+                    </div>
+                </div>
+            </nav>
+            <div id="main">
+                <!-- 검색창 ver1 -->
+                <div class="search_wrapper">
+                    <div class="mid_wrapper">
+                        <!-- 검색창 -->
+                        <input type="text" id="name" autocomplete="off">
+                        <!-- 검색버튼 -->
+                        <input type="button" class="submit_button" value="검색">
+                    </div>
+                    <!-- 추천창 -->
+                    <div id="suggestion_box" class="invisible">
+                        <div id=suggested_items></div>
+                    </div>
+                </div>
+                
+                <!-- 검색창 ver2
+                <input class="search_input">
+                <container class="rel_search">
+                    <ul class="pop_rel_keywords">
+                    </ul>
+                </container>
+                <container class="rel_search">
+                    <ul class="pop_rel_keywords">
+                    </ul> -->
+                </container>
+            </div>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</body>
+
+</html>
