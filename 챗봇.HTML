@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        /* 기본 스타일 */
+        body {
+            font-family: 'Noto Sans KR','GmarketSansMedium';
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+        @font-face {
+            font-family: 'GmarketSansMedium';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* 챗봇 컨테이너 */
+        .chat-container {
+            position: fixed; /* 화면에 고정되도록 설정 */
+            bottom: 20px;
+            right: 20px;
+            width: 350px;
+            background-color: #1B3455;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            display: none; /* 처음에 숨김 */
+            transition: all 0.3s ease;
+            margin-right: 40px;
+            margin-bottom: 40px;
+        }
+
+        /* 챗봇 헤더 */
+        .chat-header {
+            
+            background-color: #8CA9BF;
+            color: #ffffff;
+            padding: 15px 50px 15px 15px; 
+            /*top right bottom left*/
+            font-weight: bold;
+            border-radius: 10px 10px 0 0;
+            cursor: pointer; /* 클릭 가능하도록 설정 */
+        }
+
+        /* 챗봇 몸체 */
+        .chat-body {
+           height: 400px;
+            padding: 30px;
+            max-height: 400px;
+            overflow-y: auto;
+           
+        }
+
+        /* 대화 메시지 스타일 */
+        .message {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        /* 사용자 메시지 스타일 */
+        .user-message {
+            background-color: #FFFFFF;
+            color: #1B3455;
+            text-align: right;
+            margin-left: 35px;
+        }
+
+        /* 챗봇 메시지 스타일 */
+        .bot-message {
+           
+            background-color: #8CA9BF;
+            color: #FFFFFF;
+        }
+
+        /* 메시지 앞에 사용자와 챗봇 구분 아이콘 */
+        .user-message .content::before {
+            content: "> ";
+            font-weight: bold;
+        }
+
+        .bot-message .content::before {
+            content: "AI: ";
+            font-weight: bold;
+        }
+
+        /* 챗봇 입력창 */
+        .chat-input {
+            display: flex;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input input[type="text"] {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .chat-input button {
+            padding: 15px 20px;
+            border: none;
+            background-color: #D83B44;
+            color: #ffffff;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .chat-input button:hover {
+            background-color: 8CA9BF;
+        }
+
+        /* 챗봇 열기/닫기 버튼 스타일 */
+        .chat-toggle-button {
+            position: fixed; /* 화면에 고정되도록 설정 */
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            height: 100px;
+            background-color: #1B3455;
+            color: #ffffff;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 40px;
+            margin-bottom: 40px;
+            
+        }
+
+        .chat-toggle-button:hover {
+            background-color: #8CA9BF;
+        }
+
+        /* 챗봇 컨테이너가 열렸을 때 보이도록 설정 */
+        .chat-container.open {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
+
+    <!-- 챗봇 대화창 컨테이너 -->
+    <div class="chat-container" id="chat-container">
+        <!-- 챗봇 헤더 -->
+        <div class="chat-header" onclick="toggleChat()">챗봇</div>
+
+        <!-- 챗봇 몸체 -->
+        <div class="chat-body">
+            <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
+            <div class="message bot-message">
+                <div class="content">안녕하세요! 무엇을 도와드릴까요?</div>
+            </div>
+        </div>
+
+        <!-- 사용자 입력창 -->
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
+            <button onclick="sendMessage()">전송</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            //사용자가 입력한 메시지 가져오기
+            const userMessage = document.getElementById("user-input").value;
+            if (userMessage.trim() === "") return;
+
+            //대화창 박스
+            const chatBody = document.querySelector(".chat-body");
+           
+           //사용자 메시지 표시하는 div 요소
+            const userMessageDiv = document.createElement("div");
+            userMessageDiv.classList.add("message", "user-message");
+            const contentDiv = document.createElement("div");
+            contentDiv.classList.add("content");
+            contentDiv.innerText = userMessage;
+            userMessageDiv.appendChild(contentDiv);
+            chatBody.appendChild(userMessageDiv);
+
+
+            // 챗봇의 응답을 여기에 추가
+            const botMessageDiv = document.createElement("div");
+            botMessageDiv.classList.add("message", "bot-message");
+            const botContentDiv = document.createElement("div");
+            botContentDiv.classList.add("content");
+            botContentDiv.innerText = "무엇을 도와드릴까요?";
+            botMessageDiv.appendChild(botContentDiv);
+            chatBody.appendChild(botMessageDiv);
+            //입력한것 초기화
+            document.getElementById("user-input").value = "";
+            //채팅 스크롤을 가장 아래로 이동
+            chatBody.scrollTop = chatBody.scrollHeight;
+        }
+
+        function toggleChat() {
+            const chatContainer = document.getElementById("chat-container");
+            chatContainer.classList.toggle("open");
+        }
+        // 엔터키로 전송
+        function handleKeyDown(event) {
+            if (event.keyCode === 13) {
+                sendMessage();
+            }
+        }
+    </script>
+    </script>
+</body>
+</html>
