@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GPT API 응답 - 코드 출력</title>
+</head>
+
+<body>
+    <h1>ChatGPT API 응답</h1>
+    <div id="question">
+        <p>질문: <input type="text" id="userQuestion" /></p>
+        <button onclick="sendQuestion()">질문 보내기</button>
+    </div>
+
+    <div id="answer">
+        <h2>답변:</h2>
+        <iframe id="codeOutput"></iframe>
+    </div>
+
+    <script src="your-script.js">
+
+        function sendQuestion() {
+            const api_key = "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"; // ChatGPT API 키 입력
+
+            // 사용자의 질문 가져오기
+            const userQuestion = document.getElementById('userQuestion').value;
+
+            // GPT API 요청 데이터 생성
+            const data = {
+                model: 'gpt-3.5-turbo',
+                temperature: 0.5,
+                n: 1,
+                messages: [
+                    { role: 'system', content: 'You are a helpful assistant.' },
+                    { role: 'user', content: userQuestion },
+                ],
+            };
+
+            // GPT API에 요청 보내기
+            fetch("https://api.openai.com/v1/chat/completions", {
+                method: 'POST',
+                headers: {
+                    Authorization: "Bearer " + api_key,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+                .then(response => response.json())
+                .then(result => {
+                    // GPT API 응답 받은 후 답변창에 표시하기
+                    const gptAnswer = result.choices[0].message.content;
+                    document.getElementById('codeOutput').srcdoc = `<pre>${gptAnswer}</pre>`;
+                })
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+
+</html>
