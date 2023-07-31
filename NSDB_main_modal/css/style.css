@@ -9,7 +9,9 @@
 
 .notosanskr * {
     font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -41,11 +43,12 @@ a {
 }
 
 /* 로그인 버튼 */
-.modalBtn{
+.modalBtn {
     background-color: transparent;
     color: white;
     border: 2px solid white;
     border-radius: 2em;
+
     &:hover,
     &:focus {
         background-color: #fff;
@@ -64,6 +67,7 @@ a {
     background-color: #1B3455;
     font-family: 'Noto Sans KR', 'GmarketSansMedium';
 }
+
 /* 네비게이션 바 설정 */
 #navbar {
     height: 58px;
@@ -105,8 +109,8 @@ a {
 
 /* 모달 팝업창 */
 #modalBody {
-    width: 800px;
-    height: 500px;
+    width: 500px;
+    height: 600px;
     padding: 30px 30px;
     margin: 0 auto;
     border: 1px solid #777;
@@ -171,15 +175,16 @@ a {
 
 /* 검색창 CSS */
 .search_wrapper {
-    width:100%;
+    width: 100%;
     margin-top: 400px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
 }
+
 /* 검색버튼 */
-.submit_button{
+.submit_button {
     background-color: transparent;
     border: 1px solid #c2c2c2;
     border-radius: 16px;
@@ -187,6 +192,7 @@ a {
     color: #FFFFFF;
     padding: 4px 12px;
     margin: 0 12px 0;
+
     &:hover,
     &:focus {
         background-color: #fff;
@@ -194,12 +200,13 @@ a {
         outline: 0;
     }
 }
+
 #name {
     width: 200px;
     height: 20px;
-}  
+}
 
-.invisible{
+.invisible {
     display: none;
 }
 
@@ -213,45 +220,71 @@ a {
     border-radius: 12px;
 }
 
-#suggested_items{
-    height:100px;
+#suggested_items {
+    height: 100px;
     width: 250px;
-    overflow: auto; /* 스크롤바 추가 */
+    overflow: auto;
+    /* 스크롤바 추가 */
 }
+
 #suggested_items::-webkit-scrollbar {
-    display: none; /* 크롬, 사파리, 오페라, 엣지_스크롤은 되지만 스크롤바X*/
+    display: none;
+    /* 크롬, 사파리, 오페라, 엣지_스크롤은 되지만 스크롤바X*/
 }
+
 /* 연관 검색창 마우스 올리면 색 변화 */
-.item:hover{
+.item:hover {
     color: #fff;
     background-color: lightgreen;
 }
 
-.pageWrap{
-    width:100%;
-    height:976px;
+.pageWrap {
+    width: 100%;
+    height: 976px;
     display: flex;
-    justify-content: space-between;
+    /* justify-content: ; */
     flex-wrap: wrap;
-    
+
 
 }
+
 /* 예제 설명 창 */
-.examWrap{
+.examWrap {
     width: 30%;
     height: 85%;
     background-color: white;
 }
-/* 코드 출력 창 */
-.boxes{
+
+.code-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: baseline;
     width: 70%;
+}
+
+/* 코드 출력 창 */
+.boxes {
+    width: 100%;
     /* padding: 16px; */
-    height:85%;
+    height: 50%;
     background-color: #777;
 }
-.
+
 /* 코드 결과창 iframe 사용예정 */
-.resultDiv{
+.resultSize{
+    position: relative;
     width: 100%;
-    /* height: 10%; */
+}
+.resultDiv {
+    
+    height:341px;
+    padding-bottom: 56.25%;
+    background-color: red;
+
+}
+
+.resultDiv iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
 }
