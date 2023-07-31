@@ -1,4 +1,7 @@
 # NDB_Core_Project
 
 # hello HG
-# ㅠㅠ
+
+## NDB 화이팅
+
+## 현진
