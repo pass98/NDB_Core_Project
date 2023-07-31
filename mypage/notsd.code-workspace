@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": ".."
+		},
+		{
+			"path": "../../NodeJs"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "NodeJs"
+	}
+}
