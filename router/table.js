@@ -1,2 +1,2 @@
-const db = require("../config/datebase");
-let conn = db.init();
+// const db = require("../config/datebase");
+// let conn = db.init();
