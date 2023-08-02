@@ -35,20 +35,10 @@ body {
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.247);
     width: 800px;
-    
     /* display: flex; */
     overflow: hidden;
     background-color: #1B3455;
 }
-.modal-content > div {
-    padding:  20px;
-}
-/* .photo{
-    flex: 1;
-    background: url(office.jpg) no-repeat center right;
-    background-size: cover;
-} */
-
 
 .desc{
     flex: 2;
@@ -66,56 +56,70 @@ body {
 }
 
 
-
 .btn-close:hover {
     color: #000;
 }
 
 .desc-header{
-
     font-size:larger;
     text-align: center;
     display:absolute;
-    margin-right: 40px;
     color: #FFFFFF;
-    
-    
-   
+     
 }
+#nsd{
+    font-size: 38px;
+}
+
+h1,h2,h3{
+    text-align: center;
+}
+.btn-open{
+    width: 80px;
+    height:50px;
+    font-size: 20px;
+}
+
 .desc-content{
     display:flex;
     justify-content: center;
 }
-/* .content1{
-    margin-right:  20px;
+
+
+.content-box > button{
+    
+    width : 60px;
+    
 }
+.content-box{
+    width:33%;
+    height:200%;
+    border-radius: 12px;
+    background-color: #8CA9BF;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    
 
-.content2{
-    margin-right:  20px;
-} */
-
+}
+.benefits{
+    margin-left:42px;
+}
 .content1{
-    margin-right: 20px;
-    background-color: #8CA9BF;
-    border-radius: 8%;   
-    padding: 0 4rem;
+    /* margin-right: 20px;   */
+    /* padding: 0 4rem; */
+
 }
 
 
 .content2{
-    margin-right: 20px;
-    background-color: #8CA9BF;
-    border-radius: 8%;
-    border-radius: 8%;
-    padding: 0 4rem;
+    /* margin-right: 20px; */
+    /* padding: 0 4rem; */
 }
 
 
 .content3{
-    background-color: #8CA9BF;
-    border-radius: 8%;
-    border-radius: 8%;
-    padding: 0 4rem;
+    margin-right:20px;
+    /* padding: 0 4rem; */
 }
 
 .content1:hover{
@@ -140,6 +144,7 @@ body {
     padding: 7px;
     outline: none;
     border: 1px solid #ccc;
+   
 }
 .desc-content input[type=email]::placeholder {
     color: #ccc;
@@ -148,15 +153,26 @@ body {
     opacity: 0;
 }
 .desc-content button {
-    display: block;
-    width: 100%;
+    display:flex;
+    /* margin-left:50px; */
     padding: 7px;
     background-color: rgb(212, 69, 97);
     color: #FFFFFF;
     border: none;
     outline: none;
+    width: 113px;
+    justify-content: center;
+    border-radius: 12px;
 }
 
+.btn{
+    display:flex;
+    justify-content: center;
+    margin-bottom : 30px;
+    
+    
+
+}
 
 .desc-content button:hover {
     background-color: rgb(211, 22, 60);
