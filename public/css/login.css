@@ -11,7 +11,7 @@
 /* 모든 요소에 대해 box-sizing 속성을 border-box로 설정 */
 * {
   box-sizing: border-box;
-  /*border: 1px solid rgba(228, 222, 222, 0.5);*/
+  /* border: 1px solid rgba(228, 222, 222, 0.5); */
   font-family: "Montserrat", sans-serif;
 }
 h2 {
@@ -28,7 +28,16 @@ h2 {
 body {
   background: #1b3455;
 }
-
+/* .white {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 160px;
+  width: 450px;
+  height: 410px;
+  border: 1px solid #d2d2d2;
+} */
 /* ===============================
 =====네비게이션 요소 구현  =======
 ==================================*/
