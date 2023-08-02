@@ -145,6 +145,7 @@ body {
   flex-direction: column;
   font-family: "Montserrat", sans-serif;
   width: 100%;
+  min-width: 80%;
   height: 100vh;
   margin: -20px 0 50px;
 
@@ -196,10 +197,12 @@ body {
   border-radius: 5px;
   cursor: pointer;
   transition: background ease-in-out 0.1s;
+  font-size: 14px;
 }
 
 .login_button:hover {
   background-color: white;
+  font-size: 14px;
   color: #1b3455;
 }
 /* ============================

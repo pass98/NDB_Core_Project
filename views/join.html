@@ -43,35 +43,33 @@
             </li>
           </ul> -->
           <div>
-            <form action="#">
+            <form action="/login">
               <button type="submit" class="nav_login_button">Login</button>
             </form>
           </div>
           <div>
-            <form action="/join">
-              <button type="submit" class="nav_join_button">Join</button>
+            <form action="#">
+              <button type="button" class="nav_join_button">Join</button>
             </form>
           </div>
         </div>
       </nav>
-      <h1 class="h1">LOGIN to NDB</h1>
+      <h1 class="h1">JOIN NDB</h1>
       <div class="white"></div>
       <!-- 로그인 컨테이너  -->
       <div class="login_container">
         <form action="#" class="login_form">
-          <p>이메일</p>
+          <p>이름</p>
           <input type="text" class="login_input" required />
+          <p>이메일</p>
+          <input type="password" class="login_input" required />
           <p>비밀번호</p>
           <input type="password" class="login_input" required />
-          <button type="submit" class="login_button">로그인</button>
+
+          <button type="submit" class="login_button">Create Account</button>
         </form>
         <!-- 계정찾기 -->
-        <div class="find_text">
-          <a href="#" class="find_email find"><span> 이메일</span> </a>
-          <span>∞</span>
-          <a href="#" class="find_pass find"> <span> 비밀번호 찾기</span></a>
-          <a href="/join" class="find_join find"><span>회원가입</span></a>
-        </div>
+        <div class="find_text"></div>
       </div>
       <!-- -------   하단선 ----------------- -->
       <hr class="hr_left" />
