@@ -3,8 +3,8 @@ const router = express.Router();
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 
-const db = require("../config/datebase");
-let conn = db.init();
+// const db = require("../config/datebase");
+// let conn = db.init();
 
 // 구글 OAuth 2.0 클라이언트 ID와 시크릿 설정
 const GOOGLE_CLIENT_ID =
