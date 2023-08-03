@@ -1,3 +1,18 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR', 'GmarketSansMedium';
+}
+   
+
 * {
     margin: 0;
     padding: 0;
@@ -128,6 +143,7 @@ a {
     border-radius: 2em;
     cursor :pointer;
     padding : 0.4em 0.8em;
+    margin-right: 0.6em;
     font-size: 1rem;
     font-weight: 700;
 }
@@ -200,18 +216,6 @@ a {
     padding-right: 32px;
 }
 
-@font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-
-.notosanskr * {
-    font-family: 'Noto Sans KR', sans-serif;
-}
 /* 모달 팝업창 종료 */
 
 
@@ -301,8 +305,17 @@ body {
     width: 50%;
     margin-top: 50px;
     background-color: #d2d2d2;
+    border-radius:0 0 30px 30px;
   }
+
+.mypagefro{
+    color: #ededed;
+    box-sizing:content-box
+}
   
+.mp_h2{
+    margin-bottom:10px ;
+}  
   ul.mp_tabs{
     
     height: 50px;
@@ -324,10 +337,21 @@ body {
     color: #222;
   }
   
+  .mp_output{
+    height: 37vh;
+    background-color: #212121;
+    border-radius: 15px;
+    
+    
+  }
+
   .mp_tab-content{
     display: none;
     background: #ededed;
     padding: 15px;
+    height: 45vh;
+    border-radius: 0 0 30px 30px;
+
   }
   
   .mp_tab-content.mp_current{
