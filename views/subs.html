@@ -7,8 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>모달창</title>
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <link rel="stylesheet" href="../public/css/sbus.css">
-
+    <link rel="stylesheet" href="../public/css/subs.css">
+    <script src="./main.js"></script>
     <!-- 결제창을 위한 라이브러리-->
 
       <!-- jQuery -->
@@ -79,6 +79,7 @@
 </head>
 
 <body class="subs_body">
+  <div id="container">
     
 
     <div class="subs_modal">
@@ -175,8 +176,38 @@
 
         </div>
 
+
+
         
     </div>
+
+    <div>
+      <nav id="navbar">
+          <div class="navLeft">
+              <div class="hamburger">
+                  <button>바</button>
+              </div>
+              <div class="nav_logo">
+                  <a href="#">NDB</a>
+              </div>
+          </div>
+          <div class="navRight">
+              <ul class="popularSerch">
+                  <li>
+                      <span>인기 검색어</span>
+                  </li>
+                  <li>|</li>
+                  <li>
+                      <a href="#">파이썬 반복문</a>
+                  </li>
+              </ul>
+              <div id="btnWrap">
+                  <!-- 팝업을 띄우기 위한 버튼 -->
+                  <button type="button" id="modalBtn">로그인</button> 
+              </div>
+          </div>
+
+          
     <div class="overlay"></div>
     <div><button class="subs_btn_open">구독</button></div>
 
@@ -190,7 +221,7 @@
         })
 
     </script>
-    
+  </div>  
 </body>
 
 </html>
