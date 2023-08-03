@@ -1,0 +1,509 @@
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* main CSS 시작 */
+/* body 마진 값 0 / 배경 색 설정(1B3455) / 폰트 설정*/
+body {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+/* main 버튼 스타일 지정 */
+#main_btnWrap {
+    display: flex;
+    flex-direction: row;
+
+}
+
+/* main 페이지 로그인버튼 스타일 지정 */
+/* transparent 는 투명을 의미한다. */
+.main_signupBtn {
+    box-sizing: border-box;
+    appearance: none;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    margin: 0 12px 0 0;
+    padding: 8px 16px 8px 16px;
+
+    border: 1px solid white;
+    border-radius: 30px;
+    background-color: transparent;
+
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+
+    transition: 0.3s;
+}
+
+.main_signupBtn:hover {
+    background-color: white;
+    color: #212121;
+}
+
+/* main 페이지 회원가입 버튼 스타일 지정 */
+/* transparent 는 투명을 의미한다. */
+.main_loginBtn {
+    box-sizing: border-box;
+    appearance: none;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    margin: 16px 12px 16px 0;
+    padding: 8px 16px 8px 16px;
+
+    border: 1px solid white;
+    border-radius: 30px;
+    background-color: white;
+
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #212121;
+
+    transition: 0.3s;
+}
+
+.main_loginBtn:hover {
+    background-color: #212121;
+    color: white;
+}
+
+#main_container {
+    box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #1B3455;
+    font-family: 'Noto Sans KR', 'GmarketSansMedium';
+    text-align: center;
+    flex: 1 0 auto;
+}
+
+/* 네비게이션 바 설정 */
+#main_navbar {
+    height: 58px;
+    width: 100%;
+    padding: 8px 12px;
+    box-sizing: border-box;
+    position: fixed;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #212121;
+    color: #FFFFFF;
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+    flex: 1 0 auto;
+}
+
+/* 모달 팝업을 감싸고 있는 최상위 부모 */
+#main_modalWrap {
+    display: none;
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 7rem;
+    /*Location of the box*/
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* 모달 팝업창 */
+#main_modalBody {
+    width: 500px;
+    height: 600px;
+    padding: 30px 30px;
+    margin: 0 auto;
+    border: 1px solid #777;
+    background-color: #fff;
+    border-radius: 15px;
+}
+
+/* 닫기 버튼 */
+#main_closeBtn {
+    float: right;
+    font-weight: bold;
+    color: #777;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* 메인  */
+
+/* 네비게이션 요소 구현 */
+.main_navLeft {
+    height: 100%;
+    display: flex;
+    align-items: center
+}
+
+.main_nav_logo {
+    font-weight: 1000;
+    font-size: large;
+    margin-left: 12px;
+}
+
+.main_navRight {
+    height: 100%;
+    display: flex;
+    align-items: center
+}
+
+.main_navRight>ul {
+    float: left;
+    margin: 0;
+}
+
+.main_navRight>ul>li {
+    list-style-type: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.main_navRight>ul>:first-child {
+    color: #d2d2d2;
+    padding-right: 6px;
+}
+
+.main_navRight>ul>:nth-child(2) {
+    color: #ffffff;
+    padding-right: 6px;
+}
+
+.popularSerch {
+    box-sizing: border-box;
+    padding-right: 32px;
+}
+
+/* 네비게이션 끝 */
+/* 검색창 시작 */
+/* input, select 클릭시 생기는 기본 테두리 제거 */
+input,
+select:focus {
+    outline: none;
+}
+
+/* select 기본 스타일 제거 */
+select {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* nav제외 나머지 공간 */
+/* main페이지 및 정렬 설정 */
+.main_wrap {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 auto;
+
+    /* [230802_예정] 메인 페이지 디자인 이미지 추가 예정
+    background-image: ; */
+}
+
+/* 검색 부분(필터링 및 설명텍스트 등 정렬) */
+.main_searchWrap {
+    /* background-color: red; */
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-content: center;
+    width: 650px;
+    height: 500px;
+    flex-wrap: wrap;
+    padding-bottom: 50px;
+}
+
+.main_text {
+    /* margin-bottom: 12px; */
+    font-size: 1.5rem;
+    color: white;
+    font-family: 'Noto Sans KR';
+    font-size: 2rem;
+    margin-bottom: 20px;
+
+}
+
+/* 검색 창 div */
+.main_search {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 440px;
+    height: 46px;
+    border-radius: 30px;
+
+}
+
+/* 검색창 자동완성 div 검색어 선택시 표시 css */
+.main_autocomplete>div.active {
+    background: #333;
+    color: #eee;
+}
+
+/* 검색창 테두리 제거 */
+.main_language,
+.main_searchBar,
+.main_search_button {
+    border: 0;
+    background-color: white;
+}
+
+.main_search_button {
+    cursor: pointer;
+}
+
+.main_searchLanguage {
+    height: 30px;
+    width: 100px;
+    border: 0;
+    /* 기본 select 화살표 감추기 */
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0 8px 0 8px;
+    /* font-family:'GmarketSansMedium', 'Noto Sans KR'; */
+
+    background: url('../chevron-down-solid.svg') no-repeat 97% 50%/15px auto;
+    ;
+}
+
+/* 검색 창 바 input */
+.main_searchBar {
+    box-sizing: border-box;
+    width: 280px;
+    height: 30px;
+}
+
+/* 검색 input 클릭시 생기는 테두리 제거 */
+.main_searchBar>input:focus {
+    outline: none;
+}
+
+.main_search_button {
+    height: 30px;
+    padding: 0;
+    /* margin-left: 8px; */
+}
+
+.main_search_button>i {
+    width: 30px;
+}
+
+/* select option 색 변경 시도....ㅜ */
+option:checked,
+option:hover {
+    box-shadow: 0 0 10px 100px #8CA9BF inset;
+}
+
+/* main CSS 끝 */
+/* 
+.
+.
+. 
+*/
+/* codingExam CSS시작 */
+/* codingExam Page 전체 크기 조절 */
+#codeExam_container {
+    width: 100vw;
+    height: 100vh;
+    display: flex !important;
+    box-sizing: border-box;
+    flex-direction: column;
+    background-color: #1B3455;
+    font-family: 'Noto Sans KR', 'GmarketSansMedium';
+    text-align: center;
+    flex: 1 0 auto;
+}
+
+.codeExam_pageWrap {
+    /* background-color: greenyellow; */
+    display: flex;
+    height: 100%;
+    flex: 1 0 auto;
+    padding-top: 58px !important;
+    box-sizing: border-box;
+
+}
+
+/* 코드 문제 CSS 시작 */
+/* 문제 창 크기 조절 */
+.codeExam_examWrap {
+    width: 30%;
+    /* padding: 12px; */
+
+    text-align: left;
+
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+.codeExam_examContent{
+    padding: 24px;
+}
+.codeExam_examTitle{
+    /* font 속성 */
+    /* font-weight: bold; */
+    font-size: 1.5rem;
+    text-transform: uppercase;
+
+    padding: 16px 0 0 0;
+}
+.codeExam_examDetail{
+    padding: 16px 0 16px 0;
+}
+/* 문제 설명 CSS */
+.codeExam_examDetail>p:first-child{
+    margin: 0 0 1rem 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+/* 제한 조건 CSS */
+.codeExam_exam{
+    margin-top: 16px;
+}
+.codeExam_exam>p:first-child{
+    margin: 0 0 1rem 0;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* 코드+시연 창 크기 조절 */
+.codeExam_code-wrap {
+    display: flex;
+    flex-direction: column;
+    flex-basis: auto;
+    width: 100%;
+}
+
+/* 예제코드 창 전체 사이즈 조절 */
+.codeExam_boxes {
+    flex-grow: 2;
+    height: 60%;
+    /* background-color: red; */
+
+    box-sizing: border-box;
+    padding: 32px 32px 0 32px;
+
+}
+
+.codeExam_boxesSize {
+    width: 100%;
+    height: 100%;
+    background-color: #212121;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+
+}
+
+.codeExam_exambox {
+    border-radius: 12px;
+    width: 33%;
+    height: 100%;
+    background-color: #212121;
+}
+/* .codeExam_htmlBox,.codeExam_cssBox{
+    margin-right: 12px;
+} */
+
+/* 결과 시연창 전체 사이즈 조절 */
+.codeExam_resultContainer {
+    height: 50%;
+    flex-grow: 1;
+    box-sizing: border-box;
+    padding: 16px 32px 32px 32px;
+}
+
+/* 코드 결과 창 사이즈 조절 */
+.codeExam_resultSize,
+.codeExam_resultDiv {
+    height: 100%;
+}
+
+.codeExam_resultSize {
+    background-color: white;
+    border-radius: 12px;
+}
+
+/* 코드 언어별 창 디자인 */
+.codeExam_codePage{
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+/* 코드창 코드 언어 사이즈 */
+.codeExam_codeLanguage{
+    /* border-bottom: solid 1px rgb(57, 57, 57); */
+    padding: 16px 0 8px 0;
+    margin: 0 32px;
+
+    color: white;
+    font-weight: 600;
+}
+.codeExam_codeContent-Size{
+    width: 100%;
+    height: 100%;
+    /* background-color: red; */
+    box-sizing: border-box;
+    border-radius: 12px;
+}
+/* 코드 출력(시연X)창 크기조절 */
+#css-box > div,#html-box > div{
+    box-sizing: border-box;
+    padding: 16px 0 16px 16px;
+}
+/* 제일 오린쪽 박스 padding 따로 지정 */
+#js-box > div{
+    box-sizing: border-box;
+    padding: 16px;
+}
+.codeExam_codeContent{
+    width: 100%;
+    height: 100%;
+    background-color: #363636;
+
+    border-radius: 12px;
+}
