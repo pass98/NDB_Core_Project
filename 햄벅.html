@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+
+body
+{
+  margin: 0;
+  padding: 0;
+  
+  color: #cdcdcd;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+}
+
+#sidebar_toggle
+{
+  display: block;
+  position: relative;
+  top: 50px;
+  left: 50px;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#sidebar_toggle a
+{
+  text-decoration: none;
+  color: #FFFFFF;
+  
+  transition: color 0.3s ease;
+}
+
+#sidebar_toggle a:hover
+{
+  color: tomato;
+}
+
+#sidebar_toggle input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* 이 부분을 숨깁니다. */
+  z-index: 2; /* 햄버거 위에 위치시킵니다. */
+  
+  -webkit-touch-callout: none;
+}
+
+/*
+ * 간단한 햄버거 버튼 만들기
+ */
+#sidebar_toggle span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  position: relative;
+  
+  background: #cdcdcd;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+              opacity 0.55s ease;
+}
+
+#sidebar_toggle span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#sidebar_toggle span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/* 
+ * 햄버거의 모든 조각을
+ * 십자형으로 바꿉니다.
+ */
+#sidebar_toggle input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #FFFFFF;
+}
+
+/*
+ * 가운데숨기기.
+ */
+#sidebar_toggle input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+ * 마지막 부분 다른 방향으로 가게함.
+ */
+#sidebar_toggle input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+ *  화면의 좌측 상단에 고정 위치
+ */
+#leftside
+{
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -50px;
+  padding: 50px;
+  padding-top: 125px;
+  border-radius: 20px;
+  background: #212121;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* 텍스트의 깜박임 멈추기 */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#leftside li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+ *왼쪽에서 슬라이드 하여 들영ㅁ
+ */
+#sidebar_toggle input:checked ~ ul
+{
+  transform: none;
+}    
+    </style>
+</head>
+<body>
+
+<nav role="navigation">
+    <div id="sidebar_toggle">
+      <!--
+      클릭 수신기로 사용되는 가짜/숨겨진 체크박스,
+      이를 통해 :checked 선택자를 사용
+      -->
+      <input type="checkbox" />
+      
+      <!--
+      햄버거 역할을 하는 몇 개의 span 요소.
+      -->
+      <span></span>
+      <span></span>
+      <span></span>
+      
+      <!--
+        사이드바는 버튼 내부에 잇어야함
+      -->
+      <ul id="leftside">
+        
+        <a><li>닉네임</li></a>
+        <a><li>회원정보</li></a>
+        <a><li>정보</li></a>
+        <a href="#"><li>구독</li></a>
+        
+      </ul>
+    </div>
+  </nav>
+</body>
+</html> 
