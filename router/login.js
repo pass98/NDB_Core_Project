@@ -48,6 +48,7 @@ router.get(
   passport.authenticate("google", { failureRedirect: "/" }),
   function (req, res) {
     // Successful authentication, redirect to the "/profile" route
+
     res.redirect("/profile");
   }
 );

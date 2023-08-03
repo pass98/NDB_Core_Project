@@ -284,7 +284,7 @@ body {
 }
 
 .kakao_button {
-  background-image: url(/img/free-icon-kakao-talk-2111496.png);
+  background-image: url(/img/kakao_img.png);
   background-size: 30px;
   background-repeat: no-repeat;
   background-position: center; /* 정중앙에 배치 */
@@ -293,7 +293,7 @@ body {
   background-color: rgba(251, 255, 1, 0.804);
 }
 .google_button {
-  background-image: url(/img/free-icon-search-google.png);
+  background-image: url(/img/google_img.png);
   background-size: 30px;
   background-repeat: no-repeat;
   background-position: center;
@@ -302,7 +302,7 @@ body {
   background-color: #8ca9bf4b;
 }
 .git_button {
-  background-image: url(/img/깃허브.png);
+  background-image: url(/img/github_img.png);
   background-size: 30px;
   background-repeat: no-repeat;
   background-position: center;
