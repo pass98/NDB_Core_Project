@@ -1,25 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
 
-
-body
-{
-  margin: 0;
-  padding: 0;
-  
-  color: #cdcdcd;
-  font-family: "Avenir Next", "Avenir", sans-serif;
-}
 
 #sidebar_toggle
 {
   display: block;
-  position: relative;
+  
   top: 50px;
   left: 50px;
   
@@ -126,7 +110,7 @@ body
 #leftside
 {
   position: absolute;
-  width: 300px;
+  width: 180px;
   margin: -100px 0 0 -50px;
   padding: 50px;
   padding-top: 125px;
@@ -145,7 +129,7 @@ body
 #leftside li
 {
   padding: 10px 0;
-  font-size: 22px;
+  font-size: 16px;
 }
 
 /*
@@ -155,37 +139,4 @@ body
 {
   transform: none;
 }    
-    </style>
-</head>
-<body>
-
-<nav role="navigation">
-    <div id="sidebar_toggle">
-      <!--
-      클릭 수신기로 사용되는 가짜/숨겨진 체크박스,
-      이를 통해 :checked 선택자를 사용
-      -->
-      <input type="checkbox" />
-      
-      <!--
-      햄버거 역할을 하는 몇 개의 span 요소.
-      -->
-      <span></span>
-      <span></span>
-      <span></span>
-      
-      <!--
-        사이드바는 버튼 내부에 잇어야함
-      -->
-      <ul id="leftside">
-        
-        <a><li>닉네임</li></a>
-        <a><li>회원정보</li></a>
-        <a><li>정보</li></a>
-        <a href="#"><li>구독</li></a>
-        
-      </ul>
-    </div>
-  </nav>
-</body>
-</html> 
+   
