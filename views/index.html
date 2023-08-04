@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="./css/eunwoo_style.css">
+    <link rel="stylesheet" href="/public/css/eunwoo_style.css">
+    <link rel="stylesheet" href="/public/css/yubin_sidebar.css">
 
 </head>
 
@@ -16,12 +17,24 @@
     <div id="main_container">
         <nav id="main_navbar">
             <div class="main_navLeft">
-                <div class="hamburger">
-                    <button>바</button>
+                <div id="sidebar_toggle">
+                    <input type="checkbox" />
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <ul id="leftside">
+        
+                        <a><li>닉네임</li></a>
+                        <a><li>회원정보</li></a>
+                        <a><li>정보</li></a>
+                        <a href="#"><li>구독</li></a>
+                        
+                      </ul>
                 </div>
                 <div class="main_nav_logo">
                     <a href="#">NDB</a>
                 </div>
+                
             </div>
             <div class="main_navRight">
                 <ul class="popularSerch">
