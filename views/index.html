@@ -3,24 +3,97 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-    <link rel="stylesheet" href="/css/eunwoo_style.css">
-    <link rel="stylesheet" href="/css/yubin_sidebar.css">
-    <link rel="stylesheet" href="/css/yubin_chatbot.css">
+    <link rel="stylesheet" href="../public/css/eunwoo_style.css">
+    <link rel="stylesheet" href="../public/css/yubin_sidebar.css">
+    <link rel="stylesheet" href="../public/css/yubin_chatbot.css">
+    <link rel="stylesheet" href="../public/css/subs.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
+    <script src="./main.js"></script>
 
+    <!-- 결제창을 위한 라이브러리-->
 
+      <!-- jQuery -->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+      <!-- iamport.payment.js -->
+      <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+      
+      <!-- <button onclick="requestPay()">결제하기</button> -->
+      <script>
+        function requestPay() {
+          IMP.init('iamport'); 
+          IMP.request_pay({
+            pg: "inicis",
+            pay_method: "card",
+            merchant_uid : 'merchant_'+new Date().getTime(),
+            name : '결제테스트',
+            amount : 5000,
+            buyer_email : 'iamport@siot.do',
+            buyer_name : '김도형',
+            buyer_tel : '010-1234-5678',
+            buyer_addr : '광주인공지능사관학교NSDB',
+            buyer_postcode : '123-456'
+          }, 
+            function (rsp) {
+                console.log(rsp);
+                if (rsp.success) {
+                  var msg = '결제가 완료되었습니다.';
+                  alert(msg);
+                  location.href = "결제 완료 후 이동할 페이지 url"
+                } else {
+                  var msg = '결제에 실패하였습니다.';
+                  msg += '에러내용 : ' + rsp.error_msg;
+                  alert(msg);
+                }
+              });
+        }
+        </script>
+
+        <script>
+            function requestPay1() {
+              IMP.init('iamport'); 
+              IMP.request_pay({
+                pg: "inicis",
+                pay_method: "card",
+                merchant_uid : 'merchant_'+new Date().getTime(),
+                name : '결제테스트',
+                amount : 7000,
+                buyer_email : 'iamport@siot.do',
+                buyer_name : '김도형',
+                buyer_tel : '010-1234-5678',
+                buyer_addr : '광주인공지능사관학교NSDB',
+                buyer_postcode : '123-456'
+              }, 
+                function (rsp) {
+                    console.log(rsp);
+                    if (rsp.success) {
+                      var msg = '결제가 완료되었습니다.';
+                      alert(msg);
+                      location.href = "결제 완료 후 이동할 페이지 url"
+                    } else {
+                      var msg = '결제에 실패하였습니다.';
+                      msg += '에러내용 : ' + rsp.error_msg;
+                      alert(msg);
+                    }
+                  });
+            }
+            </script>
 </head>
 
 <body>
+    <div>
     <div id="main_container">
+        <div class="overlay"></div>
+        
         <nav id="main_navbar">
             <div class="main_navLeft">
                 <div id="sidebar_toggle">
@@ -33,8 +106,14 @@
                         <a><li>닉네임</li></a>
                         <a><li>회원정보</li></a>
                         <a><li>정보</li></a>
-                        <a href="#"><li>구독</li></a>
                         
+                        <a href="#" class="subs_btn_open"><li>구독</li></a>
+                        
+                       
+                       
+
+
+
                       </ul>
                 </div>
                 <div class="main_nav_logo">
@@ -106,6 +185,114 @@
             </div>
         </div>
     </div>
+
+    <div class="subs_modal">
+        <div class="subs_modal_content">
+           
+       
+            <div class="subs_header">
+                <div ><h1 id="subs_title" >Member of NDB</h1></div>
+                <div>
+                    <button class="subs_button_close" >&times;</button>
+                </div>
+
+                <div >
+                <p class="subs_subtitle">
+                    학습 능률을 높이는 방법! <br />
+                    "구독"으로 다양한 혜택을 누리세요! <br /><br>
+                    For month
+                </p>
+                </div>
+              
+            </div> 
+
+            <div class="subs_desc_content">
+                <div class= "content1 content-box">
+                    <div ><h3>Basic</h3></div>
+                    <div class="subs_benefit">
+                    <div class="subs_price" >￦0 </div>  
+                    <ul class="subs_li">
+                    <li>-&nbsp; 버전 업그레이드</li>
+                    <li>-&nbsp; 테마 설정</li>
+                    <li>-&nbsp; 예제에 대한 개념 정리</li>
+                    <li>-&nbsp;</li>
+                    <li>-&nbsp;</li>
+                    <li>-&nbsp;</li>
+                    <li>-&nbsp;</li>
+                    </ul>
+                    </div>
+
+                   
+                    <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
+                    
+                    <div class="subs_btn">
+                        <button onclick="requestPay()">구독하기</button>
+                    </div>
+                </div>
+                    
+                
+
+
+                <div class="content2 content-box">
+                    <div><h3 >Standard</h3></div>
+                    <div class="subs_benefit">
+                    <div class="subs_price" >￦5000 </div> 
+                    <ul class="subs_li">
+                    <li>-&nbsp; 버전 업그레이드 </li>
+                    <li>-&nbsp; 테마 설정 </li>
+                    
+                    <li>-&nbsp; 예제에 대한 개념 정리</li>
+                    <li>-&nbsp; 배너 제거 </li>
+                    <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
+                    <li>-&nbsp; 추천 강의 20% 할인권</li>                    
+                    <li>-&nbsp; </li>
+                    </ul>
+                    </div>
+                    <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
+                    <div class="subs_btn">
+                        <button onclick="requestPay()">구독하기</button>
+                    </div>
+
+                </div>
+
+                
+
+
+                <div class="content3 content-box">
+                   <div><h3 >PRO</h3></div> 
+                   <div class="subs_benefit">
+                    <div class="subs_price" >￦7000 </div>  
+                    <ul class="subs_li">
+                    <li>-&nbsp; 버전 업그레이드 </li>
+                    <li>-&nbsp; 테마 설정 </li>
+                    
+                    <li>-&nbsp; 예제에 대한 개념 정리 </li>
+                    <li>-&nbsp; 배너 제거 </li>
+                    <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
+                    
+                    <li>-&nbsp; 추천 강의 40% 할인권</li>
+                    <li>-&nbsp; 인기 문제&개념 모음집PDF </li>
+                    </ul>
+                    </div>
+                    
+
+                    <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
+                    <div class="subs_btn">
+                        <button onclick="requestPay1()">구독하기</button>
+                    </div>
+                </div>
+            </div>
+          
+        </div>
+        
+
+
+        </div>
+
+        
+
+
+
     <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
 
     <!-- 챗봇 대화창 컨테이너 -->
@@ -126,7 +313,29 @@
             <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
             <button onclick="sendMessage()">전송</button>
         </div>
+
     </div>
+
+
+
+    <script>
+        
+
+        $('.subs_btn_open').click(function () {
+            $('.subs_modal, .overlay').addClass("active")
+        })
+        $('.subs_button_close, .overlay').click(function () {
+            $('.subs_modal, .overlay').removeClass("active")
+        })
+     
+ 
+
+    </script>    
+
+    
+</div>
+
+
 
 </body>
 
