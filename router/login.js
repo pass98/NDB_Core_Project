@@ -49,14 +49,15 @@ router.get(
   function (req, res) {
     // Successful authentication, redirect to the "/profile" route
 
-    res.redirect("/profile");
+    res.redirect("/index");
   }
 );
 
 // 사용자 프로필 페이지
-router.get("/profile", (req, res) => {
+router.get("/index", (req, res) => {
   if (req.isAuthenticated()) {
-    res.send(`<h1>Hello, ${req.user.displayName}</h1>`);
+    // res.send(`<h1>Hello, ${req.user.displayName}</h1>`);
+    res.render("index.html");
   } else {
     res.render("login.html");
   }
