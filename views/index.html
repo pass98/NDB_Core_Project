@@ -10,8 +10,9 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="/public/css/eunwoo_style.css">
     <link rel="stylesheet" href="/public/css/yubin_sidebar.css">
+    <link rel="stylesheet" href="/public/css/yubin_chatbot.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../public/js/mypage_script.js"></script>
+    <script src="../public/js/chatbot_script.js"></script>
 
 </head>
 
@@ -25,7 +26,7 @@
                     <span></span>
                     <span></span>
                     <ul id="leftside">
-        
+                    <!-- db연결시 바꿀예정 -->
                         <a><li>닉네임</li></a>
                         <a><li>회원정보</li></a>
                         <a><li>정보</li></a>
@@ -102,6 +103,28 @@
             </div>
         </div>
     </div>
+    <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
+
+    <!-- 챗봇 대화창 컨테이너 -->
+    <div class="chat-container" id="chat-container">
+        <!-- 챗봇 헤더 -->
+        <div class="chat-header" onclick="toggleChat()">NDB</div>
+
+        <!-- 챗봇 몸체 -->
+        <div class="chat-body">
+            <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
+            <div class="message bot-message">
+                <div class="content">안녕하세요! 무엇을 도와드릴까요?</div>
+            </div>
+        </div>
+
+        <!-- 사용자 입력창 -->
+        <div class="chat-input">
+            <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
+            <button onclick="sendMessage()">전송</button>
+        </div>
+    </div>
+
 </body>
 
 </html>
