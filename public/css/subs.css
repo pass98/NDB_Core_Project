@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
+
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    
+}
+
+a {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+#container {
+    margin: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #1B3455;
+    font-family: 'Noto Sans KR','GmarketSansMedium';
+}
+
+#navbar {
+    height: 58px;
+    width: 100%;
+    padding: 8px 12px;
+    box-sizing: border-box;
+
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #212121;
+    color: #FFFFFF;
+    font-family: 'Noto Sans KR';
+    font-size: 14px;
+}
+
+
+.navLeft {
+    height: 100%;
+    display: flex;
+    align-items: center
+}
+
+.nav_logo {
+    font-weight: 1000;
+    font-size: large;
+    margin-left: 12px;
+}
+
+.navRight {
+    height: 100%;
+    display: flex;
+    align-items: center
+}
+
+.navRight>ul {
+    float: left;
+    margin: 0;
+}
+
+.navRight>ul>li {
+    list-style-type: none;
+    display: inline-block;
+    text-align: center;
+}
+.navRight>ul>:first-child {
+    color: #d2d2d2;
+    padding-right: 6px;
+}
+.navRight>ul>:nth-child(2) {
+    color: #ffffff;
+    padding-right: 6px;
+}
+
+.popularSerch {
+    box-sizing: border-box;
+    padding-right: 32px;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* -------------구독모달창---------------- */
+.subs_body {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.7em;
+}
+
+.subs_modal{
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -80%);
+    opacity: 0;
+    transition: 0.3s;
+    z-index: 10000;    
+}
+.subs_modal.active {
+    opacity: 1;
+    transform:translate(-50%, -50%);
+}
+.subs_modal_content{
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.247);
+    width: 880px;
+    overflow: hidden;
+    background-color: #1B3455;
+}
+
+.subs_button_close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    outline:none;
+    color: #ccc;
+    font-size: 18px;
+}
+.subs_button_close:hover {
+    color: #000;
+}
+
+.subs_header{
+    font-size:larger;
+    text-align: center;
+    display:absolute;
+    color: #FFFFFF;
+}
+#subs_title{
+    font-size: 38px;
+}
+.subs_subtitle{
+    font-weight: 35vw;
+    font-size:20px;
+}
+
+
+h1{
+    font-size:55px;
+
+}
+h2,h3{
+    text-align: center;
+    font-size:25px;
+}
+.subs_btn_open{
+    position:fixed;
+    left:0;
+    top:15;   
+    font-size: 15px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial;
+}
+
+.subs_desc_content{
+    display:flex;
+    justify-content: center;
+}
+
+
+.content-box > button{
+    
+    width : 60px;
+    
+}
+.content-box{
+    width:33%;
+    height:200%;
+    border-radius: 12px;
+    background-color: #8CA9BF;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    
+
+}
+.benefit{
+    margin-left:38px;
+}
+
+.content3{
+    margin-right:20px;
+}
+
+.content1:hover{
+    background-color:#FFFFFF;
+    transform:  scale(1.1, 1.05) ;
+
+}
+.content2:hover{
+    background-color:#FFFFFF;
+    transform:  scale(1.1, 1.05) ;
+}
+.content3:hover{
+    background-color:#FFFFFF;
+    transform:  scale(1.1, 1.05) ;
+}
+
+.subs_desc_content input[type=email] {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 7px;
+    outline: none;
+    border: 1px solid #ccc;
+   
+}
+.subs_desc_content input[type=email]::placeholder {
+    color: #ccc;
+}
+.subs_desc_content input[type=email]:focus::placeholder{
+    opacity: 0;
+}
+.subs_desc_content button {
+    display:flex;
+    /* margin-left:50px; */
+    padding: 7px;
+    background-color: rgb(212, 69, 97);
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    width: 122px;
+    font-size:16px;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.btn{
+    display:flex;
+    justify-content: center;
+    margin-bottom : 30px;
+}
+
+
+.subs_desc_content button:hover {
+    background-color: rgb(211, 22, 60);
+}
+.overlay {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.315);
+    opacity: 0;
+    transition: 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    visibility: hidden;
+}
+.overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media (max-width:768px) {
+    .subs_modal_content {
+        flex-direction: column;
+        width: 360px;
+    }
+    .photo {
+        flex-basis: 250px; 
+    }
+}

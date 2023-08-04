@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/css/mypage_style.css">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://kit.fontawesome.com/3c016f9a45.js" crossorigin="anonymous"></script>
+    <script src="../public/js/mypage_script.js"></script>
+</head>
+<body>
+    <div id ='mp_page notosanskr'>
+        <div class="left-side-bar">
+            <div class="status-ico">
+                <span>☰</span>
+                <span>☰</span>
+            </div>
+    
+            <ul>
+                <li>
+                    <a href="#">1</a>
+                    <ul>
+                        <li><a href="#">1</a></li>
+                   
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">2</a>
+                    <ul>
+                        <li><a href="#">1</a></li>
+                     
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">3</a>
+                    <ul>
+                        <li><a href="#">1</a></li>
+                     
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">4</a>
+                    <ul>
+                        <li><a href="#">1</a></li>
+                     
+                    </ul>
+                </li>
+                <li>
+                    <a href="#">5</a>
+                    <ul>
+                        <li><a href="#">1</a></li>
+                    
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <main >
+            <!-- 상단 모달바 생성 -->
+            <div id="container">
+                <div id="modalWrap">
+                    <div id="modalContent">
+                        <div id="modalBody">
+                            <!-- 닫기 버튼 -->
+
+                            <span id="closeBotton">&times;</span> 
+                            <!-- 팝업창 내 글귀 -->
+                            <p>modal-popup 입니다.</p> 
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <nav id="navbar">
+                        <div class="navLeft">
+                            <div class="hamburger">
+                                <button>바</button>
+                            </div>
+                            <div class="nav_logo">
+                                <a href="#">NDB</a>
+                            </div>
+                        </div>
+                        <div class="navRight">
+                            <ul class="popularSerch">
+                                <li>
+                                    <span>인기 검색어</span>
+                                </li>
+                                <li></li>
+                                <li>
+                                    <a href="#">파이썬 반복문</a>
+                                </li>
+                            </ul>
+                            <div id="botoonWrap">
+                                <!-- 팝업을 띄우기 위한 버튼 -->
+                                <button type="button" id="modalBtn">로그인</button> 
+                            </div>
+                        </div>
+                    </nav>
+                    <div id="main">
+                    </div>
+                </div>
+                <div>
+        
+                </div>
+            </div> 
+
+            
+            <!-- 상단 모달바 종료 -->
+            <div id = mp_spacedivision></div>
+            <!-- 프로필 카드 창 -->
+            <div class ='mp_card'>
+                <div class="mp_banner">
+                    <div class="profile"><i class="fa-solid fa-user fa-6x"></i></div>
+                </div>
+    
+                <h2 class="mp_name notosanskr">회원이름</h2><div class="mp_id notosanskr">아이디</div>
+            </div>
+            <!-- 프로필 카드 창 종료 -->
+            
+            <!-- 메인 탭메뉴창 -->
+            <div class="mp_tabmenu notosanskr">
+                <ul class="mp_tabs notosanskr">
+                  <li class="mp_tab-link current" data-tab="mp_tab-1">풀었던 문제</li>
+                  <li class="mp_tab-link notosanskr" data-tab="mp_tab-2">개인 정보</li>
+                  <li class="mp_tab-link notosanskr" data-tab="mp_tab-3">결제 정보</li>
+                  <li class="mp_tab-link notosanskr" data-tab="mp_tab-4">현재 등급</li>
+                  <li class="mp_tab-link notosanskr" data-tab="mp_tab-5">계정 연동</li>
+                </ul>
+              
+                <div id="mp_tab-1" class="mp_tab-content current"><h2 class = mp_h2>tab content3</h2><div class="mp_output"></div></div>
+                <div id="mp_tab-2" class="mp_tab-content"><h2 class = mp_h2>개인 정보</h2>
+                    <div class="mp_output">
+                    <table class ='mypagefro'>
+                        <tr><td >이름     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="이름이 표시될 곳입니다." class="mp_Info" ></td></tr>
+                        <tr><td >비밀번호 </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="비밀번호가 표시될 곳입니다." class="mp_Info"></td><td><button id="mp_nameCh">변경</button></td></tr>
+                        <tr><td >별명     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="별명이 표시될 곳입니다." class="mp_Info"></td></tr>
+                        <tr><td >주소     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="주소이 표시될 곳입니다." class="mp_Info"></td></tr>
+                    </table>
+                    </div>
+                </div>    
+                <div id="mp_tab-3" class="mp_tab-content"><h2 class = mp_h2>tab content3</h2><div class="mp_output"></div></div>
+                <div id="mp_tab-4" class="mp_tab-content"><h2 class = mp_h2>tab content3</h2><div class="mp_output"></div></div>
+                <div id="mp_tab-5" class="mp_tab-content"><h2 class = mp_h2>계정연동</h2>
+                    <div><p>계정 연동을 원하시면 아래의 버튼을 눌러주세요.</p>
+                    <button class="mp_auth-butoon google" onclick="location.href='#'"><img src="../public/img/google_img.png" alt="" class = mp_emoticon ></button>
+                    <button class="mp_auth-butoon github" onclick="location.href='#'"><img src="../public/img/github_img.png" alt=""class = mp_emoticon ></button>
+                    <button class="mp_auth-butoon kakao" onclick="location.href='#'"><img src="../public/img/kakao_img.png" alt=""class = mp_emoticon ></button>
+                    <button class="mp_auth-butoon microsoft" onclick="location.href='#'"><img src="../public/img/microsoft_img.png" alt=""class = mp_emoticon ></button>
+                    <button class="mp_auth-butoon facebook" onclick="location.href='#'"><img src="../public/img/facebook_img.png" alt=""class = mp_emoticon></button>
+                    <button class="mp_auth-butoon naver" onclick="location.href='#'"><img src="../public/img/naver_img.png" alt=""class = mp_emoticon></button>
+                    <button class="mp_auth-butoon apple" onclick="location.href='#'"><img src="../public/img/apple_img.png" alt=""class = mp_emoticon></button>
+                    </div>    
+                </div>
+        </main>
+        <!-- 메인 탭메뉴 종료 -->
+    </div>
+    
+
+</div>
+</body>
+</html>
