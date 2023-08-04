@@ -7,9 +7,10 @@
 
 /* 챗봇 컨테이너 */
 .chat-container {
+    font-family: 'Noto Sans KR','GmarketSansMedium';
     position: fixed; /* 화면에 고정되도록 설정 */
-    bottom: 20px;
-    right: 20px;
+    bottom: -15px;
+    right: -15px;
     width: 350px;
     background-color: #8CA9BF;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -27,11 +28,26 @@
 
     background-color: #212121;
     color: #ffffff;
-    padding: 15px 50px 15px 15px; 
+    padding: 15px;
+    padding-top: 25px; 
     /*top right bottom left*/
+    display: flex;
     font-weight: bold;
     border-radius: 10px 10px 0 0;
     cursor: pointer; /* 클릭 가능하도록 설정 */
+    justify-content: space-between;
+}
+.header-title {
+    cursor: pointer;
+}
+/* 뒤로가기버튼 */
+#back-button {
+    border: 1px;
+    font-size: 15px;
+    color: white;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: bold;
 }
 
 /* 챗봇 몸체 */
@@ -42,7 +58,30 @@
     overflow-y: auto;
 
 }
-
+/* 인사박스 */
+.button-container{
+    font-size: 24px;
+    margin: 20px;
+    padding:20px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+    border-radius: 20px;
+    background-color: #f9f9f9;
+    font-weight: bolder;
+   
+} 
+/* 질문하기버튼,별점버튼 */
+.button-container button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #1B3455;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+}
 /* 대화 메시지 스타일 */
 .message {
     margin: 10px 0;
@@ -72,7 +111,7 @@
 }
 
 .bot-message .content::before {
-    content: "AI: ";
+    content: "NDB: ";
     font-weight: bold;
 }
 
@@ -83,33 +122,35 @@
 }
 
 .chat-input input[type="text"] {
-    flex: 1;
-    padding: 15px;
-    border: none;
-    outline: none;
-    font-size: 14px;
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 71%;
 }
 
 .chat-input button {
-    padding: 15px 20px;
+    padding: 10px 20px;
     border: none;
+    border-radius: 5px;
     background-color: #D83B44;
     color: #ffffff;
     cursor: pointer;
     font-weight: bold;
+    width: 20%;
 }
 
 .chat-input button:hover {
-    background-color: 8CA9BF;
+    background-color: #8CA9BF;
 }
 
 /* 챗봇 열기/닫기 버튼 스타일 */
 .chat-toggle-button {
     position: fixed; /* 화면에 고정되도록 설정 */
-    bottom: 20px;
-    right: 20px;
-    width: 100px;
-    height: 100px;
+    bottom: -15px;
+    right: -15px;
+    width: 80px;
+    height: 80px;
     background-color: #8CA9BF;
     color: #ffffff;
     border-radius: 50%;

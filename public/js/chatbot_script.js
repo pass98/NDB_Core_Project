@@ -1,3 +1,36 @@
+function openChat() {
+    document.getElementById('chat-body').style.display = 'block';
+    document.getElementById('chat-input').style.display = 'block';
+    document.getElementById('back-button').style.display = 'block';
+    document.getElementById('button-container').style.display = 'none';
+}
+
+function toggleChat() {
+    const chatContainer = document.getElementById("chat-container");
+    chatContainer.classList.toggle("open");
+    const buttonContainer = document.getElementById("button-container");
+    const chatBody = document.getElementById("chat-body");
+    const chatInput = document.getElementById("chat-input");
+    const backButton = document.getElementById("back-button");
+    if (chatContainer.classList.contains("open")) {
+        buttonContainer.style.display = 'block';
+        chatBody.style.display = 'none';
+        chatInput.style.display = 'none';
+        backButton.style.display = 'none';
+    }
+}
+
+function back() {
+    const chatBody = document.getElementById("chat-body");
+    const chatInput = document.getElementById("chat-input");
+    const backButton = document.getElementById("back-button");
+    const buttonContainer = document.getElementById("button-container");
+    chatBody.style.display = 'none';
+    chatInput.style.display = 'none';
+    backButton.style.display = 'none';
+    buttonContainer.style.display = 'block';
+}
+
 function sendMessage() {
     //사용자가 입력한 메시지 가져오기
     const userMessage = document.getElementById("user-input").value;
@@ -30,10 +63,7 @@ function sendMessage() {
     chatBody.scrollTop = chatBody.scrollHeight;
 }
 
-function toggleChat() {
-    const chatContainer = document.getElementById("chat-container");
-    chatContainer.classList.toggle("open");
-}
+
 // 엔터키로 전송
 function handleKeyDown(event) {
     if (event.keyCode === 13) {
