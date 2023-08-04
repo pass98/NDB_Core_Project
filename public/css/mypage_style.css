@@ -310,7 +310,9 @@ body {
 
 .mypagefro{
     color: #ededed;
-    box-sizing:content-box
+    box-sizing:content-box;
+    height: 300px;
+    align-items: center;
 }
   
 .mp_h2{
@@ -360,7 +362,7 @@ body {
 
   .mp_Info{
     width : 300px;
-
+    
     text-align: left;
   }
   
