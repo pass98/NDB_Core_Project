@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/css/yubin_chatbot.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
-    <script src="./index.js"></script>
+    <script src="/js/index.js"></script>
 
 </head>
 
@@ -56,15 +56,17 @@
                             <select name="main_language" id="" class="main_searchLanguage"
                                 style="width:50px;height:30px;">
                                 <option value="html">html</option>
-                                <option value="java">java</option>
                                 <option value="css">css</option>
                                 <option value="javascript">javascript</option>
+                                <option value="java">java</option>
+                                <option value="python">python</option>
+                                <option value="c">C언어</option>
                             </select>
                             <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
                             <input type="text" class="main_searchBar" name="main_searchBar_Name">
                             <!-- 자동완성 단어 리스트 -->
                             <div class="main_autocomplete"></div>
-                            <button type="submit" class="main_search_button">
+                            <button type="submit" class="main_search_button" onclick=select()>
                                 <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                             </button>
                         </div>
@@ -123,7 +125,7 @@
                     <input type="text" class="main_searchBar" name="main_searchBar_Name">
                     <!-- 자동완성 단어 리스트 -->
                     <div class="main_autocomplete"></div>
-                    <button type="submit" class="main_search_button">
+                    <button type="submit" class="main_search_button" onclick=select()>
                         <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                     </button>
                 </div>

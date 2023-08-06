@@ -26,7 +26,7 @@ function select(){
 }
 
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     const keywords = document.getElementsByClassName('main_searchbar').value
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
@@ -120,7 +120,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 }
 
 function java() {   // select option이 java일때 api java 응답함수
-    const api_key = "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"// api key 값
+    const api_key = "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"// api key 값
     const keywords = document.getElementsByClassName('main_searchbar').value // 사용자 입력 keywords 가져오기
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
@@ -198,7 +198,7 @@ function java() {   // select option이 java일때 api java 응답함수
 
 
 function python() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     const keywords = document.getElementsByClassName('main_searchbar').value // 사용자 입력 keywords 가져오기
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
@@ -273,7 +273,7 @@ function python() { // select option이 python일때 api python 응답함수
 }
 
 function C_programing() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     const keywords = document.getElementsByClassName('main_searchbar').value // 사용자 입력 keywords 가져오기
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
