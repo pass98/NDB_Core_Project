@@ -301,7 +301,7 @@ select {
     /* flex: 1 0 auto; */
 
     /* 메인페이지 배경 이미지 추가 */
-    background-image: url('../img/main_backGroundimg_moreEfficiency.png');
+    background-image: url('/img/main_backGroundimg_moreEfficiency.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -381,7 +381,7 @@ select {
     margin: 0 8px 0 8px;
     /* font-family:'GmarketSansMedium', 'Noto Sans KR'; */
 
-    background: url('../chevron-down-solid.svg') no-repeat 97% 50%/15px auto;
+    background: url('img/chevron-down-solid.svg') no-repeat 97% 50%/15px auto;
     ;
 }
 
