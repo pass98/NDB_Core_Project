@@ -18,7 +18,7 @@ function select(){
         case "python":
             python();
             break;
-        case "C언어":
+        case "c_language":
             C_programing();
             break;
     }
@@ -26,7 +26,7 @@ function select(){
 }
 
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     const keywords = document.getElementsByClassName('main_searchbar').value
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
@@ -35,7 +35,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 
     const messages = [ //명령 프롬프트
         { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: 'GPT, HTML, CSS, JS 언어로 '+ language +' for문 별찍기 문제를 HTML,CSS,JS 코드와 함께 제시해주세요. 제일먼제 문제를 제시해주세요. 주석은 한글로 작성해주세요' },
+        { role: 'user', content: 'GPT, HTML, CSS, JS 언어로 '+ language +' 간단 레이아웃 실습 문제를 HTML,CSS,JS 코드와 함께 제시해주세요. 제일먼제 문제를 제시해주세요. 주석은 한글로 작성해주세요' },
         { role: 'assistant', content: '"""HTML Code:""" 여기에 HTML 코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 HTML코드를 작성해주세요"""End HTML Code"""' },
         { role: 'assistant', content: '"""CSS Code:""" 여기에 CSS 코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 CSS코드를 작성해주세요"""End CSS Code"""' },
         { role: 'assistant', content: '"""JS Code:""" 여기에 JS 코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 JS코드를 작성해주세요"""End JS Code"""' },
@@ -100,13 +100,20 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
                 }
             }
         } 
-
+        let f_text = splitResponse[0]
         console.log(splitResponse)
+        console.log(f_text)
         console.log(htmlCode)
         console.log(cssCode)
         console.log(jsCode)
         console.log(apitext)
-        let f_text = splitResponse[0] + splitResponse[2]
+        
+        const code = {
+            html : htmlCode,
+            css : cssCode,
+            js : jsCode
+        }
+
         let result = document.getElementsByClassName('main_searchWrap')
         let pre = document.createElement('pre')
 
@@ -120,7 +127,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 }
 
 function java() {   // select option이 java일때 api java 응답함수
-    const api_key = "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"// api key 값
+    const api_key = "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"// api key 값
     const keywords = document.getElementsByClassName('main_searchbar').value // 사용자 입력 keywords 가져오기
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
@@ -198,7 +205,7 @@ function java() {   // select option이 java일때 api java 응답함수
 
 
 function python() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     const keywords = document.getElementsByClassName('main_searchbar').value // 사용자 입력 keywords 가져오기
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
@@ -273,7 +280,7 @@ function python() { // select option이 python일때 api python 응답함수
 }
 
 function C_programing() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     const keywords = document.getElementsByClassName('main_searchbar').value // 사용자 입력 keywords 가져오기
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
