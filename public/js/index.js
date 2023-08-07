@@ -25,35 +25,94 @@ document.addEventListener("DOMContentLoaded", function () {
 
     main_searchBar.addEventListener("keyup", onKeyUp);
     main_searchBar.addEventListener("keyup", handleSubmit);
-    main_searchBar.addEventListener("submit", handleSubmit);
-    document.querySelector(".main_search_button").addEventListener("click", goToScroll);
+    // main_searchBar.addEventListener("submit", handleSubmit);
+    document.querySelector(".main_search_button").addEventListener('click', function(e) {
+        e.preventDefault();
+        })
+    document.querySelector(".main_search_button").addEventListener("Click", goToScroll);
     // 스크롤 자동
 
     // 정답가리기 기능
+    // div선택변수
     const box = document.querySelector('.codeExam_boxesHide');
+    // div의 가로 값
+    const width = document.querySelector(".codeExam_boxesHide").clientWidth;
 
-    box.addEventListener('dragstart', (e) => {
-        e.preventDefault();
-    });
-
-    let offsetX, offsetY, isDragging = false;
+    let isDragging = false;
+    let startX, originalLeft;
 
     box.addEventListener('mousedown', (e) => {
         isDragging = true;
-        offsetX = e.pageX - box.getBoundingClientRect().left ;// 클릭한 위치와 요소의 왼쪽 간의 거리
-        // offsetY = e.clientY - box.getBoundingClientRect().top;
+        startX = e.clientX;  // 드래그 시작점의 x 좌표 기록
+        originalLeft = parseInt(getComputedStyle(box).left); // 요소의 초기 위치 기록 (정수 값으로 변환)
+        e.preventDefault();
     });
 
     document.addEventListener('mousemove', (e) => {
         if (isDragging) {
-            box.style.left = e.pageX - offsetX + 'px'; // 마우스 위치에서 거리를 빼서 요소의 왼쪽 위치를 설정
-            // box.style.top = e.clientY - offsetY - 32 + 'px';
+            let currentX = e.clientX;
+            let difference = currentX - startX;  // 시작점과 현재점의 차이 계산
+
+            // 요소를 드래그할 때만 위치를 변경하도록 조건 추가
+            if (Math.abs(difference) > 10) {
+                // 드래그한 거리를 기존 위치에 더하여 요소 이동
+                box.style.left = originalLeft + difference + 'px';
+            }
+
+            // 드래그를 일정 거리 이상 했을 때 요소를 화면 밖으로 슬라이드시킴
+            // if (Math.abs(difference) > (width/2)) {
+            //     let slideDirection = difference > 0 ? '100%' : '-100%';  // 오른쪽 또는 왼쪽으로 슬라이드 판단
+            //     box.style.left = slideDirection;
+            //     isDragging = false;  // 드래그 종료
+            // }
         }
     });
 
+    // 드래그시 이미지가 출력되는 브라우저 기본 기능 비활성화
     document.addEventListener('mouseup', () => {
         isDragging = false;
     });
     // 정답 가리기 기능 끝
-    
+
+    // 검색 시 코드창에 내용 삽입 기능 시작
+    function insertHTMLToDiv() {
+        const codeExam_resultDiv = document.querySelector('.codeExam_resultDiv');
+        const codeExam_htmlBox = document.querySelector('.codeExam_htmlBox');
+        const htmlString = `"
+        <header>
+            <div class="logo">로고</div>
+            <nav>
+                <ul>
+                    <li>메뉴1</li>
+                    <li>메뉴2</li>
+                    <li>메뉴3</li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="container">
+            <aside>
+                <ul>
+                    <li>사이드바1</li>
+                    <li>사이드바2</li>
+                    <li>사이드바3</li>
+                </ul>
+            </aside>
+
+            <main>
+                <h1>본문</h1>
+                <p>본문 내용을 입력하세요.</p>
+            </main>
+        </div>
+        "`;
+
+        
+        codeExam_resultDiv.innerHTML = htmlString;
+        codeExam_htmlBox.innerHTML = + htmlString;
+        // 가져온 HTML 문자열에 포함된 JavaScript 코드를 실행시키고 싶다면, 이 부분에 추가로 코드 작성
+        // targetDiv.querySelector('button').addEventListener('click', myFunction);
+    }
+
+    // 함수 호출
+    main_searchBar.addEventListener("keyup", insertHTMLToDiv());
 });

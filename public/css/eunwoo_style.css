@@ -538,11 +538,6 @@ option:hover {
       background: #1B3455; /* 스크롤바 색상 */
       border-radius: 12px; /* 스크롤바 둥근 테두리 */
   }
-  
-  .codeExam_examContent::-webkit-scrollbar-track {
-      /* background: #8CA9BF;  스크롤바 뒷 배경 색상 */
-      /* border-radius: 12px; */
-  }
 
 .codeExam_examTitle {
     /* font 속성 */
@@ -685,14 +680,20 @@ option:hover {
 }
 
 /* 코드 결과 창 사이즈 조절 */
+.codeExam_resultSize {
+    background-color: white;
+    border-radius: 12px;
+}
 .codeExam_resultSize,
 .codeExam_resultDiv {
     height: 100%;
 }
+/* 코드 결과창 스크롤 및 그림자 설정 */
 .codeExam_resultDiv{
-    overflow-y: scroll;
+    overflow: scroll;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+
 .codeExam_resultDiv::-webkit-scrollbar {
     width: 5px;  
 }
@@ -701,11 +702,21 @@ option:hover {
     background: #1B3455; /* 스크롤바 색상 */
     border-radius: 12px; /* 스크롤바 둥근 테두리 */
 }
-
-.codeExam_resultSize {
-    background-color: white;
-    border-radius: 12px;
+/* 코드 결과창 html데이터 삽입 */
+.codeExam_resultDiv::after {
+    content: attr(data-value);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
+
+.codeExam_resultDiv.show::after {
+    opacity: 1;
+}
+
 
 /* 코드 언어별 창 디자인 */
 .codeExam_codePage {
@@ -753,3 +764,4 @@ option:hover {
 
     border-radius: 12px;
 }
+
