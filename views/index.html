@@ -11,84 +11,13 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-
-
-    <link rel="stylesheet" href="../public/css/eunwoo_style.css">
-    <link rel="stylesheet" href="../public/css/yubin_sidebar.css">
-    <link rel="stylesheet" href="../public/css/yubin_chatbot.css">
-    <link rel="stylesheet" href="../public/css/subs.css">
+    <link rel="stylesheet" href="/css/eunwoo_style.css">
+    <!-- <link rel="stylesheet" href="/css/yubin_sidebar.css">
+        <link rel="stylesheet" href="/css/yubin_chatbot.css"> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
-    <script src="./main.js"></script>
+    <script src="/js/index.js"></script>
 
-    <!-- 결제창을 위한 라이브러리-->
-    
-
-      <!-- jQuery -->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-      <!-- iamport.payment.js -->
-      <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-      
-      <!-- <button onclick="requestPay()">결제하기</button> -->
-      <script>
-        function requestPay() {
-          IMP.init('iamport'); 
-          IMP.request_pay({
-            pg: "inicis",
-            pay_method: "card",
-            merchant_uid : 'merchant_'+new Date().getTime(),
-            name : '결제테스트',
-            amount : 5000,
-            buyer_email : 'iamport@siot.do',
-            buyer_name : '김도형',
-            buyer_tel : '010-1234-5678',
-            buyer_addr : '광주인공지능사관학교NSDB',
-            buyer_postcode : '123-456'
-          }, 
-            function (rsp) {
-                console.log(rsp);
-                if (rsp.success) {
-                  var msg = '결제가 완료되었습니다.';
-                  alert(msg);
-                  location.href = "결제 완료 후 이동할 페이지 url"
-                } else {
-                  var msg = '결제에 실패하였습니다.';
-                  msg += '에러내용 : ' + rsp.error_msg;
-                  alert(msg);
-                }
-              });
-        }
-        </script>
-
-        <script>
-            function requestPay1() {
-              IMP.init('iamport'); 
-              IMP.request_pay({
-                pg: "inicis",
-                pay_method: "card",
-                merchant_uid : 'merchant_'+new Date().getTime(),
-                name : '결제테스트',
-                amount : 7000,
-                buyer_email : 'iamport@siot.do',
-                buyer_name : '김도형',
-                buyer_tel : '010-1234-5678',
-                buyer_addr : '광주인공지능사관학교NSDB',
-                buyer_postcode : '123-456'
-              }, 
-                function (rsp) {
-                    console.log(rsp);
-                    if (rsp.success) {
-                      var msg = '결제가 완료되었습니다.';
-                      alert(msg);
-                      location.href = "결제 완료 후 이동할 페이지 url"
-                    } else {
-                      var msg = '결제에 실패하였습니다.';
-                      msg += '에러내용 : ' + rsp.error_msg;
-                      alert(msg);
-                    }
-                  });
-            }
-            </script>
 </head>
 
 <body>
@@ -103,32 +32,17 @@
 
         <nav id="main_navbar">
             <div class="main_navLeft">
-                <div id="sidebar_toggle">
-                    <input type="checkbox" />
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <ul id="leftside">
 
-                    <!-- db연결시 바꿀예정 -->
-                        <a><li>닉네임</li></a>
-                        <a><li>회원정보</li></a>
-                        <a><li>정보</li></a>
-                        
-                        <a href="#" class="subs_btn_open"><li>구독</li></a>
-                        
-                       
-                       
-
-
-
-                      </ul>
+                <div class="hamburger">
+                    <button>바</button>
+                </div>
+                <div class="main_nav_logo">
+                    <a href="#">NDB</a>
 
                 </div>
-                <!--  -->
                 <div class="main_navMiddle">
-                    <div>
-                        <div class="main_search">
+                    <form>
+                        <div id="main_navSearchbar" class="main_search">
                             <select name="main_language" id="" class="main_searchLanguage"
                                 style="width:50px;height:30px;">
                                 <option value="html">html</option>
@@ -137,32 +51,33 @@
                                 <option value="javascript">javascript</option>
                             </select>
                             <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                            <input type="text" class="main_searchBar" name="main_searchBar_Name">
+                            <input type="text" class="main_searchBar_Nav" name="main_searchBar_Name_Nav">
                             <!-- 자동완성 단어 리스트 -->
                             <div class="main_autocomplete"></div>
                             <button type="submit" class="main_search_button">
                                 <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
-                <div class="main_navRight">
-                    <ul class="popularSerch">
-                        <li>
-                            <span>인기 검색어</span>
-                        </li>
-                        <li>|</li>
-                        <li>
-                            <a href="#">파이썬 반복문</a>
-                        </li>
-                    </ul>
-                    <div id="main_btnWrap">
-                        <!-- 로그인 버튼 -->
-                        <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
-                        <!-- 회원가입 버튼 -->
-                        <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
-                    </div>
+            </div>
+            <div class="main_navRight">
+                <ul class="popularSerch">
+                    <li>
+                        <span>인기 검색어</span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a href="#">파이썬 반복문</a>
+                    </li>
+                </ul>
+                <div id="main_btnWrap">
+                    <!-- 로그인 버튼 -->
+                    <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
+                    <!-- 회원가입 버튼 -->
+                    <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
                 </div>
+            </div>
         </nav>
         <!-- 메인 이미지 위치 조정을 위한 div -->
         <div class="main_position"></div>
@@ -179,6 +94,7 @@
         <!-- main페이지 -->
         <div class="main_wrap">
             <!-- 검색창 -->
+            <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
             <div class="main_searchWrap">
                 <div class="main_text">
                     <p>
@@ -186,7 +102,8 @@
                     </p>
                 </div>
                 <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
-                <div class="main_search">
+
+                <form action="" class="main_search">
                     <select name="main_language" id="" class="main_searchLanguage" style="width:50px;height:30px;">
                         <option value="html">html</option>
                         <option value="java">java</option>
@@ -194,13 +111,14 @@
                         <option value="javascript">javascript</option>
                     </select>
                     <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                    <input type="text" class="main_searchBar" name="main_searchBar_Name">
+                    <input type="text" class="main_searchBar" name="main_searchBar_Name" autofocus>
                     <!-- 자동완성 단어 리스트 -->
                     <div class="main_autocomplete"></div>
                     <button type="submit" class="main_search_button">
                         <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                     </button>
-                </div>
+                </form>
+
                 <!-- 검색창 아래 태그 -->
                 <!-- <div class="main_TagWrap">
                     사용자에게 추천하는 검색어 
@@ -321,7 +239,6 @@
     <div class="main_Line"></div>
     <!-- 예제 출력 페이지 -->
     <div id="codeExam_container">
-
         <div class="codeExam_pageWrap">
             <!-- 예제 문제 설명 출력 -->
             <div class="codeExam_examWrap-Size">
@@ -346,14 +263,17 @@
                 </div>
             </div>
             <!-- 예제 문제 코드 출력 -->
-            <div class="codeExam_code-wrap">
+            <div class="codeExam_code_wrap">
                 <div class="codeExam_boxes">
+                    <div class="codeExam_boxesHide" draggable="true"></div>
                     <div class="codeExam_boxesSize">
                         <div id="html-box" class="codeExam_exambox codeExam_htmlBox">
                             <div class="codeExam_codePage">
                                 <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
                                 <div class="codeExam_codeContent-Size">
-                                    <div class="codeExam_codeContent"></div>
+                                    <div class="codeExam_codeContent">
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -379,72 +299,18 @@
                 <div class="codeExam_resultContainer">
                     <div class="codeExam_resultSize">
                         <div class="codeExam_resultDiv">
-                            시연창
-                            <iframe src="" frameborder="0">
-                            </iframe>
+                            <!-- <div style={dasdasd} class> -->
+                                ""
                         </div>
+                        <script>
+
+                        </script>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-   
-
-    <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
-
-    <!-- 챗봇 대화창 컨테이너 -->
-    <div class="chat-container" id="chat-container">
-        <!-- 챗봇 헤더 -->
-       <!-- 챗봇 헤더 -->
-    <div class="chat-header">
-        <div class="header-title" onclick="toggleChat()">NDB</div>
-        <button onclick="back()" id="back-button" style="display: none;">뒤로 가기</button>
     </div>
-        <!-- 버튼 컨테이너 -->
-        <div class="button-container" id="button-container">
-            <p>안녕하세요.<br/>
-            NDB입니다.<br/>
-            무엇을 도와드릴까요?</p>
-            <button onclick="openChat()">질문하기</button>
-            <button>별점 리뷰하기</button>
-        </div>
-    
-        <!-- 챗봇 몸체 -->
-        <div class="chat-body" id="chat-body" style="display: none;">
-            <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
-            <div class="message bot-message">
-                <div class="content">질문을 입력해주세요!</div>
-            </div>
-        </div>
-    
-        <!-- 사용자 입력창 -->
-        <div class="chat-input" id="chat-input" style="display: none;">
-            <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
-            <button onclick="sendMessage()">전송</button>
-        </div>
-
-    </div>
-
-
-
-    <script>
-        
-
-        $('.subs_btn_open').click(function () {
-            $('.subs_modal, .overlay').addClass("active")
-        })
-        $('.subs_button_close, .overlay').click(function () {
-            $('.subs_modal, .overlay').removeClass("active")
-        })
-     
- 
-
-    </script>    
-
-    
-</div>
-
-
 
 </body>
 
