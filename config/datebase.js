@@ -6,7 +6,7 @@
    user: "Insa4_JSA_hacksim_6",
    password: "aishcool6",
    port: "3307",
-   database: "NSDB",
+   database: "Insa4_JSA_hacksim_6",
  };
 
  module.exports = {

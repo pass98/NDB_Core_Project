@@ -1,41 +1,68 @@
-function select(){
+function select() {
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+
+    console.log(language2)
     console.log(language)
-    switch(language){
-        case "html":
+    if (language == " ") {
+        if (language2 == "html") {
             front();
-            break;
-        case "css":
+        }
+        else if (language2 == "css") {
             front();
-            break;
-        case "javascript":
+        }
+        else if (language2 == "javascript") {
             front();
-            break;
-        case "java":
+        }
+        else if (language2 == "java") {
             java();
-            break;
-        case "python":
+        }
+        else if (language2 == "python") {
             python();
-            break;
-        case "c_language":
+        }
+        else if (language2 == "c_language") {
             C_programing();
-            break;
+        }
     }
-        
+    if (language2 == " ") {
+        if (language == "html") {
+            front();
+        }
+        else if (language == "css") {
+            front();
+        }
+        else if (language == "javascript") {
+            front();
+        }
+        else if (language == "java") {
+            java();
+        }
+        else if (language == "python") {
+            python();
+        }
+        else if (language == "c_language") {
+            C_programing();
+        }
+
+    }
 }
 
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     const keywords = document.getElementsByClassName('main_searchbar').value
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+    console.log(language2)
     console.log(language)
     $('#loading').show();
 
     const messages = [ //명령 프롬프트
         { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: 'GPT, HTML, CSS, JS 언어로 '+ language +' 간단 레이아웃 실습 문제를 HTML,CSS,JS 코드와 함께 제시해주세요. 제일먼제 문제를 제시해주세요. 주석은 한글로 작성해주세요' },
+        { role: 'user', content: 'GPT, HTML, CSS, JS 언어로 ' + language + language2 + ' 간단 레이아웃 실습 문제를 HTML,CSS,JS 코드와 함께 제시해주세요. 제일먼제 문제를 제시해주세요. 주석은 한글로 작성해주세요' },
         { role: 'assistant', content: '"""HTML Code:""" 여기에 HTML 코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 HTML코드를 작성해주세요"""End HTML Code"""' },
         { role: 'assistant', content: '"""CSS Code:""" 여기에 CSS 코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 CSS코드를 작성해주세요"""End CSS Code"""' },
         { role: 'assistant', content: '"""JS Code:""" 여기에 JS 코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 JS코드를 작성해주세요"""End JS Code"""' },
@@ -46,7 +73,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
         temperature: 0.5,
         n: 1,
         messages: messages,
-    } 
+    }
 
     $.ajax({
         url: "https://api.openai.com/v1/chat/completions",
@@ -99,7 +126,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
                         apitext += splitResponse[i].trim();
                 }
             }
-        } 
+        }
         let f_text = splitResponse[0]
         console.log(splitResponse)
         console.log(f_text)
@@ -107,12 +134,8 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
         console.log(cssCode)
         console.log(jsCode)
         console.log(apitext)
-        
-        const code = {
-            html : htmlCode,
-            css : cssCode,
-            js : jsCode
-        }
+
+        module.exports = { f_text, apitext, htmlCode, cssCode, jsCode };
 
         let result = document.getElementsByClassName('main_searchWrap')
         let pre = document.createElement('pre')
@@ -127,18 +150,20 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 }
 
 function java() {   // select option이 java일때 api java 응답함수
-    const api_key = "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"// api key 값
+    const api_key = "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"// api key 값
     const keywords = document.getElementsByClassName('main_searchbar').value // 사용자 입력 keywords 가져오기
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
-
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+    console.log(language2)
     console.log(language)
     $('#loading').show();
 
 
     const messages = [ // 명령 프롬프트
         { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: 'GPT,' + language + ' 언어로 for문 별찍기 문제를 ' + language + ' 코드와 함께 제시해주세요. 제일먼제 실습문제를 제시해주세요. 주석은 한글로 작성해주세요' },
+        { role: 'user', content: 'GPT,' + language + language2 + ' 언어로 for문 별찍기 문제를 ' + language + language2 + ' 코드와 함께 제시해주세요. 제일먼제 실습문제를 제시해주세요. 주석은 한글로 작성해주세요' },
         { role: 'assistant', content: '"""java Code:""" 여기에 java코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 java코드를 작성해주세요"""End java Code"""' }]
 
 
@@ -185,12 +210,13 @@ function java() {   // select option이 java일때 api java 응답함수
                         apitext += splitResponse[i].trim();
                 }
             }
-        }   
-
+        }
+        let f_text = splitResponse[0]
         console.log(splitResponse)
+        console.log(f_text)
         console.log(javaCode)
         console.log(apitext)
-        let f_text = splitResponse[0]
+        
         let result = document.getElementsByClassName('main_searchWrap')
         let pre = document.createElement('pre')
 
@@ -205,16 +231,19 @@ function java() {   // select option이 java일때 api java 응답함수
 
 
 function python() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     const keywords = document.getElementsByClassName('main_searchbar').value // 사용자 입력 keywords 가져오기
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+    console.log(language2)
     console.log(language)
     $('#loading').show();
 
     const messages = [      // 명령 프롬프트
         { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: 'GPT,' + language + '언어로 if문 실습 문제를 ' + language + '코드와 함께 제시해주세요. 제일먼제 실습문제를 제시해주세요. 주석은 한글로 작성해주세요' },
+        { role: 'user', content: 'GPT,' + language + language2 + '언어로 if문 실습 문제를 ' + language + language2 + '코드와 함께 제시해주세요. 제일먼제 실습문제를 제시해주세요. 주석은 한글로 작성해주세요' },
         { role: 'assistant', content: '"""python Code:""" 여기에 python코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 python코드를 작성해주세요"""End python Code"""' }]
 
 
@@ -263,10 +292,12 @@ function python() { // select option이 python일때 api python 응답함수
             }
         }   // 응답 데이터 가공 단계
 
+
+        let f_text = splitResponse[0]
         console.log(splitResponse)
         console.log(pythonCode)
         console.log(apitext)
-        let f_text = splitResponse[0]
+        console.log(f_text)
         let result = document.getElementsByClassName('main_searchWrap')
         let pre = document.createElement('pre')
 
@@ -275,21 +306,24 @@ function python() { // select option이 python일때 api python 응답함수
         console.log(pre)
         //result.appendChild(pre)
 
-        document.getElementsByClassName('main_searchbar').value = '' 
+        document.getElementsByClassName('main_searchbar').value = ''
     });
 }
 
 function C_programing() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     const keywords = document.getElementsByClassName('main_searchbar').value // 사용자 입력 keywords 가져오기
     let languageElement = document.querySelector(".main_searchLanguage");
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+    console.log(language2)
     console.log(language)
     $('#loading').show();
 
     const messages = [      // 명령 프롬프트
         { role: 'system', content: 'You are a helpful assistant.' },
-        { role: 'user', content: 'GPT,' + language + '로 if문 실습 문제를 ' + language + '코드와 함께 제시해주세요. 제일먼제 실습문제를 제시해주세요. 주석은 한글로 작성해주세요' },
+        { role: 'user', content: 'GPT,' + language + language2 + '로 if문 실습 문제를 ' + language + language2 + '코드와 함께 제시해주세요. 제일먼제 실습문제를 제시해주세요. 주석은 한글로 작성해주세요' },
         { role: 'assistant', content: '"""c Code:""" 여기에 C언어코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 C언어코드를 작성해주세요"""End c Code"""' }]
 
 
@@ -315,14 +349,14 @@ function C_programing() { // select option이 python일때 api python 응답함�
         const splitResponse = responseText.split(/(```|"""c Code:)/); // 첫번째 응답 데이터 가공, split()
 
         console.log(splitResponse)
-        let pythonCode = ''; // c언어코드가 들어갈 변수
+        let c_Code = ''; // c언어코드가 들어갈 변수
         let apitext = '';   // api 설명이 들어갈 변수
         let currentCode = ''; // 현재 작업중인 코드가 들어갈 변수
 
         for (let i = 0; i < splitResponse.length; i++) {
             if (splitResponse[i].trim().startsWith('c')) {
                 currentCode = 'C';       // 현재 작업중인 코드유형 저장장
-                pythonCode = splitResponse[i].replace('c', '').trim();
+                c_Code = splitResponse[i].replace('c', '').trim();
             } else if (splitResponse[i].trim().startsWith('')) {
                 currentCode = 'text';
                 apitext = splitResponse[i].replace('text', '').trim();
@@ -330,26 +364,27 @@ function C_programing() { // select option이 python일때 api python 응답함�
             else {
                 switch (currentCode) {
                     case 'C':
-                        pythonCode += splitResponse[i].trim();
+                        c_Code += splitResponse[i].trim();
                         break;
                     case 'text':
                         apitext += splitResponse[i].trim();
                 }
             }
         }   // 응답 데이터 가공 단계
-
-        console.log(splitResponse)
-        console.log(pythonCode)
-        console.log(apitext)
         let f_text = splitResponse[0]
+        console.log(splitResponse)
+        console.log(c_Code)
+        console.log(apitext)
+        console.log(f_text)
+        
         let result = document.getElementsByClassName('main_searchWrap')
         let pre = document.createElement('pre')
 
-        pre.innerText = f_text + "\n\n" + pythonCode + "\n\n" + apitext;
+        pre.innerText = f_text + "\n\n" + c_Code + "\n\n" + apitext;
 
         console.log(pre)
         //result.appendChild(pre)
 
-        document.getElementsByClassName('main_searchbar').value = '' 
+        document.getElementsByClassName('main_searchbar').value = ''
     });
 }
