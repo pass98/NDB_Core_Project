@@ -14,9 +14,80 @@
     <link rel="stylesheet" href="/css/eunwoo_style.css">
     <link rel="stylesheet" href="/css/yubin_chatbot.css">
     <link rel="stylesheet" href="/css/yubin_sidebar.css">
+    <link rel="stylesheet" href="/css/subs.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
     <script src="/js/index.js"></script>
+    <script src="./main.js"></script>
+<!-- 결제창을 위한 라이브러리-->
+    
+
+      <!-- jQuery -->
+      <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+      <!-- iamport.payment.js -->
+      <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+      
+      <!-- <button onclick="requestPay()">결제하기</button> -->
+      <script>
+        function requestPay() {
+          IMP.init('iamport'); 
+          IMP.request_pay({
+            pg: "inicis",
+            pay_method: "card",
+            merchant_uid : 'merchant_'+new Date().getTime(),
+            name : '결제테스트',
+            amount : 5000,
+            buyer_email : 'iamport@siot.do',
+            buyer_name : '김도형',
+            buyer_tel : '010-1234-5678',
+            buyer_addr : '광주인공지능사관학교NSDB',
+            buyer_postcode : '123-456'
+          }, 
+            function (rsp) {
+                console.log(rsp);
+                if (rsp.success) {
+                  var msg = '결제가 완료되었습니다.';
+                  alert(msg);
+                  location.href = "결제 완료 후 이동할 페이지 url"
+                } else {
+                  var msg = '결제에 실패하였습니다.';
+                  msg += '에러내용 : ' + rsp.error_msg;
+                  alert(msg);
+                }
+              });
+        }
+        </script>
+
+        <script>
+            function requestPay1() {
+              IMP.init('iamport'); 
+              IMP.request_pay({
+                pg: "inicis",
+                pay_method: "card",
+                merchant_uid : 'merchant_'+new Date().getTime(),
+                name : '결제테스트',
+                amount : 7000,
+                buyer_email : 'iamport@siot.do',
+                buyer_name : '김도형',
+                buyer_tel : '010-1234-5678',
+                buyer_addr : '광주인공지능사관학교NSDB',
+                buyer_postcode : '123-456'
+              }, 
+                function (rsp) {
+                    console.log(rsp);
+                    if (rsp.success) {
+                      var msg = '결제가 완료되었습니다.';
+                      alert(msg);
+                      location.href = "결제 완료 후 이동할 페이지 url"
+                    } else {
+                      var msg = '결제에 실패하였습니다.';
+                      msg += '에러내용 : ' + rsp.error_msg;
+                      alert(msg);
+                    }
+                  });
+            }
+            </script>
+
 
 </head>
 
@@ -74,6 +145,7 @@
                 </div>
             </form>
     </div>
+    <div>
     <div id="main_container">
 
         <div class="overlay"></div>
@@ -107,7 +179,7 @@
                       <a><li>닉네임</li></a>
                       <a><li>회원정보</li></a>
                       <a><li>정보</li></a>
-                      <a href="#"><li>구독</li></a>
+                      <a href="#" class="subs_btn_open"><li>구독</li></a>
                       
                     </ul>
                   </div>
@@ -207,7 +279,7 @@
         </div>
     </div>
 
-<!--
+
     <div class="subs_modal">
         <div class="subs_modal_content">
            
@@ -245,7 +317,7 @@
                     </div>
 
                    
-                    <input type="email" placeholder="이메일 주소를 입력하세요."> 
+                    <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
                     
                     <div class="subs_btn">
                         <button onclick="requestPay()">구독하기</button>
@@ -270,7 +342,7 @@
                     <li>-&nbsp; </li>
                     </ul>
                     </div>
-                  <input type="email" placeholder="이메일 주소를 입력하세요."> 
+                    <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
                     <div class="subs_btn">
                         <button onclick="requestPay()">구독하기</button>
                     </div>
@@ -298,7 +370,7 @@
                     </div>
                     
 
-                     <input type="email" placeholder="이메일 주소를 입력하세요."> 
+                    <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
                     <div class="subs_btn">
                         <button onclick="requestPay1()">구독하기</button>
                     </div>
@@ -306,10 +378,12 @@
             </div>
           
         </div>
+       
         
 
 
-        </div> -->
+    </div>
+      
 
     <div class="main_Line"></div>
     <!-- 예제 출력 페이지 -->
@@ -384,8 +458,25 @@
                 </div>
             </div>
         </div>
+        <script>
+        
+
+            $('.subs_btn_open').click(function () {
+                $('.subs_modal, .overlay').addClass("active")
+            })
+            $('.subs_button_close, .overlay').click(function () {
+                $('.subs_modal, .overlay').removeClass("active")
+            })
+         
+        
+        
+        </script> 
     </div>
+
+   
     </div>
+   
+</div>
 
 </body>
 

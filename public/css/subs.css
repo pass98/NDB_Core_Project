@@ -15,7 +15,8 @@
     transform:translate(-50%, -80%);
     opacity: 0;
     transition: 0.3s;
-    z-index: 10000;    
+    z-index: 10000;
+    display:none;    
 }
 .subs_modal.active {
     opacity: 1;
