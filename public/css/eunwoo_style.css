@@ -380,9 +380,7 @@ select {
     appearance: none;
     margin: 0 8px 0 8px;
     /* font-family:'GmarketSansMedium', 'Noto Sans KR'; */
-
     background: url('/img/chevron-down-solid.svg') no-repeat 97% 50%/15px auto;
-    ;
 }
 
 /* 검색 창 바 input */
