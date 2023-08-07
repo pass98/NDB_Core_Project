@@ -459,17 +459,16 @@
             </div>
         </div>
         <script>
-        
 
-            $('.subs_btn_open').click(function () {
-                $('.subs_modal, .overlay').addClass("active")
-            })
-            $('.subs_button_close, .overlay').click(function () {
-                $('.subs_modal, .overlay').removeClass("active")
-            })
-         
-        
-        
+       // 열기 버튼을 클릭하면 모달 창을 보이게 하도록 이벤트 핸들러 추가
+$('.subs_btn_open').click(function () {
+    $('.subs_modal, .overlay').addClass("active");
+});
+
+// 닫기 버튼을 클릭하면 모달 창이 닫히도록 이벤트 핸들러 추가
+$('.subs_button_close, .overlay').click(function () {
+    $('.subs_modal, .overlay').removeClass("active");
+});
         </script> 
     </div>
 
