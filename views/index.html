@@ -16,6 +16,7 @@
     <script src="/js/chatbot_script.js"></script>
     <script src="/js/index.js"></script>
 </head>
+
 <body>
     <div id="main_container">
         <!-- 네비게이션 -->
@@ -29,7 +30,7 @@
                     <a href="#">NDB</a>
                 </div>
                 <div class="main_navMiddle">
-                    <div>
+                    <form>
                         <div id="main_navSearchbar" class="main_search">
                             <select name="main_language" id="" class="main_searchLanguage"
                                 style="width:50px;height:30px;">
@@ -46,7 +47,7 @@
                                 <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                             </button>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="main_navRight">
@@ -90,7 +91,8 @@
                     </p>
                 </div>
                 <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
-                <div class="main_search">
+
+                <form action="" class="main_search">
                     <select name="main_language" id="" class="main_searchLanguage" style="width:50px;height:30px;">
                         <option value="html">html</option>
                         <option value="java">java</option>
@@ -104,7 +106,8 @@
                     <button type="submit" class="main_search_button">
                         <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                     </button>
-                </div>
+                </form>
+
                 <!-- 검색창 아래 태그 -->
                 <!-- <div class="main_TagWrap">
                     사용자에게 추천하는 검색어 
@@ -120,7 +123,6 @@
     <div class="main_Line"></div>
     <!-- 예제 출력 페이지 -->
     <div id="codeExam_container">
-
         <div class="codeExam_pageWrap">
             <!-- 예제 문제 설명 출력 -->
             <div class="codeExam_examWrap-Size">
@@ -147,13 +149,14 @@
             <!-- 예제 문제 코드 출력 -->
             <div class="codeExam_code_wrap">
                 <div class="codeExam_boxes">
+                    <div class="codeExam_boxesHide" draggable="true"></div>
                     <div class="codeExam_boxesSize">
                         <div id="html-box" class="codeExam_exambox codeExam_htmlBox">
                             <div class="codeExam_codePage">
                                 <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
                                 <div class="codeExam_codeContent-Size">
                                     <div class="codeExam_codeContent">
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -181,16 +184,16 @@
                     <div class="codeExam_resultSize">
                         <div class="codeExam_resultDiv">
                             <!-- <div style={dasdasd} class> -->
-                            
-                            </div>
-                            <script>
-
-                            </script>
+                                ""
                         </div>
+                        <script>
+
+                        </script>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 </body>
 
