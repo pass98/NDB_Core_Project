@@ -15,7 +15,7 @@
     transform: translate(-50%, -50%);
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    border-radius: 5px;
+    border-radius: 7px;
     z-index: 9999;
     display: none;
 }
@@ -29,7 +29,7 @@
     border-radius: 5px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.247);
-    width: 880px;
+    width: 834px;
     overflow: hidden;
     background-color: #1B3455;
 }
@@ -105,7 +105,7 @@ h2,h3{
 
 }
 .subs_benefit{
-    margin-left:-7px;
+    margin-left:-13px;
     font-size:16px;
 }    
 .subs_price{
