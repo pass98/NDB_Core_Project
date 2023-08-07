@@ -9,50 +9,28 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="/css/eunwoo_style.css">
-    <link rel="stylesheet" href="/css/yubin_sidebar.css">
-    <link rel="stylesheet" href="/css/yubin_chatbot.css">
+    <link rel="stylesheet" href="./css/eunwoo_style.css">
+    <!-- <link rel="stylesheet" href="/css/yubin_sidebar.css">
+        <link rel="stylesheet" href="/css/yubin_chatbot.css"> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
-    <script src="./index.js"></script>
-
+    <script src="./js/index.js"></script>
 </head>
-
 <body>
     <div id="main_container">
         <!-- 네비게이션 -->
         <!-- 왼쪽 : 사이드바 & 로그 -->
         <nav id="main_navbar">
             <div class="main_navLeft">
-                <div id="sidebar_toggle">
-                    <input type="checkbox" />
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <ul id="leftside">
-                        <!-- db연결시 바꿀예정 -->
-                        <a>
-                            <li>닉네임</li>
-                        </a>
-                        <a>
-                            <li>회원정보</li>
-                        </a>
-                        <a>
-                            <li>정보</li>
-                        </a>
-                        <a href="#">
-                            <li>구독</li>
-                        </a>
-
-                    </ul>
-                    <div class="main_nav_logo">
-                        <a href="#">NDB</a>
-                    </div>
+                <div class="hamburger">
+                    <button>바</button>
                 </div>
-                <!--  -->
+                <div class="main_nav_logo">
+                    <a href="#">NDB</a>
+                </div>
                 <div class="main_navMiddle">
                     <div>
-                        <div class="main_search">
+                        <div id="main_navSearchbar" class="main_search">
                             <select name="main_language" id="" class="main_searchLanguage"
                                 style="width:50px;height:30px;">
                                 <option value="html">html</option>
@@ -70,23 +48,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="main_navRight">
-                    <ul class="popularSerch">
-                        <li>
-                            <span>인기 검색어</span>
-                        </li>
-                        <li>|</li>
-                        <li>
-                            <a href="#">파이썬 반복문</a>
-                        </li>
-                    </ul>
-                    <div id="main_btnWrap">
-                        <!-- 로그인 버튼 -->
-                        <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
-                        <!-- 회원가입 버튼 -->
-                        <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
-                    </div>
+            </div>
+            <!--  -->
+            <div class="main_navRight">
+                <ul class="popularSerch">
+                    <li>
+                        <span>인기 검색어</span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a href="#">파이썬 반복문</a>
+                    </li>
+                </ul>
+                <div id="main_btnWrap">
+                    <!-- 로그인 버튼 -->
+                    <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
+                    <!-- 회원가입 버튼 -->
+                    <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
                 </div>
+            </div>
         </nav>
         <!-- 메인 이미지 위치 조정을 위한 div -->
         <div class="main_position"></div>
@@ -103,6 +83,7 @@
         <!-- main페이지 -->
         <div class="main_wrap">
             <!-- 검색창 -->
+            <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
             <div class="main_searchWrap">
                 <div class="main_text">
                     <p>
@@ -172,7 +153,9 @@
                             <div class="codeExam_codePage">
                                 <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
                                 <div class="codeExam_codeContent-Size">
-                                    <div class="codeExam_codeContent"></div>
+                                    <div class="codeExam_codeContent">
+                                        
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -198,58 +181,18 @@
                 <div class="codeExam_resultContainer">
                     <div class="codeExam_resultSize">
                         <div class="codeExam_resultDiv">
-                            시연창
-                            <iframe src="" frameborder="0">
-                            </iframe>
+                            <!-- <div style={dasdasd} class> -->
+                            
+                            </div>
+                            <script>
+
+                            </script>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
-
-    <!-- 챗봇 대화창 컨테이너 -->
-    <div class="chat-container" id="chat-container">
-        <!-- 챗봇 헤더 -->
-        <div class="chat-header" onclick="toggleChat()">NDB</div>
-
-        <!-- 챗봇 몸체 -->
-        <div class="chat-body">
-            <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
-            <div class="message bot-message">
-                <div class="content">안녕하세요! 무엇을 도와드릴까요?</div>
-            </div>
-        </div>
-
-        <!-- 사용자 입력창 -->
-        <div class="chat-input">
-            <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
-            <button onclick="sendMessage()">전송</button>
-        </div>
-    </div>
-    <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
-
-    <!-- 챗봇 대화창 컨테이너 -->
-    <div class="chat-container" id="chat-container">
-        <!-- 챗봇 헤더 -->
-        <div class="chat-header" onclick="toggleChat()">NDB</div>
-
-        <!-- 챗봇 몸체 -->
-        <div class="chat-body">
-            <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
-            <div class="message bot-message">
-                <div class="content">안녕하세요! 무엇을 도와드릴까요?</div>
-            </div>
-        </div>
-
-        <!-- 사용자 입력창 -->
-        <div class="chat-input">
-            <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
-            <button onclick="sendMessage()">전송</button>
-        </div>
-    </div>
-
 </body>
 
 

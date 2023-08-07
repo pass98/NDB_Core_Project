@@ -190,19 +190,55 @@ a {
     align-items: center;
     margin-left: 12px
 }
+.main_navMiddle{
+    margin-left: 24px;
+}
 
 .main_nav_logo {
     font-weight: 1000;
     font-size: large;
     margin-left: 28px;
+    font-style: italic
 }
 /* 네비게이션 왼쪽 요소 끝 */
 
-/* 네비게이션 가운데 요소 시작 */
-.main_navMiddle{
-    
+/* 네비게이션 검색창 시작 */
+#main_navSearchbar{
+    height: 34px;
+    width: 300px;
+    display: flex;  
+    padding-left: 12px;
+    /* 문제 창 애니메이션 CSS */
+    /* 애니메이션(좌->우)를 위한 position */
+    /* transform: translateX(-100%);
+    transition: transform 1s;
+    visibility: hidden; */
+    transition: opacity(0);
+    animation: FadeIn 1s linear infinite;
+    /* Pause the animation */
+    animation-play-state: paused;
+    /* Bind the animation to scroll */
+    animation-delay: calc(var(--scroll) * -1s);
+    /* These last 2 properites clean up overshoot weirdness */
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
 }
-/* 네비게이션 가운데 요소 끝 */
+
+@keyframes FadeIn {
+    to {
+        transform: opacity(100);
+    }
+}
+
+#main_navSearchbar>.main_search_button{
+    padding-right: 8px;
+    background-color: transparent;
+}
+#main_navSearchbar>input{
+    font-size: 0.8rem;
+    height: 32px;
+}
+/* 네비게이션 검색창 끝 */
 
 /* 네비게이션 오른쪽 요소 시작 */
 .main_navRight {
@@ -264,8 +300,8 @@ select {
     align-items: center;
     /* flex: 1 0 auto; */
 
-    /* [230802_예정] 메인 페이지 디자인 이미지 추가 예정 */
-    background-image: url('../main_backGroundimg_moreEfficiency.png');
+    /* 메인페이지 배경 이미지 추가 */
+    background-image: url('../img/main_backGroundimg_moreEfficiency.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -293,7 +329,7 @@ select {
     /* margin-bottom: 12px; */
     color: white;
     font-family: 'Noto Sans KR';
-    font-size: 3rem;
+    font-size: 2rem;
     margin-bottom: 36px;
 
 }
@@ -308,7 +344,7 @@ select {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 100%;
+    width: 80%;
     height: 46px;
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
