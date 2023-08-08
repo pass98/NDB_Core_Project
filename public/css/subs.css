@@ -1,96 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
 
-* {
-    font-family: 'Noto Sans KR', sans-serif;
-    box-sizing: border-box;
-    box-sizing: border-box;
-    
-}
-
-a {
-    text-decoration: none;
-    color: #FFFFFF;
-}
-
-#container {
-    margin: 0;
-    width: 100%;
-    height: 100vh;
-    background-color: #1B3455;
-    font-family: 'Noto Sans KR','GmarketSansMedium';
-}
-
-#navbar {
-    height: 58px;
-    width: 100%;
-    padding: 8px 12px;
-    box-sizing: border-box;
-
-    display: flex;
-    position: relative;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #212121;
-    color: #FFFFFF;
-    font-family: 'Noto Sans KR';
-    font-size: 14px;
-}
-
-
-.navLeft {
-    height: 100%;
-    display: flex;
-    align-items: center
-}
-
-.nav_logo {
-    font-weight: 1000;
-    font-size: large;
-    margin-left: 12px;
-}
-
-.navRight {
-    height: 100%;
-    display: flex;
-    align-items: center
-}
-
-.navRight>ul {
-    float: left;
-    margin: 0;
-}
-
-.navRight>ul>li {
-    list-style-type: none;
-    display: inline-block;
-    text-align: center;
-}
-.navRight>ul>:first-child {
-    color: #d2d2d2;
-    padding-right: 6px;
-}
-.navRight>ul>:nth-child(2) {
-    color: #ffffff;
-    padding-right: 6px;
-}
-
-.popularSerch {
-    box-sizing: border-box;
-    padding-right: 32px;
-}
-
-@font-face {
-    font-family: 'GmarketSansMedium';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
-
-.notosanskr * {
-    font-family: 'Noto Sans KR', sans-serif;
-}
 
 /* -------------구독모달창---------------- */
 .subs_body {
@@ -142,31 +51,32 @@ a {
     color: #FFFFFF;
 }
 #subs_title{
-    font-size: 38px;
+    font-size: 55px;
+    margin-bottom:25px;
+    margin-top:23px;
 }
 .subs_subtitle{
     font-weight: 35vw;
     font-size:20px;
+    margin-top:-8px;
 }
 
 
 h1{
-    font-size:55px;
+    font-size:57px;
 
 }
 h2,h3{
     text-align: center;
-    font-size:25px;
+    font-size:30px;
 }
-.subs_btn_open{
-    position:fixed;
-    left:0;
-    top:15;   
+.subs_btn_open{ 
     font-size: 15px;
-    border-width: 2px;
+    /* border-width: 2px;
     border-style: outset;
     border-color: buttonborder;
-    border-image: initial;
+    border-image: initial; */
+    display:inline-block;
 }
 
 .subs_desc_content{
@@ -190,8 +100,21 @@ h2,h3{
     
 
 }
-.benefit{
-    margin-left:38px;
+.subs_benefit{
+    margin-left:-7px;
+    font-size:16px;
+}    
+.subs_price{
+    text-align: center;
+    margin: -20px 0 -5px 0;
+    font-size:22px;
+    font-weight:bold;
+    display:flex;
+    justify-content: center;
+}    
+.subs_li{
+    list-style-type:none;
+
 }
 
 .content3{
@@ -211,6 +134,8 @@ h2,h3{
     background-color:#FFFFFF;
     transform:  scale(1.1, 1.05) ;
 }
+
+
 
 .subs_desc_content input[type=email] {
     display: block;
@@ -242,7 +167,7 @@ h2,h3{
     border-radius: 12px;
 }
 
-.btn{
+.subs_btn{
     display:flex;
     justify-content: center;
     margin-bottom : 30px;

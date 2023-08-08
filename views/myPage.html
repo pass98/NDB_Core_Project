@@ -111,9 +111,10 @@
                 <div class="mp_banner">
                     <div class="profile"><i class="fa-solid fa-user fa-6x"></i></div>
                 </div>
-    
-                <h2 class="mp_name notosanskr">회원이름</h2><div class="mp_id notosanskr">아이디</div>
+                <form action="http://localhost:3003/mypage">
+                <h2 class="mp_name notosanskr" name ='NICK' >회원이름</h2><div class="mp_id notosanskr" name="ID">아이디</div>
             </div>
+            </form>
             <!-- 프로필 카드 창 종료 -->
             
             <!-- 메인 탭메뉴창 -->
@@ -123,30 +124,37 @@
                   <li class="mp_tab-link notosanskr" data-tab="mp_tab-2">개인 정보</li>
                   <li class="mp_tab-link notosanskr" data-tab="mp_tab-3">결제 정보</li>
                   <li class="mp_tab-link notosanskr" data-tab="mp_tab-4">현재 등급</li>
-                  <li class="mp_tab-link notosanskr" data-tab="mp_tab-5">계정 연동</li>
+                  <li class="mp_tab-link notosanskr" data-tab="mp_tab-5">문의 사항</li>
+                  <li class="mp_tab-link notosanskr" data-tab="mp_tab-6">탈퇴 하기</li>
+                  <li class="mp_tab-link notosanskr" data-tab="mp_tab-7">계정 연동</li>
                 </ul>
-                <div id="mp_tab-1" class="mp_tab-content current"><h2 class = mp_h2>tab content3<hr padding-top="10px"></h2><div class="mp_output"></div></div>
-                <div id="mp_tab-2" class="mp_tab-content"><h2 class = mp_h2>개인 정보<hr padding-top="10px"></h2>
+              
+                <div id="mp_tab-1" class="mp_tab-content current"><h2 class = 'mp_h2'>tab content3</h2><div class="mp_output"></div></div>
+                <div id="mp_tab-2" class="mp_tab-content"><h2 class = 'mp_h2'>개인 정보</h2>
                     <div class="mp_output">
                     <table class ='mypagefro'>
-                        <tr><td >이름     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="이름이 표시될 곳입니다." class="mp_Info" ></td></tr>
-                        <tr><td >비밀번호 </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="비밀번호가 표시될 곳입니다." class="mp_Info"></td><td><button id="mp_nameCh">변경</button></td></tr>
-                        <tr><td >별명     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="별명이 표시될 곳입니다." class="mp_Info"></td></tr>
+                        <tr><td >이름     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="이름이 표시될 곳입니다." class="mp_Info" name="ID" ></td></tr>
+                        <tr><td >비밀번호 </td><td class ='mp_myInfo'><input type="text" placeholder="비밀번호가 표시될 곳입니다." class="mp_Info" name="PW"></td><td><button id="mp_nameCh">변경</button></td></tr>
+                        <tr><td >별명     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="별명이 표시될 곳입니다." class="mp_Info" name="NICK"></td></tr>
                         <tr><td >주소     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="주소이 표시될 곳입니다." class="mp_Info"></td></tr>
                     </table>
                     </div>
+                    </form>
                 </div>    
-                <div id="mp_tab-3" class="mp_tab-content"><h2 class = mp_h2>tab content3<hr padding-top="10px"></h2><div class="mp_output"></div></div>
-                <div id="mp_tab-4" class="mp_tab-content"><h2 class = mp_h2>tab content3<hr padding-top="10px"></h2><div class="mp_output"></div></div>
-                <div id="mp_tab-5" class="mp_tab-content"><h2 class = mp_h2>계정연동<hr padding-top="10px"></h2>
+                <div id="mp_tab-3" class="mp_tab-content"><h2 class = 'mp_h2'>결제 정보</h2><div class="mp_output"></div></div>
+                <div id="mp_tab-4" class="mp_tab-content"><h2 class = 'mp_h2'>현재 등급</h2><div class="mp_output"></div></div>
+                <div id="mp_tab-5" class="mp_tab-content"><h2 class = 'mp_h2'>문의할 사항</h2><div class="mp_output" id="mp_questiontext"><textarea name=""  cols="80" rows="20" id="mp_question"></textarea><input type="submit"></div></div>
+                <div id="mp_tab-6" class="mp_tab-content"><h2 class = 'mp_h2'>탈퇴 하기</h2><div class="mp_output" id="mp_secession">
+                    <div id= mp_secessionSpace>
+                    <p class='mp_secession'>아직 공부할 수 있는 문제가 많이 남아있어요!</p><p class="mp_secession">정말로 탈퇴하실 건가요?</p><p class="mp_secession">탈퇴하시면 지금까지 저장된 문제, 구독 정보, 등급이 전부 초기화되고 복구할 수 없습니다!</p><button id="mp_secessionButton">탈퇴하기</button>
+                    </div></div></div>
+
+                <div id="mp_tab-7" class="mp_tab-content"><h2 class = 'mp_h2'>계정연동</h2>
+                    
                     <div><p>계정 연동을 원하시면 아래의 버튼을 눌러주세요.</p>
-                    <button class="mp_auth-butoon google" onclick="location.href='#'"><img src="../public/img/google_img.png" alt="" class = mp_emoticon ></button>
-                    <button class="mp_auth-butoon github" onclick="location.href='#'"><img src="../public/img/github_img.png" alt=""class = mp_emoticon ></button>
-                    <button class="mp_auth-butoon kakao" onclick="location.href='#'"><img src="../public/img/kakao_img.png" alt=""class = mp_emoticon ></button>
-                    <button class="mp_auth-butoon microsoft" onclick="location.href='#'"><img src="../public/img/microsoft_img.png" alt=""class = mp_emoticon ></button>
-                    <button class="mp_auth-butoon facebook" onclick="location.href='#'"><img src="../public/img/facebook_img.png" alt=""class = mp_emoticon></button>
-                    <button class="mp_auth-butoon naver" onclick="location.href='#'"><img src="../public/img/naver_img.png" alt=""class = mp_emoticon></button>
-                    <button class="mp_auth-butoon apple" onclick="location.href='#'"><img src="../public/img/apple_img.png" alt=""class = mp_emoticon></button>
+                    <button class="mp_auth-butoon google" onclick="location.href='#'"><img src="../public/img/google_img.png" alt="" class = 'mp_emoticon'></button>
+                    <button class="mp_auth-butoon github" onclick="location.href='#'"><img src="../public/img/github_img.png" alt=""class = 'mp_emoticon'></button>
+                    <button class="mp_auth-butoon kakao" onclick="location.href='#'"><img src="../public/img/kakao_img.png" alt=""class = 'mp_emoticon'></button>
                     </div>    
                 </div>
         </main>
