@@ -13,196 +13,215 @@
 
 
 
-    <link rel="stylesheet" href="../public/css/eunwoo_style.css">
-    <link rel="stylesheet" href="../public/css/yubin_sidebar.css">
-    <link rel="stylesheet" href="../public/css/yubin_chatbot.css">
+    <link rel="stylesheet" href="/css/eunwoo_style.css">
+    <link rel="stylesheet" href="/css/yubin_sidebar.css">
+    <link rel="stylesheet" href="/css/yubin_chatbot.css">
     <link rel="stylesheet" href="../public/css/subs.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
     <script src="./main.js"></script>
+    <script src="/js/chatbot_script.js"></script>
+    <script src="/js/index.js"></script>
 
     <!-- 결제창을 위한 라이브러리-->
-    
 
-      <!-- jQuery -->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
-      <!-- iamport.payment.js -->
-      <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-      
-      <!-- <button onclick="requestPay()">결제하기</button> -->
-      <script>
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+
+    <!-- <button onclick="requestPay()">결제하기</button> -->
+    <script>
         function requestPay() {
-          IMP.init('iamport'); 
-          IMP.request_pay({
-            pg: "inicis",
-            pay_method: "card",
-            merchant_uid : 'merchant_'+new Date().getTime(),
-            name : '결제테스트',
-            amount : 5000,
-            buyer_email : 'iamport@siot.do',
-            buyer_name : '김도형',
-            buyer_tel : '010-1234-5678',
-            buyer_addr : '광주인공지능사관학교NSDB',
-            buyer_postcode : '123-456'
-          }, 
-            function (rsp) {
-                console.log(rsp);
-                if (rsp.success) {
-                  var msg = '결제가 완료되었습니다.';
-                  alert(msg);
-                  location.href = "결제 완료 후 이동할 페이지 url"
-                } else {
-                  var msg = '결제에 실패하였습니다.';
-                  msg += '에러내용 : ' + rsp.error_msg;
-                  alert(msg);
-                }
-              });
-        }
-        </script>
-
-        <script>
-            function requestPay1() {
-              IMP.init('iamport'); 
-              IMP.request_pay({
+            IMP.init('iamport');
+            IMP.request_pay({
                 pg: "inicis",
                 pay_method: "card",
-                merchant_uid : 'merchant_'+new Date().getTime(),
-                name : '결제테스트',
-                amount : 7000,
-                buyer_email : 'iamport@siot.do',
-                buyer_name : '김도형',
-                buyer_tel : '010-1234-5678',
-                buyer_addr : '광주인공지능사관학교NSDB',
-                buyer_postcode : '123-456'
-              }, 
+                merchant_uid: 'merchant_' + new Date().getTime(),
+                name: '결제테스트',
+                amount: 5000,
+                buyer_email: 'iamport@siot.do',
+                buyer_name: '김도형',
+                buyer_tel: '010-1234-5678',
+                buyer_addr: '광주인공지능사관학교NSDB',
+                buyer_postcode: '123-456'
+            },
                 function (rsp) {
                     console.log(rsp);
                     if (rsp.success) {
-                      var msg = '결제가 완료되었습니다.';
-                      alert(msg);
-                      location.href = "결제 완료 후 이동할 페이지 url"
+                        var msg = '결제가 완료되었습니다.';
+                        alert(msg);
+                        location.href = "결제 완료 후 이동할 페이지 url"
                     } else {
-                      var msg = '결제에 실패하였습니다.';
-                      msg += '에러내용 : ' + rsp.error_msg;
-                      alert(msg);
+                        var msg = '결제에 실패하였습니다.';
+                        msg += '에러내용 : ' + rsp.error_msg;
+                        alert(msg);
                     }
-                  });
-            }
-            </script>
+                });
+        }
+    </script>
+
+    <script>
+        function requestPay1() {
+            IMP.init('iamport');
+            IMP.request_pay({
+                pg: "inicis",
+                pay_method: "card",
+                merchant_uid: 'merchant_' + new Date().getTime(),
+                name: '결제테스트',
+                amount: 7000,
+                buyer_email: 'iamport@siot.do',
+                buyer_name: '김도형',
+                buyer_tel: '010-1234-5678',
+                buyer_addr: '광주인공지능사관학교NSDB',
+                buyer_postcode: '123-456'
+            },
+                function (rsp) {
+                    console.log(rsp);
+                    if (rsp.success) {
+                        var msg = '결제가 완료되었습니다.';
+                        alert(msg);
+                        location.href = "결제 완료 후 이동할 페이지 url"
+                    } else {
+                        var msg = '결제에 실패하였습니다.';
+                        msg += '에러내용 : ' + rsp.error_msg;
+                        alert(msg);
+                    }
+                });
+        }
+    </script>
 </head>
 
 <body>
     <div>
-    <div id="main_container">
+        <div id="main_container">
 
-        <div class="overlay"></div>
-        
-
-        <!-- 네비게이션 -->
-        <!-- 왼쪽 : 사이드바 & 로그 -->
-
-        <nav id="main_navbar">
-            <div class="main_navLeft">
-                <div id="sidebar_toggle">
-                    <input type="checkbox" />
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <ul id="leftside">
-
-                    <!-- db연결시 바꿀예정 -->
-                        <a><li>닉네임</li></a>
-                        <a><li>회원정보</li></a>
-                        <a><li>정보</li></a>
-                        
-                        <a href="#" class="subs_btn_open"><li>구독</li></a>
-                        
-                       
-                       
+            <div class="overlay"></div>
 
 
+            <!-- 네비게이션 -->
+            <!-- 왼쪽 : 사이드바 & 로그 -->
 
-                      </ul>
+            <nav id="main_navbar">
+                <div class="main_navLeft">
+                    <div id="sidebar_toggle">
+                        <input type="checkbox" />
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <ul id="leftside">
 
-                </div>
-                <!--  -->
-                <div class="main_navMiddle">
-                    <div>
-                        <div class="main_search">
-                            <select name="main_language" id="" class="main_searchLanguage"
-                                style="width:50px;height:30px;">
-                                <option value="html">html</option>
-                                <option value="java">java</option>
-                                <option value="css">css</option>
-                                <option value="javascript">javascript</option>
-                            </select>
-                            <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                            <input type="text" class="main_searchBar" name="main_searchBar_Name">
-                            <!-- 자동완성 단어 리스트 -->
-                            <div class="main_autocomplete"></div>
-                            <button type="submit" class="main_search_button">
-                                <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
-                            </button>
+                            <!-- db연결시 바꿀예정 -->
+                            <a>
+                                <li>닉네임</li>
+                            </a>
+                            <a>
+                                <li>회원정보</li>
+                            </a>
+                            <a>
+                                <li>정보</li>
+                            </a>
+                            <a href="#"></a>
+                            <a href="#" class="subs_btn_open">
+                                <li>구독</li>
+                            </a>
+
+
+
+
+
+
+                        </ul>
+                        <div class="main_nav_logo">
+                            <a href="#">NDB</a>
                         </div>
                     </div>
-                </div>
-                <div class="main_navRight">
-                    <ul class="popularSerch">
-                        <li>
-                            <span>인기 검색어</span>
-                        </li>
-                        <li>|</li>
-                        <li>
-                            <a href="#">파이썬 반복문</a>
-                        </li>
-                    </ul>
-                    <div id="main_btnWrap">
-                        <!-- 로그인 버튼 -->
-                        <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
-                        <!-- 회원가입 버튼 -->
-                        <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
+                    <!--  -->
+                    <div class="main_navMiddle">
+                        <div>
+                            <div class="main_search">
+                                <select name="main_language" id="" class="main_searchLanguage"
+                                    style="width:50px;height:30px;">
+                                    <option value=" ">언어</option>
+                                    <option value="html">html</option>
+                                    <option value="css">css</option>
+                                    <option value="javascript">javascript</option>
+                                    <option value="java">java</option>
+                                    <option value="python">python</option>
+                                    <option value="c_language">C언어</option>
+                                </select>
+                                <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
+                                <input type="text" class="main_searchBar" name="main_searchBar_Name">
+                                <!-- 자동완성 단어 리스트 -->
+                                <div class="main_autocomplete"></div>
+                                <button type="submit" class="main_search_button" onclick=select()>
+                                    <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="main_navRight">
+                        <ul class="popularSerch">
+                            <li>
+                                <span>인기 검색어</span>
+                            </li>
+                            <li>|</li>
+                            <li>
+                                <a href="#">파이썬 반복문</a>
+                            </li>
+                        </ul>
+                        <div id="main_btnWrap">
+                            <!-- 로그인 버튼 -->
+                            <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
+                            <!-- 회원가입 버튼 -->
+                            <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
+                        </div>
+                    </div>
+            </nav>
+            <!-- 메인 이미지 위치 조정을 위한 div -->
+            <div class="main_position"></div>
+            <div id="main_modalWrap">
+                <div id="main_modalContent">
+                    <div id="main_modalBody">
+                        <!-- 닫기 버튼 -->
+                        <span id="main_closeBtn">&times;</span>
+                        <!-- 팝업창 내 글귀 -->
+                        <p>modal-popup 입니다.</p>
                     </div>
                 </div>
-        </nav>
-        <!-- 메인 이미지 위치 조정을 위한 div -->
-        <div class="main_position"></div>
-        <div id="main_modalWrap">
-            <div id="main_modalContent">
-                <div id="main_modalBody">
-                    <!-- 닫기 버튼 -->
-                    <span id="main_closeBtn">&times;</span>
-                    <!-- 팝업창 내 글귀 -->
-                    <p>modal-popup 입니다.</p>
-                </div>
             </div>
-        </div>
-        <!-- main페이지 -->
-        <div class="main_wrap">
-            <!-- 검색창 -->
-            <div class="main_searchWrap">
-                <div class="main_text">
-                    <p>
-                        언어를 설정한 후 </br>배우고 싶은 부분을 집중 성장 시켜보세요.
-                    </p>
-                </div>
-                <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
-                <div class="main_search">
-                    <select name="main_language" id="" class="main_searchLanguage" style="width:50px;height:30px;">
-                        <option value="html">html</option>
-                        <option value="java">java</option>
-                        <option value="css">css</option>
-                        <option value="javascript">javascript</option>
-                    </select>
-                    <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                    <input type="text" class="main_searchBar" name="main_searchBar_Name">
-                    <!-- 자동완성 단어 리스트 -->
-                    <div class="main_autocomplete"></div>
-                    <button type="submit" class="main_search_button">
-                        <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
-                    </button>
-                </div>
-                <!-- 검색창 아래 태그 -->
-                <!-- <div class="main_TagWrap">
+            <!-- main페이지 -->
+            <div class="main_wrap">
+                <!-- 검색창 -->
+                <div class="main_searchWrap">
+                    <div class="main_text">
+                        <p>
+                            언어를 설정한 후 </br>배우고 싶은 부분을 집중 성장 시켜보세요.
+                        </p>
+                    </div>
+                    <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
+                    <div class="main_search">
+                        <select name="main_language" id="" class="main_searchLanguage2" style="width:50px;height:30px;">
+                            <option value=" ">언어</option>
+                            <option value="html">html</option>
+                            <option value="css">css</option>
+                            <option value="javascript">javascript</option>
+                            <option value="java">java</option>
+                            <option value="python">python</option>
+                            <option value="c_language">C언어</option>
+                        </select>
+                        <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
+                        <input type="text" class="main_searchBar2" name="main_searchBar_Name">
+                        <!-- 자동완성 단어 리스트 -->
+                        <div class="main_autocomplete"></div>
+                        <button type="submit" class="main_search_button" onclick=select()>
+                            <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
+                        </button>
+                    </div>
+                    <!-- 검색창 아래 태그 -->
+                    <!-- <div class="main_TagWrap">
                     사용자에게 추천하는 검색어 
                     <ul>
                         <li>반복문</li>
@@ -210,239 +229,268 @@
                         <li>grid</li>
                     </ul>
                 </div> -->
-            </div>
-        </div>
-    </div>
-
-
-    <div class="subs_modal">
-        <div class="subs_modal_content">
-           
-       
-            <div class="subs_header">
-                <div ><h1 id="subs_title" >Member of NDB</h1></div>
-                <div>
-                    <button class="subs_button_close" >&times;</button>
-                </div>
-
-                <div >
-                <p class="subs_subtitle">
-                    학습 능률을 높이는 방법! <br />
-                    "구독"으로 다양한 혜택을 누리세요! <br /><br>
-                    For month
-                </p>
-                </div>
-              
-            </div> 
-
-            <div class="subs_desc_content">
-                <div class= "content1 content-box">
-                    <div ><h3>Basic</h3></div>
-                    <div class="subs_benefit">
-                    <div class="subs_price" >￦0 </div>  
-                    <ul class="subs_li">
-                    <li>-&nbsp; 버전 업그레이드</li>
-                    <li>-&nbsp; 테마 설정</li>
-                    <li>-&nbsp; 예제에 대한 개념 정리</li>
-                    <li>-&nbsp;</li>
-                    <li>-&nbsp;</li>
-                    <li>-&nbsp;</li>
-                    <li>-&nbsp;</li>
-                    </ul>
-                    </div>
-
-                   
-                    <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
-                    
-                    <div class="subs_btn">
-                        <button onclick="requestPay()">구독하기</button>
-                    </div>
-                </div>
-                    
-                
-
-
-                <div class="content2 content-box">
-                    <div><h3 >Standard</h3></div>
-                    <div class="subs_benefit">
-                    <div class="subs_price" >￦5000 </div> 
-                    <ul class="subs_li">
-                    <li>-&nbsp; 버전 업그레이드 </li>
-                    <li>-&nbsp; 테마 설정 </li>
-                    
-                    <li>-&nbsp; 예제에 대한 개념 정리</li>
-                    <li>-&nbsp; 배너 제거 </li>
-                    <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
-                    <li>-&nbsp; 추천 강의 20% 할인권</li>                    
-                    <li>-&nbsp; </li>
-                    </ul>
-                    </div>
-                    <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
-                    <div class="subs_btn">
-                        <button onclick="requestPay()">구독하기</button>
-                    </div>
-
-                </div>
-
-                
-
-
-                <div class="content3 content-box">
-                   <div><h3 >PRO</h3></div> 
-                   <div class="subs_benefit">
-                    <div class="subs_price" >￦7000 </div>  
-                    <ul class="subs_li">
-                    <li>-&nbsp; 버전 업그레이드 </li>
-                    <li>-&nbsp; 테마 설정 </li>
-                    
-                    <li>-&nbsp; 예제에 대한 개념 정리 </li>
-                    <li>-&nbsp; 배너 제거 </li>
-                    <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
-                    
-                    <li>-&nbsp; 추천 강의 40% 할인권</li>
-                    <li>-&nbsp; 인기 문제&개념 모음집PDF </li>
-                    </ul>
-                    </div>
-                    
-
-                    <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
-                    <div class="subs_btn">
-                        <button onclick="requestPay1()">구독하기</button>
-                    </div>
                 </div>
             </div>
-          
-        </div>
-        
-
-
         </div>
 
-    <div class="main_Line"></div>
-    <!-- 예제 출력 페이지 -->
-    <div id="codeExam_container">
 
-        <div class="codeExam_pageWrap">
-            <!-- 예제 문제 설명 출력 -->
-            <div class="codeExam_examWrap-Size">
-                <div class="codeExam_examWrap">
+        <div class="subs_modal">
+            <div class="subs_modal_content">
 
-                    <div class="codeExam_examContent">
-                        <h2>최댓값과 최솟값</h2>
-                        <hr>
-                        <div class="codeExam_examDetail">
-                            <p>문제 설명</p>
-                            문자열 s에는 공백으로 구분된 숫자들이 저장되어 있습니다. str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 "(최소값) (최대값)"형태의 문자열을 반환하는
-                            함수,
-                            solution을 완성하세요.
-                            예를들어 s가 "1 2 3 4"라면 "1 4"를 리턴하고, "-1 -2 -3 -4"라면 "-4 -1"을 리턴하면 됩니다.
+
+                <div class="subs_header">
+                    <div>
+                        <h1 id="subs_title">Member of NDB</h1>
+                    </div>
+                    <div>
+                        <button class="subs_button_close">&times;</button>
+                    </div>
+
+                    <div>
+                        <p class="subs_subtitle">
+                            학습 능률을 높이는 방법! <br />
+                            "구독"으로 다양한 혜택을 누리세요! <br /><br>
+                            For month
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="subs_desc_content">
+                    <div class="content1 content-box">
+                        <div>
+                            <h3>Basic</h3>
                         </div>
-                        <div class="codeExam_exam">
-                            <p>제한 조건</p>
-                            s에는 둘 이상의 정수가 공백으로 구분되어 있습니다.
+                        <div class="subs_benefit">
+                            <div class="subs_price">￦0 </div>
+                            <ul class="subs_li">
+                                <li>-&nbsp; 버전 업그레이드</li>
+                                <li>-&nbsp; 테마 설정</li>
+                                <li>-&nbsp; 예제에 대한 개념 정리</li>
+                                <li>-&nbsp;</li>
+                                <li>-&nbsp;</li>
+                                <li>-&nbsp;</li>
+                                <li>-&nbsp;</li>
+                            </ul>
+                        </div>
+
+
+                        <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
+
+                        <div class="subs_btn">
+                            <button onclick="requestPay()">구독하기</button>
                         </div>
                     </div>
-                    <div class="codeExam_examFooter"></div>
+
+
+
+
+                    <div class="content2 content-box">
+                        <div>
+                            <h3>Standard</h3>
+                        </div>
+                        <div class="subs_benefit">
+                            <div class="subs_price">￦5000 </div>
+                            <ul class="subs_li">
+                                <li>-&nbsp; 버전 업그레이드 </li>
+                                <li>-&nbsp; 테마 설정 </li>
+
+                                <li>-&nbsp; 예제에 대한 개념 정리</li>
+                                <li>-&nbsp; 배너 제거 </li>
+                                <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
+                                <li>-&nbsp; 추천 강의 20% 할인권</li>
+                                <li>-&nbsp; </li>
+                            </ul>
+                        </div>
+                        <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
+                        <div class="subs_btn">
+                            <button onclick="requestPay()">구독하기</button>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="content3 content-box">
+                        <div>
+                            <h3>PRO</h3>
+                        </div>
+                        <div class="subs_benefit">
+                            <div class="subs_price">￦7000 </div>
+                            <ul class="subs_li">
+                                <li>-&nbsp; 버전 업그레이드 </li>
+                                <li>-&nbsp; 테마 설정 </li>
+
+                                <li>-&nbsp; 예제에 대한 개념 정리 </li>
+                                <li>-&nbsp; 배너 제거 </li>
+                                <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
+
+                                <li>-&nbsp; 추천 강의 40% 할인권</li>
+                                <li>-&nbsp; 인기 문제&개념 모음집PDF </li>
+                            </ul>
+                        </div>
+
+
+                        <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
+                        <div class="subs_btn">
+                            <button onclick="requestPay1()">구독하기</button>
+                        </div>
+                    </div>
                 </div>
+
             </div>
-            <!-- 예제 문제 코드 출력 -->
-            <div class="codeExam_code-wrap">
-                <div class="codeExam_boxes">
-                    <div class="codeExam_boxesSize">
-                        <div id="html-box" class="codeExam_exambox codeExam_htmlBox">
-                            <div class="codeExam_codePage">
-                                <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
-                                <div class="codeExam_codeContent-Size">
-                                    <div class="codeExam_codeContent"></div>
+
+
+
+        </div>
+
+        <div class="main_Line"></div>
+        <!-- 예제 출력 페이지 -->
+        <div id="codeExam_container">
+
+            <div class="codeExam_pageWrap">
+                <!-- 예제 문제 설명 출력 -->
+                <div class="codeExam_examWrap-Size">
+                    <div class="codeExam_examWrap">
+
+                        <div class="codeExam_examContent">
+                            <h2>최댓값과 최솟값</h2>
+                            <hr>
+                            <div class="codeExam_examDetail">
+                                <p>문제 설명</p>
+                                문자열 s에는 공백으로 구분된 숫자들이 저장되어 있습니다. str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 "(최소값) (최대값)"형태의 문자열을
+                                반환하는
+                                함수,
+                                solution을 완성하세요.
+                                예를들어 s가 "1 2 3 4"라면 "1 4"를 리턴하고, "-1 -2 -3 -4"라면 "-4 -1"을 리턴하면 됩니다.
+                            </div>
+                            <div class="codeExam_exam">
+                                <p>제한 조건</p>
+                                s에는 둘 이상의 정수가 공백으로 구분되어 있습니다.
+                            </div>
+                        </div>
+                        <div class="codeExam_examFooter"></div>
+                    </div>
+                </div>
+                <!-- 예제 문제 코드 출력 -->
+                <div class="codeExam_code-wrap">
+                    <div class="codeExam_boxes">
+                        <div class="codeExam_boxesSize">
+                            <div id="html-box" class="codeExam_exambox codeExam_htmlBox">
+                                <div class="codeExam_codePage">
+                                    <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
+                                    <div class="codeExam_codeContent-Size">
+                                        <div class="codeExam_codeContent"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="css-box" class="codeExam_exambox codeExam_cssBox">
+                                <div class="codeExam_codePage">
+                                    <div id="codeExam_Language" class="codeExam_codeLanguage">Css</div>
+                                    <div class="codeExam_codeContent-Size">
+                                        <div class="codeExam_codeContent"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="js-box" class="codeExam_exambox codeExam_jsBox">
+                                <div class="codeExam_codePage">
+                                    <div id="codeExam_Language" class="codeExam_codeLanguage">JavaScript</div>
+                                    <div class="codeExam_codeContent-Size">
+                                        <div class="codeExam_codeContent"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="css-box" class="codeExam_exambox codeExam_cssBox">
-                            <div class="codeExam_codePage">
-                                <div id="codeExam_Language" class="codeExam_codeLanguage">Css</div>
-                                <div class="codeExam_codeContent-Size">
-                                    <div class="codeExam_codeContent"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="js-box" class="codeExam_exambox codeExam_jsBox">
-                            <div class="codeExam_codePage">
-                                <div id="codeExam_Language" class="codeExam_codeLanguage">JavaScript</div>
-                                <div class="codeExam_codeContent-Size">
-                                    <div class="codeExam_codeContent"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <!-- 코드 결과창 출력 _ frontend -->
-                <div class="codeExam_resultContainer">
-                    <div class="codeExam_resultSize">
-                        <div class="codeExam_resultDiv">
-                            시연창
-                            <iframe src="" frameborder="0">
-                            </iframe>
+                    <!-- 코드 결과창 출력 _ frontend -->
+                    <div class="codeExam_resultContainer">
+                        <div class="codeExam_resultSize">
+                            <div class="codeExam_resultDiv">
+                                시연창
+                                <iframe src="" frameborder="0">
+                                </iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-   
+        <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
 
-    <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
-
-    <!-- 챗봇 대화창 컨테이너 -->
-    <div class="chat-container" id="chat-container">
-        <!-- 챗봇 헤더 -->
-       <!-- 챗봇 헤더 -->
-    <div class="chat-header">
-        <div class="header-title" onclick="toggleChat()">NDB</div>
-        <button onclick="back()" id="back-button" style="display: none;">뒤로 가기</button>
-    </div>
-        <!-- 버튼 컨테이너 -->
-        <div class="button-container" id="button-container">
-            <p>안녕하세요.<br/>
-            NDB입니다.<br/>
-            무엇을 도와드릴까요?</p>
-            <button onclick="openChat()">질문하기</button>
-            <button>별점 리뷰하기</button>
-        </div>
-    
-        <!-- 챗봇 몸체 -->
-        <div class="chat-body" id="chat-body" style="display: none;">
-            <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
-            <div class="message bot-message">
-                <div class="content">질문을 입력해주세요!</div>
+        <!-- 챗봇 대화창 컨테이너 -->
+        <div class="chat-container" id="chat-container">
+            <!-- 챗봇 헤더 -->
+            <div class="chat-header" onclick="toggleChat()">NDB</div>
+            <!-- 챗봇 몸체 -->
+            <div class="chat-body">
+                <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
+                <div class="message bot-message">
+                    <div class="content">안녕하세요! 무엇을 도와드릴까요?</div>
+                </div>
+            </div>
+            <!-- 사용자 입력창 -->
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
+                <button onclick="sendMessage()">전송</button>
             </div>
         </div>
-    
-        <!-- 사용자 입력창 -->
-        <div class="chat-input" id="chat-input" style="display: none;">
-            <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
-            <button onclick="sendMessage()">전송</button>
+
+
+
+        <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
+
+        <!-- 챗봇 대화창 컨테이너 -->
+        <div class="chat-container" id="chat-container">
+            <!-- 챗봇 헤더 -->
+            <!-- 챗봇 헤더 -->
+            <div class="chat-header">
+                <div class="header-title" onclick="toggleChat()">NDB</div>
+                <button onclick="back()" id="back-button" style="display: none;">뒤로 가기</button>
+            </div>
+            <!-- 버튼 컨테이너 -->
+            <div class="button-container" id="button-container">
+                <p>안녕하세요.<br />
+                    NDB입니다.<br />
+                    무엇을 도와드릴까요?</p>
+                <button onclick="openChat()">질문하기</button>
+                <button>별점 리뷰하기</button>
+            </div>
+
+            <!-- 챗봇 몸체 -->
+            <div class="chat-body" id="chat-body" style="display: none;">
+                <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
+                <div class="message bot-message">
+                    <div class="content">질문을 입력해주세요!</div>
+                </div>
+            </div>
+
+            <!-- 사용자 입력창 -->
+            <div class="chat-input" id="chat-input" style="display: none;">
+                <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
+                <button onclick="sendMessage()">전송</button>
+            </div>
+
         </div>
 
+
+
+        <script>
+
+
+            $('.subs_btn_open').click(function () {
+                $('.subs_modal, .overlay').addClass("active")
+            })
+            $('.subs_button_close, .overlay').click(function () {
+                $('.subs_modal, .overlay').removeClass("active")
+            })
+
+
+
+        </script>
+
+
     </div>
-
-
-
-    <script>
-        
-
-        $('.subs_btn_open').click(function () {
-            $('.subs_modal, .overlay').addClass("active")
-        })
-        $('.subs_button_close, .overlay').click(function () {
-            $('.subs_modal, .overlay').removeClass("active")
-        })
-     
- 
-
-    </script>    
-
-    
-</div>
 
 
 
