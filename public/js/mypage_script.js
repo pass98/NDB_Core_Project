@@ -40,13 +40,21 @@ $(document).ready(function(){
         $(this).addClass('mp_current');
         $("#"+tab_id).addClass('mp_current');
       });
-    
+    })
 
     window.onload = () => {
-      // '변경' 버튼에 클릭 이벤트 리스너를 추가합니다.
+      // 비밀번호 변경버튼을 누르면 데이터베이스의 번호도 변경
       document.getElementById("mp_nameCh").addEventListener("click", () => {
-          // '변경되었습니다!'라는 알림을 표시합니다.
+          // '변경되었습니다!'라는 알림을 표시,
           alert("변경되었습니다!");
       });
+      // 회원탈퇴버튼을 누르면 데이터베이스에 저장되어있던 로그인 기록 삭제
+      document.getElementById("mp_secessionButton").addEventListener("click", () => {
+        // '변경되었습니다!'라는 알림을 표시합니다.
+        alert("탈퇴했습니다!");
+    });
   }
-    })
+
+    
+
+    
