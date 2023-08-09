@@ -55,6 +55,7 @@ main{
     border-radius: 2rem;
     text-align: center;
     margin-top : 20px;
+    height: 15vh;
 }
 
 .mp_profile {
@@ -302,6 +303,8 @@ body {
 
 /* 탭메뉴 키 */
 .mp_tabmenu{
+    display : flex;
+    flex-direction: column;
     width: 50%;
     margin-top: 50px;
     background-color: #d2d2d2;
@@ -310,9 +313,7 @@ body {
 
 .mypagefro{
     color: #ededed;
-    box-sizing:content-box;
-    height: 300px;
-    align-items: center;
+    box-sizing:content-box
 }
   
 .mp_h2{
@@ -334,7 +335,6 @@ body {
   }
   
   ul.mp_tabs li.mp_current{
-    
     background: #ededed;
     color: #222;
   }
@@ -343,26 +343,58 @@ body {
     height: 37vh;
     background-color: #212121;
     border-radius: 15px;
-    
-    
   }
+
+  .mp_secession{
+    color: white;
+    text-align : center;
+    vertical-align: center;
+  }
+
+  #mp_questiontext{
+    display:flex;
+    flex-direction: column;
+  }
+
+  #mp_question{
+    height: inherit;
+  }
+
+  
+  #mp_secessionSpace{
+    display: flex;
+    flex-direction: column;
+    height: 37vh;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+  #mp_secessionButton{
+    width : 10em;
+    height: 10vh;
+    border-radius: 20px;
+}
+
+#mp_secessionButton:hover {
+    background-color: rgb(154, 151, 151);
+}
 
   .mp_tab-content{
     display: none;
     background: #ededed;
     padding: 15px;
-    height: 45vh;
+    height: 50vh;
     border-radius: 0 0 30px 30px;
 
   }
   
   .mp_tab-content.mp_current{
-    display: inherit;
+    display: block;
   }
 
   .mp_Info{
     width : 300px;
-    
+
     text-align: left;
   }
   
