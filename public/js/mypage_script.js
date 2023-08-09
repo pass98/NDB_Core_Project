@@ -54,7 +54,3 @@ $(document).ready(function(){
         alert("탈퇴했습니다!");
     });
   }
-
-    
-
-    

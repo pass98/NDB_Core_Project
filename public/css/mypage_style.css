@@ -391,10 +391,9 @@ body {
   .mp_tab-content.mp_current{
     display: block;
   }
-
   .mp_Info{
     width : 300px;
-
+    
     text-align: left;
   }
   

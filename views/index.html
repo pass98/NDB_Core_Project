@@ -11,14 +11,14 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link rel="stylesheet" href="/public/css/eunwoo_style.css">
-    <link rel="stylesheet" href="/public/css/yubin_chatbot.css">
-    <link rel="stylesheet" href="/public/css/yubin_sidebar.css">
-    <link rel="stylesheet" href="/public/css/subs.css">
+    <link rel="stylesheet" href="/css/eunwoo_style.css">
+    <link rel="stylesheet" href="/css/yubin_chatbot.css">
+    <link rel="stylesheet" href="/css/yubin_sidebar.css">
+    <link rel="stylesheet" href="/css/subs.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="/public/js/chatbot_script.js"></script>
-    <script src="/public/js/index.js"></script>
-    <script src="/public/js/main.js"></script>
+    <script src="/js/chatbot_script.js"></script>
+    <script src="/js/index.js"></script>
+    <script src="./main.js"></script>
 <!-- 결제창을 위한 라이브러리-->
     
 
@@ -56,6 +56,10 @@
                 }
               });
         }
+
+        
+
+   
         </script>
 
         <script>
@@ -187,48 +191,44 @@
                     <a href="#">NDB</a>
 
                 </div>
-                <!--  -->
                 <div class="main_navMiddle">
-                    <div>
-                        <div class="main_search">
+                    <form>
+                        <div id="main_navSearchbar" class="main_search">
                             <select name="main_language" id="" class="main_searchLanguage"
                                 style="width:50px;height:30px;">
-                                <option value=" ">언어</option>
                                 <option value="html">html</option>
+                                <option value="java">java</option>
                                 <option value="css">css</option>
                                 <option value="javascript">javascript</option>
-                                <option value="java">java</option>
-                                <option value="python">python</option>
-                                <option value="c_language">C언어</option>
                             </select>
                             <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                            <input type="text" class="main_searchBar" name="main_searchBar_Name">
+                            <input type="text" class="main_searchBar_Nav" name="main_searchBar_Name_Nav">
                             <!-- 자동완성 단어 리스트 -->
                             <div class="main_autocomplete"></div>
-                            <button type="submit" class="main_search_button" onclick=select()>
+                            <button type="submit" class="main_search_button">
                                 <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                             </button>
-                
                         </div>
-                    </div>
+                    </form>
                 </div>
-                <div class="main_navRight">
-                    <ul class="popularSerch">
-                        <li>
-                            <span>인기 검색어</span>
-                         </li>
-                        <li>|</li>
-                        <li>
-                            <a href="#">파이썬 반복문</a>
-                        </li>
-                    </ul>
-                    <div id="main_btnWrap">
-                        <!-- 로그인 버튼 -->
-                        <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
-                        <!-- 회원가입 버튼 -->
-                        <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
-                    </div>
+            </div>
+            <div class="main_navRight">
+                <ul class="popularSerch">
+                    <li>
+                        <span>인기 검색어</span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a href="#">파이썬 반복문</a>
+                    </li>
+                </ul>
+                <div id="main_btnWrap">
+                    <!-- 로그인 버튼 -->
+                    <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
+                    <!-- 회원가입 버튼 -->
+                    <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
                 </div>
+            </div>
         </nav>
         <!-- 메인 이미지 위치 조정을 위한 div -->
         <div class="main_position"></div>
@@ -242,9 +242,10 @@
                 </div>
             </div>
         </div>
-         <!-- main페이지 -->
-         <div class="main_wrap">
+        <!-- main페이지 -->
+        <div class="main_wrap">
             <!-- 검색창 -->
+            <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
             <div class="main_searchWrap">
                 <div class="main_text">
                     <p>
@@ -252,24 +253,23 @@
                     </p>
                 </div>
                 <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
-                <div class="main_search">
-                    <select name="main_language" id="" class="main_searchLanguage2" style="width:50px;height:30px;">
-                        <option value=" ">언어</option>
+
+                <form action="" class="main_search">
+                    <select name="main_language" id="" class="main_searchLanguage" style="width:50px;height:30px;">
                         <option value="html">html</option>
+                        <option value="java">java</option>
                         <option value="css">css</option>
                         <option value="javascript">javascript</option>
-                        <option value="java">java</option>
-                        <option value="python">python</option>
-                        <option value="c_language">C언어</option>
                     </select>
                     <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                    <input type="text" class="main_searchBar2" name="main_searchBar_Name">
+                    <input type="text" class="main_searchBar" name="main_searchBar_Name" autofocus>
                     <!-- 자동완성 단어 리스트 -->
                     <div class="main_autocomplete"></div>
-                    <button type="submit" class="main_search_button" onclick=select()>
+                    <button type="submit" class="main_search_button">
                         <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                     </button>
-                </div>
+                </form>
+
                 <!-- 검색창 아래 태그 -->
                 <!-- <div class="main_TagWrap">
                     사용자에게 추천하는 검색어 
@@ -279,10 +279,9 @@
                         <li>grid</li>
                     </ul>
                 </div> -->
-                </div>
             </div>
         </div>
-    
+    </div>
 
 
     <div class="subs_modal">
@@ -290,9 +289,7 @@
            
        
             <div class="subs_header">
-                <div>
-                    <h1 id="subs_title">Member of NDB</h1>
-                <div>
+                <div ><h1 id="subs_title" >Member of NDB</h1></div>
                 <div>
                     <button class="subs_button_close" >&times;</button>
                 </div>
@@ -331,6 +328,11 @@
                     </div>
                 </div>
                 
+
+
+                
+
+
                 <div class="content2 content-box">
                     <div><h3 >Standard</h3></div>
                     <div class="subs_benefit">
@@ -392,7 +394,6 @@
     <div class="main_Line"></div>
     <!-- 예제 출력 페이지 -->
     <div id="codeExam_container">
-
         <div class="codeExam_pageWrap">
             <!-- 예제 문제 설명 출력 -->
             <div class="codeExam_examWrap-Size">
@@ -403,8 +404,7 @@
                         <hr>
                         <div class="codeExam_examDetail">
                             <p>문제 설명</p>
-                            문자열 s에는 공백으로 구분된 숫자들이 저장되어 있습니다. str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 "(최소값) (최대값)"형태의 문자열을
-                            반환하는
+                            문자열 s에는 공백으로 구분된 숫자들이 저장되어 있습니다. str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 "(최소값) (최대값)"형태의 문자열을 반환하는
                             함수,
                             solution을 완성하세요.
                             예를들어 s가 "1 2 3 4"라면 "1 4"를 리턴하고, "-1 -2 -3 -4"라면 "-4 -1"을 리턴하면 됩니다.
@@ -418,16 +418,16 @@
                 </div>
             </div>
             <!-- 예제 문제 코드 출력 -->
-             <!-- 예제 문제 코드 출력 -->
-             <div class="codeExam_code-wrap">
+            <div class="codeExam_code_wrap">
                 <div class="codeExam_boxes">
+                    <div class="codeExam_boxesHide" draggable="true"></div>
                     <div class="codeExam_boxesSize">
                         <div id="html-box" class="codeExam_exambox codeExam_htmlBox">
                             <div class="codeExam_codePage">
                                 <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
                                 <div class="codeExam_codeContent-Size">
-                                    <div class="codeExam_codeContent"></div>
-                                </div>
+                                    <div class="codeExam_codeContent">
+
                                     </div>
                                 </div>
                             </div>
@@ -454,10 +454,8 @@
                 <div class="codeExam_resultContainer">
                     <div class="codeExam_resultSize">
                         <div class="codeExam_resultDiv">
-                            시연창
-                            <iframe src="" frameborder="0">
-                            </iframe>
-                        </div>
+                            <!-- <div style={dasdasd} class> -->
+                                ""
                         </div>
                         <script>
 
