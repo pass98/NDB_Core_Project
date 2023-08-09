@@ -110,7 +110,7 @@ function select() {
 }
 
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -224,7 +224,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
         console.log(pre)
 
         $.ajax({
-            url: "/index/dbinput", // Update this to the URL of your server endpoint
+            url: "/index/frontinput", // Update this to the URL of your server endpoint
             method: 'POST',
             data: {
                 f_text: f_text,
@@ -248,7 +248,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 }
 
 function java() {   // select option이 java일때 api java 응답함수
-    const api_key = "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"// api key 값
+    const api_key = "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"// api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -367,7 +367,7 @@ function java() {   // select option이 java일때 api java 응답함수
 }
 
 function python() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -485,7 +485,7 @@ function python() { // select option이 python일때 api python 응답함수
 }
 
 function C_programing() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]

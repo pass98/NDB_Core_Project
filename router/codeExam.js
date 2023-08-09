@@ -1,12 +1,12 @@
-+const express = require('express')
+const express = require('express')
 const router = express.Router();
 const db = require("../config/datebase");
 let conn = db.init();
 
 
-router.post("/index/dbget"), function(req, res){
+/*router.post("/index/dbget"), function(req, res){
 
-}
+}*/
 
 router.post("/index/frontinput", function (req, res) {
     let user_input = req.body.user_input; //사용자 입력 데이터 - X
