@@ -52,13 +52,6 @@ function resize() {
         editor.style.height = "60px";
     }
 }
-// 코드 하이라이팅 효과 끝
-
-// 검색시 페이지 새로고침 현상 막기
-function handleSubmit(event) {
-    event.preventDefault()
-    value = '';
-}
 // 문법 하이라이팅 함수
 function updateHighlighting(code) {
     // const codeInput = document.getElementById('codeExam_codeContent_html').value;
@@ -66,6 +59,20 @@ function updateHighlighting(code) {
     highlightedCode.textContent = code; // 입력된 코드를 <code> 태그에 설정
     hljs.highlightBlock(highlightedCode); // 해당 코드 블록에 하이라이팅 적용
 }
+// 코드 하이라이팅 효과 끝
+// 코드 예제 창 div 값 변경
+function codeExam_divLanguage(){
+    var lang = document.getElementById('main_language');
+    var selectLang = lang.options[lang.selectedIndex].value;
+    console.log(selectLang)
+}
+
+// 검색시 페이지 새로고침 현상 막기
+function handleSubmit(event) {
+    event.preventDefault()
+    value = '';
+}
+
 // 검색 시 코드창에 내용 삽입 기능 시작
 function insertHTMLToDiv() {
     const codeExam_resultDiv = document.querySelector('.codeExam_resultDiv');
@@ -104,6 +111,41 @@ function insertHTMLToDiv() {
     // 가져온 HTML 문자열에 포함된 JavaScript 코드를 실행시키고 싶다면, 이 부분에 추가로 코드 작성
     // targetDiv.querySelector('button').addEventListener('click', myFunction);
 }
+
+// day&night theme 토글 함수
+function is_checked() {
+    // 메인 검색창을 찾습니다.
+    const main_search = document.querySelector(".main_search")
+    // 메인페이지를 찾습니다.
+    const main_wrap = document.querySelector(".main_wrap");
+    // 1. checkbox element를 찾습니다.
+    const checkbox = document.getElementById('main_Nav_themecheck');
+  
+    // 2. checked 속성을 체크합니다.
+    const is_checked = checkbox.checked;
+  
+    // 3. 결과를 출력합니다.
+    console.log('체크확인',is_checked)
+    console.log('main_wrap 스타일 속성 확인', main_wrap.style)
+
+    // 테마변경
+    if(is_checked){
+        window.document.body.classList.add('day');
+        main_search.classList.remove('main_search');
+        main_search.classList.add('main_search_day');
+        main_wrap.classList.remove('main_wrap_backImg_night')
+        main_wrap.classList.add('main_wrap_backImg_day')
+        
+    }else{
+        window.document.body.classList.remove('day');
+        main_search.classList.remove('main_search_day');
+        main_search.classList.add('main_search');
+        main_wrap.classList.add('main_wrap_backImg_night')
+        main_wrap.classList.remove('main_wrap_backImg_day')
+    }
+  }
+
+// 문서 로딩 완료한 뒤 실행
 document.addEventListener("DOMContentLoaded", function () {
     // 한글 타이핑 효과
     TypeHangul.type('.main_text p', {
@@ -117,12 +159,13 @@ document.addEventListener("DOMContentLoaded", function () {
     }, false);
 
     // 검색 시 스크롤 자동이동 함수
-    const main_searchBar = document.querySelector(".main_searchBar");
+    const main_searchBar = document.querySelector("#main_searchBar");
+    const main_searchBar2 = document.querySelector("#main_searchBar2");
 
     function onKeyUp(event) {
         if (event.key === 'Enter') {
             goToScroll();
-            console.log('전송');
+            console.log(document.querySelector("#main_searchBar2").value);
         }
     }
     function goToScroll() {
@@ -130,9 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
         window.scrollTo({ top: location - 50, behavior: 'smooth' });
     }
 
-    main_searchBar.addEventListener("keyup", onKeyUp);
-    main_searchBar.addEventListener("keyup", handleSubmit);
-    // main_searchBar.addEventListener("submit", handleSubmit);
+
     document.querySelector(".main_search_button").addEventListener('click', function (e) {
         e.preventDefault();
     })
@@ -183,7 +224,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     // 함수 호출
-    main_searchBar.addEventListener("keyup", insertHTMLToDiv());
+    // 왼쪽 상단 검색바 함수 적용
+    main_searchBar.addEventListener("keyup", insertHTMLToDiv);
+    main_searchBar.addEventListener("keyup", handleSubmit);
+    main_searchBar.addEventListener("keyup", onKeyUp);
+
+    // 메인 가운데 검색바 함수 적용
+    main_searchBar2.addEventListener("keyup", insertHTMLToDiv);
+    main_searchBar2.addEventListener("keyup", onKeyUp);
+    main_searchBar2.addEventListener("keyup", handleSubmit);
+
 
     // 문법 하이라이팅 함수 실행
     update_code();

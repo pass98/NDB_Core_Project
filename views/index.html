@@ -21,9 +21,9 @@
     <script src="/js/codemirror-5.53.2/lib/codemirror.js"></script>
     <!-- code mirror -->
     <script type="text/javascript"
-    src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/codemirror.min.js'></script>
+        src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/codemirror.min.js'></script>
     <script type="text/javascript"
-    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/mode/xml/xml.min.js"></script>
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/mode/xml/xml.min.js"></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/codemirror.min.css'>
     <script src="/js/syntax_highlight.js"></script>
 </head>
@@ -53,7 +53,7 @@
                             <option value="c_language">C언어</option>
                         </select>
                         <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                        <input type="text" class="main_searchBar" name="main_searchBar_Name">
+                        <input type="text" id="main_searchBar" name="main_searchBar_Name">
                         <!-- 자동완성 단어 리스트 -->
                         <div class="main_autocomplete"></div>
                         <button type="submit" class="main_search_button" onclick=select()>
@@ -73,6 +73,9 @@
                         <a href="#">파이썬 반복문</a>
                     </li>
                 </ul>
+                <div class="checkbox-wrapper-2">
+                    <input type="checkbox" id="main_Nav_themecheck" class="sc-gJwTLC ikxBAC" onclick='is_checked()'>
+                  </div>                  
                 <div id="main_btnWrap">
                     <!-- 로그인 버튼 -->
                     <!-- <button type="button" class="main_loginBtn main_modalBtn">로그인</button> -->
@@ -94,7 +97,7 @@
             </div>
         </div>
         <!-- main페이지 -->
-        <div class="main_wrap">
+        <div class="main_wrap main_wrap_backImg_night">
             <!-- 검색창 -->
             <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
             <div class="main_searchWrap">
@@ -106,7 +109,7 @@
                 <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
 
                 <div class="main_search">
-                    <select name="main_language" id="" class="main_searchLanguage2" style="width:50px;height:30px;">
+                    <select id="main_language" class="main_searchLanguage2" style="width:50px;height:30px;">
                         <option value=" ">언어</option>
                         <option value="html">html</option>
                         <option value="css">css</option>
@@ -116,7 +119,7 @@
                         <option value="c_language">C언어</option>
                     </select>
                     <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                    <input type="text" class="main_searchBar2" name="main_searchBar_Name">
+                    <input type="text" id="main_searchBar2" name="main_searchBar_Name">
                     <!-- 자동완성 단어 리스트 -->
                     <div class="main_autocomplete"></div>
                     <button type="submit" class="main_search_button" onclick=select()>
@@ -142,7 +145,7 @@
         <div class="codeExam_pageWrap">
             <!-- 예제 문제 설명 출력 -->
             <div class="codeExam_examWrap-Size">
-                <div class="codeExam_examWrap">
+                <div class="codeExam_examWrap_night">
 
                     <div class="codeExam_examContent">
                         <h2>최댓값과 최솟값</h2>
@@ -172,7 +175,9 @@
                                 <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
                                 <div class="codeExam_codeContent-Size">
                                     <div class="codeExam_codeContent">
-                                        <textarea cols="100" id="editing_code_html"><!DOCTYPE html>
+                                        <textarea cols="100" id="editing_code_html">
+
+                                            <!DOCTYPE html>
                                             <html>
                                             <head>
                                               <title>별 피라미드</title>
@@ -183,7 +188,9 @@
                                             
                                               <script src="script.js"></script>
                                             </body>
-                                            </html></textarea>
+                                            </html>
+                                        
+                                        </textarea>
                                     </div>
                                 </div>
                             </div>
