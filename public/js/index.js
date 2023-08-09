@@ -65,7 +65,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
     console.log("상단 바 사용자 선택언어:", language)
     console.log("메임검색바 사용자 선택언어:", language2)
-
+//dd
 
     $('#loading').show();
 
