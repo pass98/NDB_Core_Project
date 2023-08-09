@@ -32,8 +32,8 @@
   width: 40px;
   height: 32px;
   position: absolute;
-  top: -7px;
-  left: -5px;
+  /* top: -7px;
+  left: -5px; */
   
   cursor: pointer;
   
@@ -109,6 +109,9 @@
  */
 #leftside
 {
+  /* font-align */
+  text-align: center;
+
   position: absolute;
   width: 180px;
   margin: -100px 0 0 -50px;
