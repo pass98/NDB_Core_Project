@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NDBS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,7 +14,18 @@
         <link rel="stylesheet" href="/css/yubin_chatbot.css"> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
-    <script src="/js/index.js"></script>
+    <script src="/js/eunwoo_index.js"></script>
+    <!-- 한글 타이핑 효과 -->
+    <script src="https://unpkg.com/type-hangul"></script>
+    <!-- codemirror js -->
+    <script src="/js/codemirror-5.53.2/lib/codemirror.js"></script>
+    <!-- code mirror -->
+    <script type="text/javascript"
+    src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/codemirror.min.js'></script>
+    <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/mode/xml/xml.min.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/codemirror.min.css'>
+    <script src="/js/syntax_highlight.js"></script>
 </head>
 
 <body>
@@ -30,24 +41,26 @@
                     <a href="#">NDB</a>
                 </div>
                 <div class="main_navMiddle">
-                    <form>
-                        <div id="main_navSearchbar" class="main_search">
-                            <select name="main_language" id="" class="main_searchLanguage"
-                                style="width:50px;height:30px;">
-                                <option value="html">html</option>
-                                <option value="java">java</option>
-                                <option value="css">css</option>
-                                <option value="javascript">javascript</option>
-                            </select>
-                            <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                            <input type="text" class="main_searchBar_Nav" name="main_searchBar_Name_Nav">
-                            <!-- 자동완성 단어 리스트 -->
-                            <div class="main_autocomplete"></div>
-                            <button type="submit" class="main_search_button">
-                                <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
-                            </button>
-                        </div>
-                    </form>
+                    <div class="main_Nav_search">
+                        <select name="main_language" id="main_navSearchbar" class="main_searchLanguage"
+                            style="width:50px;height:30px;">
+                            <option value=" ">언어</option>
+                            <option value="html">html</option>
+                            <option value="css">css</option>
+                            <option value="javascript">javascript</option>
+                            <option value="java">java</option>
+                            <option value="python">python</option>
+                            <option value="c_language">C언어</option>
+                        </select>
+                        <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
+                        <input type="text" class="main_searchBar" name="main_searchBar_Name">
+                        <!-- 자동완성 단어 리스트 -->
+                        <div class="main_autocomplete"></div>
+                        <button type="submit" class="main_search_button" onclick=select()>
+                            <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
+                        </button>
+
+                    </div>
                 </div>
             </div>
             <div class="main_navRight">
@@ -62,9 +75,9 @@
                 </ul>
                 <div id="main_btnWrap">
                     <!-- 로그인 버튼 -->
-                    <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
+                    <!-- <button type="button" class="main_loginBtn main_modalBtn">로그인</button> -->
                     <!-- 회원가입 버튼 -->
-                    <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
+                    <button type="button" class="main_signupBtn main_modalBtn">log out</button>
                 </div>
             </div>
         </nav>
@@ -92,21 +105,24 @@
                 </div>
                 <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
 
-                <form action="" class="main_search">
-                    <select name="main_language" id="" class="main_searchLanguage" style="width:50px;height:30px;">
+                <div class="main_search">
+                    <select name="main_language" id="" class="main_searchLanguage2" style="width:50px;height:30px;">
+                        <option value=" ">언어</option>
                         <option value="html">html</option>
-                        <option value="java">java</option>
                         <option value="css">css</option>
                         <option value="javascript">javascript</option>
+                        <option value="java">java</option>
+                        <option value="python">python</option>
+                        <option value="c_language">C언어</option>
                     </select>
                     <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                    <input type="text" class="main_searchBar" name="main_searchBar_Name" autofocus>
+                    <input type="text" class="main_searchBar2" name="main_searchBar_Name">
                     <!-- 자동완성 단어 리스트 -->
                     <div class="main_autocomplete"></div>
-                    <button type="submit" class="main_search_button">
+                    <button type="submit" class="main_search_button" onclick=select()>
                         <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                     </button>
-                </form>
+                </div>
 
                 <!-- 검색창 아래 태그 -->
                 <!-- <div class="main_TagWrap">
@@ -122,7 +138,7 @@
     </div>
     <div class="main_Line"></div>
     <!-- 예제 출력 페이지 -->
-    <div id="codeExam_container">
+    <div class="codeExam_container">
         <div class="codeExam_pageWrap">
             <!-- 예제 문제 설명 출력 -->
             <div class="codeExam_examWrap-Size">
@@ -156,7 +172,18 @@
                                 <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
                                 <div class="codeExam_codeContent-Size">
                                     <div class="codeExam_codeContent">
-
+                                        <textarea cols="100" id="editing_code_html"><!DOCTYPE html>
+                                            <html>
+                                            <head>
+                                              <title>별 피라미드</title>
+                                              <link rel="stylesheet" type="text/css" href="style.css">
+                                            </head>
+                                            <body>
+                                              <div id="pyramid"></div>
+                                            
+                                              <script src="script.js"></script>
+                                            </body>
+                                            </html></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -184,7 +211,7 @@
                     <div class="codeExam_resultSize">
                         <div class="codeExam_resultDiv">
                             <!-- <div style={dasdasd} class> -->
-                                ""
+                            ""
                         </div>
                         <script>
 
@@ -195,6 +222,7 @@
         </div>
     </div>
     </div>
+
 </body>
 
 
