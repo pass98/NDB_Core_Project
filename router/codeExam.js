@@ -38,7 +38,7 @@ router.post("/index/frontinput", function (req, res) {
 });
 
 router.post("/index/java_input", function (req, res) {
-    let user_input = req.body.user_input; //사용자 입력 데이터 - X
+    let user_input = req.body.user_input; //사용자 입력 데이터 - O
     let select_language = req.body.select_language; //사용자 선택 언어 - O
     let f_text = req.body.f_text;     // 문제   - O
     let javaCode = req.body.javaCode; // java 코드 - O
