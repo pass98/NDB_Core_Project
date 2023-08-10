@@ -9,7 +9,9 @@
     "nodemon": "^3.0.1",
     "nunjucks": "^3.2.4",
     "passport": "^0.6.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-github2": "^0.1.12",
+    "passport-google-oauth20": "^2.0.0",
+    "passport-kakao": "^1.0.1"
   },
   "name": "express",
   "description": "순두부 아니다 팀협업 테스트",
