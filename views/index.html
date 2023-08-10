@@ -196,7 +196,7 @@
                             </ul>
                         </div>
                         <div class="main_nav_logo">
-                            <a href="#">NDB</a>
+                            <a href="http://localhost:3003/index">NDB</a>
 
                         </div>
                         <div class="main_navMiddle">
@@ -257,14 +257,11 @@
                 <div class="main_wrap">
 
 
-                    <div class="kkk">
-                        <p>
-                            <MARQUEE>function solution(arr) { let sumArr = 0; for (let i = 0; i < arr.length; i++) { sumArr += arr[i]; } let avgArr = sumArr / arr.length; return avgArr; }</MARQUEE>
-                            <!-- 움직이는 텍스트 -->
-                        </p>
-        
-                        <p>
-                            <MARQUEE width="100" height="50">!DOCTYPE html
+                    <div class="main_floating_font">
+                                
+                        <p class="main_floating_p">
+                            <MARQUEE scrollamount="8">
+                                DOCTYPE html
                                 html
                                 head
                                     titleEvent Listener Example/title
@@ -278,18 +275,21 @@
                                 /html></MARQUEE>
                             <!-- 크기 조절 -->
                         </p>
-                            
-        
-                        <p>
-                            <MARQUEE scrolldelay="150">// Get the button element
+                        <p class="main_floating_p">
+                            <MARQUEE scrollamount="4">function solution(arr) { let sumArr = 0; for (let i = 0; i < arr.length; i++) { sumArr += arr[i]; } let avgArr = sumArr / arr.length; return avgArr; }</MARQUEE>
+                            <!-- 움직이는 텍스트 -->
+                        </p>
+                        <p class="main_floating_p">        
+                        <MARQUEE scrolldelay="90"> Get the button element
                                 var button = document.getElementById("myButton");
                                 
-                                // Add event listener to the button
+                                 Add event listener to the button
                                 button.addEventListener("click", function() {
                                     alert("Hello, World!");
                                 });</MARQUEE>
                             <!-- 스크롤의 속도-->
                         </p>
+                    
                        
                         <!-- <p>
                         <MARQUEE><img src= "aaa.jpg" width="200" height="150"></MARQUEE>
@@ -303,28 +303,99 @@
                         <MARQUEE width="100" height="50">가로와 세로는 100/50입니다.</MARQUEE>
                        
                         </p> -->
-                        <p>
+                        <!-- <p>
                         <MARQUEE direction="up"></MARQUEE>
-                        스크롤 방향 설정 
-                        </p>
-                        <p>
-                        <MARQUEE behavior="scroll">스크롤의 무한반복</MARQUEE>
-                        <!-- 스크롤의 속성 -->
-                        </p>
+                        </p> -->
+                    
                         <!-- <p>
                         <MARQUEE loop="5">스크롤을 5회반복합니다.</MARQUEE>
-                        스크롤의 속성 
+                       
                         </p> -->
-                        <p>
-                        <MARQUEE  scrollamount="2">한번에 2픽셀씩 이동합니다.</MARQUEE>
+                        <p class="main_floating_p">
+                        <MARQUEE  scrollamount="5">import java.util.Scanner;
+ 
+                            public class Main {
+                                public static void main(String[] args) {
+                                    Scanner scanner = new Scanner(System.in);
+                                    System.out.print("숫자를 입력하세요: ");
+                                    int n = scanner.nextInt();
+                            
+                                    for (int i = 0; i < n; i++) {
+                                        for (int j = 0; j <= i; j++) {
+                                            System.out.print("*");
+                                        }
+                                        System.out.println();
+                                    }
+                                }
+                            }</MARQUEE>
                         <!-- 스크롤의 속도 -->
-                        </p>
-                      
+                       
                         <!-- <p>
                         <MARQUEE hspace="50" vspace="50" >스크롤의 위/아래 여백을 줍니다.</MARQUEE>
                         스크롤의 여백 
                         </p> -->
+
+
+                        <p class="main_floating_p">
+                            <MARQUEE  scrollamount="6">
+                                #include stdio.h
+                                    #include stdlib.h
+                                    
+                                    int main() {
+                                        int num_students;
+                                        printf("학생 수를 입력하세요: ");
+                                        scanf("%d", &num_students);
+                                    
+                                        // 2차원 포인터 배열 동적 할당
+                                        char** students = (char**)malloc(num_students * sizeof(char*));
+                                        for (int i = 0; i < num_students; i++) {
+                                            students[i] = (char*)malloc(20 * sizeof(char));
+                                        }
+                                    
+                                        // 학생들의 이름과 성적 입력 받기
+                                        for (int i = 0; i < num_students; i++) {
+                                            printf("학생 %d의 이름을 입력하세요: ", i + 1);
+                                            scanf("%s", students[i]);
+                                            printf("학생 %d의 성적을 입력하세요: ", i + 1);
+                                            int score;
+                                            scanf("%d", &score);
+                                        }
+                                    
+                                        // 입력된 학생들의 이름과 성적 출력하기
+                                        printf("입력된 학생들의 이름과 성적은 다음과 같습니다:\n");
+                                        for (int i = 0; i < num_students; i++) {
+                                            printf("학생 %d: 이름 - %s, 성적 - %d\n", i + 1, students[i], score);
+                                        }
+                                    
+                                        // 2차원 포인터 배열 메모리 해제
+                                        for (int i = 0; i < num_students; i++) {
+                                            free(students[i]);
+                                        }
+                                        free(students);
+                                    
+                                        return 0;
+                                    }</MARQUEE>
+                            <!-- 스크롤의 속도 -->
+                            </p>
+
+
+                        </p>
+
+                    <p class="main_floating_p">
+                    <MARQUEE behavior="scroll" scrollamount="9">body {
+                        text-align: center;
+                    }
+                    
+                    button {
+                        padding: 10px 20px;
+                        font-size: 16px;
+                    }</MARQUEE>
+                    <!-- 스크롤의 속성 -->
+                    </p>
+                  
                         </div>
+
+
                     
         
                     <!-- 검색창 -->
@@ -576,7 +647,7 @@
                     document.getElementById("subscribe-link").addEventListener("click", function (event) {
                         event.preventDefault(); // 링크의 기본 동작 중단
                         alert("구독이 완료되었습니다! Basic 회원이 되신 걸 축하드립니다!"); // 알림창 표시
-                        window.location.href = "http://localhost:3003/index"; // 주소로 이동
+                        window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
                     });
                 </script>
             </div>
