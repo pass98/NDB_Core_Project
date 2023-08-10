@@ -390,7 +390,7 @@ a {
 .popularSerch {
     box-sizing: border-box;
     padding-right: 32px;
-    min-width: 100px;
+    min-width: 250px;
 }
 
 /* 네비게이션 끝 */
@@ -447,6 +447,11 @@ select {
 }
 
 /* 검색 부분(필터링 및 설명텍스트 등 정렬) */
+.main_NavFlex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 .main_searchWrap {
     /* background-color: red; */
     position: absolute;
@@ -457,6 +462,31 @@ select {
     height: 500px;
     flex-wrap: wrap;
     padding-bottom: 50px;
+}
+.main_NavLangDB_Select{
+    /* background-color: yellowgreen; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 32px;
+}
+.main_Navwon{
+    width: 14px;
+    height: 14px;
+    background-color: #9FA0A0;
+    /* border: 1px solid #212121; */
+    border-radius: 12px;
+    margin-bottom: 8px;
+}
+.main_Navwon:first-child{
+    margin-right: 8px ;
+}
+.main_Navwon:hover{
+    background-color: white;
+    width: 1rem;
+    height: 1rem;
+    /* transition: 0.1s; */
 }
 
 .main_text {
@@ -638,7 +668,7 @@ option:hover {
 .codeExam_examWrap-Size {
     height: 100%;
     width: 45%;
-    min-width: 300px;
+
 
     position: relative;
     display: flex;
@@ -672,6 +702,7 @@ option:hover {
     height: 80%;
     padding: 12px;
     text-align: left;
+    min-width: 300px;
 
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;

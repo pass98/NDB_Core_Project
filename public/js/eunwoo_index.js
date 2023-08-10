@@ -130,20 +130,28 @@ function is_checked() {
 
     // 테마변경
     if(is_checked){
+        // 낮
         window.document.body.classList.add('day');
-        main_search.classList.remove('main_search');
         main_search.classList.add('main_search_day');
+        main_search.classList.remove('main_search');
         main_wrap.classList.remove('main_wrap_backImg_night')
         main_wrap.classList.add('main_wrap_backImg_day')
         
     }else{
+        // 밤
         window.document.body.classList.remove('day');
         main_search.classList.remove('main_search_day');
         main_search.classList.add('main_search');
-        main_wrap.classList.add('main_wrap_backImg_night')
         main_wrap.classList.remove('main_wrap_backImg_day')
+        main_wrap.classList.add('main_wrap_backImg_night')
     }
   }
+// 테마 기능 끝
+
+// 검색_언어별 codeExam_boxes 개수 변경
+// function codeExamBoxCount() {
+//     const 
+// }
 
 // 문서 로딩 완료한 뒤 실행
 document.addEventListener("DOMContentLoaded", function () {
