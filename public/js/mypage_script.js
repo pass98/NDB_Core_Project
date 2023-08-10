@@ -54,3 +54,23 @@ $(document).ready(function(){
         alert("탈퇴했습니다!");
     });
   }
+   // 열기 버튼을 클릭하면 모달 창을 보이게 하도록 이벤트 핸들러 추가
+   $('.subs_btn_open').click(function () {
+    $('.subs_modal, .overlay').addClass("active");
+});
+
+// 닫기 버튼을 클릭하면 모달 창이 닫히도록 이벤트 핸들러 추가
+$('.subs_button_close, .overlay').click(function () {
+    $('.subs_modal, .overlay').removeClass("active");
+});
+
+//무료 구독창 클리 시 완료 문구 및 마이페이지로 이동 
+document.getElementById("subscribe-link").addEventListener("click", function (event) {
+    event.preventDefault(); // 링크의 기본 동작 중단
+    alert("구독이 완료되었습니다! Basic 회원이 되신 걸 축하드립니다!"); // 알림창 표시
+    window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
+});
+
+document.getElementById("mypage_btn_open").addEventListener("click", function (event) {
+  window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
+});
