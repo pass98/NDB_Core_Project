@@ -4,9 +4,9 @@ const db = require("../config/datebase");
 let conn = db.init();
 
 
-/*router.post("/index/dbget"), function(req, res){
+router.post("/index/dbget"), function(req, res){
 
-}*/
+}
 
 router.post("/index/frontinput", function (req, res) {
     let user_input = req.body.user_input; //사용자 입력 데이터 - X
@@ -83,7 +83,7 @@ router.post("/index/python_input", function (req, res) {
 
     let sql = `insert into QUESTION (USER_ID,EXAM_LANGUAGE, SEARCH_WORD, EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, EXAM_C, EXAM_PYTHON )values(?,?,?,?,?,?,?,?,?,?)`;
 
-    conn.query(sql, [ user_id,select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
+    conn.query(sql, [user_id, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
         if (!err) {
             console.log("쿼리문 실행 완료");
             res.json({ success: true });
@@ -112,7 +112,7 @@ router.post("/index/c_input", function (req, res) {
 
     let sql = `insert into QUESTION (USER_ID,EXAM_LANGUAGE, SEARCH_WORD, EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, EXAM_C, EXAM_PYTHON )values(?,?,?,?,?,?,?,?,?,?)`;
 
-    conn.query(sql, [ user_id,select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
+    conn.query(sql, [user_id, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
         if (!err) {
             console.log("쿼리문 실행 완료");
             res.json({ success: true });
@@ -125,6 +125,7 @@ router.post("/index/c_input", function (req, res) {
 });
 
 module.exports = router;
+
 
 
 
