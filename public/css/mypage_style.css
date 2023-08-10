@@ -32,7 +32,6 @@ body{
 
 main{
     width : 100%;
-    height:100vh;
     display: flex;
     flex-direction: column;
     /* margin-left : 15%; */
@@ -55,7 +54,6 @@ main{
     border-radius: 2rem;
     text-align: center;
     margin-top : 20px;
-    height: 15vh;
 }
 
 .mp_profile {
@@ -68,24 +66,16 @@ main{
 }
 /* 프로필카드 종료 */
 
-/* 모달 팝업창 생성 */
-i{ margin-left : 5px;
-   margin-top : 10px;
-   align-content: center;}
+body {
+    margin: 0;
+    box-sizing: border-box;
 
+    overflow-y: scroll;
+}
 
-
-nav{
-    color : white ;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    list-style: none;
-    background-color: #212121;
-    vertical-align: middle;
-    border-radius: 10px;   
-    border: 1px solid;
-    height: 10vh;
+/* 스크롤바 안보이게 ( 크롬, 사파리, 오페라, 엣지 ) 동작 */
+body::-webkit-scrollbar {
+    display: none;
 }
 
 a {
@@ -93,38 +83,118 @@ a {
     color: #FFFFFF;
 }
 
-#container {
-    margin: 0;
-    
-    width: 100%;
-    background-color: #1B3455;
-    font-family: 'Noto Sans KR','GmarketSansMedium';
+/* main 버튼 스타일 지정 */
+#main_btnWrap {
+    display: flex;
+    flex-direction: row;
+
 }
 
-#mp_navbar {
+/* main 페이지 로그인버튼 스타일 지정 */
+/* transparent 는 투명을 의미한다. */
+.main_signupBtn {
+    box-sizing: border-box;
+    appearance: none;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    margin: 0 12px 0 0;
+    padding: 8px 16px 8px 16px;
+
+    border: 1px solid white;
+    border-radius: 30px;
+    background-color: transparent;
+
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+
+    transition: 0.3s;
+}
+
+.main_signupBtn:hover {
+    background-color: white;
+    color: #212121;
+}
+
+/* main 페이지 회원가입 버튼 스타일 지정 */
+/* transparent 는 투명을 의미한다. */
+.main_loginBtn {
+    all: unset;
+    box-sizing: border-box;
+    appearance: none;
+    cursor: pointer;
+    display: flex;
+    align-self: center;
+    margin: 16px 12px 16px 0;
+    padding: 8px 16px 8px 16px;
+
+    /* border: 1px solid white;
+    border-radius: 30px; */
+    background-color: transparent;
+
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: white;
+
+    transition: 0.3s;
+}
+
+.main_loginBtn:hover {
+    /* background-color: #212121; */
+    color: white;
+}
+
+/* main페이지 전체 크기 및 기본 설정 지정 */
+#main_container {
+    box-sizing: border-box;
+    /* width: 100vw; */
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #1B3455;
+    font-family: 'Noto Sans KR', 'GmarketSansMedium';
+    text-align: center;
+    flex: 1 0 auto;
+
+}
+
+/* 네비게이션 바 설정 */
+#main_navbar {
     height: 58px;
     width: 100%;
     padding: 8px 12px;
     box-sizing: border-box;
+    position: fixed;
 
     display: flex;
-    position: relative;
+    flex: 2 1 0;
     justify-content: space-between;
     align-items: center;
-    background-color: #212121;
     color: #FFFFFF;
+    background-color: #212121;
     font-family: 'Noto Sans KR';
     font-size: 14px;
+
+    z-index: 1;
 }
 
 /* 모달 팝업을 감싸고 있는 최상위 부모 */
-#modalWrap {
+#main_modalWrap {
     display: none;
     position: fixed;
     /* Stay in place */
     z-index: 1;
     /* Sit on top */
-    padding-top: 15%;
+    padding-top: 7rem;
     /*Location of the box*/
     left: 0;
     top: 0;
@@ -155,9 +225,9 @@ a {
 }
 
 /* 모달 팝업창 */
-#modalBody {
-    width: 800px;
-    height: 500px;
+#main_modalBody {
+    width: 500px;
+    height: 600px;
     padding: 30px 30px;
     margin: 0 auto;
     border: 1px solid #777;
@@ -167,7 +237,7 @@ a {
 }
 
 /* 닫기 버튼 */
-#closeBtn {
+#main_closeBtn {
     float: right;
     font-weight: bold;
     color: #777;
@@ -175,17 +245,49 @@ a {
     cursor: pointer;
 }
 
-.navLeft {
+/* 메인  */
+
+/* 네비게이션 요소 구현 */
+/* 네비게이션 왼쪽 요소 시작 */
+.main_navLeft {
     height: 100%;
     display: flex;
-    align-items: center
+    align-items: center;
+    margin-left: 12px
 }
 
-.nav_logo {
+.main_navMiddle {
+    margin-left: 24px;
+    overflow: hidden;
+}
+
+.main_navMiddle>form {
+    opacity: 0;
+    animation: main_navMiddle_fadeOut 1s linear infinite;
+    /* Pause the animation */
+    animation-play-state: paused;
+    /* Bind the animation to scroll */
+    animation-delay: calc(var(--scroll) * -1s);
+    /* These last 2 properites clean up overshoot weirdness */
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+}
+
+@keyframes main_navMiddle_fadeOut {
+    to {
+        opacity: 1;
+    }
+}
+
+
+
+.main_nav_logo {
     font-weight: 1000;
     font-size: large;
-    margin-left: 12px;
+    margin-left: 28px;
+    font-style: italic
 }
+/* 네비게이션 왼쪽 요소 끝 */
 
 .navRight {
     height: 100%;
@@ -216,8 +318,6 @@ a {
     box-sizing: border-box;
     padding-right: 32px;
 }
-
-/* 모달 팝업창 종료 */
 
 
 body,
@@ -320,7 +420,6 @@ body {
     margin-top : 1rem;
 }  
   ul.mp_tabs{
-    height: 50px;
     padding: 0px;
     list-style: none;
   }
@@ -342,7 +441,6 @@ body {
     height: 37vh;
     background-color: #212121;
     border-radius: 15px;
-
   }
 
   .mp_secession{

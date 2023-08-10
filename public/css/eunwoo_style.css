@@ -3,7 +3,7 @@
  관계없이 무조건 화면의 해상도 값을 가져오므로 가로 스크롤이 생긴다. */
 
 
- @font-face {
+@font-face {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
     font-weight: normal;
