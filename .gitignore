@@ -1,3 +1,1 @@
-
-node_modules/.bin/nunjucks-precompile.ps1
-/node_modules
+node_modules

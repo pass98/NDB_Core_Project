@@ -393,11 +393,423 @@
                     <!-- 스크롤의 속성 -->
                     </p>
                   
-                        </div>
+                    <p class="main_floating_p">
+                        <MARQUEE scrollamount="8">
+                            DOCTYPE html
+                            html
+                            head
+                                titleEvent Listener Example/title
+                                link rel="stylesheet" type="text/css" href="styles.css">
+                            /head>
+                            body>
+                                button id="myButton">Click Me!/button>
+                            
+                                script src="script.js"></script>
+                            /body>
+                            /html></MARQUEE>
+                        <!-- 크기 조절 -->
+                    </p>
+                    <p class="main_floating_p">
+                        <MARQUEE scrollamount="4">function solution(arr) { let sumArr = 0; for (let i = 0; i < arr.length; i++) { sumArr += arr[i]; } let avgArr = sumArr / arr.length; return avgArr; }</MARQUEE>
+                        <!-- 움직이는 텍스트 -->
+                    </p>
+                    <p class="main_floating_p">        
+                    <MARQUEE scrolldelay="90"> Get the button element
+                            var button = document.getElementById("myButton");
+                            
+                             Add event listener to the button
+                            button.addEventListener("click", function() {
+                                alert("Hello, World!");
+                            });</MARQUEE>
+                        <!-- 스크롤의 속도-->
+                    </p>
+                
+                   
+                    <!-- <p>
+                    <MARQUEE><img src= "aaa.jpg" width="200" height="150"></MARQUEE>
+                     움직이는 사진
+                    </p> -->
+                    <!-- <p>
+                    <MARQUEE bgColor="blue">배경 색상은 파란색입니다.</MARQUEE>
+                    배경 색상 조정 
+                    </p> -->
+                    <!-- <p>
+                    <MARQUEE width="100" height="50">가로와 세로는 100/50입니다.</MARQUEE>
+                   
+                    </p> -->
+                    <!-- <p>
+                    <MARQUEE direction="up"></MARQUEE>
+                    </p> -->
+                
+                    <!-- <p>
+                    <MARQUEE loop="5">스크롤을 5회반복합니다.</MARQUEE>
+                   
+                    </p> -->
+                    <p class="main_floating_p">
+                    <MARQUEE  scrollamount="5">import java.util.Scanner;
 
+                        public class Main {
+                            public static void main(String[] args) {
+                                Scanner scanner = new Scanner(System.in);
+                                System.out.print("숫자를 입력하세요: ");
+                                int n = scanner.nextInt();
+                        
+                                for (int i = 0; i < n; i++) {
+                                    for (int j = 0; j <= i; j++) {
+                                        System.out.print("*");
+                                    }
+                                    System.out.println();
+                                }
+                            }
+                        }</MARQUEE>
+                    <p class="main_floating_p">
+                        <MARQUEE  scrollamount="5">import java.util.Scanner;
+    
+                            public class Main {
+                                public static void main(String[] args) {
+                                    Scanner scanner = new Scanner(System.in);
+                                    System.out.print("숫자를 입력하세요: ");
+                                    int n = scanner.nextInt();
+                                    for (int i = 0; i < n; i++) {
+                                        for (int j = 0; j <= i; j++) {
+                                            System.out.print("*");
+                                        }
+                                        System.out.println();
+                                    }
+                                }
+                            }</MARQUEE>
+                        </P>
 
-                    
-        
+                    <p class="main_floating_p">
+                        <MARQUEE  scrollamount="5">#include <stdio.h>
+
+                            int main() {
+                                int i, j; 
+                                // 구구단 출력
+                                for(i = 1; i <= 9; i++) { 
+                                    for(j = 1; j <= 9; j++) { 
+                                        printf("%d x %d = %d\n", i, j, i * j);
+                                    }
+                                    printf("\n"); 
+                                }
+                                return 0;
+                            }</MARQUEE>
+                        </P>
+                        
+                        <p class="main_floating_p">
+                            <MARQUEE  scrollamount="5">#include <stdio.h>
+    
+                                function solution(n) {
+                                    let array = String(n).split('');
+                                    array.sort((a, b) => b - a);
+                                    let result = parseInt(array.join(''));
+                                    return result;
+                                }
+                                console.log(solution(118372)); </MARQUEE>
+                            </P>
+                            <p class="main_floating_p">
+                                <MARQUEE  scrollamount="6">#include <stdio.h>
+                                    #include <stdio.h>
+                                        #define MOD 1000000007
+                                        int solution(int m, int n, int** puddles, int puddlesSize) {
+                                            int dp[101][101] = {0,};  // 경로의 수를 저장하는 배열
+                                            // 물에 잠긴 지역을 -1로 표시
+                                            for (int i = 0; i < puddlesSize; i++) {
+                                                dp[puddles[i][0]][puddles[i][1]] = -1;
+                                            }
+                                            // 집 위치 설정
+                                            dp[1][1] = 1;
+                                            for (int i = 1; i <= m; i++) {
+                                                for (int j = 1; j <= n; j++) {
+                                                    // 물에 잠긴 지역 또는 집은 스킵
+                                                    if (dp[i][j] == -1 || (i == 1 && j == 1)) continue;
+                                                    // 왼쪽과 위쪽에서 올 수 있는 경로의 수를 더합니다. (물에 잠긴 지역이 아닌 경우)
+                                                    if (dp[i - 1][j] != -1) dp[i][j] += dp[i - 1][j] % MOD;
+                                                    if (dp[i][j - 1] != -1) dp[i][j] += dp[i][j - 1] % MOD;
+                                                }
+                                            }
+                                            return dp[m][n] % MOD;
+                                        }
+                                        int main() {
+                                            int m = 4, n = 3;
+                                            int puddlesSize = 2;
+                                            int* puddles[2];
+                                            int puddle1[2] = {2, 2};
+                                            int puddle2[2] = {3, 2};
+                                            puddles[0] = puddle1;
+                                            puddles[1] = puddle2;
+                                            int answer = solution(m, n, puddles, puddlesSize);
+                                            printf("%d\n", answer);  // 결과 출력
+                                            return 0;
+                                        }
+                                         </MARQUEE>
+                                </P>
+                                <p class="main_floating_p">
+                                    <MARQUEE  scrollamount="7">#include <stdio.h>
+                                        #include <stdbool.h>
+                                        #include <stdlib.h>
+                                        
+                                        int* solution(int n, int s) {
+                                            if (s < n) {
+                                                int* answer = (int*)malloc(sizeof(int));
+                                                answer[0] = -1;
+                                                return answer;
+                                            }
+                                            
+                                            int* answer = (int*)malloc(sizeof(int) * n);
+                                            for(int i = 0; i < n; i++) {
+                                                answer[i] = s / n;
+                                            }
+                                            
+                                            for(int i = n - 1; i >= 0 && s > 0; i--) {
+                                                while(answer[i] < s / n + s % n) {
+                                                    answer[i]++;
+                                                    s--;
+                                                }
+                                            }
+                                            
+                                            return answer;
+                                        }
+                                        
+                                        int main() {
+                                            int n = 2;
+                                            int s = 8;
+                                            int* result = solution(n, s);
+                                            for(int i = 0; i < n; i++) {
+                                                printf("%d ", result[i]);
+                                            }
+                                            free(result);
+                                            return 0;
+                                        }
+                                        
+                                             </MARQUEE>
+                                    </P>
+
+                                    <p class="main_floating_p">
+                                        <MARQUEE  scrollamount="5">
+                                            const query = "SELECT DATETIME AS 시간 FROM ANIMAL_INS ORDER BY DATETIME LIMIT 1";
+                                             </MARQUEE>
+                                        </P>
+                                        <p class="main_floating_p">
+                                            <MARQUEE  scrollamount="7">
+                                                #include <iostream>
+                                                    #include <vector>
+                                                    #include <queue>
+                                                    #include <cstring>
+                                                    
+                                                    #define MAX_SIZE 25
+                                                    #define INF 987654321
+                                                    
+                                                    using namespace std;
+                                                    
+                                                    int dx[] = {0, 1, 0, -1}; // 오른쪽, 아래, 왼쪽, 위쪽
+                                                    int dy[] = {1, 0, -1, 0};
+                                                    
+                                                    struct Car {
+                                                        int x, y, cost, direction;
+                                                    };
+                                                    
+                                                    int solution(vector<vector<int>> board) {
+                                                        int n = board.size();
+                                                        int answer = INF;
+                                                        int cost[MAX_SIZE][MAX_SIZE];
+                                                    
+                                                        for(int i = 0; i < n; i++)
+                                                            for(int j = 0; j < n; j++)
+                                                                cost[i][j] = INF;
+                                                    
+                                                        queue<Car> q;
+                                                        q.push({0, 0, 0, -1}); // 시작점, 비용은 0, 시작 방향은 없음(-1)
+                                                    
+                                                        while(!q.empty()) {
+                                                            Car car = q.front();
+                                                            q.pop();
+                                                    
+                                                            if(car.x == n - 1 && car.y == n - 1) { // 도착점에 도달하면 최소 비용 갱신
+                                                                answer = min(answer, car.cost);
+                                                                continue;
+                                                            }
+                                                    
+                                                            for(int i = 0; i < 4; i++) {
+                                                                int nx = car.x + dx[i];
+                                                                int ny = car.y + dy[i];
+                                                    
+                                                                if(nx < 0 || ny < 0 || nx >= n || ny >= n || board[nx][ny] == 1) continue; // 범위 벗어나거나 벽이면 건너뛰기
+                                                    
+                                                                int newCost = car.cost;
+                                                    
+                                                                if(car.direction == -1 || car.direction == i) newCost += 100; // 같은 방향 또는 시작점일 경우
+                                                                else if(car.direction != i) newCost += 600; // 방향이 바뀌는 경우
+                                                    
+                                                                if(cost[nx][ny] >= newCost) { // 이전에 계산된 비용보다 작거나 같을 경우에만 큐에 추가
+                                                                    cost[nx][ny] = newCost;
+                                                                    q.push({nx, ny, newCost, i});
+                                                                }
+                                                            }
+                                                        }
+                                                    
+                                                        return answer;
+                                                    }
+                                                    
+                                                    int main() {
+                                                        vector<vector<int>> board = {
+                                                            {0,0,0},
+                                                            {0,0,0},
+                                                            {0,0,0}
+                                                        };
+                                                    
+                                                        cout << solution(board) << endl; // 900 출력
+                                                        return 0;
+                                                    }
+                                                 </MARQUEE>
+                                            </P>    
+                                            <p class="main_floating_p">
+                                                <MARQUEE  scrollamount="4">import java.util.Scanner;
+                            
+                                                    public class Main {
+                                                        public static void main(String[] args) {
+                                                            Scanner scanner = new Scanner(System.in);
+                                                            System.out.print("숫자를 입력하세요: ");
+                                                            int n = scanner.nextInt();
+                                                            for (int i = 0; i < n; i++) {
+                                                                for (int j = 0; j <= i; j++) {
+                                                                    System.out.print("*");
+                                                                }
+                                                                System.out.println();
+                                                            }
+                                                        }
+                                                    }</MARQUEE>
+                                                </P>
+                                                <p class="main_floating_p">
+                                                    <MARQUEE  scrollamount="6">#include <stdio.h>
+                                                        #include <stdio.h>
+                                                            #define MOD 1000000007
+                                                            int solution(int m, int n, int** puddles, int puddlesSize) {
+                                                                int dp[101][101] = {0,};  // 경로의 수를 저장하는 배열
+                                                                // 물에 잠긴 지역을 -1로 표시
+                                                                for (int i = 0; i < puddlesSize; i++) {
+                                                                    dp[puddles[i][0]][puddles[i][1]] = -1;
+                                                                }
+                                                                // 집 위치 설정
+                                                                dp[1][1] = 1;
+                                                                for (int i = 1; i <= m; i++) {
+                                                                    for (int j = 1; j <= n; j++) {
+                                                                        // 물에 잠긴 지역 또는 집은 스킵
+                                                                        if (dp[i][j] == -1 || (i == 1 && j == 1)) continue;
+                                                                        // 왼쪽과 위쪽에서 올 수 있는 경로의 수를 더합니다. (물에 잠긴 지역이 아닌 경우)
+                                                                        if (dp[i - 1][j] != -1) dp[i][j] += dp[i - 1][j] % MOD;
+                                                                        if (dp[i][j - 1] != -1) dp[i][j] += dp[i][j - 1] % MOD;
+                                                                    }
+                                                                }
+                                                                return dp[m][n] % MOD;
+                                                            }
+                                                            int main() {
+                                                                int m = 4, n = 3;
+                                                                int puddlesSize = 2;
+                                                                int* puddles[2];
+                                                                int puddle1[2] = {2, 2};
+                                                                int puddle2[2] = {3, 2};
+                                                                puddles[0] = puddle1;
+                                                                puddles[1] = puddle2;
+                                                                int answer = solution(m, n, puddles, puddlesSize);
+                                                                printf("%d\n", answer);  // 결과 출력
+                                                                return 0;
+                                                            }
+                                                             </MARQUEE>
+                                                             </P>
+                                                             <p class="main_floating_p">
+                                                                <MARQUEE  scrollamount="4">#include <stdbool.h>
+                                                                    bool solution(int x) {
+                                                                        int temp = x;
+                                                                        int sum = 0;
+                                                                        while(temp > 0) {
+                                                                            sum += temp % 10;
+                                                                            temp /= 10;
+                                                                        }
+                                                                        return x % sum == 0;
+                                                                    }
+                                                                    </MARQUEE>
+                                                                </P>
+                                                                <p class="main_floating_p">
+                                                                    <MARQUEE  scrollamount="7">#include <stdio.h>
+                                                                        #include <stdbool.h>
+                                                                        #include <stdlib.h>
+                                                                        
+                                                                        int* solution(int n, int s) {
+                                                                            if (s < n) {
+                                                                                int* answer = (int*)malloc(sizeof(int));
+                                                                                answer[0] = -1;
+                                                                                return answer;
+                                                                            }
+                                                                            
+                                                                            int* answer = (int*)malloc(sizeof(int) * n);
+                                                                            for(int i = 0; i < n; i++) {
+                                                                                answer[i] = s / n;
+                                                                            }
+                                                                            
+                                                                            for(int i = n - 1; i >= 0 && s > 0; i--) {
+                                                                                while(answer[i] < s / n + s % n) {
+                                                                                    answer[i]++;
+                                                                                    s--;
+                                                                                }
+                                                                            }
+                                                                            
+                                                                            return answer;
+                                                                        }
+                                                                        
+                                                                        int main() {
+                                                                            int n = 2;
+                                                                            int s = 8;
+                                                                            int* result = solution(n, s);
+                                                                            for(int i = 0; i < n; i++) {
+                                                                                printf("%d ", result[i]);
+                                                                            }
+                                                                            free(result);
+                                                                            return 0;
+                                                                        }
+                                                                        
+                                                                             </MARQUEE>
+                                                                    </P>
+                                                                    <p class="main_floating_p">
+                                                                        <MARQUEE  scrollamount="6">#include <stdio.h>
+                                                                            #include <stdio.h>
+                                                                                #define MOD 1000000007
+                                                                                int solution(int m, int n, int** puddles, int puddlesSize) {
+                                                                                    int dp[101][101] = {0,};  // 경로의 수를 저장하는 배열
+                                                                                    // 물에 잠긴 지역을 -1로 표시
+                                                                                    for (int i = 0; i < puddlesSize; i++) {
+                                                                                        dp[puddles[i][0]][puddles[i][1]] = -1;
+                                                                                    }
+                                                                                    // 집 위치 설정
+                                                                                    dp[1][1] = 1;
+                                                                                    for (int i = 1; i <= m; i++) {
+                                                                                        for (int j = 1; j <= n; j++) {
+                                                                                            // 물에 잠긴 지역 또는 집은 스킵
+                                                                                            if (dp[i][j] == -1 || (i == 1 && j == 1)) continue;
+                                                                                            // 왼쪽과 위쪽에서 올 수 있는 경로의 수를 더합니다. (물에 잠긴 지역이 아닌 경우)
+                                                                                            if (dp[i - 1][j] != -1) dp[i][j] += dp[i - 1][j] % MOD;
+                                                                                            if (dp[i][j - 1] != -1) dp[i][j] += dp[i][j - 1] % MOD;
+                                                                                        }
+                                                                                    }
+                                                                                    return dp[m][n] % MOD;
+                                                                                }
+                                                                                int main() {
+                                                                                    int m = 4, n = 3;
+                                                                                    int puddlesSize = 2;
+                                                                                    int* puddles[2];
+                                                                                    int puddle1[2] = {2, 2};
+                                                                                    int puddle2[2] = {3, 2};
+                                                                                    puddles[0] = puddle1;
+                                                                                    puddles[1] = puddle2;
+                                                                                    int answer = solution(m, n, puddles, puddlesSize);
+                                                                                    printf("%d\n", answer);  // 결과 출력
+                                                                                    return 0;
+                                                                                }
+                                                                                 </MARQUEE>
+                                                                            </P>
+                                                            
+                            </div>
+
                     <!-- 검색창 -->
                     <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
                     <div class="main_searchWrap">
@@ -407,7 +819,6 @@
                             </p>
                         </div>
                         <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
-
 
                         <div class="main_search">
                             <select name="main_language" id="" class="main_searchLanguage2"
@@ -428,7 +839,6 @@
                                 <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                             </button>
                         </div>
-
 
                         <!-- 검색창 아래 태그 -->
                         <!-- <div class="main_TagWrap">
@@ -650,7 +1060,6 @@
                         event.preventDefault(); // 링크의 기본 동작 중단
                         alert("구독이 완료되었습니다! Basic 회원이 되신 걸 축하드립니다!"); // 알림창 표시
                         window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
-                        window.location.href = "http://localhost:3003/index"; // 주소로 이동
                     });
                 </script>
             </div>

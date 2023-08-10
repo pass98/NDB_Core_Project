@@ -65,7 +65,7 @@ function sendMessage() {
 }
 
 function chatGPT(userInput) {
-    const api_key = "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";
+    const api_key = "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";
     const messages = [
         { role: 'system', content: 'You are a helpful assistant.' },
         { role: 'user', content: userInput },
