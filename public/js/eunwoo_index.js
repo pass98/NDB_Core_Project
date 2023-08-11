@@ -205,6 +205,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(selectLang)
     }   
     
+<<<<<<< HEAD
     function onKeyUp(event) {
         if (event.key === 'Enter') {
             goToScroll();
@@ -212,6 +213,16 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log(document.querySelector(".main_searchBar2").value);
         }
     }
+=======
+    // 은우 keyUp
+    // function onKeyUp(event) {
+    //     if (event.key === 'Enter') {
+    //         goToScroll();
+    //         getSearchWord();
+    //         console.log(document.querySelector(".main_searchBar2").value);
+    //     }
+    // }
+>>>>>>> eunwoo
 
 
     document.querySelector(".main_search_button").addEventListener('click', function (e) {
@@ -291,3 +302,649 @@ document.addEventListener("DOMContentLoaded", function () {
     update_code();
     resize();
 });
+<<<<<<< HEAD
+=======
+
+let responseDB;
+function ex_1() { // DB 테이블에서 문제 제공하는 함수
+    let keywords = document.getElementsByClassName('main_searchBar')[0]
+    let user_input = keywords.value;
+    let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
+    let user_input2 = keywords2.value
+    let languageElement = document.querySelector(".main_searchLanguage");
+    let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+    console.log("상단 검색바 사용자선택 언어 : ", language)
+    console.log("메인 검색바 사용자선택 언어 : ", language2)
+    
+
+    let select_Language = ""; // 사용자 선택언어
+    let input_String = "";    // 사용자 입력값
+    // 상단바 사용자 입력창
+    if (user_input.trim() !== "") {
+        select_Language = language;
+        input_String = user_input
+    }
+
+    // 메인 페이지 사용자 입력창
+    if (user_input2.trim() !== "") {
+        select_Language = language2;
+        input_String = user_input2;
+    }
+
+    console.log("사용자 입력 : ",input_String);
+
+    let find_keywords = [];
+    let user_keywords = ["레이아웃", "flex", "addeventListener",
+        "if", "for", "while", "switch case", "별찍기",
+        "소수", "짝수", "구구단", "1차원", "2차원", "배열", "포인터"];
+        // 사용자가 선택할 것 같은 키워드 배열
+   
+
+
+    for (let i = 0; i < user_keywords.length; i++) {
+        if (input_String.includes(user_keywords[i])) {
+            console.log(`찾은 keyword: ${user_keywords[i]}`); //for, 별찍기
+            find_keywords.push(user_keywords[i]); //찾은 keyword push
+        } 
+    }// 사용자 입력 값(input_String)에서 user_keywords배열 안에 있는 값이 있는지
+    console.log("찾아서 추가해준 keywords: ", find_keywords)
+
+    
+    if (find_keywords.length == 1) {// 찾은 키워드가 1개일때
+        $.ajax({
+            url: "/index/ex_1", 
+            method: 'POST',
+            data: { // 서버에 보낼 데이터
+                find_keywords: find_keywords[0],
+                select_language: select_Language
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+            console.log(serverResponse); // 서버측에서 데이터 받기 
+            responseDB = serverResponse; // 전역 변수에 서버측 데이터 할당
+            response_DB() //responseDB 변수 값 확인
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        });
+    }
+    if (find_keywords.length == 2) {// 찾은 키워드가 2개일때
+        $.ajax({
+            url: "/index/ex_2", //
+            method: 'POST',
+            data: { // 서버에 보낼 데이터
+                find_keywords: find_keywords[0],
+                find_keywords2: find_keywords[1],
+                select_language: select_Language
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+            console.log(serverResponse); // 서버측에서 데이터 받기
+            responseDB = serverResponse; // 전역 변수에 서버측 데이터 할당
+            response_DB()
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        });
+    }
+
+}
+
+function response_DB(){ // 전역 변수 값 확인해보기~
+    console.log(responseDB.EXAM_HTM:) 
+}
+
+function select() {
+    let languageElement = document.querySelector(".main_searchLanguage");
+    let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+    console.log("상단 검색바 사용자선택 언어 : ", language)
+    console.log("메인 검색바 사용자선택 언어 : ", language2)
+
+    if (language == " ") {
+        if (language2 == "html") {
+            front();
+        }
+        else if (language2 == "css") {
+            front();
+        }
+        else if (language2 == "javascript") {
+            front();
+        }
+        else if (language2 == "java") {
+            java();
+        }
+        else if (language2 == "python") {
+            python();
+        }
+        else if (language2 == "c_language") {
+            C_programing();
+        }
+    }
+    if (language2 == " ") {
+        if (language == "html") {
+            front();
+        }
+        else if (language == "css") {
+            front();
+        }
+        else if (language == "javascript") {
+            front();
+        }
+        else if (language == "java") {
+            java();
+        }
+        else if (language == "python") {
+            python();
+        }
+        else if (language == "c_language") {
+            C_programing();
+        }
+
+    }
+
+
+}
+
+function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
+    const api_key = "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"
+    let keywords = document.getElementsByClassName('main_searchBar')[0]
+    let user_input = keywords.value;
+    let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
+    let user_input2 = keywords2.value
+
+    console.log("상단 바 사용자 입력 :", user_input)
+    console.log("메인 검색바 사용자 입력 :", user_input2)
+
+    let languageElement = document.querySelector(".main_searchLanguage");
+    let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+    console.log("상단 바 사용자 선택언어:", language)
+    console.log("메임검색바 사용자 선택언어:", language2)
+
+
+    $('#loading').show();
+
+    let select_Language = "";
+    let input_String = "";
+    // 상단바 사용자 입력창
+    if (user_input.trim() !== "") {
+        select_Language = language;
+        input_String = user_input
+    }
+
+    // 메인 페이지 사용자 입력창
+    if (user_input2.trim() !== "") {
+        select_Language = language2;
+        input_String = user_input2;
+    }
+
+
+    const messages = [ //명령 프롬프트
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: 'GPT, HTML, CSS, JS 언어로 ' + select_Language + input_String + '에 대해서 HTML ,CSS,JS 코드와 함께 제시해주세요. 제일먼제 문제를 제시해주세요. 주석은 한글로 작성해주세요' },
+        { role: 'assistant', content: '"""HTML Code:""" 여기에 HTML 코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 HTML코드를 작성해주세요"""End HTML Code"""' },
+        { role: 'assistant', content: '"""CSS Code:""" 여기에 CSS 코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 CSS코드를 작성해주세요"""End CSS Code"""' },
+        { role: 'assistant', content: '"""JS Code:""" 여기에 JS 코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 JS코드를 작성해주세요"""End JS Code"""' },
+        { role: 'assistant', content: '"""text:""" 여기에 제시한 코드들에 대한 설명을 작성해주세요. """End text Code"""' }]
+
+    const data = { //데이터 구조
+        model: 'gpt-3.5-turbo',
+        temperature: 0.5,
+        n: 1,
+        messages: messages,
+    }
+
+    $.ajax({
+        url: "https://api.openai.com/v1/chat/completions",
+        method: 'POST',
+        headers: {
+            Authorization: "Bearer " + api_key,
+            'Content-Type': 'application/json',
+        }, // HTTP 통신
+        data: JSON.stringify(data),  // 사용자 입력을 json형태로 변환해서 api에게 요청
+    }).then(function (response) { //콜백함수, api 응답
+        $('#loading').hide();
+        console.log(response)
+        const responseText = response.choices[0].message.content;
+        const splitResponse = responseText.split(/(```|"""HTML Code:|"""CSS Code:|"""JS Code:|"""text:)/);
+
+        console.log(splitResponse)
+        let htmlCode = ''; //html코드가 들어갈 변수
+        let cssCode = '';  //css코드가 들어갈 변수
+        let jsCode = '';   //js코드가 들어갈 변수
+        let apitext = '';  //api 설명이 들어갈 변수
+        let currentCode = '';  //현재 작업중인 코드가 들어갈 변수
+
+
+        for (let i = 0; i < splitResponse.length; i++) { // 응답 데이터 가공
+            if (splitResponse[i].trim().startsWith('html')) {
+                currentCode = 'HTML';       // 현재 작업중인 코드유형 저장장
+                htmlCode = splitResponse[i].replace('html', '').trim();
+            } else if (splitResponse[i].trim().startsWith('css')) {
+                currentCode = 'CSS';
+                cssCode = splitResponse[i].replace('css', '').trim();
+            } else if (splitResponse[i].trim().startsWith('javascript')) {
+                currentCode = 'JS';
+                jsCode = splitResponse[i].replace('javascript', '').trim();
+            } else if (splitResponse[i].trim().startsWith('')) {
+                currentCode = 'text';
+                apitext = splitResponse[i].replace('text', '').trim();
+            }
+            else {
+                switch (currentCode) {
+                    case 'HTML':
+                        htmlCode += splitResponse[i].trim();
+                        break;
+                    case 'CSS':
+                        cssCode += splitResponse[i].trim();
+                        break;
+                    case 'JS':
+                        jsCode += splitResponse[i].trim();
+                        break;
+                    case 'text':
+                        apitext += splitResponse[i].trim();
+                }
+            }
+        }
+        let f_text = splitResponse[0]
+        console.log(splitResponse)
+        console.log(f_text)
+        console.log(htmlCode)
+
+        let result = document.getElementsByClassName('main_searchWrap')
+        let pre = document.createElement('pre')
+
+        pre.innerText = f_text + "\n\n" + htmlCode + "\n\n" + cssCode + "\n\n" + jsCode + "\n\n" + apitext;
+
+        console.log(pre)
+
+        $.ajax({
+            url: "/index/frontinput", // Update this to the URL of your server endpoint
+            method: 'POST',
+            data: {
+                f_text: f_text,
+                apitext: apitext,
+                htmlCode: htmlCode,
+                cssCode: cssCode,
+                jsCode: jsCode,
+                user_input: input_String,
+                select_language: select_Language
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        });
+
+        // result.appendChild(pre)
+
+        document.getElementsByClassName('main_searchbar').value = ''//검색창 비우기
+    });
+}
+
+function java() {   // select option이 java일때 api java 응답함수
+    const api_key = "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"// api key 값
+    let keywords = document.getElementsByClassName('main_searchBar')[0]
+    let user_input = keywords.value;
+    let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
+    let user_input2 = keywords2.value
+
+    console.log("상단 바 사용자 입력 :", user_input)
+    console.log("메인 검색바 사용자 입력 :", user_input2)
+
+    let languageElement = document.querySelector(".main_searchLanguage");
+    let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+    console.log("상단 바 사용자 선택언어 : ", language)
+    console.log("메인 검색바 사용자 선택언어 : ", language2)
+
+
+    $('#loading').show();
+
+    let select_Language = "";
+    let input_String = "";
+    // 상단바 사용자 입력창
+    if (user_input.trim() !== "") {
+        select_Language = language;
+        input_String = user_input
+    }
+
+    // 메인 페이지 사용자 입력창
+    if (user_input2.trim() !== "") {
+        select_Language = language2;
+        input_String = user_input2;
+    }
+
+
+
+    const messages = [ // 명령 프롬프트
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: 'GPT,' + select_Language + ' 언어로 ' + input_String + '에 대하여' + select_Language + ' 코드와 함께 제시해주세요. 제일먼제 실습문제를 제시해주세요. 주석은 한글로 작성해주세요' },
+        { role: 'assistant', content: '"""java Code:""" 여기에 java코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 java코드를 작성해주세요"""End java Code"""' }]
+
+
+    const data = { // 데이터 구조
+        model: 'gpt-3.5-turbo',
+        temperature: 0.5,
+        n: 1,
+        messages: messages,
+    }
+
+    $.ajax({
+        url: "https://api.openai.com/v1/chat/completions",
+        method: 'POST',
+        headers: {
+            Authorization: "Bearer " + api_key,
+            'Content-Type': 'application/json',
+        },  // HTTP통신
+        data: JSON.stringify(data), // 사용자 입력을 json형태로 변환해서 api에게 요청
+    }).then(function (response) { //콜백함수, api 응답
+        $('#loading').hide();
+        console.log(response)
+        const responseText = response.choices[0].message.content;
+        const splitResponse = responseText.split(/(```|"""java Code:)/);
+
+        console.log(splitResponse)
+        let javaCode = ''; //java코드가 들어갈 변수
+        let apitext = '';  //api 설명이 들어갈 변수
+        let currentCode = ''; //현재 작업중인 코드가 들어갈 변수
+
+        for (let i = 0; i < splitResponse.length; i++) { // 응답 데이터 가공
+            if (splitResponse[i].trim().startsWith('java')) {
+                currentCode = 'JAVA';       // 현재 작업중인 코드유형 저장장
+                javaCode = splitResponse[i].replace('java', '').trim();
+            } else if (splitResponse[i].trim().startsWith('')) {
+                currentCode = 'text';
+                apitext = splitResponse[i].replace('text', '').trim();
+            }
+            else {
+                switch (currentCode) {
+                    case 'JAVA':
+                        javaCode += splitResponse[i].trim();
+                        break;
+                    case 'text':
+                        apitext += splitResponse[i].trim();
+                }
+            }
+        }
+        let f_text = splitResponse[0]
+        console.log(splitResponse)
+        console.log(f_text)
+        console.log(javaCode)
+        console.log(apitext)
+
+        let result = document.getElementsByClassName('main_searchWrap')
+        let pre = document.createElement('pre')
+
+        pre.innerText = f_text + "\n\n" + javaCode + "\n\n" + apitext;
+
+        console.log(pre)
+        //result.appendChild(pre)
+        $.ajax({
+            url: "/index/java_input", // Update this to the URL of your server endpoint
+            method: 'POST',
+            data: { // 서버에 데이터 전송
+                f_text: f_text,
+                apitext: apitext,
+                javaCode: javaCode,
+                user_input: input_String,
+                select_language: select_Language
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        });
+
+        document.getElementsByClassName('main_searchbar').value = '' //검색창 비우기
+    });
+}
+
+function python() { // select option이 python일때 api python 응답함수
+    const api_key = "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"  // api key 값
+    let keywords = document.getElementsByClassName('main_searchBar')[0]
+    let user_input = keywords.value;
+    let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
+    let user_input2 = keywords2.value
+
+    console.log("상단 바 사용자 입력 :", user_input)
+    console.log("메인 검색바 사용자 입력 :", user_input2)
+
+    let languageElement = document.querySelector(".main_searchLanguage");
+    let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+    console.log("상단 바 사용자 선택언어 : ", language)
+    console.log("메인 검색바 사용자 선택언어 : ", language2)
+
+
+    $('#loading').show();
+
+    let select_Language = "";
+    let input_String = "";
+    // 상단바 사용자 입력창
+    if (user_input.trim() !== "") {
+        select_Language = language;
+        input_String = user_input
+    }
+
+    // 메인 페이지 사용자 입력창
+    if (user_input2.trim() !== "") {
+        select_Language = language2;
+        input_String = user_input2;
+    }
+
+    const messages = [      // 명령 프롬프트
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: 'GPT,' + select_Language + ' 언어로 ' + input_String + '에 대하여' + select_Language + '코드와 함께 제시해주세요. 제일먼제 실습문제를 제시해주세요. 주석은 한글로 작성해주세요' },
+        { role: 'assistant', content: '"""python Code:""" 여기에 python코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 python코드를 작성해주세요"""End python Code"""' }]
+
+
+    const data = { // 데이터 구조
+        model: 'gpt-3.5-turbo',
+        temperature: 0.5,
+        n: 1,
+        messages: messages,
+    }
+
+    $.ajax({
+        url: "https://api.openai.com/v1/chat/completions",
+        method: 'POST',
+        headers: {
+            Authorization: "Bearer " + api_key,
+            'Content-Type': 'application/json',
+        },  // HTTP 통신
+        data: JSON.stringify(data),
+    }).then(function (response) {   //콜백함수, api 응답
+        $('#loading').hide();
+        console.log(response)
+        const responseText = response.choices[0].message.content;
+        const splitResponse = responseText.split(/(```|"""python Code:)/); // 첫번째 응답 데이터 가공, split()
+
+        console.log(splitResponse)
+        let pythonCode = ''; // python코드가 들어갈 변수
+        let apitext = '';   // api 설명이 들어갈 변수
+        let currentCode = ''; // 현재 작업중인 코드가 들어갈 변수
+
+        for (let i = 0; i < splitResponse.length; i++) {
+            if (splitResponse[i].trim().startsWith('python')) {
+                currentCode = 'PYTHON';       // 현재 작업중인 코드유형 저장장
+                pythonCode = splitResponse[i].replace('python', '').trim();
+            } else if (splitResponse[i].trim().startsWith('')) {
+                currentCode = 'text';
+                apitext = splitResponse[i].replace('text', '').trim();
+            }
+            else {
+                switch (currentCode) {
+                    case 'PYTHON':
+                        pythonCode += splitResponse[i].trim();
+                        break;
+                    case 'text':
+                        apitext += splitResponse[i].trim();
+                }
+            }
+        }   // 응답 데이터 가공 단계
+
+
+        let f_text = splitResponse[0]
+        console.log(splitResponse)
+        console.log(pythonCode)
+        console.log(apitext)
+        console.log(f_text)
+        let result = document.getElementsByClassName('main_searchWrap')
+        let pre = document.createElement('pre')
+
+        pre.innerText = f_text + "\n\n" + pythonCode + "\n\n" + apitext;
+
+        console.log(pre)
+        //result.appendChild(pre)
+        $.ajax({
+            url: "/index/python_input", // Update this to the URL of your server endpoint
+            method: 'POST',
+            data: { // 서버에 데이터 전송
+                f_text: f_text,
+                apitext: apitext,
+                pythonCode: pythonCode,
+                user_input: input_String,
+                select_language: select_Language
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        });
+
+        document.getElementsByClassName('main_searchbar').value = ''
+    });
+}
+
+function C_programing() { // select option이 python일때 api python 응답함수
+    const api_key = "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"  // api key 값
+    let keywords = document.getElementsByClassName('main_searchBar')[0]
+    let user_input = keywords.value;
+    let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
+    let user_input2 = keywords2.value
+
+    console.log("상단 바 사용자 입력 :", user_input)
+    console.log("메인 검색바 사용자 입력 :", user_input2)
+
+    let languageElement = document.querySelector(".main_searchLanguage");
+    let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
+    let languageElement2 = document.querySelector(".main_searchLanguage2");
+    let language2 = languageElement2.options[languageElement2.selectedIndex].value;
+    console.log("상단 바 사용자 선택언어 : ", language)
+    console.log("메인 검색바 사용자 선택언어 : ", language2)
+
+
+    $('#loading').show();
+
+    let select_Language = "";
+    let input_String = "";
+    // 상단바 사용자 입력창
+    if (user_input.trim() !== "") {
+        select_Language = language;
+        input_String = user_input
+    }
+
+    // 메인 페이지 사용자 입력창
+    if (user_input2.trim() !== "") {
+        select_Language = language2;
+        input_String = user_input2;
+    }
+
+    const messages = [      // 명령 프롬프트
+        { role: 'system', content: 'You are a helpful assistant.' },
+        { role: 'user', content: 'GPT,' + select_Language + '로' + input_String + '에 대하여 예시문제나 실습문제를' + select_Language + '코드와 함께 제시해주세요. 제일먼제 실습문제를 제시해주세요. 주석은 한글로 작성해주세요' },
+        { role: 'assistant', content: '"""c Code:""" 여기에 C언어코드를 작성해주세요. 없다면 실습 문제에서 제시한 답안 C언어코드를 작성해주세요"""End c Code"""' }]
+
+
+    const data = { // 데이터 구조
+        model: 'gpt-3.5-turbo',
+        temperature: 0.5,
+        n: 1,
+        messages: messages,
+    }
+
+    $.ajax({
+        url: "https://api.openai.com/v1/chat/completions",
+        method: 'POST',
+        headers: {
+            Authorization: "Bearer " + api_key,
+            'Content-Type': 'application/json',
+        },  // HTTP 통신
+        data: JSON.stringify(data),
+    }).then(function (response) {   //콜백함수, api 응답
+        $('#loading').hide();
+        console.log(response)
+        const responseText = response.choices[0].message.content;
+        const splitResponse = responseText.split(/(```|"""c Code:)/); // 첫번째 응답 데이터 가공, split()
+
+        console.log(splitResponse)
+        let c_Code = ''; // c언어코드가 들어갈 변수
+        let apitext = '';   // api 설명이 들어갈 변수
+        let currentCode = ''; // 현재 작업중인 코드가 들어갈 변수
+
+        for (let i = 0; i < splitResponse.length; i++) {
+            if (splitResponse[i].trim().startsWith('c')) {
+                currentCode = 'C';       // 현재 작업중인 코드유형 저장장
+                c_Code = splitResponse[i].replace('c', '').trim();
+            } else if (splitResponse[i].trim().startsWith('')) {
+                currentCode = 'text';
+                apitext = splitResponse[i].replace('text', '').trim();
+            }
+            else {
+                switch (currentCode) {
+                    case 'C':
+                        c_Code += splitResponse[i].trim();
+                        break;
+                    case 'text':
+                        apitext += splitResponse[i].trim();
+                }
+            }
+        }   // 응답 데이터 가공 단계
+        let f_text = splitResponse[0]
+        console.log(splitResponse)
+        console.log(c_Code)
+        console.log(apitext)
+        console.log(f_text)
+
+        let result = document.getElementsByClassName('main_searchWrap')
+        let pre = document.createElement('pre')
+
+        pre.innerText = f_text + "\n\n" + c_Code + "\n\n" + apitext;
+
+        console.log(pre)
+        //result.appendChild(pre)
+        $.ajax({
+            url: "/index/c_input", // Update this to the URL of your server endpoint
+            method: 'POST',
+            data: { // 서버에 데이터 전송
+                f_text: f_text,
+                apitext: apitext,
+                c_Code: c_Code,
+                user_input: input_String,
+                select_language: select_Language
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        });
+        document.getElementsByClassName('main_searchbar').value = ''
+    });
+}
+
+// 형균 keyUp
+function onKeyUp(event) {
+    if (event.key === 'Enter') {
+        goToScroll();
+
+        console.log('전송');
+        document.getElementsByClassName('main_searchbar').value = ''
+    }
+}
+>>>>>>> eunwoo
