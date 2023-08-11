@@ -13,9 +13,11 @@
     <link rel="stylesheet" href="/css/eunwoo_style.css">
     <link rel="stylesheet" href="/css/yubin_chatbot.css">
     <link rel="stylesheet" href="/css/yubin_sidebar.css">
+    <link rel="stylesheet" href="/css/subs.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
     <script src="/js/eunwoo_index.js"></script>
+    <script src="/js/subs.js"></script>
     <!-- 한글 타이핑 효과 -->
     <script src="https://unpkg.com/type-hangul"></script>
     <!-- codemirror js -->
@@ -27,69 +29,19 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/mode/xml/xml.min.js"></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/codemirror.min.css'>
     <script src="/js/syntax_highlight.js"></script>
-    <script>
-        function requestPay() {
-            IMP.init('iamport');
-            IMP.request_pay({
-                pg: "inicis",
-                pay_method: "card",
-                merchant_uid: 'merchant_' + new Date().getTime(),
-                name: '결제테스트',
-                amount: 5000,
-                buyer_email: 'iamport@siot.do',
-                buyer_name: '김도형',
-                buyer_tel: '010-1234-5678',
-                buyer_addr: '광주인공지능사관학교NSDB',
-                buyer_postcode: '123-456'
-            },
-                function (rsp) {
-                    console.log(rsp);
-                    if (rsp.success) {
-                        var msg = '결제가 완료되었습니다.';
-                        alert(msg);
-                        location.href = "http://localhost:3003/index"
-                    } else {
-                        var msg = '결제에 실패하였습니다.';
-                        msg += '에러내용 : ' + rsp.error_msg;
-                        alert(msg);
-                    }
-                });
-        }
+
+    <!-- 결제창을 위한 라이브러리-->
+
+
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+    <!-- <button onclick="requestPay()">결제하기</button> -->
 
 
 
-
-    </script>
-
-    <script>
-        function requestPay1() {
-            IMP.init('iamport');
-            IMP.request_pay({
-                pg: "inicis",
-                pay_method: "card",
-                merchant_uid: 'merchant_' + new Date().getTime(),
-                name: '결제테스트',
-                amount: 7000,
-                buyer_email: 'iamport@siot.do',
-                buyer_name: '김도형',
-                buyer_tel: '010-1234-5678',
-                buyer_addr: '광주인공지능사관학교NSDB',
-                buyer_postcode: '123-456'
-            },
-                function (rsp) {
-                    console.log(rsp);
-                    if (rsp.success) {
-                        var msg = '결제가 완료되었습니다.';
-                        alert(msg);
-                        location.href = "http://localhost:3003/index"
-                    } else {
-                        var msg = '결제에 실패하였습니다.';
-                        msg += '에러내용 : ' + rsp.error_msg;
-                        alert(msg);
-                    }
-                });
-        }
-    </script>
+   
 </head>
 
 <body>
@@ -241,12 +193,265 @@
                         <!-- 닫기 버튼 -->
                         <span id="main_closeBtn">&times;</span>
                         <!-- 팝업창 내 글귀 -->
+                        
                         <p>modal-popup 입니다.</p>
                     </div>
                 </div>
             </div>
             <!-- main페이지 -->
             <div class="main_wrap main_wrap_backImg_night">
+
+            <!----------------------  메인창 뒤 글자흐름  ------------------------>
+            <div class="main_floating_font">
+                                
+                <p class="main_floating_p">
+                    <MARQUEE scrollamount="13">
+                        for i in range(1, 101):
+                        output = ""
+                        if i % 3 == 0:
+                            output += "Fizz"
+                        if i % 5 == 0:
+                            output += "Buzz"
+                        print(output or i)
+                        /html></MARQUEE>
+                    <!-- 크기 조절 -->
+                </p>
+                <p class="main_floating_p">
+                    <MARQUEE scrollamount="7">function reverseArray(arr) {
+                        return arr.reverse();
+                    }
+                    const originalArray = [1, 2, 3, 4, 5];
+                    const reversedArray = reverseArray(originalArray);
+                    console.log(reversedArray); // [5, 4, 3, 2, 1]</MARQUEE>
+                    <!-- 움직이는 텍스트 -->
+                </p>
+                <p class="main_floating_p">        
+                <MARQUEE scrollamount="11"> #include <iostream>
+                    #include <algorithm>
+                    using namespace std;
+                    
+                    int findMax(int arr[], int size) {
+                        return *max_element(arr, arr + size);
+                    }
+                    
+                    int main() {
+                        int numbers[] = {10, 5, 8, 20, 3};
+                        int size = sizeof(numbers) / sizeof(numbers[0]);
+                        int maxNumber = findMax(numbers, size);
+                        cout << "Max: " << maxNumber << endl;
+                        return 0;
+                    }</MARQUEE>
+                    <!-- 스크롤의 속도-->
+                </p>
+            
+                <p class="main_floating_p">
+                <MARQUEE  scrollamount="9">for (let i = 1; i <= 10; i++) {
+                    if (i % 2 !== 0) {
+                        console.log(i);
+                    }
+                }
+                                  
+                    </MARQUEE>
+                
+                </p>
+               
+                <p class="main_floating_p">
+                    <MARQUEE  scrollamount="15">
+                        func reverseString(_ str: String) -> String {
+                            return String(str.reversed())
+                        }
+                        
+                        let originalStr = "Hello, World!"
+                        let reversedStr = reverseString(originalStr)
+                        print(reversedStr) // "!dlroW ,olleH"
+                        </MARQUEE>
+                    <!-- 스크롤의 속도 -->
+                    </p>
+
+
+                </p>
+
+            <p class="main_floating_p">
+            <MARQUEE behavior="scroll" scrollamount="9">using System;
+
+                #include <iostream>
+                    #include <fstream>
+                    using namespace std;
+                    
+                    int main() {
+                        ifstream file("example.txt");}
+                       
+                    
+                </MARQUEE>
+            <!-- 스크롤의 속성 -->
+            </p>
+
+
+            <p class="main_floating_p">        
+                <MARQUEE scrollamount="13">func reverseString(_ str: String) -> String {
+                    return String(str.reversed())
+                }
+                
+                let originalStr = "Hello, World!"
+                let reversedStr = reverseString(originalStr)
+                print(reversedStr) // "!dlroW ,olleH"
+                
+                </MARQUEE>
+                    <!-- 스크롤의 속도-->
+                </p>
+            
+                <p class="main_floating_p">
+                <MARQUEE  scrollamount="10">
+                    def fibonacci(n):
+                        if n <= 0:
+                            return []
+                        elif n == 1:
+                            return [0]
+                        elif n == 2:
+                            return [0, 1]
+                        else:
+                            fib = [0, 1]
+                            for i in range(2, n):
+                                fib.append(fib[i - 1] + fib[i - 2])
+                            return fib
+
+                    n = 10
+                    print(fibonacci(n))  # [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+
+                </MARQUEE>
+              
+                </p>
+               
+                <p class="main_floating_p">
+                    <MARQUEE  scrollamount="7">
+                          for (var i = 0; i < num; i++) {
+                          document.write('<span class="star">*</span>');
+}
+                       </MARQUEE>
+                    <!-- 스크롤의 속도 -->
+                    </p>
+
+
+                </p>
+
+            <p class="main_floating_p">
+            <MARQUEE behavior="scroll" scrollamount="12">
+                public class StarPattern {
+                    public static void main(String[] args) {
+                        int rows = 5;
+                
+                        for (int i = 1; i <= rows; i++) {
+                            for (int j = 1; j <= i; j++) {
+                                System.out.print("* ");
+                            }
+                            System.out.println();
+                        }
+                    }
+                }
+            </MARQUEE>
+
+
+            <!-- 스크롤의 속성 -->
+            </p>
+
+            <p class="main_floating_p">
+                <MARQUEE behavior="scroll" scrollamount="10">
+                    function generateRandomNumber() {
+                        return Math.floor(Math.random() * 100) + 1;
+                    }
+                    
+                    const randomNum = generateRandomNumber();
+                    console.log(`Random Number: ${randomNum}`);
+                    
+                   
+                </MARQUEE>
+
+
+                <!-- 스크롤의 속성 -->
+                </p>
+
+                <p class="main_floating_p">
+                    <MARQUEE behavior="scroll" scrollamount="12">
+                        def print_triangle(n):
+                        for i in range(n):
+                            print(' ' * (n - i - 1) + '*' * (2 * i + 1))
+                    
+                    print_triangle(5)
+                    
+                    </MARQUEE>
+    
+    
+                    <!-- 스크롤의 속성 -->
+                    </p>
+
+                    <p class="main_floating_p">
+                        <MARQUEE behavior="scroll" scrollamount="8">
+                            function generateRandomNumber() {
+                                return Math.floor(Math.random() * 100) + 1;
+                            }
+                            
+                            const randomNum = generateRandomNumber();
+                            console.log(`Random Number: ${randomNum}`);
+                            
+                        </MARQUEE>
+        
+        
+                        <!-- 스크롤의 속성 -->
+                        </p>
+
+                        <p class="main_floating_p">
+                            <MARQUEE behavior="scroll" scrollamount="17">
+                                function longerString(str1, str2) {
+                                    return str1.length >= str2.length ? str1 : str2;
+                                }
+                                
+                                const string1 = "Hello";
+                                const string2 = "World!";
+                                console.log(longerString(string1, string2));  // "World!"
+                                
+                                    
+                            </MARQUEE>
+            
+            
+                            <!-- 스크롤의 속성 -->
+                            </p>
+
+                            <p class="main_floating_p">
+                                <MARQUEE behavior="scroll" scrollamount="8">
+                                    numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                                    even_numbers = [x for x in numbers if x % 2 == 0]
+                                    print(even_numbers)  # [2, 4, 6, 8, 10]
+                                    
+                                </MARQUEE>
+                
+                
+                                <!-- 스크롤의 속성 -->
+                                </p>
+
+
+                            </p>
+
+                            <p class="main_floating_p">
+                                <MARQUEE behavior="scroll" scrollamount="13">
+                                    person = {
+                                        "name": "John",
+                                        "age": 30,
+                                        "city": "New York"
+                                    }
+                                    
+                                    print(person)  # {'name': 'John', 'age': 30, 'city': 'New York'}
+                                    
+                                    
+                                </MARQUEE>
+                
+                
+                                <!-- 스크롤의 속성 -->
+                                </p>
+
+                            </p>              
+                </div>
+
+<!----------------------  메인창 뒤 글자흐름  ------------------------>
                 <!-- 검색창 -->
                 <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
                 <div class="main_searchWrap">
@@ -301,6 +506,129 @@
                 </div>
             </div>
         </div>
+
+
+        <!-------------------------------------- 구독창  ------------------------------------>
+        <div class="subs_modal">
+            <div class="subs_modal_content">
+
+
+                <div class="subs_header">
+                    <div>
+                        <h1 id="subs_title">Member of NDB</h1>
+                    </div>
+                    <div>
+                        <button class="subs_button_close">&times;</button>
+                    </div>
+
+                    <div>
+                        <p class="subs_subtitle">
+                            학습 능률을 높이는 방법! <br />
+                            "구독"으로 다양한 혜택을 누리세요! <br /><br>
+                            For month
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="subs_desc_content">
+                    <div class="content1 content-box">
+                        <div>
+                            <h3>Basic</h3>
+                        </div>
+                        <div class="subs_benefit">
+                            <div class="subs_price">무료</div>
+                            <ul class="subs_li">
+                                <li>-&nbsp; 버전 업그레이드</li>
+                                <li>-&nbsp; 테마 설정</li>
+                                <li>-&nbsp; 예제에 대한 개념 정리</li>
+                                <li>&nbsp;</li>
+                                <li>&nbsp;</li>
+                                <li>&nbsp;</li>
+                                <li>&nbsp;</li>
+                            </ul>
+                        </div>
+
+
+                        <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
+
+                        <div class="subs_btn">
+                            <a href="http://localhost:3003/index" id="subscribe-link"><button>구독하기</button></a>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="content2 content-box">
+                        <div>
+                            <h3>Standard</h3>
+                        </div>
+                        <div class="subs_benefit">
+                            <div class="subs_price">￦5,000 </div>
+                            <ul class="subs_li">
+                                <li>-&nbsp; 버전 업그레이드 </li>
+                                <li>-&nbsp; 테마 설정 </li>
+
+                                <li>-&nbsp; 예제에 대한 개념 정리</li>
+                                <li>-&nbsp; 배너 제거 </li>
+                                <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
+                                <li>-&nbsp; 추천 강의 20% 할인권</li>
+                                <li>&nbsp; </li>
+                            </ul>
+                        </div>
+                        <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
+                        <div class="subs_btn">
+                            <button onclick="requestPay()">구독하기</button>
+                        </div>
+
+                    </div>
+
+
+
+
+                    <div class="content3 content-box">
+                        <div>
+                            <h3>PRO</h3>
+                        </div>
+                        <div class="subs_benefit">
+                            <div class="subs_price">￦7,000 </div>
+                            <ul class="subs_li">
+                                <li>-&nbsp; 버전 업그레이드 </li>
+                                <li>-&nbsp; 테마 설정 </li>
+
+                                <li>-&nbsp; 예제에 대한 개념 정리 </li>
+                                <li>-&nbsp; 배너 제거 </li>
+                                <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
+
+                                <li>-&nbsp; 추천 강의 40% 할인권</li>
+                                <li>-&nbsp; 인기 문제&개념 모음집PDF </li>
+                            </ul>
+                        </div>
+
+
+                        <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
+                        <div class="subs_btn">
+                            <button onclick="requestPay1()">구독하기</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+        <!-------------------------------------- 구독창  ------------------------------------>
+
+
+
+        
         <div class="main_Line"></div>
         <!-- 예제 출력 페이지 -->
         <div class="codeExam_container">
