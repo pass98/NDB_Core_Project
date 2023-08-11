@@ -31,6 +31,8 @@ const loginRouter = require("./router/login");
 app.use(loginRouter);
 const joinRouter = require("./router/login");
 app.use(joinRouter);
+const indexRouter = require("./router/codeExam");
+app.use(indexRouter);
 
 app.listen(3003, () => {
   console.log("서버가 3003번 포트에서 실행 중입니다.");

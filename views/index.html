@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +11,8 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link rel="stylesheet" href="/css/eunwoo_style.css">
-    <!-- <link rel="stylesheet" href="/css/yubin_sidebar.css">
-        <link rel="stylesheet" href="/css/yubin_chatbot.css"> -->
+    <link rel="stylesheet" href="/css/yubin_chatbot.css">
+    <link rel="stylesheet" href="/css/yubin_sidebar.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
     <script src="/js/eunwoo_index.js"></script>
@@ -26,24 +27,251 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/mode/xml/xml.min.js"></script>
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/codemirror.min.css'>
     <script src="/js/syntax_highlight.js"></script>
+    <script>
+        function requestPay() {
+            IMP.init('iamport');
+            IMP.request_pay({
+                pg: "inicis",
+                pay_method: "card",
+                merchant_uid: 'merchant_' + new Date().getTime(),
+                name: '결제테스트',
+                amount: 5000,
+                buyer_email: 'iamport@siot.do',
+                buyer_name: '김도형',
+                buyer_tel: '010-1234-5678',
+                buyer_addr: '광주인공지능사관학교NSDB',
+                buyer_postcode: '123-456'
+            },
+                function (rsp) {
+                    console.log(rsp);
+                    if (rsp.success) {
+                        var msg = '결제가 완료되었습니다.';
+                        alert(msg);
+                        location.href = "http://localhost:3003/index"
+                    } else {
+                        var msg = '결제에 실패하였습니다.';
+                        msg += '에러내용 : ' + rsp.error_msg;
+                        alert(msg);
+                    }
+                });
+        }
+
+
+
+
+    </script>
+
+    <script>
+        function requestPay1() {
+            IMP.init('iamport');
+            IMP.request_pay({
+                pg: "inicis",
+                pay_method: "card",
+                merchant_uid: 'merchant_' + new Date().getTime(),
+                name: '결제테스트',
+                amount: 7000,
+                buyer_email: 'iamport@siot.do',
+                buyer_name: '김도형',
+                buyer_tel: '010-1234-5678',
+                buyer_addr: '광주인공지능사관학교NSDB',
+                buyer_postcode: '123-456'
+            },
+                function (rsp) {
+                    console.log(rsp);
+                    if (rsp.success) {
+                        var msg = '결제가 완료되었습니다.';
+                        alert(msg);
+                        location.href = "http://localhost:3003/index"
+                    } else {
+                        var msg = '결제에 실패하였습니다.';
+                        msg += '에러내용 : ' + rsp.error_msg;
+                        alert(msg);
+                    }
+                });
+        }
+    </script>
 </head>
 
 <body>
-    <div id="main_container">
-        <!-- 네비게이션 -->
-        <!-- 왼쪽 : 사이드바 & 로그 -->
-        <nav id="main_navbar">
-            <div class="main_navLeft">
-                <div class="hamburger">
-                    <button>바</button>
+    <div>
+        <!-- 챗봇 -->
+        <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
+
+        <!-- 챗봇 대화창 컨테이너 -->
+        <div class="chat-container" id="chat-container">
+            <!-- 챗봇 헤더 -->
+
+            <div class="chat-header">
+                <div class="header-title" onclick="toggleChat()">NDB</div>
+                <button onclick="back()" id="back-button" style="display: none;">뒤로 가기</button>
+            </div>
+            <!-- 버튼 컨테이너 -->
+            <div class="button-container" id="button-container">
+                <p>안녕하세요.<br />
+                    NDB입니다.<br />
+                    무엇을 도와드릴까요?</p>
+                <button onclick="openChat()">질문하기</button>
+                <button onclick="openReview()">별점 리뷰하기</button>
+            </div>
+
+            <!-- 챗봇 몸체 -->
+            <div class="chat-body" id="chat-body" style="display: none;">
+                <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
+                <div class="message bot-message">
+                    <div class="content">질문을 입력해주세요!</div>
                 </div>
-                <div class="main_nav_logo">
-                    <a href="#">NDB</a>
+            </div>
+
+            <!-- 사용자 입력창 -->
+            <div class="chat-input" id="chat-input" style="display: none;">
+                <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
+                <button onclick="sendMessage()">전송</button>
+            </div>
+
+            <!-- 별점리뷰 -->
+            <form class="mb-3" name="myform" id="myform" method="post" style="display: none;">
+                <fieldset>
+
+                    <input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
+                    <input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★</label>
+                    <input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
+                    <input type="radio" name="reviewStar" value="2" id="rate4"><label for="rate4">★</label>
+                    <input type="radio" name="reviewStar" value="1" id="rate5"><label for="rate5">★</label>
+                    <p class="text-bold">별점을 선택해주세요</p>
+                </fieldset>
+                <div class="button-wrapper">
+                    <textarea id="reviewContents" name="reviewContents" placeholder="리뷰를 작성해주세요."></textarea>
+                    <button class="reviewbutton" type="submit">리뷰 제출</button>
                 </div>
-                <div class="main_navMiddle">
-                    <div class="main_Nav_search">
-                        <select name="main_language" id="main_navSearchbar" class="main_searchLanguage"
-                            style="width:50px;height:30px;">
+            </form>
+        </div>
+        <div id="main_container">
+            <!-- 네비게이션 -->
+            <!-- 왼쪽 : 사이드바 & 로그 -->
+            <nav id="main_navbar">
+                <div class="main_navLeft">
+
+                    <div id="sidebar_toggle">
+                        <!--
+            클릭 수신기로 사용되는 가짜/숨겨진 체크박스,
+            이를 통해 :checked 선택자를 사용
+            -->
+                        <input type="checkbox" />
+
+                        <!--
+            햄버거 역할을 하는 몇 개의 span 요소.
+            -->
+                        <span></span>
+                        <span></span>
+                        <span></span>
+
+                        <!--
+              사이드바는 버튼 내부에 잇어야함
+            -->
+                        <ul id="leftside">
+
+                            <a>
+                                <li>닉네임</li>
+                            </a>
+                            <a>
+                                <li>회원정보</li>
+                            </a>
+                            <a>
+                                <li>정보</li>
+                            </a>
+                            <a href="#" class="subs_btn_open">
+                                <li>구독</li>
+                            </a>
+
+                        </ul>
+                    </div>
+                    <div class="main_nav_logo">
+                        <a href="http://localhost:3003/index">NDB</a>
+
+                    </div>
+                    <div class="main_navMiddle">
+                        <div class="main_Nav_search">
+                            <select name="main_language" id="main_navSearchbar" class="main_searchLanguage"
+                                style="width:50px;height:30px;">
+                                <option value=" ">언어</option>
+                                <option value="html">html</option>
+                                <option value="css">css</option>
+                                <option value="javascript">javascript</option>
+                                <option value="java">java</option>
+                                <option value="python">python</option>
+                                <option value="c_language">C언어</option>
+                            </select>
+                            <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
+                            <input type="text" class="main_searchBar" name="main_searchBar_Name" onclick="ex_1()">
+                            <!-- 자동완성 단어 리스트 -->
+                            <div class="main_autocomplete"></div>
+                            <button type="submit" class="main_search_button" onClick="fetchData()">
+                                <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="main_navRight">
+                    <ul class="popularSerch">
+                        <li>
+                            <span>인기 검색어</span>
+                        </li>
+                        <li>|</li>
+                        <li>
+                            <a href="#">파이썬 반복문</a>
+                        </li>
+                    </ul>
+                    <div class="checkbox-wrapper-2">
+                        <input type="checkbox" id="main_Nav_themecheck" class="sc-gJwTLC ikxBAC" onclick='is_checked()'>
+                    </div>
+                    <div id="main_btnWrap">
+                        <!-- 로그인 버튼 -->
+                        <!-- <button type="button" class="main_loginBtn main_modalBtn">로그인</button> -->
+                        <!-- 회원가입 버튼 -->
+                        <button type="button" class="main_signupBtn main_modalBtn">log out</button>
+                    </div>
+                </div>
+            </nav>
+            <!-- 메인 이미지 위치 조정을 위한 div -->
+            <div class="main_position"></div>
+            <div id="main_modalWrap">
+                <div id="main_modalContent">
+                    <div id="main_modalBody">
+                        <!-- 닫기 버튼 -->
+                        <span id="main_closeBtn">&times;</span>
+                        <!-- 팝업창 내 글귀 -->
+                        <p>modal-popup 입니다.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- main페이지 -->
+            <div class="main_wrap main_wrap_backImg_night">
+                <!-- 검색창 -->
+                <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
+                <div class="main_searchWrap">
+                    <div class="main_NavFlex">
+                        <div class="main_NavLangDB_Wrap">
+                            <div class="main_NavLangDB_Text">
+                                <label for="main_Nav_DB"><p>DB&nbsp</p></label>
+                                <p>&nbsp|&nbsp</p>
+                                <label for="main_Nav_API"><p>&nbspAPI</p></label>
+                            </div>
+                            <div class="main_NavLangDB_Select">
+                                    <input type="radio" id="main_Nav_DB" class="main_Navwon" name="main_Nav_RadioName"></input>
+                                    <input type="radio" id="main_Nav_API" class="main_Navwon" name="main_Nav_RadioName"></input>
+                            </div>
+                        </div>
+                        <div class="main_text">
+                            <p>
+                                언어와 엔진을 설정한 후 </br>배우고 싶은 부분을 집중 성장 시켜보세요.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
+
+                    <div class="main_search main_search_night">
+                        <select name="main_language" id="" class="main_searchLanguage2" style="width:50px;height:30px;">
                             <option value=" ">언어</option>
                             <option value="html">html</option>
                             <option value="css">css</option>
@@ -53,94 +281,16 @@
                             <option value="c_language">C언어</option>
                         </select>
                         <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                        <input type="text" id="main_searchBar" name="main_searchBar_Name">
+                        <input type="text" class="main_searchBar2" name="main_searchBar_Name" >
                         <!-- 자동완성 단어 리스트 -->
                         <div class="main_autocomplete"></div>
-                        <button type="submit" class="main_search_button" onclick=select()>
+                        <button type="submit" class="main_search_button" onclick="ex_1()">
                             <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                         </button>
-
                     </div>
-                </div>
-            </div>
-            <div class="main_navRight">
-                <ul class="popularSerch">
-                    <li>
-                        <span>인기 검색어</span>
-                    </li>
-                    <li>|</li>
-                    <li>
-                        <a href="#">파이썬 반복문</a>
-                    </li>
-                </ul>
-                <div class="checkbox-wrapper-2">
-                    <input type="checkbox" id="main_Nav_themecheck" class="sc-gJwTLC ikxBAC" onclick='is_checked()'>
-                </div>
-                <div id="main_btnWrap">
-                    <!-- 로그인 버튼 -->
-                    <!-- <button type="button" class="main_loginBtn main_modalBtn">로그인</button> -->
-                    <!-- 회원가입 버튼 -->
-                    <button type="button" class="main_signupBtn main_modalBtn">log out</button>
-                </div>
-            </div>
-        </nav>
-        <!-- 메인 이미지 위치 조정을 위한 div -->
-        <div class="main_position"></div>
-        <div id="main_modalWrap">
-            <div id="main_modalContent">
-                <div id="main_modalBody">
-                    <!-- 닫기 버튼 -->
-                    <span id="main_closeBtn">&times;</span>
-                    <!-- 팝업창 내 글귀 -->
-                    <p>modal-popup 입니다.</p>
-                </div>
-            </div>
-        </div>
-        <!-- main페이지 -->
-        <div class="main_wrap main_wrap_backImg_night">
-            <!-- 검색창 -->
-            <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
-            <div class="main_searchWrap">
-                <div class="main_NavFlex">
-                    <div >
-                        <div class="main_NavLangDB_Select">
-                            <div class="main_Nav_DB">
-                                <div class="main_Navwon "></div>
-                            </div>
-                            <div class="main_Nav_API">
-                                <div class="main_Navwon "></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="main_text">
-                        <p>
-                            언어를 설정한 후 </br>배우고 싶은 부분을 집중 성장 시켜보세요.
-                        </p>
-                    </div>
-                </div>
-                <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
 
-                <div class="main_search">
-                    <select id="main_language" class="main_searchLanguage2" style="width:50px;height:30px;">
-                        <option value=" ">언어</option>
-                        <option value="html">html</option>
-                        <option value="css">css</option>
-                        <option value="javascript">javascript</option>
-                        <option value="java">java</option>
-                        <option value="python">python</option>
-                        <option value="c_language">C언어</option>
-                    </select>
-                    <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                    <input type="text" id="main_searchBar2" name="main_searchBar_Name">
-                    <!-- 자동완성 단어 리스트 -->
-                    <div class="main_autocomplete"></div>
-                    <button type="submit" class="main_search_button" onclick=select()>
-                        <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
-                    </button>
-                </div>
-
-                <!-- 검색창 아래 태그 -->
-                <!-- <div class="main_TagWrap">
+                    <!-- 검색창 아래 태그 -->
+                    <!-- <div class="main_TagWrap">
                     사용자에게 추천하는 검색어 
                     <ul>
                         <li>반복문</li>
@@ -148,49 +298,47 @@
                         <li>grid</li>
                     </ul>
                 </div> -->
-            </div>
-        </div>
-    </div>
-    <div class="main_Line"></div>
-    <!-- 예제 출력 페이지 -->
-    <div class="codeExam_container">
-        <div class="codeExam_pageWrap">
-            <!-- 예제 문제 설명 출력 -->
-            <div class="codeExam_examWrap-Size">
-                <div class="codeExam_examWrap_night">
-
-                    <div class="codeExam_examContent">
-                        <h2>최댓값과 최솟값</h2>
-                        <hr>
-                        <div class="codeExam_examDetail">
-                            <p>문제 설명</p>
-                            실습 문제: 버튼을 클릭하면 "Hello, World!"라는 메시지가 출력되도록 이벤트 리스너를 추가하는 코드를 작성해보세요.
-
-                            HTML Code:
-
-                            설명:
-                            - HTML 코드에서는 버튼을 만들고, CSS 코드에서는 버튼의 스타일을 지정합니다.
-                            - JS 코드에서는 버튼 요소를 가져오고, `addEventListener` 함수를 사용하여 버튼에 클릭 이벤트 리스너를 추가합니다.
-                            - 이벤트 리스너 함수에서는 "Hello, World!"라는 메시지를 `alert` 함수를 사용하여 출력합니다.
-                        </div>
-                        <div class="codeExam_exam">
-                            <p>제한 조건</p>
-                        </div>
-                    </div>
-                    <div class="codeExam_examFooter"></div>
                 </div>
             </div>
-            <!-- 예제 문제 코드 출력 -->
-            <div class="codeExam_code_wrap">
-                <div class="codeExam_boxes">
-                    <div class="codeExam_boxesHide" draggable="true"></div>
-                    <div class="codeExam_boxesSize">
-                        <div id="html-box" class="codeExam_exambox codeExam_htmlBox">
-                            <div class="codeExam_codePage">
-                                <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
-                                <div class="codeExam_codeContent-Size">
-                                    <div class="codeExam_codeContent">
-                                        <textarea cols="100" id="editing_code_html">
+        </div>
+        <div class="main_Line"></div>
+        <!-- 예제 출력 페이지 -->
+        <div class="codeExam_container">
+            <div class="codeExam_pageWrap">
+                <!-- 예제 문제 설명 출력 -->
+                <div class="codeExam_examWrap-Size">
+                    <div class="codeExam_examWrap_night">
+
+                        <div class="codeExam_examContent">
+                            <h2>최댓값과 최솟값</h2>
+                            <hr>
+                            <div class="codeExam_examDetail">
+                                <p>문제 설명</p>
+                                문자열 s에는 공백으로 구분된 숫자들이 저장되어 있습니다. str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 "(최소값) (최대값)"형태의 문자열을
+                                반환하는
+                                함수,
+                                solution을 완성하세요.
+                                예를들어 s가 "1 2 3 4"라면 "1 4"를 리턴하고, "-1 -2 -3 -4"라면 "-4 -1"을 리턴하면 됩니다.
+                            </div>
+                            <div class="codeExam_exam">
+                                <p>제한 조건</p>
+                                s에는 둘 이상의 정수가 공백으로 구분되어 있습니다.
+                            </div>
+                        </div>
+                        <div class="codeExam_examFooter"></div>
+                    </div>
+                </div>
+                <!-- 예제 문제 코드 출력 -->
+                <div class="codeExam_code_wrap">
+                    <div class="codeExam_boxes">
+                        <div class="codeExam_boxesHide" draggable="true"></div>
+                        <div class="codeExam_boxesSize">
+                            <div id="html-box" class="codeExam_exambox codeExam_htmlBox">
+                                <div class="codeExam_codePage">
+                                    <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
+                                    <div class="codeExam_codeContent-Size">
+                                        <div class="codeExam_codeContent">
+                                            <textarea cols="100" id="editing_code_html">
 
                                             <!DOCTYPE html>
                                             <html>
@@ -205,46 +353,83 @@
                                             </body>
                                             </html>
                                         
-                                        </textarea>
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="css-box" class="codeExam_exambox codeExam_cssBox">
+                                <div class="codeExam_codePage">
+                                    <div id="codeExam_Language" class="codeExam_codeLanguage">Css</div>
+                                    <div class="codeExam_codeContent-Size">
+                                        <div class="codeExam_codeContent">
+                                            <textarea cols="100" id="editing_code_Css">
+
+                                                <!DOCTYPE html>
+                                                <html>
+                                                <head>
+                                                  <title>별 피라미드</title>
+                                                  <link rel="stylesheet" type="text/css" href="style.css">
+                                                </head>
+                                                <body>
+                                                  <div id="pyramid"></div>
+                                                
+                                                  <script src="script.js"></script>
+                                                </body>
+                                                </html>
+                                            
+                                                </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="js-box" class="codeExam_exambox codeExam_jsBox">
+                                <div class="codeExam_codePage">
+                                    <div id="codeExam_Language" class="codeExam_codeLanguage">JavaScript</div>
+                                    <div class="codeExam_codeContent-Size">
+                                        <div class="codeExam_codeContent">
+                                            <textarea cols="100" id="editing_code_Js">
+
+                                                <!DOCTYPE html>
+                                                <html>
+                                                <head>
+                                                  <title>별 피라미드</title>
+                                                  <link rel="stylesheet" type="text/css" href="style.css">
+                                                </head>
+                                                <body>
+                                                  <div id="pyramid"></div>
+                                                
+                                                  <script src="script.js"></script>
+                                                </body>
+                                                </html>
+                                            
+                                                </textarea>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="css-box" class="codeExam_exambox codeExam_cssBox">
-                            <div class="codeExam_codePage">
-                                <div id="codeExam_Language" class="codeExam_codeLanguage">Css</div>
-                                <div class="codeExam_codeContent-Size">
-                                    <div class="codeExam_codeContent"></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="js-box" class="codeExam_exambox codeExam_jsBox">
-                            <div class="codeExam_codePage">
-                                <div id="codeExam_Language" class="codeExam_codeLanguage">JavaScript</div>
-                                <div class="codeExam_codeContent-Size">
-                                    <div class="codeExam_codeContent"></div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
-                </div>
-                <!-- 코드 결과창 출력 _ frontend -->
-                <div class="codeExam_resultContainer">
-                    <div class="codeExam_resultSize">
-                        <div class="codeExam_resultDiv">
-                            <iframe src = "/views/codeExam.html" width = "100%" height = "100%" ></iframe>
-                            <!-- <div style={dasdasd} class> -->
-                            <!-- <style class="codeExam_resultCss"></style>
-                            ""
-                            <script class >
-                            </script> -->
+                    <!-- 코드 결과창 출력 _ frontend -->
+                    <div class="codeExam_resultContainer">
+                        <div class="codeExam_resultSize">
+                            <div class="codeExam_StartAndSave">
+                                <button>start</button>
+                                <!-- <div class="checkbox-wrapper-2">
+                                    <input type="checkbox" id="main_Nav_themecheck" class="sc-gJwTLC ikxBAC gJwTLC"
+                                        onclick='is_checked()'>
+                                </div> -->
+                                <!-- <button class="codeExam_saveExamBtn"><i class="fa-regular fa-heart" style="color: #d83b44;"></i></button> -->
+                            </div>
+                            <div class="codeExam_resultDiv">
+                                <!-- 받은 코드를 시연하는 창 -->
+                                <iframe id="main_Nav_iframe" src="/views/codeExam.html"></iframe>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    </div>
 
 </body>
 
