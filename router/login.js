@@ -1,13 +1,15 @@
 const express = require("express");
+const session = require("express-session");
 const router = express.Router();
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const KakaoStrategy = require("passport-kakao").Strategy; // passport-kakao 모듈을 추가해야 합니다.
 const GitHubStrategy = require("passport-github2").Strategy;
-
+const bodyParser = require("body-parser");
 const db = require("../config/datebase");
 let conn = db.init();
 
+const app = express();
 // 구글 OAuth 2.0 클라이언트 ID와 시크릿 설정
 const GOOGLE_CLIENT_ID =
   "387069556796-pal9i13mtuj16inovquf5h4ucs8s926d.apps.googleusercontent.com"; // 여기에 발급받은 클라이언트 ID 입력
@@ -206,16 +208,65 @@ router.post("/join", (req, res) => {
     }
 
     let sql =
-      "INSERT INTO MEMBER (MEMBER_NAME, SIGN_PLATFORM_TYPE, PW) VALUES (?, ?, ?)";
-    conn.query(sql, [join_name, "NDB", join_pass], function (err, result) {
-      if (err) {
-        console.error("Query Error:", err);
-      } else {
-        console.log("Data inserted successfully:", result);
-      }
+      "INSERT INTO MEMBER (MEMBER_NAME, SIGN_PLATFORM_TYPE, PW, EMAIL) VALUES (?, ?, ?, ?)";
+    conn.query(
+      sql,
+      [join_name, "NDB", join_pass, join_email],
+      function (err, result) {
+        if (err) {
+          console.error("Query Error:", err);
+        } else {
+          console.log("Data inserted successfully:", result);
+        }
 
-      // DB 연결 종료
-      conn.end();
+        // DB 연결 종료
+        conn.end();
+      }
+    );
+  });
+});
+
+router.use(bodyParser.urlencoded({ extended: true }));
+
+// /login 라우터
+router.post("/login", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.pass;
+  const query = `SELECT * FROM MEMBER WHERE EMAIL = ? AND PW = ?`;
+
+  // DB 연결
+  conn.connect(function (err) {
+    if (err) {
+      console.error("DB Connection Error:", err);
+      return;
+    }
+    conn.query(query, [email, password], (err, results) => {
+      if (!err && results.length === 1) {
+        console.log("쿼리문 실행");
+
+        req.session.loggedInUser = email;
+
+        // 로그인 성공 시 index.html 페이지로 이동
+        res.render("index.html");
+        // 여기서 "index.html"은 실제 템플릿 파일의 경로로 수정해야 합니다.
+      } else {
+        console.log("쿼리문 실패");
+        res.write(`<!DOCTYPE html>
+        <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>로그인 실패</title>
+        </head>
+        <body>
+            <script>
+                alert('로그인 실패. 이메일 또는 비밀번호가 잘못되었습니다.');
+                window.location="http://localhost:3003/login";
+            </script>
+        </body>
+        </html>`);
+
+        // res.send("로그인 실패. 이메일 또는 비밀번호가 잘못되었습니다.");
+      }
     });
   });
 });
