@@ -11,12 +11,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 검색 시 스크롤 자동이동 함수
     const main_searchBar = document.querySelector(".main_searchBar");
-
     function onKeyUp(event) {
         if (event.key === 'Enter') {
             goToScroll();
             console.log('전송');
         }
+
     }
     function goToScroll() {
         let location = document.querySelector(".codeExam_code_wrap").offsetTop;
@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     box.addEventListener('mousedown', (e) => {
         isDragging = true;
-        offsetX = e.pageX - box.getBoundingClientRect().left ;// 클릭한 위치와 요소의 왼쪽 간의 거리
+        offsetX = e.pageX - box.getBoundingClientRect().left;// 클릭한 위치와 요소의 왼쪽 간의 거리
         // offsetY = e.clientY - box.getBoundingClientRect().top;
     });
 
@@ -55,8 +55,10 @@ document.addEventListener("DOMContentLoaded", function () {
         isDragging = false;
     });
     // 정답 가리기 기능 끝
-    
+
+
 });
+
 
 function select() {
     let languageElement = document.querySelector(".main_searchLanguage");

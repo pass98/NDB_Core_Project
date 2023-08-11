@@ -9,7 +9,7 @@
 function updateIframeContent() {
     const textAreaValue = document.getElementById('editing_code_html').value;
     const iframe = document.getElementById('main_Nav_iframe');
-    
+
     // iframe 내의 document에 접근
     const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
@@ -73,7 +73,7 @@ function updateHighlighting(code) {
 }
 // 코드 하이라이팅 효과 끝
 // 코드 예제 창 div 값 변경
-function codeExam_divLanguage(){
+function codeExam_divLanguage() {
     var lang = document.getElementById('main_language');
     var selectLang = lang.options[lang.selectedIndex].value;
     console.log(selectLang)
@@ -124,12 +124,10 @@ function insertHTMLToDiv() {
     // targetDiv.querySelector('button').addEventListener('click', myFunction);
 }
 // codeExam_StartAndSave>button 클릭시 textarea내용 iframe에 출력
-function printHtml(){
+function printHtml() {
     const htmlContent = document.getElementById("editing_code_html");
     const cssContent = document.getElementById("editing_code_Css");
     const jsContent = document.getElementById("editing_code_Js");
-
-    
 }
 
 // day&night theme 토글 함수
@@ -140,16 +138,16 @@ function is_checked() {
     const main_wrap = document.querySelector(".main_wrap");
     // 1. checkbox element를 찾습니다.
     const checkbox = document.getElementById('main_Nav_themecheck');
-  
+
     // 2. checked 속성을 체크합니다.
     const is_checked = checkbox.checked;
-  
+
     // 3. 결과를 출력합니다.
-    console.log('체크확인',is_checked)
+    console.log('체크확인', is_checked)
     console.log('main_wrap 스타일 속성 확인', main_wrap.style)
 
     // 테마변경
-    if(is_checked){
+    if (is_checked) {
         // 낮
         window.document.body.classList.add('day');
         main_search.classList.add('main_search_day');
@@ -157,8 +155,8 @@ function is_checked() {
         main_wrap.classList.remove('main_wrap_backImg_night')
         main_wrap.classList.add('main_wrap_backImg_day')
         document.querySelector(".main_NavLangDB_Text").style.color = "#212121"
-        
-    }else{
+
+    } else {
         // 밤
         window.document.body.classList.remove('day');
         main_search.classList.remove('main_search_day');
@@ -167,14 +165,19 @@ function is_checked() {
         main_wrap.classList.add('main_wrap_backImg_night')
         document.querySelector(".main_NavLangDB_Text").style.color = "white"
     }
-  }
+}
 // 테마 기능 끝
 
 // 검색_언어별 codeExam_boxes 개수 변경
 // function codeExamBoxCount() {
 //     const 
 // }
+function goToScroll() {
+    let location = document.querySelector(".codeExam_code_wrap").offsetTop;
+    window.scrollTo({ top: location - 50, behavior: 'smooth' });
 
+    // 검색어 추출 후 문제창에 띄우기
+}
 // 문서 로딩 완료한 뒤 실행
 document.addEventListener("DOMContentLoaded", function () {
     // 한글 타이핑 효과
@@ -192,19 +195,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const main_searchBar = document.querySelector(".main_searchBar");
     const main_searchBar2 = document.querySelector(".main_searchBar2");
 
-    function goToScroll() {
-        let location = document.querySelector(".codeExam_code_wrap").offsetTop;
-        window.scrollTo({ top: location - 50, behavior: 'smooth' });
-
-        // 검색어 추출 후 문제창에 띄우기
-    }
+    
     function getSearchWord() {
         console.log('getSearchWord')
         let selectLang = document.querySelector("#main_searchLanguage2 > option:checked").value;
         // let selectOption  = selectLang.selectedOptions[0].value;
         console.log(selectLang)
-    }   
-    
+    }
+
     // 은우 keyUp
     // function onKeyUp(event) {
     //     if (event.key === 'Enter') {
@@ -213,6 +211,21 @@ document.addEventListener("DOMContentLoaded", function () {
     //         console.log(document.querySelector(".main_searchBar2").value);
     //     }
     // }
+    // 형균 keyUp
+    function onKeyUp(event) { //라디오 버튼에 따라 enter눌렀을 때 호출하는 함수
+        if (event.key === 'Enter') {
+            goToScroll();
+            if (document.getElementById('main_Nav_DB').checked) {
+                ex_1();
+                console.log("DB에서 데이터 꺼내기")
+            } else if (document.getElementById('main_Nav_API').checked) {
+                select();
+                console.log("API에서 응답 받기")
+            }
+            console.log('전송');
+
+        }
+    }
 
 
     document.querySelector(".main_search_button").addEventListener('click', function (e) {
@@ -265,16 +278,16 @@ document.addEventListener("DOMContentLoaded", function () {
     // DB , API 검색버튼 클릭 후 색 유지
     let main_Navwon = document.querySelector(".main_Navwon");
     let main_Navwon_clicked = 0;
-    main_Navwon.addEventListener('click',()=>{
-        if(main_Navwon_clicked){
+    main_Navwon.addEventListener('click', () => {
+        if (main_Navwon_clicked) {
             main_Navwon.className = "main_Navwon";
             main_Navwon_clicked = 0;
-          }else{
+        } else {
             main_Navwon.className = "main_Navwon_active-color";
             main_Navwon_clicked = 1;
-          }
-        })
-    
+        }
+    })
+
 
     // 함수 호출
     // 왼쪽 상단 검색바 함수 적용
@@ -292,11 +305,20 @@ document.addEventListener("DOMContentLoaded", function () {
     update_code();
     resize();
 });
-
-let responseDB;
+function user_Btn() { // 라디오 체크에 따라서 함수 호출하기
+    goToScroll();
+    if (document.getElementById('main_Nav_DB').checked) {
+        ex_1();
+        console.log("DB에서 데이터 꺼내기")
+    } else if (document.getElementById('main_Nav_API').checked) {
+        select();
+        console.log("API에서 응답 받기")
+    }
+}
+let responseDB; //DB에서 가져온 데이터 넣을 전역변수
 function ex_1() { // DB 테이블에서 문제 제공하는 함수
     let keywords = document.getElementsByClassName('main_searchBar')[0]
-    let user_input = keywords.value;
+    let user_input = keywords.value; 
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
     let user_input2 = keywords2.value
     let languageElement = document.querySelector(".main_searchLanguage");
@@ -305,7 +327,7 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
     console.log("상단 검색바 사용자선택 언어 : ", language)
     console.log("메인 검색바 사용자선택 언어 : ", language2)
-    
+
 
     let select_Language = ""; // 사용자 선택언어
     let input_String = "";    // 사용자 입력값
@@ -321,28 +343,28 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
         input_String = user_input2;
     }
 
-    console.log("사용자 입력 : ",input_String);
+    console.log("사용자 입력 : ", input_String);
 
     let find_keywords = [];
     let user_keywords = ["레이아웃", "flex", "addeventListener",
         "if", "for", "while", "switch case", "별찍기",
         "소수", "짝수", "구구단", "1차원", "2차원", "배열", "포인터"];
-        // 사용자가 선택할 것 같은 키워드 배열
-   
+    // 사용자가 선택할 것 같은 키워드 배열
+
 
 
     for (let i = 0; i < user_keywords.length; i++) {
         if (input_String.includes(user_keywords[i])) {
             console.log(`찾은 keyword: ${user_keywords[i]}`); //for, 별찍기
             find_keywords.push(user_keywords[i]); //찾은 keyword push
-        } 
+        }
     }// 사용자 입력 값(input_String)에서 user_keywords배열 안에 있는 값이 있는지
     console.log("찾아서 추가해준 keywords: ", find_keywords)
 
-    
+
     if (find_keywords.length == 1) {// 찾은 키워드가 1개일때
         $.ajax({
-            url: "/index/ex_1", 
+            url: "/index/ex_1",
             method: 'POST',
             data: { // 서버에 보낼 데이터
                 find_keywords: find_keywords[0],
@@ -374,12 +396,13 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
+        
     }
-
+    document.getElementsByClassName('main_searchbar').value = ''
 }
 
-function response_DB(){ // 전역 변수 값 확인해보기~
-    console.log(responseDB.EXAM_HTM:) 
+function response_DB() { // 전역 변수 값 확인해보기~
+    console.log(responseDB.EXAM_JS)
 }
 
 function select() {
@@ -391,13 +414,7 @@ function select() {
     console.log("메인 검색바 사용자선택 언어 : ", language2)
 
     if (language == " ") {
-        if (language2 == "html") {
-            front();
-        }
-        else if (language2 == "css") {
-            front();
-        }
-        else if (language2 == "javascript") {
+        if (language2 == "html" | language2 == "css" | language2 == "javascript") {
             front();
         }
         else if (language2 == "java") {
@@ -411,13 +428,7 @@ function select() {
         }
     }
     if (language2 == " ") {
-        if (language == "html") {
-            front();
-        }
-        else if (language == "css") {
-            front();
-        }
-        else if (language == "javascript") {
+        if (language == "html" | language == "css" | language == "javascript") {
             front();
         }
         else if (language == "java") {
@@ -436,7 +447,7 @@ function select() {
 }
 
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -574,7 +585,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 }
 
 function java() {   // select option이 java일때 api java 응답함수
-    const api_key = "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"// api key 값
+    const api_key = "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"// api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -693,7 +704,7 @@ function java() {   // select option이 java일때 api java 응답함수
 }
 
 function python() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -811,7 +822,7 @@ function python() { // select option이 python일때 api python 응답함수
 }
 
 function C_programing() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -924,14 +935,4 @@ function C_programing() { // select option이 python일때 api python 응답함�
         });
         document.getElementsByClassName('main_searchbar').value = ''
     });
-}
-
-// 형균 keyUp
-function onKeyUp(event) {
-    if (event.key === 'Enter') {
-        goToScroll();
-
-        console.log('전송');
-        document.getElementsByClassName('main_searchbar').value = ''
-    }
 }
