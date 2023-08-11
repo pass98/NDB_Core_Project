@@ -2,7 +2,7 @@
 /* body안의 width를 vw로 할 경우, 스크롤 등 부가요소에
  관계없이 무조건 화면의 해상도 값을 가져오므로 가로 스크롤이 생긴다. */
 
-
+/* 로고 폰트 */
 @font-face {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -10,7 +10,16 @@
     font-style: normal;
 }
 
+/*  */
 @import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+/* 코딩 코드 폰트 */
+@font-face {
+    font-family: 'intelone-mono-font-family-regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2307-1@1.1/intelone-mono-font-family-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
 
 .notosanskr * {
     font-family: 'Noto Sans KR', sans-serif;
@@ -21,8 +30,15 @@
 body {
     margin: 0;
     box-sizing: border-box;
-
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #1B3455;
+    color: white;
     overflow-y: scroll;
+}
+
+body.day {
+    color: #212121 ;
+    background-color: white;
 }
 
 /* 스크롤바 안보이게 ( 크롬, 사파리, 오페라, 엣지 ) 동작 */
@@ -53,8 +69,9 @@ a {
     margin: 0 12px 0 0;
     padding: 8px 16px 8px 16px;
 
-    border: 1px solid white;
-    border-radius: 30px;
+    border: none;
+    /* border: 1px solid white; */
+    border-radius: 12px;
     background-color: transparent;
 
     font-size: 1rem;
@@ -62,15 +79,18 @@ a {
     text-decoration: none;
     text-align: center;
     text-transform: uppercase;
-    font-weight: 700;
+
     color: white;
 
     transition: 0.3s;
+    min-width: 100px;
 }
 
 .main_signupBtn:hover {
-    background-color: white;
-    color: #212121;
+    background-color: #3e3e3e;
+    /* background-color: white; */
+    /* color: #212121; */
+    /* font-weight: 700; */
 }
 
 /* main 페이지 회원가입 버튼 스타일 지정 */
@@ -106,13 +126,13 @@ a {
 }
 
 /* main페이지 전체 크기 및 기본 설정 지정 */
+
 #main_container {
     box-sizing: border-box;
     /* width: 100vw; */
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #1B3455;
     font-family: 'Noto Sans KR', 'GmarketSansMedium';
     text-align: center;
     flex: 1 0 auto;
@@ -196,7 +216,7 @@ a {
     overflow: hidden;
 }
 
-.main_navMiddle>form {
+.main_navMiddle>div {
     opacity: 0;
     animation: main_navMiddle_fadeOut 1s linear infinite;
     /* Pause the animation */
@@ -219,7 +239,7 @@ a {
 .main_nav_logo {
     font-weight: 1000;
     font-size: large;
-    margin-left: 28px;
+    margin-left: 24px;
     font-style: italic
 }
 
@@ -293,9 +313,84 @@ a {
     padding-right: 6px;
 }
 
+/* 낮/밤 모드 전환 버튼 CSS 시작*/
+.checkbox-wrapper-2{
+    margin: 7px 15px 0 0;
+}
+.checkbox-wrapper-2 .ikxBAC {
+    appearance: none;
+    background-color: #dfe1e4;
+    border-radius: 72px;
+    border-style: none;
+    flex-shrink: 0;
+    height: 20px;
+    margin: 0;
+    position: relative;
+    width: 30px;
+}
+
+.checkbox-wrapper-2 .ikxBAC::before {
+    bottom: -6px;
+    content: "";
+    left: -6px;
+    position: absolute;
+    right: -6px;
+    top: -6px;
+}
+
+.checkbox-wrapper-2 .ikxBAC,
+.checkbox-wrapper-2 .ikxBAC::after {
+    transition: all 100ms ease-out;
+}
+
+.checkbox-wrapper-2 .ikxBAC::after {
+    background-color: #fff;
+    border-radius: 50%;
+    content: "";
+    height: 14px;
+    left: 3px;
+    position: absolute;
+    top: 3px;
+    width: 14px;
+}
+
+.checkbox-wrapper-2{
+    margin: 7px 15px 0 0;
+}
+.checkbox-wrapper-2 input[type=checkbox] {
+    cursor: default;
+}
+
+.checkbox-wrapper-2 .ikxBAC:hover {
+    background-color: #c9cbcd;
+    transition-duration: 0s;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked {
+    background-color: #8CA9BF;
+    /* background-color: #6e79d6; */
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked::after {
+    background-color: #fff;
+    left: 13px;
+}
+
+.checkbox-wrapper-2 :focus:not(.focus-visible) {
+    outline: 0;
+}
+
+.checkbox-wrapper-2 .ikxBAC:checked:hover {
+    background-color: #60788b;
+    /* background-color: #535db3; */
+}
+
+/* 낮/밤 모드 전환 버튼 CSS 끝 */
+
 .popularSerch {
     box-sizing: border-box;
     padding-right: 32px;
+    min-width: 250px;
 }
 
 /* 네비게이션 끝 */
@@ -325,8 +420,22 @@ select {
     align-items: center;
     /* flex: 1 0 auto; */
 
+
+}
+
+/* 다크모드 */
+.main_wrap_backImg_night {
     /* 메인페이지 배경 이미지 추가 */
-    background-image: url('/img/main_backGroundimg_moreEfficiency.png');
+    background-image: url('/img/NDB_night_BackImg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+/* 라이트모드 */
+.main_wrap_backImg_day {
+    /* 메인페이지 배경 이미지 추가 */
+    background-image: url('/img/NDB_day_BackImg.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center center;
@@ -338,6 +447,24 @@ select {
 }
 
 /* 검색 부분(필터링 및 설명텍스트 등 정렬) */
+.main_NavFlex{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main_NavLangDB_Wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main_NavLangDB_Text{
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    margin-bottom: 0;
+}
+.main_NavLangDB_Text label p, .main_NavLangDB_Text p{
+    margin-bottom: 0px;
+}
 .main_searchWrap {
     /* background-color: red; */
     position: absolute;
@@ -349,28 +476,104 @@ select {
     flex-wrap: wrap;
     padding-bottom: 50px;
 }
+.main_NavLangDB_Select{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 50px;
+    height: 32px;
+    cursor: pointer;
+}
+/* .main_Navwon{
+    width: 14px;
+    height: 14px;
+    background-color: #9FA0A0;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+}
+.main_Navwon:hover{
+    background-color: white;
+    width: 1rem;
+    height: 1rem;
+}
+.main_Navwon:active{
+    background-color: white;
+    width: 1.1rem;
+    height: 1.1rem;
+}
+.main_Navwon_active-color{
+    background-color: white;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+} */
 
 .main_text {
     /* margin-bottom: 12px; */
-    color: white;
+    /* color: white; */
     font-family: 'Noto Sans KR';
     font-size: 2rem;
     margin-bottom: 36px;
-
+    width: 500px;
+    height: 80px;
 }
 
 .main_text>p {
     margin: 0;
 }
 
-/* 검색 창 div */
-.main_search {
+.main_text>p::after {
+    content: "|";
+    right: 0;
+    color: #aeaeae;
+    animation: caret .8s infinite;
+}
+
+
+@keyframes caret {
+    50% {
+        opacity: 0;
+    }
+}
+
+/* 검색 창 div 기본테마*/
+.main_search_night {
     background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-around;
     width: 80%;
     height: 46px;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.main_search_day {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 80%;
+    height: 46px;
+    border-radius: 30px;
+    border: 1px solid #aeaeae;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+.main_search_day:hover {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.main_Nav_search {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 38px;
     border-radius: 30px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 
@@ -385,7 +588,7 @@ select {
 /* 검색창 테두리 제거 */
 .main_language,
 .main_searchBar,
-.main_searchBar_Nav,
+.main_searchBar2,
 .main_search_button {
     border: 0;
     background-color: white;
@@ -393,9 +596,11 @@ select {
 
 .main_search_button {
     cursor: pointer;
+    margin-right: 8px;
 }
 
-.main_searchLanguage {
+.main_searchLanguage,
+.main_searchLanguage2 {
     height: 30px;
     width: 80px !important;
     border: 0;
@@ -410,7 +615,8 @@ select {
 }
 
 /* 검색 창 바 input */
-.main_searchBar {
+.main_searchBar,
+.main_searchBar2 {
     box-sizing: border-box;
     width: 70%;
     height: 41px;
@@ -418,9 +624,15 @@ select {
 }
 
 /* 검색 input 클릭시 생기는 테두리 제거 */
-.main_searchBar>input:focus {
+#main_searchBar>input:focus {
     outline: none;
 }
+
+/* 메인 검색 테두리 제거 */
+#main_searchBar2>input:focus {
+    outline: none;
+}
+
 
 .main_search_button {
     height: 30px;
@@ -448,13 +660,12 @@ option:hover {
 */
 /* codingExam CSS시작 */
 /* codingExam Page 전체 크기 조절 */
-#codeExam_container {
+.codeExam_container {
     width: 100%;
     height: calc(100vh - 58px);
-    display: flex !important;
+    display: flex;
     box-sizing: border-box;
     flex-direction: column;
-    background-color: #1B3455;
     font-family: 'Noto Sans KR', 'GmarketSansMedium';
     text-align: center;
     flex: 1 0 auto;
@@ -469,6 +680,8 @@ option:hover {
     /* padding-top: 58px !important; */
     box-sizing: border-box;
     overflow: hidden;
+    color: #212121;
+
 
 }
 
@@ -476,7 +689,8 @@ option:hover {
 /* 문제 창 크기 조절 */
 .codeExam_examWrap-Size {
     height: 100%;
-    width: 30%;
+    width: 45%;
+
 
     position: relative;
     display: flex;
@@ -506,10 +720,11 @@ option:hover {
 
 
 
-.codeExam_examWrap {
+.codeExam_examWrap_night {
     height: 80%;
     padding: 12px;
     text-align: left;
+    min-width: 300px;
 
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -523,26 +738,25 @@ option:hover {
     padding: 24px;
     overflow-y: scroll;
 }
-.scrollbar { 
+
+.scrollbar {
     width: 250px;
     height: 250px;
-    overflow-y: scroll; /*  */
-  }
-  
-  /* 스크롤바의 폭 너비 */
-  .codeExam_examContent::-webkit-scrollbar {
-      width: 5px;  
-  }
-  
-  .codeExam_examContent::-webkit-scrollbar-thumb {
-      background: #1B3455; /* 스크롤바 색상 */
-      border-radius: 12px; /* 스크롤바 둥근 테두리 */
-  }
-  
-  .codeExam_examContent::-webkit-scrollbar-track {
-      /* background: #8CA9BF;  스크롤바 뒷 배경 색상 */
-      /* border-radius: 12px; */
-  }
+    overflow-y: scroll;
+    /*  */
+}
+
+/* 스크롤바의 폭 너비 */
+.codeExam_examContent::-webkit-scrollbar {
+    width: 5px;
+}
+
+.codeExam_examContent::-webkit-scrollbar-thumb {
+    background: #1B3455;
+    /* 스크롤바 색상 */
+    border-radius: 12px;
+    /* 스크롤바 둥근 테두리 */
+}
 
 .codeExam_examTitle {
     /* font 속성 */
@@ -581,7 +795,9 @@ option:hover {
     flex-direction: column;
     flex-basis: auto;
     width: 100%;
+    min-width: 300px;
     box-sizing: border-box;
+    /* padding: 32px 32px; */
     /* 문제 창 애니메이션 CSS */
     /* 애니메이션(좌->우)를 위한 position */
     /* transform: translateX(-100%);
@@ -618,9 +834,12 @@ option:hover {
     /* background-color: red; */
 
     box-sizing: border-box;
-    padding: 32px 32px 0 32px;
+    /* padding: 32px 32px 0 32px; */
     position: relative;
     overflow: hidden;
+    margin: 32px 32px 16px 32px;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 
@@ -628,18 +847,20 @@ option:hover {
 .codeExam_boxesHide {
     /* 기존 스타일 */
     position: absolute;
-    
-    width: calc(100% - 64px);
-    height: calc(100% - 32px);
+    width: calc(100%);
+    height: calc(100%);
+    /* width: calc(100% - 64px);
+    height: calc(100% - 32px); */
     background-color: #D83B44;
     z-index: 1;
-    margin: 0 32px 32px 0;
+    /* margin: 0 32px 32px 0; */
     border-radius: 12px;
     box-sizing: border-box;
 
     /* 애니메이션 추가 */
     animation: slideEffect 1s forwards;
 }
+
 /* 정답 가리기 드래그앤 드롭이벤트 */
 /* @keyframes slideEffect {
     from {
@@ -660,7 +881,6 @@ option:hover {
     align-items: center;
     box-sizing: border-box;
     z-index: 1;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 
 }
 
@@ -677,34 +897,90 @@ option:hover {
 
 /* 결과 시연창 전체 사이즈 조절 */
 .codeExam_resultContainer {
-    height: 50%;
+    height: 45%;
     flex-grow: 1;
     box-sizing: border-box;
-    padding: 16px 32px 32px 32px;
-    
+    /* padding-top: 16px; */
+    margin: 0 32px 32px 32px;
+    /* overflow-y: scroll; */
+
 }
 
 /* 코드 결과 창 사이즈 조절 */
+.codeExam_resultSize {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    padding: 12px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
 .codeExam_resultSize,
 .codeExam_resultDiv {
     height: 100%;
 }
-.codeExam_resultDiv{
-    overflow-y: scroll;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+/* 코드 결과창 코드 반영 및 코드 저장 버튼 */
+.codeExam_StartAndSave{
+    display: flex;
+    justify-content: space-between;
 }
+/* 코드예제 실행버튼 CSS */
+.codeExam_StartAndSave>button{
+    all: unset;
+    text-transform:uppercase;
+    margin: 0 8px 8px 0;
+    padding: 8px 12px;
+    border-radius: 16px;
+    background-color: #3e3e3e;
+    color: white;
+    font-size: 0.8rem;
+}
+.codeExam_StartAndSave>button:active{
+    background-color: #212121;
+}
+/* 코딩 예제 save  */
+/* 코드 결과창 스크롤 및 그림자 설정 */
+.codeExam_resultDiv {
+    /* padding: 12px; */
+    /* overflow-y: scroll; */
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
 .codeExam_resultDiv::-webkit-scrollbar {
-    width: 5px;  
+    width: 5px;
 }
 
 .codeExam_resultDiv::-webkit-scrollbar-thumb {
-    background: #1B3455; /* 스크롤바 색상 */
-    border-radius: 12px; /* 스크롤바 둥근 테두리 */
+    background: #1B3455;
+    /* 스크롤바 색상 */
+    border-radius: 12px;
+    /* 스크롤바 둥근 테두리 */
 }
 
-.codeExam_resultSize {
-    background-color: white;
-    border-radius: 12px;
+/* 코드 결과창 html데이터 삽입 */
+.codeExam_resultDiv::after {
+    content: attr(data-value);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.codeExam_resultDiv.show::after {
+    opacity: 1;
+}
+/* 시연창 iframe CSS */
+.codeExam_resultDiv>iframe{
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow-y: scroll;
 }
 
 /* 코드 언어별 창 디자인 */
@@ -715,19 +991,21 @@ option:hover {
     flex-direction: column;
 }
 
+
 /* 코드창 코드 언어 사이즈 */
 .codeExam_codeLanguage {
     /* border-bottom: solid 1px rgb(57, 57, 57); */
-    padding: 16px 0 8px 0;
+    padding-bottom: 16px;
     margin: 0 32px;
 
     color: white;
     font-weight: 600;
+
 }
 
 .codeExam_codeContent-Size {
     width: 100%;
-    height: 100%;
+    height: calc(100% - 16px);
     /* background-color: red; */
     box-sizing: border-box;
     border-radius: 12px;
@@ -750,24 +1028,34 @@ option:hover {
     width: 100%;
     height: 100%;
     background-color: #363636;
+    box-sizing: border-box;
+    padding: 8px;
 
     border-radius: 12px;
 }
 
-
-
-.main_floating_font{
-    /* z-index: 999; */
+.codeExam_codeContent textarea {
     width: 100%;
     height: 100%;
-    color:#92b8b1;
-    opacity: 0.2;
-    font-size:20px;
-
+    background-color: #363636;
+    color: white;
+    font-size: 9px;
+    padding: 0;
+    width: 100%;
+    /* 전체 너비를 채우기 위해 */
+    box-sizing: border-box;
+    /* 패딩과 테두리 포함한 전체 크기 유지 */
+    white-space: pre-wrap;
+    /* 줄바꿈과 공백 유지 */
+    overflow-y: auto;
+    /* 스크롤바 표시 */
+    border: none;
+    resize: none;
+    overflow-y: scroll;
+    font-family: 'intelone-mono-font-family-regular';
 }
 
-
-.main_floating_p{
-    margin-top: 0;
-    margin-bottom: 2px;
+/* 코드 창 스크롤바 안보이게 */
+.codeExam_codeContent textarea::-webkit-scrollbar {
+    display: none;
 }

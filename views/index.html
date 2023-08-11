@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <title>NDBS</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -14,20 +13,20 @@
     <link rel="stylesheet" href="/css/eunwoo_style.css">
     <link rel="stylesheet" href="/css/yubin_chatbot.css">
     <link rel="stylesheet" href="/css/yubin_sidebar.css">
-    <link rel="stylesheet" href="/css/subs.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
-    <script src="/js/index.js"></script>
-    <script src="./main.js"></script>
-    <!-- 결제창을 위한 라이브러리-->
-
-
-    <!-- jQuery -->
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <!-- iamport.payment.js -->
-    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-
-    <!-- <button onclick="requestPay()">결제하기</button> -->
+    <script src="/js/eunwoo_index.js"></script>
+    <!-- 한글 타이핑 효과 -->
+    <script src="https://unpkg.com/type-hangul"></script>
+    <!-- codemirror js -->
+    <script src="/js/codemirror-5.53.2/lib/codemirror.js"></script>
+    <!-- code mirror -->
+    <script type="text/javascript"
+        src='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/codemirror.min.js'></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/mode/xml/xml.min.js"></script>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.39.0/codemirror.min.css'>
+    <script src="/js/syntax_highlight.js"></script>
     <script>
         function requestPay() {
             IMP.init('iamport');
@@ -91,12 +90,9 @@
                 });
         }
     </script>
-
-
 </head>
 
 <body>
-
     <div>
         <!-- 챗봇 -->
         <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
@@ -149,637 +145,53 @@
                 </div>
             </form>
         </div>
-        <div>
-            <div id="main_container">
+        <div id="main_container">
+            <!-- 네비게이션 -->
+            <!-- 왼쪽 : 사이드바 & 로그 -->
+            <nav id="main_navbar">
+                <div class="main_navLeft">
 
-                <div class="overlay"></div>
+                    <div id="sidebar_toggle">
+                        <!--
+            클릭 수신기로 사용되는 가짜/숨겨진 체크박스,
+            이를 통해 :checked 선택자를 사용
+            -->
+                        <input type="checkbox" />
 
+                        <!--
+            햄버거 역할을 하는 몇 개의 span 요소.
+            -->
+                        <span></span>
+                        <span></span>
+                        <span></span>
 
-                <!-- 네비게이션 -->
-                <!-- 왼쪽 : 사이드바 & 로그 -->
+                        <!--
+              사이드바는 버튼 내부에 잇어야함
+            -->
+                        <ul id="leftside">
 
-                <nav id="main_navbar">
-                    <div class="main_navLeft">
+                            <a>
+                                <li>닉네임</li>
+                            </a>
+                            <a>
+                                <li>회원정보</li>
+                            </a>
+                            <a>
+                                <li>정보</li>
+                            </a>
+                            <a href="#" class="subs_btn_open">
+                                <li>구독</li>
+                            </a>
 
-                        <div id="sidebar_toggle">
-                            <!--
-                    클릭 수신기로 사용되는 가짜/숨겨진 체크박스,
-                    이를 통해 :checked 선택자를 사용
-                    -->
-                            <input type="checkbox" />
-
-                            <!--
-                    햄버거 역할을 하는 몇 개의 span 요소.
-                    -->
-                            <span></span>
-                            <span></span>
-                            <span></span>
-
-                            <!--
-                      사이드바는 버튼 내부에 잇어야함
-                    -->
-                            <ul id="leftside">
-
-                                <a>
-                                    <li>닉네임</li>
-                                </a>
-                                <a href="http://localhost:3003/mypage" id="mypage_btn_open">
-                                    <li>회원정보</li>
-                                </a>
-                                <a>
-                                    <li>정보</li>
-                                </a>
-
-                                <!-- 구독쓰 -->
-                                <a href="#" class="subs_btn_open">
-                                    <li>구독</li>
-                                </a>
-
-                            </ul>
-                        </div>
-                        <div class="main_nav_logo">
-                            <a href="http://localhost:3003/index">NDB</a>
-
-                        </div>
-                        <div class="main_navMiddle">
-
-                            <div id="main_navSearchbar" class="main_search">
-                                <select name="main_language" id="" class="main_searchLanguage"
-                                    style="width:50px;height:30px;">
-                                    <option value=" ">언어</option>
-                                    <option value="html">html</option>
-                                    <option value="css">css</option>
-                                    <option value="javascript">javascript</option>
-                                    <option value="java">java</option>
-                                    <option value="python">python</option>
-                                    <option value="c_language">C언어</option>
-                                </select>
-                                <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                                <input type="text" class="main_searchBar" name="main_searchBar_Name">
-                                <!-- 자동완성 단어 리스트 -->
-                                <div class="main_autocomplete"></div>
-                                <button type="submit" class="main_search_button" onclick=select()>
-                                    <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="main_navRight">
-                        <ul class="popularSerch">
-                            <li>
-                                <span>인기 검색어</span>
-                            </li>
-                            <li>|</li>
-                            <li>
-                                <a href="#">파이썬 반복문</a>
-                            </li>
                         </ul>
-                        <div id="main_btnWrap">
-                            <!-- 로그인 버튼 -->
-                            <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
-                            <!-- 회원가입 버튼 -->
-                           
-                            <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
-                       
-                        </div>
                     </div>
-                </nav>
-                <!-- 메인 이미지 위치 조정을 위한 div -->
-                <div class="main_position"></div>
-                <div id="main_modalWrap">
-                    <div id="main_modalContent">
-                        <div id="main_modalBody">
-                            <!-- 닫기 버튼 -->
-                            <span id="main_closeBtn">&times;</span>
-                            <!-- 팝업창 내 글귀 -->
-                            <p>modal-popup 입니다.</p>
-                        </div>
+                    <div class="main_nav_logo">
+                        <a href="http://localhost:3003/index">NDB</a>
+
                     </div>
-                </div>
-                <!-- main페이지 -->
-                <div class="main_wrap">
-
-
-                    <div class="main_floating_font">
-                                
-                        <p class="main_floating_p">
-                            <MARQUEE scrollamount="8">
-                                DOCTYPE html
-                                html
-                                head
-                                    titleEvent Listener Example/title
-                                    link rel="stylesheet" type="text/css" href="styles.css">
-                                /head>
-                                body>
-                                    button id="myButton">Click Me!/button>
-                                
-                                   <script src="script.js"></script>
-                                /body>
-                                /html></MARQUEE>
-                            <!-- 크기 조절 -->
-                        </p>
-                        <p class="main_floating_p">
-                            <MARQUEE scrollamount="4">function solution(arr) { let sumArr = 0; for (let i = 0; i < arr.length; i++) { sumArr += arr[i]; } let avgArr = sumArr / arr.length; return avgArr; }</MARQUEE>
-                            <!-- 움직이는 텍스트 -->
-                        </p>
-                        <p class="main_floating_p">        
-                        <MARQUEE scrolldelay="90"> Get the button element
-                                var button = document.getElementById("myButton");
-                                
-                                 Add event listener to the button
-                                button.addEventListener("click", function() {
-                                    alert("Hello, World!");
-                                });</MARQUEE>
-                            <!-- 스크롤의 속도-->
-                        </p>
-                    
-                       
-                        <p class="main_floating_p">
-                        <MARQUEE  scrollamount="5">import java.util.Scanner;
- 
-                            public class Main {
-                                public static void main(String[] args) {
-                                    Scanner scanner = new Scanner(System.in);
-                                    System.out.print("숫자를 입력하세요: ");
-                                    int n = scanner.nextInt();
-                            
-                                    for (int i = 0; i < n; i++) {
-                                        for (int j = 0; j <= i; j++) {
-                                            System.out.print("*");
-                                        }
-                                        System.out.println();
-                                    }
-                                }
-                            }</MARQUEE>
-                      
-
-                        <p class="main_floating_p">
-                            <MARQUEE  scrollamount="6">
-                                #include stdio.h
-                                    #include stdlib.h
-                                    
-                                    int main() {
-                                        int num_students;
-                                        printf("학생 수를 입력하세요: ");
-                                        scanf("%d", &num_students);
-                                    
-                                        // 2차원 포인터 배열 동적 할당
-                                        char** students = (char**)malloc(num_students * sizeof(char*));
-                                        for (int i = 0; i < num_students; i++) {
-                                            students[i] = (char*)malloc(20 * sizeof(char));
-                                        }
-                                    
-                                        // 학생들의 이름과 성적 입력 받기
-                                        for (int i = 0; i < num_students; i++) {
-                                            printf("학생 %d의 이름을 입력하세요: ", i + 1);
-                                            scanf("%s", students[i]);
-                                            printf("학생 %d의 성적을 입력하세요: ", i + 1);
-                                            int score;
-                                            scanf("%d", &score);
-                                        }
-                                    
-                                        // 입력된 학생들의 이름과 성적 출력하기
-                                        printf("입력된 학생들의 이름과 성적은 다음과 같습니다:\n");
-                                        for (int i = 0; i < num_students; i++) {
-                                            printf("학생 %d: 이름 - %s, 성적 - %d\n", i + 1, students[i], score);
-                                        }
-                                    
-                                        // 2차원 포인터 배열 메모리 해제
-                                        for (int i = 0; i < num_students; i++) {
-                                            free(students[i]);
-                                        }
-                                        free(students);
-                                    
-                                        return 0;
-                                    }</MARQUEE>
-                            <!-- 스크롤의 속도 -->
-                            </p>
-
-
-                        </p>
-
-                    <p class="main_floating_p">
-                    <MARQUEE behavior="scroll" scrollamount="9">body {
-                        text-align: center;
-                    }
-                    
-                    button {
-                        padding: 10px 20px;
-                        font-size: 16px;
-                    }</MARQUEE>
-                    <!-- 스크롤의 속성 -->
-                    </p>
-                  
-                    <p class="main_floating_p">
-                        <MARQUEE scrollamount="8">
-                            DOCTYPE html
-                            html
-                            head
-                                titleEvent Listener Example/title
-                                link rel="stylesheet" type="text/css" href="styles.css">
-                            /head>
-                            body>
-                                button id="myButton">Click Me!/button>
-                            
-                                script src="script.js"></script>
-                            /body>
-                            /html></MARQUEE>
-                        <!-- 크기 조절 -->
-                    </p>
-                    <p class="main_floating_p">
-                        <MARQUEE scrollamount="4">function solution(arr) { let sumArr = 0; for (let i = 0; i < arr.length; i++) { sumArr += arr[i]; } let avgArr = sumArr / arr.length; return avgArr; }</MARQUEE>
-                        <!-- 움직이는 텍스트 -->
-                    </p>
-                    <p class="main_floating_p">        
-                    <MARQUEE scrolldelay="90"> Get the button element
-                            var button = document.getElementById("myButton");
-                            
-                             Add event listener to the button
-                            button.addEventListener("click", function() {
-                                alert("Hello, World!");
-                            });</MARQUEE>
-                        <!-- 스크롤의 속도-->
-                    </p>
-                
-                   
-                    <p class="main_floating_p">
-                    <MARQUEE  scrollamount="5">import java.util.Scanner;
-
-                        public class Main {
-                            public static void main(String[] args) {
-                                Scanner scanner = new Scanner(System.in);
-                                System.out.print("숫자를 입력하세요: ");
-                                int n = scanner.nextInt();
-                        
-                                for (int i = 0; i < n; i++) {
-                                    for (int j = 0; j <= i; j++) {
-                                        System.out.print("*");
-                                    }
-                                    System.out.println();
-                                }
-                            }
-                        }</MARQUEE>
-                    <p class="main_floating_p">
-                        <MARQUEE  scrollamount="5">import java.util.Scanner;
-    
-                            public class Main {
-                                public static void main(String[] args) {
-                                    Scanner scanner = new Scanner(System.in);
-                                    System.out.print("숫자를 입력하세요: ");
-                                    int n = scanner.nextInt();
-                                    for (int i = 0; i < n; i++) {
-                                        for (int j = 0; j <= i; j++) {
-                                            System.out.print("*");
-                                        }
-                                        System.out.println();
-                                    }
-                                }
-                            }</MARQUEE>
-                        </P>
-
-                    <p class="main_floating_p">
-                        <MARQUEE  scrollamount="5">#include <stdio.h>
-
-                            int main() {
-                                int i, j; 
-                                // 구구단 출력
-                                for(i = 1; i <= 9; i++) { 
-                                    for(j = 1; j <= 9; j++) { 
-                                        printf("%d x %d = %d\n", i, j, i * j);
-                                    }
-                                    printf("\n"); 
-                                }
-                                return 0;
-                            }</MARQUEE>
-                        </P>
-                        
-                        <p class="main_floating_p">
-                            <MARQUEE  scrollamount="5">#include <stdio.h>
-    
-                                function solution(n) {
-                                    let array = String(n).split('');
-                                    array.sort((a, b) => b - a);
-                                    let result = parseInt(array.join(''));
-                                    return result;
-                                }
-                                console.log(solution(118372)); </MARQUEE>
-                            </P>
-                            <p class="main_floating_p">
-                                <MARQUEE  scrollamount="6">#include <stdio.h>
-                                    #include <stdio.h>
-                                        #define MOD 1000000007
-                                        int solution(int m, int n, int** puddles, int puddlesSize) {
-                                            int dp[101][101] = {0,};  // 경로의 수를 저장하는 배열
-                                            // 물에 잠긴 지역을 -1로 표시
-                                            for (int i = 0; i < puddlesSize; i++) {
-                                                dp[puddles[i][0]][puddles[i][1]] = -1;
-                                            }
-                                            // 집 위치 설정
-                                            dp[1][1] = 1;
-                                            for (int i = 1; i <= m; i++) {
-                                                for (int j = 1; j <= n; j++) {
-                                                    // 물에 잠긴 지역 또는 집은 스킵
-                                                    if (dp[i][j] == -1 || (i == 1 && j == 1)) continue;
-                                                    // 왼쪽과 위쪽에서 올 수 있는 경로의 수를 더합니다. (물에 잠긴 지역이 아닌 경우)
-                                                    if (dp[i - 1][j] != -1) dp[i][j] += dp[i - 1][j] % MOD;
-                                                    if (dp[i][j - 1] != -1) dp[i][j] += dp[i][j - 1] % MOD;
-                                                }
-                                            }
-                                            return dp[m][n] % MOD;
-                                        }
-                                        int main() {
-                                            int m = 4, n = 3;
-                                            int puddlesSize = 2;
-                                            int* puddles[2];
-                                            int puddle1[2] = {2, 2};
-                                            int puddle2[2] = {3, 2};
-                                            puddles[0] = puddle1;
-                                            puddles[1] = puddle2;
-                                            int answer = solution(m, n, puddles, puddlesSize);
-                                            printf("%d\n", answer);  // 결과 출력
-                                            return 0;
-                                        }
-                                         </MARQUEE>
-                                </P>
-                                <p class="main_floating_p">
-                                    <MARQUEE  scrollamount="7">#include <stdio.h>
-                                        #include <stdbool.h>
-                                        #include <stdlib.h>
-                                        
-                                        int* solution(int n, int s) {
-                                            if (s < n) {
-                                                int* answer = (int*)malloc(sizeof(int));
-                                                answer[0] = -1;
-                                                return answer;
-                                            }
-                                            
-                                            int* answer = (int*)malloc(sizeof(int) * n);
-                                            for(int i = 0; i < n; i++) {
-                                                answer[i] = s / n;
-                                            }
-                                            
-                                            for(int i = n - 1; i >= 0 && s > 0; i--) {
-                                                while(answer[i] < s / n + s % n) {
-                                                    answer[i]++;
-                                                    s--;
-                                                }
-                                            }
-                                            
-                                            return answer;
-                                        }
-                                        
-                                        int main() {
-                                            int n = 2;
-                                            int s = 8;
-                                            int* result = solution(n, s);
-                                            for(int i = 0; i < n; i++) {
-                                                printf("%d ", result[i]);
-                                            }
-                                            free(result);
-                                            return 0;
-                                        }
-                                        
-                                             </MARQUEE>
-                                    </P>
-
-                                    <p class="main_floating_p">
-                                        <MARQUEE  scrollamount="5">
-                                            const query = "SELECT DATETIME AS 시간 FROM ANIMAL_INS ORDER BY DATETIME LIMIT 1";
-                                             </MARQUEE>
-                                        </P>
-                                        <p class="main_floating_p">
-                                            <MARQUEE  scrollamount="7">
-                                                #include <iostream>
-                                                    #include <vector>
-                                                    #include <queue>
-                                                    #include <cstring>
-                                                    
-                                                    #define MAX_SIZE 25
-                                                    #define INF 987654321
-                                                    
-                                                    using namespace std;
-                                                    
-                                                    int dx[] = {0, 1, 0, -1}; // 오른쪽, 아래, 왼쪽, 위쪽
-                                                    int dy[] = {1, 0, -1, 0};
-                                                    
-                                                    struct Car {
-                                                        int x, y, cost, direction;
-                                                    };
-                                                    
-                                                    int solution(vector<vector<int>> board) {
-                                                        int n = board.size();
-                                                        int answer = INF;
-                                                        int cost[MAX_SIZE][MAX_SIZE];
-                                                    
-                                                        for(int i = 0; i < n; i++)
-                                                            for(int j = 0; j < n; j++)
-                                                                cost[i][j] = INF;
-                                                    
-                                                        queue<Car> q;
-                                                        q.push({0, 0, 0, -1}); // 시작점, 비용은 0, 시작 방향은 없음(-1)
-                                                    
-                                                        while(!q.empty()) {
-                                                            Car car = q.front();
-                                                            q.pop();
-                                                    
-                                                            if(car.x == n - 1 && car.y == n - 1) { // 도착점에 도달하면 최소 비용 갱신
-                                                                answer = min(answer, car.cost);
-                                                                continue;
-                                                            }
-                                                    
-                                                            for(int i = 0; i < 4; i++) {
-                                                                int nx = car.x + dx[i];
-                                                                int ny = car.y + dy[i];
-                                                    
-                                                                if(nx < 0 || ny < 0 || nx >= n || ny >= n || board[nx][ny] == 1) continue; // 범위 벗어나거나 벽이면 건너뛰기
-                                                    
-                                                                int newCost = car.cost;
-                                                    
-                                                                if(car.direction == -1 || car.direction == i) newCost += 100; // 같은 방향 또는 시작점일 경우
-                                                                else if(car.direction != i) newCost += 600; // 방향이 바뀌는 경우
-                                                    
-                                                                if(cost[nx][ny] >= newCost) { // 이전에 계산된 비용보다 작거나 같을 경우에만 큐에 추가
-                                                                    cost[nx][ny] = newCost;
-                                                                    q.push({nx, ny, newCost, i});
-                                                                }
-                                                            }
-                                                        }
-                                                    
-                                                        return answer;
-                                                    }
-                                                    
-                                                    int main() {
-                                                        vector<vector<int>> board = {
-                                                            {0,0,0},
-                                                            {0,0,0},
-                                                            {0,0,0}
-                                                        };
-                                                    
-                                                        cout << solution(board) << endl; // 900 출력
-                                                        return 0;
-                                                    }
-                                                 </MARQUEE>
-                                            </P>    
-                                            <p class="main_floating_p">
-                                                <MARQUEE  scrollamount="4">import java.util.Scanner;
-                            
-                                                    public class Main {
-                                                        public static void main(String[] args) {
-                                                            Scanner scanner = new Scanner(System.in);
-                                                            System.out.print("숫자를 입력하세요: ");
-                                                            int n = scanner.nextInt();
-                                                            for (int i = 0; i < n; i++) {
-                                                                for (int j = 0; j <= i; j++) {
-                                                                    System.out.print("*");
-                                                                }
-                                                                System.out.println();
-                                                            }
-                                                        }
-                                                    }</MARQUEE>
-                                                </P>
-                                                <p class="main_floating_p">
-                                                    <MARQUEE  scrollamount="6">#include <stdio.h>
-                                                        #include <stdio.h>
-                                                            #define MOD 1000000007
-                                                            int solution(int m, int n, int** puddles, int puddlesSize) {
-                                                                int dp[101][101] = {0,};  // 경로의 수를 저장하는 배열
-                                                                // 물에 잠긴 지역을 -1로 표시
-                                                                for (int i = 0; i < puddlesSize; i++) {
-                                                                    dp[puddles[i][0]][puddles[i][1]] = -1;
-                                                                }
-                                                                // 집 위치 설정
-                                                                dp[1][1] = 1;
-                                                                for (int i = 1; i <= m; i++) {
-                                                                    for (int j = 1; j <= n; j++) {
-                                                                        // 물에 잠긴 지역 또는 집은 스킵
-                                                                        if (dp[i][j] == -1 || (i == 1 && j == 1)) continue;
-                                                                        // 왼쪽과 위쪽에서 올 수 있는 경로의 수를 더합니다. (물에 잠긴 지역이 아닌 경우)
-                                                                        if (dp[i - 1][j] != -1) dp[i][j] += dp[i - 1][j] % MOD;
-                                                                        if (dp[i][j - 1] != -1) dp[i][j] += dp[i][j - 1] % MOD;
-                                                                    }
-                                                                }
-                                                                return dp[m][n] % MOD;
-                                                            }
-                                                            int main() {
-                                                                int m = 4, n = 3;
-                                                                int puddlesSize = 2;
-                                                                int* puddles[2];
-                                                                int puddle1[2] = {2, 2};
-                                                                int puddle2[2] = {3, 2};
-                                                                puddles[0] = puddle1;
-                                                                puddles[1] = puddle2;
-                                                                int answer = solution(m, n, puddles, puddlesSize);
-                                                                printf("%d\n", answer);  // 결과 출력
-                                                                return 0;
-                                                            }
-                                                             </MARQUEE>
-                                                             </P>
-                                                             <p class="main_floating_p">
-                                                                <MARQUEE  scrollamount="4">#include <stdbool.h>
-                                                                    bool solution(int x) {
-                                                                        int temp = x;
-                                                                        int sum = 0;
-                                                                        while(temp > 0) {
-                                                                            sum += temp % 10;
-                                                                            temp /= 10;
-                                                                        }
-                                                                        return x % sum == 0;
-                                                                    }
-                                                                    </MARQUEE>
-                                                                </P>
-                                                                <p class="main_floating_p">
-                                                                    <MARQUEE  scrollamount="7">#include <stdio.h>
-                                                                        #include <stdbool.h>
-                                                                        #include <stdlib.h>
-                                                                        
-                                                                        int* solution(int n, int s) {
-                                                                            if (s < n) {
-                                                                                int* answer = (int*)malloc(sizeof(int));
-                                                                                answer[0] = -1;
-                                                                                return answer;
-                                                                            }
-                                                                            
-                                                                            int* answer = (int*)malloc(sizeof(int) * n);
-                                                                            for(int i = 0; i < n; i++) {
-                                                                                answer[i] = s / n;
-                                                                            }
-                                                                            
-                                                                            for(int i = n - 1; i >= 0 && s > 0; i--) {
-                                                                                while(answer[i] < s / n + s % n) {
-                                                                                    answer[i]++;
-                                                                                    s--;
-                                                                                }
-                                                                            }
-                                                                            
-                                                                            return answer;
-                                                                        }
-                                                                        
-                                                                        int main() {
-                                                                            int n = 2;
-                                                                            int s = 8;
-                                                                            int* result = solution(n, s);
-                                                                            for(int i = 0; i < n; i++) {
-                                                                                printf("%d ", result[i]);
-                                                                            }
-                                                                            free(result);
-                                                                            return 0;
-                                                                        }
-                                                                        
-                                                                             </MARQUEE>
-                                                                    </P>
-                                                                    <p class="main_floating_p">
-                                                                        <MARQUEE  scrollamount="6">#include <stdio.h>
-                                                                            #include <stdio.h>
-                                                                                #define MOD 1000000007
-                                                                                int solution(int m, int n, int** puddles, int puddlesSize) {
-                                                                                    int dp[101][101] = {0,};  // 경로의 수를 저장하는 배열
-                                                                                    // 물에 잠긴 지역을 -1로 표시
-                                                                                    for (int i = 0; i < puddlesSize; i++) {
-                                                                                        dp[puddles[i][0]][puddles[i][1]] = -1;
-                                                                                    }
-                                                                                    // 집 위치 설정
-                                                                                    dp[1][1] = 1;
-                                                                                    for (int i = 1; i <= m; i++) {
-                                                                                        for (int j = 1; j <= n; j++) {
-                                                                                            // 물에 잠긴 지역 또는 집은 스킵
-                                                                                            if (dp[i][j] == -1 || (i == 1 && j == 1)) continue;
-                                                                                            // 왼쪽과 위쪽에서 올 수 있는 경로의 수를 더합니다. (물에 잠긴 지역이 아닌 경우)
-                                                                                            if (dp[i - 1][j] != -1) dp[i][j] += dp[i - 1][j] % MOD;
-                                                                                            if (dp[i][j - 1] != -1) dp[i][j] += dp[i][j - 1] % MOD;
-                                                                                        }
-                                                                                    }
-                                                                                    return dp[m][n] % MOD;
-                                                                                }
-                                                                                int main() {
-                                                                                    int m = 4, n = 3;
-                                                                                    int puddlesSize = 2;
-                                                                                    int* puddles[2];
-                                                                                    int puddle1[2] = {2, 2};
-                                                                                    int puddle2[2] = {3, 2};
-                                                                                    puddles[0] = puddle1;
-                                                                                    puddles[1] = puddle2;
-                                                                                    int answer = solution(m, n, puddles, puddlesSize);
-                                                                                    printf("%d\n", answer);  // 결과 출력
-                                                                                    return 0;
-                                                                                }
-                                                                                 </MARQUEE>
-                                                                            </P>
-                                                            
-                            </div>
-
-                    <!-- 검색창 -->
-                    <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
-                    <div class="main_searchWrap">
-                        <div class="main_text">
-                            <p>
-                                언어를 설정한 후 </br>배우고 싶은 부분을 집중 성장 시켜보세요.
-                            </p>
-                        </div>
-                        <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
-
-                        <div class="main_search">
-                            <select name="main_language" id="" class="main_searchLanguage2"
+                    <div class="main_navMiddle">
+                        <div class="main_Nav_search">
+                            <select name="main_language" id="main_navSearchbar" class="main_searchLanguage"
                                 style="width:50px;height:30px;">
                                 <option value=" ">언어</option>
                                 <option value="html">html</option>
@@ -790,16 +202,95 @@
                                 <option value="c_language">C언어</option>
                             </select>
                             <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
-                            <input type="text" class="main_searchBar2" name="main_searchBar_Name">
+                            <input type="text" class="main_searchBar" name="main_searchBar_Name">
                             <!-- 자동완성 단어 리스트 -->
                             <div class="main_autocomplete"></div>
-                            <button type="submit" class="main_search_button" onclick=select()>
+                            <button type="submit" class="main_search_button" onClick="fetchData()">
                                 <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                             </button>
-                        </div>
 
-                        <!-- 검색창 아래 태그 -->
-                        <!-- <div class="main_TagWrap">
+                        </div>
+                    </div>
+                </div>
+                <div class="main_navRight">
+                    <ul class="popularSerch">
+                        <li>
+                            <span>인기 검색어</span>
+                        </li>
+                        <li>|</li>
+                        <li>
+                            <a href="#">파이썬 반복문</a>
+                        </li>
+                    </ul>
+                    <div class="checkbox-wrapper-2">
+                        <input type="checkbox" id="main_Nav_themecheck" class="sc-gJwTLC ikxBAC" onclick='is_checked()'>
+                    </div>
+                    <div id="main_btnWrap">
+                        <!-- 로그인 버튼 -->
+                        <!-- <button type="button" class="main_loginBtn main_modalBtn">로그인</button> -->
+                        <!-- 회원가입 버튼 -->
+                        <button type="button" class="main_signupBtn main_modalBtn">log out</button>
+                    </div>
+                </div>
+            </nav>
+            <!-- 메인 이미지 위치 조정을 위한 div -->
+            <div class="main_position"></div>
+            <div id="main_modalWrap">
+                <div id="main_modalContent">
+                    <div id="main_modalBody">
+                        <!-- 닫기 버튼 -->
+                        <span id="main_closeBtn">&times;</span>
+                        <!-- 팝업창 내 글귀 -->
+                        <p>modal-popup 입니다.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- main페이지 -->
+            <div class="main_wrap main_wrap_backImg_night">
+                <!-- 검색창 -->
+                <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
+                <div class="main_searchWrap">
+                    <div class="main_NavFlex">
+                        <div class="main_NavLangDB_Wrap">
+                            <div class="main_NavLangDB_Text">
+                                <label for="main_Nav_DB"><p>DB&nbsp</p></label>
+                                <p>&nbsp|&nbsp</p>
+                                <label for="main_Nav_API"><p>&nbspAPI</p></label>
+                            </div>
+                            <div class="main_NavLangDB_Select">
+                                    <input type="radio" id="main_Nav_DB" class="main_Navwon" name="main_Nav_RadioName"></input>
+                                    <input type="radio" id="main_Nav_API" class="main_Navwon" name="main_Nav_RadioName"></input>
+                            </div>
+                        </div>
+                        <div class="main_text">
+                            <p>
+                                언어와 엔진을 설정한 후 </br>배우고 싶은 부분을 집중 성장 시켜보세요.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- [230802_예정]flex basis로 최적화 예정(현재는 width, px로 강제 지정) -->
+
+                    <div class="main_search main_search_night">
+                        <select name="main_language" id="" class="main_searchLanguage2" style="width:50px;height:30px;">
+                            <option value=" ">언어</option>
+                            <option value="html">html</option>
+                            <option value="css">css</option>
+                            <option value="javascript">javascript</option>
+                            <option value="java">java</option>
+                            <option value="python">python</option>
+                            <option value="c_language">C언어</option>
+                        </select>
+                        <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
+                        <input type="text" class="main_searchBar2" name="main_searchBar_Name">
+                        <!-- 자동완성 단어 리스트 -->
+                        <div class="main_autocomplete"></div>
+                        <button type="submit" class="main_search_button" onclick="fetchData()">
+                            <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
+                        </button>
+                    </div>
+
+                    <!-- 검색창 아래 태그 -->
+                    <!-- <div class="main_TagWrap">
                     사용자에게 추천하는 검색어 
                     <ul>
                         <li>반복문</li>
@@ -807,234 +298,138 @@
                         <li>grid</li>
                     </ul>
                 </div> -->
-                    </div>
                 </div>
             </div>
-
-
-<!------------------------------------------               구독쓰              --------------------------------------------->
-
-
-            <div class="subs_modal">
-                <div class="subs_modal_content">
-
-
-                    <div class="subs_header">
-                        <div>
-                            <h1 id="subs_title">Member of NDB</h1>
-                        </div>
-                        <div>
-                            <button class="subs_button_close">&times;</button>
-                        </div>
-
-                        <div>
-                            <p class="subs_subtitle">
-                                학습 능률을 높이는 방법! <br />
-                                "구독"으로 다양한 혜택을 누리세요! <br /><br>
-                                For month
-                            </p>
-                        </div>
-
-                    </div>
-
-                    <div class="subs_desc_content">
-                        <div class="content1 content-box">
-                            <div>
-                                <h3>Basic</h3>
-                            </div>
-                            <div class="subs_benefit">
-                                <div class="subs_price">무료</div>
-                                <ul class="subs_li">
-                                    <li>-&nbsp; 버전 업그레이드</li>
-                                    <li>-&nbsp; 테마 설정</li>
-                                    <li>-&nbsp; 예제에 대한 개념 정리</li>
-                                    <li>&nbsp;</li>
-                                    <li>&nbsp;</li>
-                                    <li>&nbsp;</li>
-                                    <li>&nbsp;</li>
-                                </ul>
-                            </div>
-
-
-                            <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
-
-                            <div class="subs_btn">
-                                <a href="http://localhost:3003/index" id="subscribe-link"><button>구독하기</button></a>
-                            </div>
-                        </div>
-
-
-
-
-
-
-                        <div class="content2 content-box">
-                            <div>
-                                <h3>Standard</h3>
-                            </div>
-                            <div class="subs_benefit">
-                                <div class="subs_price">￦5,000 </div>
-                                <ul class="subs_li">
-                                    <li>-&nbsp; 버전 업그레이드 </li>
-                                    <li>-&nbsp; 테마 설정 </li>
-
-                                    <li>-&nbsp; 예제에 대한 개념 정리</li>
-                                    <li>-&nbsp; 배너 제거 </li>
-                                    <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
-                                    <li>-&nbsp; 추천 강의 20% 할인권</li>
-                                    <li>&nbsp; </li>
-                                </ul>
-                            </div>
-                            <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
-                            <div class="subs_btn">
-                                <button onclick="requestPay()">구독하기</button>
-                            </div>
-
-                        </div>
-
-
-
-
-                        <div class="content3 content-box">
-                            <div>
-                                <h3>PRO</h3>
-                            </div>
-                            <div class="subs_benefit">
-                                <div class="subs_price">￦7,000 </div>
-                                <ul class="subs_li">
-                                    <li>-&nbsp; 버전 업그레이드 </li>
-                                    <li>-&nbsp; 테마 설정 </li>
-
-                                    <li>-&nbsp; 예제에 대한 개념 정리 </li>
-                                    <li>-&nbsp; 배너 제거 </li>
-                                    <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
-
-                                    <li>-&nbsp; 추천 강의 40% 할인권</li>
-                                    <li>-&nbsp; 인기 문제&개념 모음집PDF </li>
-                                </ul>
-                            </div>
-
-
-                            <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
-                            <div class="subs_btn">
-                                <button onclick="requestPay1()">구독하기</button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-
-
-
-            </div>
-
-
-            <div class="main_Line"></div>
-            <!-- 예제 출력 페이지 -->
-            <div id="codeExam_container">
-                <div class="codeExam_pageWrap">
-                    <!-- 예제 문제 설명 출력 -->
-                    <div class="codeExam_examWrap-Size">
-                        <div class="codeExam_examWrap">
-
-                            <div class="codeExam_examContent">
-                                <h2>최댓값과 최솟값</h2>
-                                <hr>
-                                <div class="codeExam_examDetail">
-                                    <p>문제 설명</p>
-                                    문자열 s에는 공백으로 구분된 숫자들이 저장되어 있습니다. str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 "(최소값) (최대값)"형태의
-                                    문자열을 반환하는
-                                    함수,
-                                    solution을 완성하세요.
-                                    예를들어 s가 "1 2 3 4"라면 "1 4"를 리턴하고, "-1 -2 -3 -4"라면 "-4 -1"을 리턴하면 됩니다.
-                                </div>
-                                <div class="codeExam_exam">
-                                    <p>제한 조건</p>
-                                    s에는 둘 이상의 정수가 공백으로 구분되어 있습니다.
-                                </div>
-                            </div>
-                            <div class="codeExam_examFooter"></div>
-                        </div>
-                    </div>
-                    <!-- 예제 문제 코드 출력 -->
-                    <div class="codeExam_code_wrap">
-                        <div class="codeExam_boxes">
-                            <div class="codeExam_boxesHide" draggable="true"></div>
-                            <div class="codeExam_boxesSize">
-                                <div id="html-box" class="codeExam_exambox codeExam_htmlBox">
-                                    <div class="codeExam_codePage">
-                                        <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
-                                        <div class="codeExam_codeContent-Size">
-                                            <div class="codeExam_codeContent">
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="css-box" class="codeExam_exambox codeExam_cssBox">
-                                    <div class="codeExam_codePage">
-                                        <div id="codeExam_Language" class="codeExam_codeLanguage">Css</div>
-                                        <div class="codeExam_codeContent-Size">
-                                            <div class="codeExam_codeContent"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div id="js-box" class="codeExam_exambox codeExam_jsBox">
-                                    <div class="codeExam_codePage">
-                                        <div id="codeExam_Language" class="codeExam_codeLanguage">JavaScript</div>
-                                        <div class="codeExam_codeContent-Size">
-                                            <div class="codeExam_codeContent"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- 코드 결과창 출력 _ frontend -->
-                        <div class="codeExam_resultContainer">
-                            <div class="codeExam_resultSize">
-                                <div class="codeExam_resultDiv">
-                                    <!-- <div style={dasdasd} class> -->
-                                    ""
-                                </div>
-                                <script>
-
-                                </script>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <script>
-
-           /////////////////////////////////////////////////// 구독쓰 //////////////////////////////////////////////////////
-
-                    // 열기 버튼을 클릭하면 모달 창을 보이게 하도록 이벤트 핸들러 추가
-                    $('.subs_btn_open').click(function () {
-                        $('.subs_modal, .overlay').addClass("active");
-                    });
-
-                    // 닫기 버튼을 클릭하면 모달 창이 닫히도록 이벤트 핸들러 추가
-                    $('.subs_button_close, .overlay').click(function () {
-                        $('.subs_modal, .overlay').removeClass("active");
-                    });
-
-                    //무료 구독창 클리 시 완료 문구 및 마이페이지로 이동 
-                    document.getElementById("subscribe-link").addEventListener("click", function (event) {
-                        event.preventDefault(); // 링크의 기본 동작 중단
-                        alert("구독이 완료되었습니다! Basic 회원이 되신 걸 축하드립니다!"); // 알림창 표시
-                        window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
-                    });
-
-                    document.getElementById("mypage_btn_open").addEventListener("click", function (event) {
-                        window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
-                    });
-                </script>
-            </div>
-
-
         </div>
+        <div class="main_Line"></div>
+        <!-- 예제 출력 페이지 -->
+        <div class="codeExam_container">
+            <div class="codeExam_pageWrap">
+                <!-- 예제 문제 설명 출력 -->
+                <div class="codeExam_examWrap-Size">
+                    <div class="codeExam_examWrap_night">
 
-    </div>
+                        <div class="codeExam_examContent">
+                            <h2>최댓값과 최솟값</h2>
+                            <hr>
+                            <div class="codeExam_examDetail">
+                                <p>문제 설명</p>
+                                문자열 s에는 공백으로 구분된 숫자들이 저장되어 있습니다. str에 나타나는 숫자 중 최소값과 최대값을 찾아 이를 "(최소값) (최대값)"형태의 문자열을
+                                반환하는
+                                함수,
+                                solution을 완성하세요.
+                                예를들어 s가 "1 2 3 4"라면 "1 4"를 리턴하고, "-1 -2 -3 -4"라면 "-4 -1"을 리턴하면 됩니다.
+                            </div>
+                            <div class="codeExam_exam">
+                                <p>제한 조건</p>
+                                s에는 둘 이상의 정수가 공백으로 구분되어 있습니다.
+                            </div>
+                        </div>
+                        <div class="codeExam_examFooter"></div>
+                    </div>
+                </div>
+                <!-- 예제 문제 코드 출력 -->
+                <div class="codeExam_code_wrap">
+                    <div class="codeExam_boxes">
+                        <div class="codeExam_boxesHide" draggable="true"></div>
+                        <div class="codeExam_boxesSize">
+                            <div id="html-box" class="codeExam_exambox codeExam_htmlBox">
+                                <div class="codeExam_codePage">
+                                    <div id="codeExam_Language" class="codeExam_codeLanguage">Html</div>
+                                    <div class="codeExam_codeContent-Size">
+                                        <div class="codeExam_codeContent">
+                                            <textarea cols="100" id="editing_code_html">
+
+                                            <!DOCTYPE html>
+                                            <html>
+                                            <head>
+                                              <title>별 피라미드</title>
+                                              <link rel="stylesheet" type="text/css" href="style.css">
+                                            </head>
+                                            <body>
+                                              <div id="pyramid"></div>
+                                            
+                                              <script src="script.js"></script>
+                                            </body>
+                                            </html>
+                                        
+                                            </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="css-box" class="codeExam_exambox codeExam_cssBox">
+                                <div class="codeExam_codePage">
+                                    <div id="codeExam_Language" class="codeExam_codeLanguage">Css</div>
+                                    <div class="codeExam_codeContent-Size">
+                                        <div class="codeExam_codeContent">
+                                            <textarea cols="100" id="editing_code_Css">
+
+                                                <!DOCTYPE html>
+                                                <html>
+                                                <head>
+                                                  <title>별 피라미드</title>
+                                                  <link rel="stylesheet" type="text/css" href="style.css">
+                                                </head>
+                                                <body>
+                                                  <div id="pyramid"></div>
+                                                
+                                                  <script src="script.js"></script>
+                                                </body>
+                                                </html>
+                                            
+                                                </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="js-box" class="codeExam_exambox codeExam_jsBox">
+                                <div class="codeExam_codePage">
+                                    <div id="codeExam_Language" class="codeExam_codeLanguage">JavaScript</div>
+                                    <div class="codeExam_codeContent-Size">
+                                        <div class="codeExam_codeContent">
+                                            <textarea cols="100" id="editing_code_Js">
+
+                                                <!DOCTYPE html>
+                                                <html>
+                                                <head>
+                                                  <title>별 피라미드</title>
+                                                  <link rel="stylesheet" type="text/css" href="style.css">
+                                                </head>
+                                                <body>
+                                                  <div id="pyramid"></div>
+                                                
+                                                  <script src="script.js"></script>
+                                                </body>
+                                                </html>
+                                            
+                                                </textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 코드 결과창 출력 _ frontend -->
+                    <div class="codeExam_resultContainer">
+                        <div class="codeExam_resultSize">
+                            <div class="codeExam_StartAndSave">
+                                <button>start</button>
+                                <!-- <div class="checkbox-wrapper-2">
+                                    <input type="checkbox" id="main_Nav_themecheck" class="sc-gJwTLC ikxBAC gJwTLC"
+                                        onclick='is_checked()'>
+                                </div> -->
+                                <!-- <button class="codeExam_saveExamBtn"><i class="fa-regular fa-heart" style="color: #d83b44;"></i></button> -->
+                            </div>
+                            <div class="codeExam_resultDiv">
+                                <!-- 받은 코드를 시연하는 창 -->
+                                <iframe id="main_Nav_iframe" src="/views/codeExam.html"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 </body>
 
