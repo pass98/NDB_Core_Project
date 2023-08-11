@@ -205,15 +205,6 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(selectLang)
     }   
     
-<<<<<<< HEAD
-    function onKeyUp(event) {
-        if (event.key === 'Enter') {
-            goToScroll();
-            getSearchWord();
-            console.log(document.querySelector(".main_searchBar2").value);
-        }
-    }
-=======
     // 은우 keyUp
     // function onKeyUp(event) {
     //     if (event.key === 'Enter') {
@@ -222,7 +213,6 @@ document.addEventListener("DOMContentLoaded", function () {
     //         console.log(document.querySelector(".main_searchBar2").value);
     //     }
     // }
->>>>>>> eunwoo
 
 
     document.querySelector(".main_search_button").addEventListener('click', function (e) {
@@ -302,8 +292,6 @@ document.addEventListener("DOMContentLoaded", function () {
     update_code();
     resize();
 });
-<<<<<<< HEAD
-=======
 
 let responseDB;
 function ex_1() { // DB 테이블에서 문제 제공하는 함수
@@ -947,4 +935,3 @@ function onKeyUp(event) {
         document.getElementsByClassName('main_searchbar').value = ''
     }
 }
->>>>>>> eunwoo
