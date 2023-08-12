@@ -150,15 +150,31 @@
                 <div id="mp_tab-2" class="mp_tab-content"><h2 class = 'mp_h2'>개인 정보</h2>
                     <div class="mp_output">
                     <table class ='mypagefro'>
-                        <tr><td >이름     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="이름이 표시될 곳입니다." class="mp_Info" name="ID" ></td></tr>
-                        <tr><td >비밀번호 </td><td class ='mp_myInfo'><input type="text" placeholder="비밀번호가 표시될 곳입니다." class="mp_Info" name="PW"></td><td><button id="mp_nameCh">변경</button></td></tr>
-                        <tr><td >별명     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="별명이 표시될 곳입니다." class="mp_Info" name="NICK"></td></tr>
-                        <tr><td >주소     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="주소이 표시될 곳입니다." class="mp_Info"></td></tr>
+                        <tr><td >이름     </td><td class ='mp_myInfo'><input class="mp_Info" name="ID" value="{{ name }}" placeholder="이름이 표시될 곳입니다."  ></td></tr>
+                        <tr><td >비밀번호 </td><td class ='mp_myInfo'><input class="mp_Info" name="PW" value="{{ password }}" placeholder="비밀번호가 표시될 곳입니다."  ></td><td><button id="mp_nameCh">변경</button></td></tr>
+                        <tr><td >별명     </td><td class ='mp_myInfo'><input class="mp_Info" name="NICK" value="{{ id }}" placeholder="별명이 표시될 곳입니다." ></td></tr>
+                        <tr><td >주소     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="주소가 표시될 곳입니다." class="mp_Info"></td></tr>
                     </table>
                     </div>
                     </form>
-                </div>    
-                <div id="mp_tab-3" class="mp_tab-content"><h2 class = 'mp_h2'>결제 정보</h2><div class="mp_output"></div></div>
+                </div> 
+                <!-- 결제 정보에 member_lv에 따라 이미지가 출력되도록 조정  -->
+                <div id="mp_tab-3" class="mp_tab-content">
+                    <h2 class='mp_h2'>결제 정보</h2>
+                    <div class="mp_output">
+                        {% if member_lv == "BASIC" %}
+                            <!-- Here, insert the information related to BASIC membership -->
+                            <img src="/img/BASIC.png" alt="BASIC Membership Image">
+                        {% elif member_lv == "pro" %}
+                            <!-- Here, insert the information related to PRO membership -->
+                            <img src="/img/PRO.png" alt="PRO Membership Image">
+                            
+                        {% elif member_lv == "STANDARD" %}
+                            <!-- Here, insert the information related to STANDARD membership -->
+                            <img src="/img/STANDARD.png" alt="STANDARD Membership Image">
+                        {% endif %}
+                    </div>
+                </div>
                 <div id="mp_tab-4" class="mp_tab-content"><h2 class = 'mp_h2'>현재 등급</h2><div class="mp_output"></div></div>
                 <div id="mp_tab-5" class="mp_tab-content"><h2 class = 'mp_h2'>문의할 사항</h2><div class="mp_output" id="mp_questiontext"><textarea name=""  cols="80" rows="20" id="mp_question"></textarea><input type="submit"></div></div>
                 <div id="mp_tab-6" class="mp_tab-content"><h2 class = 'mp_h2'>탈퇴 하기</h2><div class="mp_output" id="mp_secession">
@@ -207,10 +223,10 @@
                 <div class="subs_desc_content">
                     <div class="content1 content-box">
                         <div>
-                            <h3>Basic</h3>
+                            <h3>BASIC</h3>
                         </div>
                         <div class="subs_benefit">
-                            <div class="subs_price">무료</div>
+                            <!-- <div class="subs_price">무료</div> -->
                             <ul class="subs_li">
                                 <li>-&nbsp; 버전 업그레이드</li>
                                 <li>-&nbsp; 테마 설정</li>
@@ -232,10 +248,10 @@
     
                     <div class="content2 content-box">
                         <div>
-                            <h3>Standard</h3>
+                            <h3>STANDARD</h3>
                         </div>
                         <div class="subs_benefit">
-                            <div class="subs_price">￦5,000 </div>
+                            <!-- <div class="subs_price">￦5,000 </div> -->
                             <ul class="subs_li">
                                 <li>-&nbsp; 버전 업그레이드 </li>
                                 <li>-&nbsp; 테마 설정 </li>
@@ -259,7 +275,7 @@
                             <h3>PRO</h3>
                         </div>
                         <div class="subs_benefit">
-                            <div class="subs_price">￦7,000 </div>
+                            <!-- <div class="subs_price">￦7,000 </div> -->
                             <ul class="subs_li">
                                 <li>-&nbsp; 버전 업그레이드 </li>
                                 <li>-&nbsp; 테마 설정 </li>
