@@ -1,6 +1,7 @@
 const express = require("express");
 const nunjucks = require("nunjucks");
 const session = require("express-session");
+
 const passport = require("passport");
 const path = require("path");
 const app = express();
@@ -37,5 +38,3 @@ app.use(indexRouter);
 app.listen(3003, () => {
   console.log("서버가 3003번 포트에서 실행 중입니다.");
 });
-
-

@@ -1,15 +1,26 @@
 const express = require("express");
 const session = require("express-session");
 const router = express.Router();
+const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const KakaoStrategy = require("passport-kakao").Strategy; // passport-kakao 모듈을 추가해야 합니다.
 const GitHubStrategy = require("passport-github2").Strategy;
 const bodyParser = require("body-parser");
 const db = require("../config/datebase");
+const app = express();
 let conn = db.init();
 
-const app = express();
+app.use(
+  session({
+    secret: "your-secret-key", // 세션 암호화를 위한 비밀키
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 // 구글 OAuth 2.0 클라이언트 ID와 시크릿 설정
 const GOOGLE_CLIENT_ID =
   "387069556796-pal9i13mtuj16inovquf5h4ucs8s926d.apps.googleusercontent.com"; // 여기에 발급받은 클라이언트 ID 입력
@@ -243,8 +254,8 @@ router.post("/login", (req, res) => {
     conn.query(query, [email, password], (err, results) => {
       if (!err && results.length === 1) {
         console.log("쿼리문 실행");
-
-        req.session.loggedInUser = email;
+        res.cookie("loggedInUser", email); // 쿠키에 로그인 정보 저장
+        req.session.loggedInUserEmail = email; // 세션에 이메일 저장
 
         // 로그인 성공 시 index.html 페이지로 이동
         res.render("index.html");
@@ -259,6 +270,7 @@ router.post("/login", (req, res) => {
         </head>
         <body>
             <script>
+            
                 alert('로그인 실패. 이메일 또는 비밀번호가 잘못되었습니다.');
                 window.location="http://localhost:3003/login";
             </script>
@@ -270,4 +282,16 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+app.get("/index", (req, res) => {
+  if (req.session.loggedInUserEmail) {
+    const storedEmail = req.session.loggedInUserEmail;
+    // 세션에 저장된 이메일을 사용하여 작업 수행
+    console.log("세션에 저장된 이메일:", storedEmail);
+  } else {
+    console.log("세션에 이메일이 없습니다.");
+  }
+  // ...
+});
+
 module.exports = router;
