@@ -44,54 +44,56 @@
         <!-- 챗봇 -->
         <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
 
-        <!-- 챗봇 대화창 컨테이너 -->
-        <div class="chat-container" id="chat-container">
-            <!-- 챗봇 헤더 -->
-
-            <div class="chat-header">
-                <div class="header-title" onclick="toggleChat()">NDB</div>
-                <button onclick="back()" id="back-button" style="display: none;">뒤로 가기</button>
-            </div>
-            <!-- 버튼 컨테이너 -->
-            <div class="button-container" id="button-container">
-                <p>안녕하세요.<br />
-                    NDB입니다.<br />
-                    무엇을 도와드릴까요?</p>
-                <button onclick="openChat()">질문하기</button>
-                <button onclick="openReview()">별점 리뷰하기</button>
-            </div>
-
-            <!-- 챗봇 몸체 -->
-            <div class="chat-body" id="chat-body" style="display: none;">
-                <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
-                <div class="message bot-message">
-                    <div class="content">질문을 입력해주세요!</div>
-                </div>
-            </div>
-
-            <!-- 사용자 입력창 -->
-            <div class="chat-input" id="chat-input" style="display: none;">
-                <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
-                <button onclick="sendMessage()">전송</button>
-            </div>
-
-            <!-- 별점리뷰 -->
-            <form class="mb-3" name="myform" id="myform" method="post" style="display: none;">
-                <fieldset>
-
-                    <input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
-                    <input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★</label>
-                    <input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
-                    <input type="radio" name="reviewStar" value="2" id="rate4"><label for="rate4">★</label>
-                    <input type="radio" name="reviewStar" value="1" id="rate5"><label for="rate5">★</label>
-                    <p class="text-bold">별점을 선택해주세요</p>
-                </fieldset>
-                <div class="button-wrapper">
-                    <textarea id="reviewContents" name="reviewContents" placeholder="리뷰를 작성해주세요."></textarea>
-                    <button class="reviewbutton" type="submit">리뷰 제출</button>
-                </div>
-            </form>
+    <!-- 챗봇 대화창 컨테이너 -->
+    <div class="chat-container" id="chat-container">
+        <!-- 챗봇 헤더 -->
+      
+        <div class="chat-header">
+            <div class="header-title" onclick="toggleChat()">X</div>
+            
+            <button onclick="back()" id="back-button" style="display: none;">〈</button>
+            <div class="chat-logo">NDB</div>
         </div>
+        <!-- 버튼 컨테이너 -->
+        <div class="button-container" id="button-container">
+            <p>안녕하세요.<br />
+                NDB입니다.<br />
+                무엇을 도와드릴까요?</p>
+            <button onclick="openChat()">질문하기</button>
+            <button onclick="openReview()">별점 리뷰하기</button>
+        </div>
+
+        <!-- 챗봇 몸체 -->
+        <div class="chat-body" id="chat-body" style="display: none;">
+            <!-- 챗봇 응답 메시지 (기본 환영 메시지) -->
+            <div class="message bot-message">
+                <div class="content">질문을 입력해주세요!</div>
+            </div>
+        </div>
+
+        <!-- 사용자 입력창 -->
+        <div class="chat-input" id="chat-input" style="display: none;">
+            <input type="text" id="user-input" placeholder="메시지를 입력하세요" onkeydown="handleKeyDown(event)">
+            <button onclick="sendMessage()">전송</button>
+        </div>
+
+<!-- 별점리뷰 -->
+        <form class="mb-3" name="myform" id="myform" method="post" style="display: none;">
+            <fieldset>
+                
+                <input type="radio" name="reviewStar" value="5" id="rate1"><label for="rate1">★</label>
+                <input type="radio" name="reviewStar" value="4" id="rate2"><label for="rate2">★</label>
+                <input type="radio" name="reviewStar" value="3" id="rate3"><label for="rate3">★</label>
+                <input type="radio" name="reviewStar" value="2" id="rate4"><label for="rate4">★</label>
+                <input type="radio" name="reviewStar" value="1" id="rate5"><label for="rate5">★</label>
+                <p class="text-bold">별점을 선택해주세요</p>
+            </fieldset>
+            <div class="button-wrapper">
+                <textarea id="reviewContents" name="reviewContents" placeholder="리뷰를 작성해주세요."></textarea>
+                <button class="rievewbutton" type="submit">리뷰 제출</button>
+            </div>
+        </form>
+</div>
         <div id="main_container">
             <!-- 네비게이션 -->
             <!-- 왼쪽 : 사이드바 & 로그 -->
