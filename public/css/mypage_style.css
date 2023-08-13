@@ -663,8 +663,8 @@ h2,h3{
     /* border-width: 2px;
     border-style: outset;
     border-color: buttonborder;
-    border-image: initial; */
-    display:inline-block;
+    border-image: initial; 
+    display:inline-block;*/
 }
 
 .subs_desc_content{
