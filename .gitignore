@@ -1,1 +1,4 @@
 node_modules
+
+# codemirror파일 무시
+/public/plugin
