@@ -7,6 +7,7 @@ const mp_subs_img = {
     'standard' : 'public/img/스탠다드.png',
     'pro' : 'public/img/BASIC.jpg'
 };
+const path = require('path');
 
 
 
@@ -22,6 +23,7 @@ router.get("/mypage", (req, res) => {
             return;
         }
 // 우선 별명은 USER_ID로 가져와서 넣음,  MEMBER_LV 데이터까지 가져와서 member_lv로 함, 아직 주소창 세션 정보 없어서 limit 1으로 함
+
         const sql = "SELECT USER_ID, MEMBER_NAME, PW, MEMBER_LV FROM MEMBER LIMIT 1"; 
         conn.query(sql, (err, results) => {
             if (err) {
@@ -49,7 +51,9 @@ router.get("/mypage", (req, res) => {
 });
 
 
-
+router.get("/mypage/reVeiw", (req, res) => {
+    res.sendFile(path.join(__dirname, '../views/reviewNote.html'));
+});
 
 
   module.exports = router;
