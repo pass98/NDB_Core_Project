@@ -49,8 +49,10 @@
             <!-- 챗봇 헤더 -->
 
             <div class="chat-header">
-                <div class="header-title" onclick="toggleChat()">NDB</div>
-                <button onclick="back()" id="back-button" style="display: none;">뒤로 가기</button>
+                <div class="header-title" onclick="toggleChat()">X</div>
+
+                <button onclick="back()" id="back-button" style="display: none;">〈</button>
+                <div class="chat-logo">NDB</div>
             </div>
             <!-- 버튼 컨테이너 -->
             <div class="button-container" id="button-container">
@@ -88,7 +90,7 @@
                 </fieldset>
                 <div class="button-wrapper">
                     <textarea id="reviewContents" name="reviewContents" placeholder="리뷰를 작성해주세요."></textarea>
-                    <button class="reviewbutton" type="submit">리뷰 제출</button>
+                    <button class="rievewbutton" type="submit">리뷰 제출</button>
                 </div>
             </form>
         </div>
@@ -112,15 +114,20 @@
                         <span></span>
                         <!--사이드바는 버튼 내부에 있어야 함-->
                         <ul id="leftside">
+                            <!-- 회원 정보 섹션 시작 -->
+                            <div class="user-info">
+                                <img src="https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg"
+                                    alt="User Profile Picture" class="user-image">
+                                <div class="user-details">
+                                    <p class="user-email">user@email.com</p>
+                                    <p class="user-grade">Gold</p>
+                                </div>
+                            </div>
+                            <hr> <!-- 구분선 추가 -->
+                            <!-- 회원 정보 섹션 끝 -->
 
-                            <a>
-                                <li>닉네임</li>
-                            </a>
                             <a href="http://localhost:3003/mypage" id="mypage_btn_open">
-                                <li>회원정보</li>
-                            </a>
-                            <a>
-                                <li>정보</li>
+                                <li>마이페이지</li>
                             </a>
                             <a href="#" class="subs_btn_open">
                                 <li>구독</li>
