@@ -1,6 +1,6 @@
 function openChat() {
     document.getElementById('chat-body').style.display = 'block';
-    document.getElementById('chat-input').style.display = 'block';
+    document.getElementById('chat-input').style.display = 'flex';
     document.getElementById('back-button').style.display = 'block';
     document.getElementById('button-container').style.display = 'none';
 }
