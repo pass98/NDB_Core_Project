@@ -477,7 +477,12 @@ a {
   #mp_question{
     height: inherit;
   }
-
+  #mp_listSpace{
+    height: 37vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   
   #mp_secessionSpace{
     display: flex;
@@ -658,8 +663,8 @@ h2,h3{
     /* border-width: 2px;
     border-style: outset;
     border-color: buttonborder;
-    border-image: initial; */
-    display:inline-block;
+    border-image: initial; 
+    display:inline-block;*/
 }
 
 .subs_desc_content{

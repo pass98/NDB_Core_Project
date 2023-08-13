@@ -13,7 +13,7 @@
     <script src="./main.js"></script>
     <link rel="stylesheet" href="/css/eunwoo_style.css">
     <link rel="stylesheet" href="/css/yubin_sidebar.css">
-    <!-- <link rel="stylesheet" href="/css/subs.css"> -->
+    <link rel="stylesheet" href="/css/subs.css"> 
     <link rel="stylesheet" href="css/mypage_style.css">
     
 </head>
@@ -21,43 +21,48 @@
     <div id ='mp_page notosanskr'>
         <main >
            <!-- 왼쪽 : 사이드바 & 로그 -->
-           <nav id="main_navbar">
-            <div class="main_navLeft">
+       <nav id="main_navbar">
+        <div class="main_navLeft">
 
-                <div id="sidebar_toggle">
-                    <!--
-            클릭 수신기로 사용되는 가짜/숨겨진 체크박스,
-            이를 통해 :checked 선택자를 사용
-            -->
-                    <input type="checkbox" />
+            <div id="sidebar_toggle">
+                <!--
+    클릭 수신기로 사용되는 가짜/숨겨진 체크박스,
+    이를 통해 :checked 선택자를 사용
+    -->
+                <input type="checkbox" />
 
-                    <!--
-            햄버거 역할을 하는 몇 개의 span 요소.
-            -->
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                <!--
+    햄버거 역할을 하는 몇 개의 span 요소.
+    -->
+                <span></span>
+                <span></span>
+                <span></span>
 
-                    <!--
-              사이드바는 버튼 내부에 잇어야함
-            -->
-                    <ul id="leftside">
+                <!--
+      사이드바는 버튼 내부에 잇어야함
+    --><ul id="leftside">
+    <!-- 회원 정보 섹션 시작 -->
+    <div class="user-info">
+      <img src="https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg" alt="User Profile Picture" class="user-image">
+      <div class="user-details">
+          <p class="user-email">user@email.com</p>
+          <p class="user-grade">Gold</p>
+      </div>
+  </div>
+  <hr> <!-- 구분선 추가 -->
+  <!-- 회원 정보 섹션 끝 -->
 
-                        <a>
-                            <li>닉네임</li>
-                        </a>
-                        <a href="http://localhost:3003/mypage" id="mypage_btn_open">
-                            <li>회원정보</li>
-                        </a>
-                        <a>
-                            <li>정보</li>
-                        </a>
-                        <a href="#" class="subs_btn_open">
-                            <li>구독</li>
-                        </a>
+  <!-- 기존의 메뉴 항목들 -->
+  
+                    <a href="http://localhost:3003/mypage" id="mypage_btn_open">
+                        <li>마이페이지</li>
+                    </a>
+                    <a href="#" class="subs_btn_open">
+                        <li>구독</li>
+                    </a>
 
-                    </ul>
-                </div>
+                </ul>
+            </div>
                 <div class="main_nav_logo">
                     <a href="http://localhost:3003/index">NDB</a>
 
@@ -146,7 +151,8 @@
                   <li class="mp_tab-link notosanskr" data-tab="mp_tab-7">계정 연동</li>
                 </ul>
               
-                <div id="mp_tab-1" class="mp_tab-content current"><h2 class = 'mp_h2'>tab content3</h2><div class="mp_output"></div></div>
+                <div id="mp_tab-1" class="mp_tab-content current"><h2 class = 'mp_h2'>풀었던 문제
+                </h2><div class="mp_output" id="mp_listSpace"> <a href="http://localhost:3003/mypage/reVeiw" class="button-link">리뷰 노트로 이동</a></div></div>
                 <div id="mp_tab-2" class="mp_tab-content"><h2 class = 'mp_h2'>개인 정보</h2>
                     <div class="mp_output">
                     <table class ='mypagefro'>
@@ -331,8 +337,7 @@
                     });
             }
 
-               
-
+            
             function requestPay1() {
                 IMP.init('iamport');
                 IMP.request_pay({

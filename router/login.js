@@ -1,15 +1,26 @@
 const express = require("express");
 const session = require("express-session");
 const router = express.Router();
+const cookieParser = require("cookie-parser");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const KakaoStrategy = require("passport-kakao").Strategy; // passport-kakao 모듈을 추가해야 합니다.
 const GitHubStrategy = require("passport-github2").Strategy;
 const bodyParser = require("body-parser");
 const db = require("../config/datebase");
+const app = express();
 let conn = db.init();
 
-const app = express();
+app.use(
+  session({
+    secret: "your-secret-key", // 세션 암호화를 위한 비밀키
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: true }));
 // 구글 OAuth 2.0 클라이언트 ID와 시크릿 설정
 const GOOGLE_CLIENT_ID =
   "387069556796-pal9i13mtuj16inovquf5h4ucs8s926d.apps.googleusercontent.com"; // 여기에 발급받은 클라이언트 ID 입력
@@ -193,6 +204,10 @@ router.get("/join", (req, res) => {
   res.render("join.html");
 });
 
+router.get("/index", (req, res) => {
+  res.render("index.html");
+});
+
 router.post("/join", (req, res) => {
   let join_name = req.body.name;
   let join_email = req.body.email;
@@ -227,23 +242,35 @@ router.post("/join", (req, res) => {
 });
 
 router.use(bodyParser.urlencoded({ extended: true }));
+router.get("/setSession", (req, res) => {
+  // 세션 생성하기
+  req.session.nickName = "apple";
+  req.session.age = 20;
 
-// /login 라우터
-router.post("/login", (req, res) => {
+  res.send("세션 만들기");
+});
+router.post("/index", (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
-  const query = `SELECT * FROM MEMBER WHERE EMAIL = ? AND PW = ?`;  
+  const query = `SELECT * FROM MEMBER WHERE EMAIL = ? AND PW = ?`;
 
   // DB 연결
+  conn.connect(function (err) {
+    if (err) {
+      console.error("DB Connection Error:", err);
+      return;
+    }
     conn.query(query, [email, password], (err, results) => {
       if (!err && results.length === 1) {
         console.log("쿼리문 실행");
+        res.cookie("user-email : ", email); // 쿠키에 로그인 정보 저장
+        req.session.loggedInUserEmail = email; // 세션에 이메일 저장
 
-        req.session.loggedInUser = email;
-
+        // Store user's email in the session
+        const userEmail = (req.session.userEmail = email);
+        console.log("user-email", userEmail);
         // 로그인 성공 시 index.html 페이지로 이동
-        res.render("index.html")  ;
-        // 여기서 "index.html"은 실제 템플릿 파일의 경로로 수정해야 합니다.
+        res.render("index.html"); // Use res.redirect instead of res.render
       } else {
         console.log("쿼리문 실패");
         res.write(`<!DOCTYPE html>
@@ -254,15 +281,22 @@ router.post("/login", (req, res) => {
         </head>
         <body>
             <script>
+            
                 alert('로그인 실패. 이메일 또는 비밀번호가 잘못되었습니다.');
                 window.location="http://localhost:3003/login";
             </script>
         </body>
         </html>`);
-        res.end(); 
 
         // res.send("로그인 실패. 이메일 또는 비밀번호가 잘못되었습니다.");
       }
     });
+  });
+});
+router.get("/getSession", (req, res) => {
+  // 세션 생성하기
+  let nick = req.session.nickName;
+  console.log(nick);
+  res.send(nick);
 });
 module.exports = router;
