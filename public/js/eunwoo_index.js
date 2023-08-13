@@ -405,6 +405,7 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
             method: 'POST',
             data: { // 서버에 보낼 데이터
                 find_keywords: find_keywords[0],
+                user_input : input_String,
                 select_language: select_Language
             }
         }).done(function (serverResponse) {
@@ -423,7 +424,9 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
             data: { // 서버에 보낼 데이터
                 find_keywords: find_keywords[0],
                 find_keywords2: find_keywords[1],
-                select_language: select_Language
+                select_language: select_Language,
+                user_input : input_String
+            
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
