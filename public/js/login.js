@@ -11,6 +11,5 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // 이후에 필요한 작업을 수행
     // 예: 페이지 리디렉션, 다른 작업 등
-    window.location.href = "http://localhost:3003/index";
   });
 });

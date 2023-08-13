@@ -204,6 +204,10 @@ router.get("/join", (req, res) => {
   res.render("join.html");
 });
 
+router.get("/index", (req, res) => {
+  res.render("index.html");
+});
+
 router.post("/join", (req, res) => {
   let join_name = req.body.name;
   let join_email = req.body.email;
@@ -238,9 +242,14 @@ router.post("/join", (req, res) => {
 });
 
 router.use(bodyParser.urlencoded({ extended: true }));
+router.get("/setSession", (req, res) => {
+  // 세션 생성하기
+  req.session.nickName = "apple";
+  req.session.age = 20;
 
-// /login 라우터
-router.post("/login", (req, res) => {
+  res.send("세션 만들기");
+});
+router.post("/index", (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
   const query = `SELECT * FROM MEMBER WHERE EMAIL = ? AND PW = ?`;
@@ -254,12 +263,14 @@ router.post("/login", (req, res) => {
     conn.query(query, [email, password], (err, results) => {
       if (!err && results.length === 1) {
         console.log("쿼리문 실행");
-        res.cookie("loggedInUser", email); // 쿠키에 로그인 정보 저장
+        res.cookie("user-email : ", email); // 쿠키에 로그인 정보 저장
         req.session.loggedInUserEmail = email; // 세션에 이메일 저장
 
+        // Store user's email in the session
+        const userEmail = (req.session.userEmail = email);
+        console.log("user-email", userEmail);
         // 로그인 성공 시 index.html 페이지로 이동
-        res.render("index.html");
-        // 여기서 "index.html"은 실제 템플릿 파일의 경로로 수정해야 합니다.
+        res.render("index.html"); // Use res.redirect instead of res.render
       } else {
         console.log("쿼리문 실패");
         res.write(`<!DOCTYPE html>
@@ -282,16 +293,10 @@ router.post("/login", (req, res) => {
     });
   });
 });
-
-app.get("/index", (req, res) => {
-  if (req.session.loggedInUserEmail) {
-    const storedEmail = req.session.loggedInUserEmail;
-    // 세션에 저장된 이메일을 사용하여 작업 수행
-    console.log("세션에 저장된 이메일:", storedEmail);
-  } else {
-    console.log("세션에 이메일이 없습니다.");
-  }
-  // ...
+router.get("/getSession", (req, res) => {
+  // 세션 생성하기
+  let nick = req.session.nickName;
+  console.log(nick);
+  res.send(nick);
 });
-
 module.exports = router;
