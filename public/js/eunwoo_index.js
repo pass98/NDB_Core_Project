@@ -447,7 +447,7 @@ function select() {
 }
 
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -585,7 +585,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 }
 
 function java() {   // select option이 java일때 api java 응답함수
-    const api_key = "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"// api key 값
+    const api_key = "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"// api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -704,7 +704,7 @@ function java() {   // select option이 java일때 api java 응답함수
 }
 
 function python() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -822,7 +822,7 @@ function python() { // select option이 python일때 api python 응답함수
 }
 
 function C_programing() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]

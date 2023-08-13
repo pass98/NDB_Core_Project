@@ -232,14 +232,9 @@ router.use(bodyParser.urlencoded({ extended: true }));
 router.post("/login", (req, res) => {
   const email = req.body.email;
   const password = req.body.pass;
-  const query = `SELECT * FROM MEMBER WHERE EMAIL = ? AND PW = ?`;
+  const query = `SELECT * FROM MEMBER WHERE EMAIL = ? AND PW = ?`;  
 
   // DB 연결
-  conn.connect(function (err) {
-    if (err) {
-      console.error("DB Connection Error:", err);
-      return;
-    }
     conn.query(query, [email, password], (err, results) => {
       if (!err && results.length === 1) {
         console.log("쿼리문 실행");
@@ -247,7 +242,7 @@ router.post("/login", (req, res) => {
         req.session.loggedInUser = email;
 
         // 로그인 성공 시 index.html 페이지로 이동
-        res.render("index.html");
+        res.render("index.html")  ;
         // 여기서 "index.html"은 실제 템플릿 파일의 경로로 수정해야 합니다.
       } else {
         console.log("쿼리문 실패");
@@ -264,10 +259,10 @@ router.post("/login", (req, res) => {
             </script>
         </body>
         </html>`);
+        res.end(); 
 
         // res.send("로그인 실패. 이메일 또는 비밀번호가 잘못되었습니다.");
       }
     });
-  });
 });
 module.exports = router;
