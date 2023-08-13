@@ -602,8 +602,7 @@ select {
 .main_searchLanguage,
 .main_searchLanguage2 {
     height: 30px;
-    width: 100px !important;
-    min-width: 100px;
+    width: 80px !important;
     border: 0;
     /* 기본 select 화살표 감추기 */
     -o-appearance: none;
@@ -611,7 +610,6 @@ select {
     -moz-appearance: none;
     appearance: none;
     margin: 0 8px 0 8px;
-    padding-left: 12px;
     /* font-family:'GmarketSansMedium', 'Noto Sans KR'; */
     background: url('/img/chevron-down-solid.svg') no-repeat 97% 50%/15px auto;
 }
@@ -726,7 +724,7 @@ option:hover {
     height: 80%;
     padding: 12px;
     text-align: left;
-    min-width: 95%;
+    min-width: 300px;
 
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -740,7 +738,7 @@ option:hover {
     padding: 24px;
     overflow-y: scroll;
 }
-.codeExam_examContent>h2{
+.codeExam_examContent > h2{
     text-align: left;
 }
 .scrollbar {
@@ -894,12 +892,7 @@ option:hover {
     height: 100%;
     background-color: #212121;
 }
-.codeExam_etcBox{
-    width: 100% !important;
-}
-.codeExam_etcBox > .codeExam_codePage{
-    padding: 16px !important;
-}
+
 /* .codeExam_htmlBox,.codeExam_cssBox{
     margin-right: 12px;
 } */
@@ -1014,12 +1007,11 @@ option:hover {
 
 .codeExam_codeContent-Size {
     width: 100%;
-    height: calc(100% - 32px);
+    height: calc(100% - 16px);
     /* background-color: red; */
     box-sizing: border-box;
     border-radius: 12px;
     text-align: left;
-    color: white;
 }
 
 /* 코드 출력(시연X)창 크기조절 */
