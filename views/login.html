@@ -18,6 +18,14 @@
     <!-- /css/login.css로 요청하면 public/css/login.css 파일이 클라이언트에게 제공 -->
     <link rel="stylesheet" href="/css/login.css" />
     <title>NSB 코딩예제사이트</title>
+    <style>
+      .hidden {
+        display: none;
+      }
+      .password_span {
+        color: brown;
+      }
+    </style>
   </head>
   <body>
     <!-- 회원가입과 로그인을 포함한 두 개의 폼이 있는 컨테이너 -->
@@ -73,6 +81,9 @@
             name="pass"
             required
           />
+          <span class="password_span hidden"
+            >이메일 및 비밀번호를 확인하세요.</span
+          >
           <button type="submit" id="login-button" class="login_button">
             로그인
           </button>

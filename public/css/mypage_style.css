@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
+
+
 @font-face {
     font-family: 'GmarketSansMedium';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
@@ -13,12 +16,28 @@
 }
    
 
-* {
+.mp_mainpage {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    width: 100vw;
+    height: 100vh;
 }
 /* 마이 페이지 메인 */
+.my_main_container{
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+     background-color: #1B3455;
+    font-family: 'Noto Sans KR', 'GmarketSansMedium';
+    text-align: center;
+    flex: 1 0 auto;
+}
 
 #mp_page{
     display: flex;
@@ -48,6 +67,7 @@ main{
 .mp_card{
     background-color: #fff;
     width : 200px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     overflow:hidden;
@@ -55,7 +75,19 @@ main{
     text-align: center;
     margin-top : 20px;
 }
+.fa-6x{
+    color : black;
+    margin-top : 20px;
+}
 
+#Mp_id.mp_Name{
+    color : black; 
+    font-size:15px;
+}
+
+#Mp_name.mp_Name{
+    color : black; 
+}
 .mp_profile {
     width:8rem;
     height:8rem;
@@ -64,6 +96,7 @@ main{
     box-shadow : 0 0.5rem 1rem rgba(0,0,0, 0.3); 
     margin-left: 35px;
 }
+
 /* 프로필카드 종료 */
 
 body {
@@ -154,18 +187,6 @@ a {
 }
 
 /* main페이지 전체 크기 및 기본 설정 지정 */
-#main_container {
-    box-sizing: border-box;
-    /* width: 100vw; */
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-color: #1B3455;
-    font-family: 'Noto Sans KR', 'GmarketSansMedium';
-    text-align: center;
-    flex: 1 0 auto;
-
-}
 
 /* 네비게이션 바 설정 */
 #main_navbar {
@@ -284,7 +305,7 @@ a {
 .main_nav_logo {
     font-weight: 1000;
     font-size: large;
-    margin-left: 28px;
+    margin-left: 24px;
     font-style: italic
 }
 /* 네비게이션 왼쪽 요소 끝 */
@@ -341,9 +362,7 @@ a {
     background-color: #dfdfdf;
 }
 
-body {
-    height: 10000px;
-}
+
 
 .left-side-bar {
     background-color: #dfdfdf;
@@ -399,6 +418,7 @@ body {
 .left-side-bar:hover > .status-ico > span:first-child {
     display: none;
 }
+
 
 
 /* 탭메뉴 키 */
@@ -483,8 +503,7 @@ body {
     padding: 15px 24px;
     height: 50vh;
     border-radius: 0 0 30px 30px;
-
-  }
+}
   
   .mp_tab-content.mp_current{
     display: block;
@@ -558,3 +577,225 @@ body {
 }
 
 /* 계정연동 버튼 종료 */
+
+/* -------------구독모달창---------------- */
+.subs_body {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.7em;
+}
+
+.subs_modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-radius: 7px;
+    z-index: 9999;
+    display: none;
+}
+
+.subs_modal.active {
+    display: block;
+}
+
+
+.subs_modal_content{
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.247);
+    width: 834px;
+    overflow: hidden;
+    background-color: #1B3455;
+}
+
+.subs_button_close {
+    position: absolute;
+    top: -2px;
+    right: 3px;
+    background-color: transparent;
+    border: none;
+    outline:none;
+    color: #ccc;
+    font-size: 18px;
+}
+.subs_button_close:hover {
+    color: #8CA9BF;
+}
+
+.subs_header{
+    font-size:larger;
+    text-align: center;
+    display:absolute;
+    color: #FFFFFF;
+}
+#subs_title{
+    font-size: 55px;
+    margin-bottom:25px;
+    margin-top:23px;
+}
+.subs_subtitle{
+    font-weight: 35vw;
+    font-size:20px;
+    margin-top:-8px;
+    margin-bottom: 14px;
+}
+
+
+h1{
+    font-size:57px;
+
+}
+h2,h3{
+    text-align: center;
+    font-size:30px;
+    color:black;
+}
+.subs_btn_open{ 
+    font-size: 15px;
+    /* border-width: 2px;
+    border-style: outset;
+    border-color: buttonborder;
+    border-image: initial; */
+    display:inline-block;
+}
+
+.subs_desc_content{
+    display:flex;
+    justify-content: center;
+}
+
+
+.content-box > button{
+    
+    width : 60px;
+    
+}
+.content-box{
+    width:33%;
+    height:200%;
+    border-radius: 12px;
+    background-color: #8CA9BF;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    
+
+}
+.subs_benefit{
+    margin-left:-13px;
+    font-size:16px;
+    color:black;
+}    
+.subs_price{
+    text-align: center;
+    margin: -22px 0 9px 0;
+    font-size:22px;
+    font-weight:bold;
+    display:flex;
+    justify-content: center;
+}    
+.subs_li{
+    list-style-type:none;
+    padding-left: 45px;
+
+}
+
+.content3{
+    margin-right:20px;
+}
+
+.content1:hover{
+    background-color:#FFFFFF;
+    transform:  scale(1.1, 1.05) ;
+
+}
+.content2:hover{
+    background-color:#FFFFFF;
+    transform:  scale(1.1, 1.05) ;
+}
+.content3:hover{
+    background-color:#FFFFFF;
+    transform:  scale(1.1, 1.05) ;
+}
+
+
+
+.subs_desc_content input[type=email] {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 7px;
+    outline: none;
+    border: 1px solid #ccc;
+   
+}
+.subs_desc_content input[type=email]::placeholder {
+    color: #ccc;
+}
+.subs_desc_content input[type=email]:focus::placeholder{
+    opacity: 0;
+}
+.subs_desc_content button {
+    display:flex;
+    /* margin-left:50px; */
+    padding: 7px;
+    background-color: rgb(212, 69, 97);
+    color: #FFFFFF;
+    border: none;
+    outline: none;
+    width: 122px;
+    font-size:16px;
+    justify-content: center;
+    border-radius: 12px;
+}
+
+.subs_btn{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 18px;
+    margin-top: 23px;
+}
+
+
+.subs_desc_content button:hover {
+    background-color: rgb(211, 22, 60);
+}
+.overlay {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.315);
+    display: none;
+    transition: 0.3s;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    visibility: hidden;
+}
+.overlay.active {
+    display: block;
+    visibility: visible;
+}
+
+
+@media (max-width:768px) {
+    .subs_modal_content {
+        flex-direction: column;
+        width: 360px;
+    }
+    .photo {
+        flex-basis: 250px; 
+    }
+}
+/* 구독모달창 종료 */
+
+
+/* 결제 정보 칸에 들어가는 사진 크기 조절  */
+.mp_output img {
+    width: 30%;  /* 이미지의 너비를 div의 100%로 설정 */
+    height: 85%; /* 높이는 원래 비율을 유지하도록 설정 */
+}
