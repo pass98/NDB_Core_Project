@@ -9,12 +9,21 @@
     <script src="https://kit.fontawesome.com/3c016f9a45.js" crossorigin="anonymous"></script>
     <script src="js/mypage_script.js"></script>
     <script src="js/chatbot_script.js"></script>
+    
+   
     <script src="js/index.js"></script>
     <script src="./main.js"></script>
+    <script src="/js/subs.js"></script>
     <link rel="stylesheet" href="/css/eunwoo_style.css">
     <link rel="stylesheet" href="/css/yubin_sidebar.css">
     <link rel="stylesheet" href="/css/subs.css"> 
     <link rel="stylesheet" href="css/mypage_style.css">
+    <!-- 결제창을 위한 라이브러리-->
+    <!-- jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <!-- iamport.payment.js -->
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
+   
     
 </head>
 <body>
@@ -228,11 +237,10 @@
         
         <!-- 메인 탭메뉴 종료 -->
 
-        <!-- 구독하기 누르면 나오는 구독창 -->
+         <!-------------------------------------- 구독창  ------------------------------------>
+         <div class="overlay"></div>
         <div class="subs_modal">
             <div class="subs_modal_content">
-    
-    
                 <div class="subs_header">
                     <div>
                         <h1 id="subs_title">Member of NDB</h1>
@@ -240,7 +248,7 @@
                     <div>
                         <button class="subs_button_close">&times;</button>
                     </div>
-    
+
                     <div>
                         <p class="subs_subtitle">
                             학습 능률을 높이는 방법! <br />
@@ -248,16 +256,15 @@
                             For month
                         </p>
                     </div>
-    
+
                 </div>
-    
                 <div class="subs_desc_content">
                     <div class="content1 content-box">
                         <div>
                             <h3>BASIC</h3>
                         </div>
                         <div class="subs_benefit">
-                            <!-- <div class="subs_price">무료</div> -->
+                            <div class="subs_price">무료</div>
                             <ul class="subs_li">
                                 <li>-&nbsp; 버전 업그레이드</li>
                                 <li>-&nbsp; 테마 설정</li>
@@ -268,25 +275,22 @@
                                 <li>&nbsp;</li>
                             </ul>
                         </div>
-    
-    
                         <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
-    
+
                         <div class="subs_btn">
                             <a href="http://localhost:3003/index" id="subscribe-link"><button>구독하기</button></a>
                         </div>
                     </div>
-    
                     <div class="content2 content-box">
                         <div>
                             <h3>STANDARD</h3>
                         </div>
                         <div class="subs_benefit">
-                            <!-- <div class="subs_price">￦5,000 </div> -->
+                            <div class="subs_price">￦5,000 </div>
                             <ul class="subs_li">
                                 <li>-&nbsp; 버전 업그레이드 </li>
                                 <li>-&nbsp; 테마 설정 </li>
-    
+
                                 <li>-&nbsp; 예제에 대한 개념 정리</li>
                                 <li>-&nbsp; 배너 제거 </li>
                                 <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
@@ -296,100 +300,44 @@
                         </div>
                         <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
                         <div class="subs_btn">
-                            <button onclick="requestPay()">구독하기</button>
+                            <button onclick="requestPay()" id="subscribe-link2">구독하기</button>
                         </div>
-    
+
                     </div>
-    
                     <div class="content3 content-box">
                         <div>
-                            <h3>PRO</h3>
+                            <h3>pro</h3>
                         </div>
                         <div class="subs_benefit">
-                            <!-- <div class="subs_price">￦7,000 </div> -->
+                            <div class="subs_price">￦7,000 </div>
                             <ul class="subs_li">
                                 <li>-&nbsp; 버전 업그레이드 </li>
                                 <li>-&nbsp; 테마 설정 </li>
-    
+
                                 <li>-&nbsp; 예제에 대한 개념 정리 </li>
                                 <li>-&nbsp; 배너 제거 </li>
                                 <li>-&nbsp; 자사 커뮤니티 사이트 가입</li>
-    
+
                                 <li>-&nbsp; 추천 강의 40% 할인권</li>
                                 <li>-&nbsp; 인기 문제&개념 모음집PDF </li>
                             </ul>
                         </div>
-    
-    
+
+
                         <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
                         <div class="subs_btn">
-                            <button onclick="requestPay1()">구독하기</button>
+                            <button onclick="requestPay1()" id="subscribe-link3">구독하기</button>
                         </div>
                     </div>
                 </div>
-    
             </div>
-        </div>        
-    </div>
- <!-- 구독하기 누르면 나오는 구독창 종료 --> 
+        </div>
 
-        <script>
-            function requestPay() {
-                IMP.init('iamport');
-                IMP.request_pay({
-                    pg: "inicis",
-                    pay_method: "card",
-                    merchant_uid: 'merchant_' + new Date().getTime(),
-                    name: '결제테스트',
-                    amount: 5000,
-                    buyer_email: 'iamport@siot.do',
-                    buyer_name: '김도형',
-                    buyer_tel: '010-1234-5678',
-                    buyer_addr: '광주인공지능사관학교NSDB',
-                    buyer_postcode: '123-456'
-                },
-                    function (rsp) {
-                        console.log(rsp);
-                        if (rsp.success) {
-                            var msg = '결제가 완료되었습니다.';
-                            alert(msg);
-                            location.href = "http://localhost:3003/index"
-                        } else {
-                            var msg = '결제에 실패하였습니다.';
-                            msg += '에러내용 : ' + rsp.error_msg;
-                            alert(msg);
-                        }
-                    });
-            }
 
-            
-            function requestPay1() {
-                IMP.init('iamport');
-                IMP.request_pay({
-                    pg: "inicis",
-                    pay_method: "card",
-                    merchant_uid: 'merchant_' + new Date().getTime(),
-                    name: '결제테스트',
-                    amount: 7000,
-                    buyer_email: 'iamport@siot.do',
-                    buyer_name: '김도형',
-                    buyer_tel: '010-1234-5678',
-                    buyer_addr: '광주인공지능사관학교NSDB',
-                    buyer_postcode: '123-456'
-                },
-                    function (rsp) {
-                        console.log(rsp);
-                        if (rsp.success) {
-                            var msg = '결제가 완료되었습니다.';
-                            alert(msg);
-                            location.href = "http://localhost:3003/index"
-                        } else {
-                            var msg = '결제에 실패하였습니다.';
-                            msg += '에러내용 : ' + rsp.error_msg;
-                            alert(msg);
-                        }
-                    });
-                        }// 열기 버튼을 클릭하면 모달 창을 보이게 하도록 이벤트 핸들러 추가
+        <!-------------------------------------- 구독창  끝------------------------------------>
+
+        <!-- <script>
+            // 열기 버튼을 클릭하면 모달 창을 보이게 하도록 이벤트 핸들러 추가
                         $('.subs_btn_open').click(function () {
                             $('.subs_modal, .overlay').addClass("active");
                         });
@@ -409,6 +357,6 @@
                         document.getElementById("mypage_btn_open").addEventListener("click", function (event) {
                             window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
                         });
-        </script>
+        </script> -->
 </body>
 </html>

@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="/css/subs.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="/js/chatbot_script.js"></script>
-
     <script src="/js/subs.js"></script>
+    
     <!-- 한글 타이핑 효과 -->
     <script src="https://unpkg.com/type-hangul"></script>
     <!-- code mirror -->
@@ -36,10 +36,11 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <!-- iamport.payment.js -->
     <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>
-    <!-- <button onclick="requestPay()">결제하기</button> -->
+    
 </head>
 
 <body>
+    
     <div>
         <!-- 챗봇 -->
         <div class="chat-toggle-button" onclick="toggleChat()">👀</div>
@@ -206,228 +207,66 @@
 
                     <p class="main_floating_p">
                         <MARQUEE scrollamount="13">
-                            for i in range(1, 101):
-                            output = ""
-                            if i % 3 == 0:
-                            output += "Fizz"
-                            if i % 5 == 0:
-                            output += "Buzz"
-                            print(output or i)
-                            /html></MARQUEE>
-                        <!-- 크기 조절 -->
+                            for i in range(1, 101):output = "" if i % 3 == 0: output += "Fizz" if i % 5 == 0: output += "Buzz" print(output or i)
+                            /html></MARQUEE>                        
                     </p>
                     <p class="main_floating_p">
-                        <MARQUEE scrollamount="7">function reverseArray(arr) {
-                            return arr.reverse();
-                            }
-                            const originalArray = [1, 2, 3, 4, 5];
-                            const reversedArray = reverseArray(originalArray);
+                        <MARQUEE scrollamount="7">function reverseArray(arr) {return arr.reverse();} const originalArray = [1, 2, 3, 4, 5]; const reversedArray = reverseArray(originalArray);
                             console.log(reversedArray); // [5, 4, 3, 2, 1]</MARQUEE>
                         <!-- 움직이는 텍스트 -->
                     </p>
                     <p class="main_floating_p">
-                        <MARQUEE scrollamount="11"> #include <iostream>
-                                #include <algorithm>
-                                    using namespace std;
-
-                                    int findMax(int arr[], int size) {
-                                    return *max_element(arr, arr + size);
-                                    }
-
-                                    int main() {
-                                    int numbers[] = {10, 5, 8, 20, 3};
-                                    int size = sizeof(numbers) / sizeof(numbers[0]);
-                                    int maxNumber = findMax(numbers, size);
+                        <MARQUEE scrollamount="11"> #include <iostream> #include <algorithm> using namespace std; int findMax(int arr[], int size) {return *max_element(arr, arr + size);
+                                    } int main() {int numbers[] = {10, 5, 8, 20, 3}; int size = sizeof(numbers) / sizeof(numbers[0]); int maxNumber = findMax(numbers, size);
                                     cout << "Max: " << maxNumber << endl; return 0; }</MARQUEE>
-                                        <!-- 스크롤의 속도-->
-                    </p>
-
-                    <p class="main_floating_p">
-                        <MARQUEE scrollamount="9">for (let i = 1; i <= 10; i++) { if (i % 2 !==0) { console.log(i); } }
-                                </MARQUEE>
-
-                    </p>
-
-                    <p class="main_floating_p">
-                        <MARQUEE scrollamount="15">
-                            func reverseString(_ str: String) -> String {
-                            return String(str.reversed())
-                            }
-
-                            let originalStr = "Hello, World!"
-                            let reversedStr = reverseString(originalStr)
-                            print(reversedStr) // "!dlroW ,olleH"
-                        </MARQUEE>
-                        <!-- 스크롤의 속도 -->
-                    </p>
-
-
-                    </p>
-
-                    <p class="main_floating_p">
-                        <MARQUEE behavior="scroll" scrollamount="9">using System;
-
-                            #include <iostream>
-                                #include <fstream>
-                                    using namespace std;
-
-                                    int main() {
-                                    ifstream file("example.txt");}
-
-
-                        </MARQUEE>
-                        <!-- 스크롤의 속성 -->
-                    </p>
-
-
-                    <p class="main_floating_p">
-                        <MARQUEE scrollamount="13">func reverseString(_ str: String) -> String {
-                            return String(str.reversed())
-                            }
-
-                            let originalStr = "Hello, World!"
-                            let reversedStr = reverseString(originalStr)
-                            print(reversedStr) // "!dlroW ,olleH"
-
-                        </MARQUEE>
                         <!-- 스크롤의 속도-->
                     </p>
-
                     <p class="main_floating_p">
-                        <MARQUEE scrollamount="10">
-                            def fibonacci(n):
-                            if n <= 0: return [] elif n==1: return [0] elif n==2: return [0, 1] else: fib=[0, 1] for i
-                                in range(2, n): fib.append(fib[i - 1] + fib[i - 2]) return fib n=10 print(fibonacci(n))
+                        <MARQUEE scrollamount="9">for (let i = 1; i <= 10; i++) { if (i % 2 !==0) { console.log(i); } } </MARQUEE>
+                    </p>
+                    <p class="main_floating_p">
+                        <MARQUEE scrollamount="15">
+                            func reverseString(_ str: String) -> String {return String(str.reversed())} let originalStr = "Hello, World!"
+                            let reversedStr = reverseString(originalStr)print(reversedStr) // "!dlroW ,olleH"</MARQUEE>
+                    </p>
+                    <p class="main_floating_p">
+                        <MARQUEE behavior="scroll" scrollamount="9">using System; #include <iostream> #include <fstream> using namespace std; int main() {ifstream file("example.txt");}
+                    </MARQUEE></p>
+                    <p class="main_floating_p"><MARQUEE scrollamount="13">func reverseString(_ str: String) -> String {return String(str.reversed())} let originalStr = "Hello, World!" let reversedStr = reverseString(originalStr)
+                            print(reversedStr) // "!dlroW ,olleH" </MARQUEE>
+                    </p>
+                    <p class="main_floating_p">
+                        <MARQUEE scrollamount="10">def fibonacci(n): if n <= 0: return [] elif n==1: return [0] elif n==2: return [0, 1] else: fib=[0, 1] for i in range(2, n): fib.append(fib[i - 1] + fib[i - 2]) return fib n=10 print(fibonacci(n))
                                 # [0, 1, 1, 2, 3, 5, 8, 13, 21, 34] </MARQUEE>
-
                     </p>
-
                     <p class="main_floating_p">
-                        <MARQUEE scrollamount="7">
-                            for (var i = 0; i < num; i++) { document.write('<span class="star">*</span>');
-                                }
-                        </MARQUEE>
-                        <!-- 스크롤의 속도 -->
-                    </p>
-
-
-                    </p>
-
+                        <MARQUEE scrollamount="7">for (var i = 0; i < num; i++) { document.write('<span class="star">*</span>');}</MARQUEE>
+                    </p> 
                     <p class="main_floating_p">
-                        <MARQUEE behavior="scroll" scrollamount="12">
-                            public class StarPattern {
-                            public static void main(String[] args) {
-                            int rows = 5;
-
-                            for (int i = 1; i <= rows; i++) { for (int j=1; j <=i; j++) { System.out.print("* ");
-                            }
-                            System.out.println();
-                        }
-                    }
-                }
-            </MARQUEE>
-
-
-            <!-- 스크롤의 속성 -->
-            </p>
-
-            <p class=" main_floating_p">
-                                <MARQUEE behavior="scroll" scrollamount="10">
-                                    function generateRandomNumber() {
-                                    return Math.floor(Math.random() * 100) + 1;
-                                    }
-
-                                    const randomNum = generateRandomNumber();
-                                    console.log(`Random Number: ${randomNum}`);
-
-
-                                </MARQUEE>
-
-
-                                <!-- 스크롤의 속성 -->
+                        <MARQUEE behavior="scroll" scrollamount="12">public class StarPattern {public static void main(String[] args) {int rows = 5; for (int i = 1; i <= rows; i++) { for (int j=1; j <=i; j++) { System.out.print("* ");
+                            } System.out.println();}}}</MARQUEE>
                     </p>
 
-                    <p class="main_floating_p">
-                        <MARQUEE behavior="scroll" scrollamount="12">
-                            def print_triangle(n):
-                            for i in range(n):
-                            print(' ' * (n - i - 1) + '*' * (2 * i + 1))
-
-                            print_triangle(5)
-
-                        </MARQUEE>
-
-
-                        <!-- 스크롤의 속성 -->
+                    <p class=" main_floating_p"><MARQUEE behavior="scroll" scrollamount="10"> function generateRandomNumber() {return Math.floor(Math.random() * 100) + 1;} const randomNum = generateRandomNumber();
+                                    console.log(`Random Number: ${randomNum}`);</MARQUEE>
                     </p>
-
-                    <p class="main_floating_p">
-                        <MARQUEE behavior="scroll" scrollamount="8">
-                            function generateRandomNumber() {
-                            return Math.floor(Math.random() * 100) + 1;
-                            }
-
-                            const randomNum = generateRandomNumber();
-                            console.log(`Random Number: ${randomNum}`);
-
-                        </MARQUEE>
-
-
-                        <!-- 스크롤의 속성 -->
+                    <p class="main_floating_p"><MARQUEE behavior="scroll" scrollamount="12">def print_triangle(n): for i in range(n): print(' ' * (n - i - 1) + '*' * (2 * i + 1)) print_triangle(5)
+                    </MARQUEE>
                     </p>
-
-                    <p class="main_floating_p">
-                        <MARQUEE behavior="scroll" scrollamount="17">
-                            function longerString(str1, str2) {
-                            return str1.length >= str2.length ? str1 : str2;
-                            }
-
-                            const string1 = "Hello";
-                            const string2 = "World!";
-                            console.log(longerString(string1, string2)); // "World!"
-
-
-                        </MARQUEE>
-
-
-                        <!-- 스크롤의 속성 -->
+                    <p class="main_floating_p"><MARQUEE behavior="scroll" scrollamount="8">function generateRandomNumber() {return Math.floor(Math.random() * 100) + 1;} const randomNum = generateRandomNumber(); console.log(`Random Number: ${randomNum}`);
+                    </MARQUEE>
                     </p>
-
-                    <p class="main_floating_p">
-                        <MARQUEE behavior="scroll" scrollamount="8">
-                            numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-                            even_numbers = [x for x in numbers if x % 2 == 0]
-                            print(even_numbers) # [2, 4, 6, 8, 10]
-
-                        </MARQUEE>
-
-
-                        <!-- 스크롤의 속성 -->
+                    <p class="main_floating_p"><MARQUEE behavior="scroll" scrollamount="17">function longerString(str1, str2) {return str1.length >= str2.length ? str1 : str2;} const string1 = "Hello";const string2 = "World!";
+                            console.log(longerString(string1, string2)); // "World!" </MARQUEE>
                     </p>
-
-
+                    <p class="main_floating_p"><MARQUEE behavior="scroll" scrollamount="8">numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] even_numbers = [x for x in numbers if x % 2 == 0] print(even_numbers) # [2, 4, 6, 8, 10]
+                    </MARQUEE>
                     </p>
-
-                    <p class="main_floating_p">
-                        <MARQUEE behavior="scroll" scrollamount="13">
-                            person = {
-                            "name": "John",
-                            "age": 30,
-                            "city": "New York"
-                            }
-
-                            print(person) # {'name': 'John', 'age': 30, 'city': 'New York'}
-
-
-                        </MARQUEE>
-
-
-                        <!-- 스크롤의 속성 -->
+                    <p class="main_floating_p"><MARQUEE behavior="scroll" scrollamount="13">person = {"name": "John","age": 30,"city": "New York" } print(person) # {'name': 'John', 'age': 30, 'city': 'New York'}
+                    </MARQUEE>
                     </p>
-
-                    </p>
-                </div>
-                <!----------------------  메인창 뒤 글자흐름  ------------------------>
+                    </div>
+                <!----------------------  메인창 뒤 글자흐름 끝------------------------>
                 <!-- 검색창 -->
                 <!-- [230804] 검색창 요소별 크기 flex basis로 비율로 지정할 예정 -->
                 <div class="main_searchWrap">
@@ -487,6 +326,7 @@
             </div>
         </div>
         <!-------------------------------------- 구독창  ------------------------------------>
+        <div class="overlay"></div>
         <div class="subs_modal">
             <div class="subs_modal_content">
                 <div class="subs_header">
@@ -548,7 +388,7 @@
                         </div>
                         <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
                         <div class="subs_btn">
-                            <button onclick="requestPay()">구독하기</button>
+                            <button onclick="requestPay()" id="subscribe-link2">구독하기</button>
                         </div>
 
                     </div>
@@ -574,7 +414,7 @@
 
                         <!-- <input type="email" placeholder="이메일 주소를 입력하세요."> -->
                         <div class="subs_btn">
-                            <button onclick="requestPay1()">구독하기</button>
+                            <button onclick="requestPay1()" id="subscribe-link3">구독하기</button>
                         </div>
                     </div>
                 </div>
@@ -582,7 +422,7 @@
         </div>
 
 
-        <!-------------------------------------- 구독창  ------------------------------------>
+        <!-------------------------------------- 구독창 끝------------------------------------>
         <div class="main_Line"></div>
         <!-- 예제 출력 페이지 -->
         <div class="codeExam_container">
@@ -623,7 +463,7 @@
             </div>
         </div>
         <script src="/js/eunwoo_index.js"></script>
-        <script>
+        <!-- <script>
             // 열기 버튼을 클릭하면 모달 창을 보이게 하도록 이벤트 핸들러 추가
             $('.subs_btn_open').click(function () {
                 $('.subs_modal, .overlay').addClass("active");
@@ -644,7 +484,10 @@
             document.getElementById("mypage_btn_open").addEventListener("click", function (event) {
                 window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
             });
-        </script>
+        </script> -->
+
+        
+
 </body>
 
 </html>
