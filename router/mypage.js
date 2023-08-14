@@ -10,50 +10,70 @@ const mp_subs_img = {
 const path = require('path');
 
 
-
-// 사용자 프로필 페이지
 // 사용자 프로필 페이지
 let conn = db.init();
 
 router.get("/mypage", (req, res) => {
+    let page = parseInt(req.query.page) || 1; // 페이지 번호를 가져옵니다. 기본값은 1입니다.
+    let limit = 5; // 페이지당 표시할 데이터 수
+    let offset = (page - 1) * limit; // OFFSET 값을 계산합니다.
+
     conn.connect(err => {
         if (err) {
             console.error('데이터베이스 연결 오류:', err);
             res.status(500).send('Internal Server Error'); // 서버 내부 오류 응답
             return;
         }
-// 우선 별명은 USER_ID로 가져와서 넣음,  MEMBER_LV 데이터까지 가져와서 member_lv로 함, 아직 주소창 세션 정보 없어서 limit 1으로 함
 
-        const sql = "SELECT USER_ID, MEMBER_NAME, PW, MEMBER_LV FROM MEMBER LIMIT 1"; 
-        conn.query(sql, (err, results) => {
+    // 전체 데이터 수를 가져옵니다.
+    const sqlCount = "SELECT COUNT(*) AS total FROM QUESTION";
+    conn.query(sqlCount, (err, countResults) => {
+        if (err) {
+            console.error('쿼리 수행 오류:', err);
+            res.status(500).send('Internal Server Error');
+            return;
+        }
+        
+        let totalData = countResults[0].total;
+        let total_pages = Math.ceil(totalData / limit); // 전체 페이지 수를 계산합니다.
+
+        const sqlQuestion = `SELECT EXAM_ID, EXAM_LANGUAGE, SEARCH_WORD FROM QUESTION LIMIT ${limit} OFFSET ${offset}`;
+            
+        // MEMBER 테이블에서 데이터를 가져오는 쿼리
+        const sqlMember = "SELECT USER_ID, MEMBER_NAME, PW, MEMBER_LV FROM MEMBER LIMIT 1";
+        conn.query(sqlMember, (err, memberResults) => {
             if (err) {
                 console.error('쿼리 수행 오류:', err);
                 res.status(500).send('Internal Server Error'); // 서버 내부 오류 응답
                 return;
             }
 
-            if (results.length > 0) {
-                const data = results[0];
-                console.log('사이트 접속 성공!');
-                res.render("myPage.html", {
-                    id: data.USER_ID, 
-                    name: data.MEMBER_NAME, 
-                    password: data.PW, 
-                    member_lv: data.MEMBER_LV
-                });
-                console.log(data);
-            } else {
-                console.log('사이트 접속 실패! 결과 없음.');
-                res.status(404).send('Not Found'); // 결과 없음 응답
-            }
+        // QUESTION 테이블에서 데이터를 가져오는 쿼리
+        conn.query(sqlQuestion, (err, questionResults) => {
+                if (err) {
+                    console.error('쿼리 수행 오류:', err);
+                    res.status(500).send('Internal Server Error'); // 서버 내부 오류 응답
+                    return;
+                }
+
+                if (memberResults.length > 0) {
+                    const memberData = memberResults[0];
+                    res.render("myPage.html", {
+                        id: memberData.USER_ID,
+                        name: memberData.MEMBER_NAME,
+                        password: memberData.PW,
+                        member_lv: memberData.MEMBER_LV,
+                        questions: questionResults, // QUESTION 테이블의 데이터 추가
+                        total_pages: total_pages
+                    });
+                } else {
+                    console.log('사이트 접속 실패! 결과 없음.');
+                    res.status(404).send('Not Found'); // 결과 없음 응답
+                }
+            });
         });
     });
 });
-
-
-router.get("/mypage/reVeiw", (req, res) => {
-    res.sendFile(path.join(__dirname, '../views/reviewNote.html'));
 });
-
 
   module.exports = router;

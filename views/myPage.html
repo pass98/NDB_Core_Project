@@ -152,7 +152,32 @@
                 </ul>
               
                 <div id="mp_tab-1" class="mp_tab-content current"><h2 class = 'mp_h2'>풀었던 문제
-                </h2><div class="mp_output" id="mp_listSpace"> <a href="http://localhost:3003/mypage/reVeiw" class="button-link">리뷰 노트로 이동</a></div></div>
+                </h2><div class="mp_output" id="mp_listSpace"> 
+                    <table id='mp_review'>
+                        <thead>
+                            <tr>
+                                <th>EXAM_ID</th>
+                                <th>EXAM_LANGUAGE</th>
+                                <th>SEARCH_WORD</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for question in questions %}
+                                <tr>
+                                    <td><a href="#">{{ question.EXAM_ID }}</a></td>
+                                    <td><a href="#">{{ question.EXAM_LANGUAGE }}</a></td>
+                                    <td><a href="#">{{ question.SEARCH_WORD }}</a></td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        
+                    </table>
+                    <div class="pagination">
+                            {% for i in range(1, total_pages + 1) %}
+                                <a href="/mypage?page={{ i }}">{{ i }}</a>
+                            {% endfor %}
+                        </div>
+                </div></div>
                 <div id="mp_tab-2" class="mp_tab-content"><h2 class = 'mp_h2'>개인 정보</h2>
                     <div class="mp_output">
                     <table class ='mypagefro'>
