@@ -15,7 +15,7 @@ const path = require('path');
 // 사용자 프로필 페이지
 let conn = db.init();
 
-router.get('/mypage', (req, res) => {
+router.get('/', (req, res) => {
     let page = parseInt(req.query.page) || 1; // 페이지 번호를 가져옵니다. 기본값은 1입니다.
     let limit = 5; // 페이지당 표시할 데이터 수
     let offset = (page - 1) * limit; // OFFSET 값을 계산합니다.
