@@ -829,6 +829,8 @@ function java() {   // select option이 java일때 api java 응답함수
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseAPI = serverResponse;
+            console.log(responseAPI);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -947,6 +949,8 @@ function python() { // select option이 python일때 api python 응답함수
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseAPI = serverResponse;
+            console.log(responseAPI);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -1064,6 +1068,8 @@ function C_programing() { // select option이 python일때 api python 응답함�
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseAPI = serverResponse;
+            console.log(responseAPI);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });

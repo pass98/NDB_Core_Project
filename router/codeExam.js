@@ -139,10 +139,22 @@ router.post("/index/frontinput", function (req, res) {
 
     conn.query(sql, [EMAIL, select_language, user_input,
         exam_desc, htmlCode, cssCode,
-        jsCode, javaCode, cCode, pythonCode], function (err, rows) {
+        jsCode, javaCode, cCode, pythonCode], function (err) {
             if (!err) {
-                console.log("쿼리문 실행 완료", rows);
-                res.json(rows);
+                console.log("API 응답 insert 쿼리문 실행 완료");
+                
+
+                let sql2 = `select * FROM QUESTION WHERE EXAM_ID = ?`;
+                let insertedExamId = rows.insertId;
+                conn.query(sql2, [insertedExamId], function (err, rows2) {
+                        if (!err) {
+                            console.log("API응답 조회 쿼리문 실행 완료", rows2);
+                            res.json(rows2)
+                        } else {
+                            console.log("DB 쿼리문 실행 실패", err);
+                            console.log(user_input, select_language)
+                        }
+                    });
             } else {
                 console.log("DB 쿼리문 실행 실패", err);
                 res.json({ success: false, error: err });
@@ -170,8 +182,18 @@ router.post("/index/java_input", function (req, res) {
 
     conn.query(sql, [EMAIL, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
         if (!err) {
-            console.log("쿼리문 실행 완료");
-            res.json({ success: true });
+            console.log("API 응답 insert 쿼리문 실행 완료");
+            let sql2 = `select * FROM QUESTION WHERE EXAM_ID = ?`;
+                let insertedExamId = rows.insertId;
+                conn.query(sql2, [insertedExamId], function (err, rows2) {
+                        if (!err) {
+                            console.log("API응답 조회 쿼리문 실행 완료", rows2);
+                            res.json(rows2)
+                        } else {
+                            console.log("DB 쿼리문 실행 실패", err);
+                            console.log(user_input, select_language)
+                        }
+                    });
         } else {
             console.log("DB 쿼리문 실행 실패", err);
             res.json({ success: false, error: err });
@@ -201,8 +223,18 @@ router.post("/index/python_input", function (req, res) {
 
     conn.query(sql, [EMAIL, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
         if (!err) {
-            console.log("쿼리문 실행 완료");
-            res.json({ success: true });
+            console.log("API 응답 insert 쿼리문 실행 완료");
+            let sql2 = `select * FROM QUESTION WHERE EXAM_ID = ?`;
+                let insertedExamId = rows.insertId;
+                conn.query(sql2, [insertedExamId], function (err, rows2) {
+                        if (!err) {
+                            console.log("API응답 조회 쿼리문 실행 완료", rows2);
+                            res.json(rows2)
+                        } else {
+                            console.log("DB 쿼리문 실행 실패", err);
+                            console.log(user_input, select_language)
+                        }
+                    });
         } else {
             console.log("DB 쿼리문 실행 실패", err);
             res.json({ success: false, error: err });
@@ -232,8 +264,18 @@ router.post("/index/c_input", function (req, res) {
 
     conn.query(sql, [EMAIL, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
         if (!err) {
-            console.log("쿼리문 실행 완료");
-            res.json({ success: true });
+            console.log("API 응답 insert 쿼리문 실행 완료");
+            let sql2 = `select * FROM QUESTION WHERE EXAM_ID = ?`;
+            let insertedExamId = rows.insertId;
+            conn.query(sql2, [insertedExamId], function (err, rows2) {
+                    if (!err) {
+                        console.log("API응답 조회 쿼리문 실행 완료", rows2);
+                        res.json(rows2)
+                    } else {
+                        console.log("DB 쿼리문 실행 실패", err);
+                        console.log(user_input, select_language)
+                    }
+                });
         } else {
             console.log("DB 쿼리문 실행 실패", err);
             res.json({ success: false, error: err });
