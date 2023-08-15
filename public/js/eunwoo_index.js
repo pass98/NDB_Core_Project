@@ -496,7 +496,7 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            console.log(serverResponse); // 서버측에서 데이터 받기 
+            console.log('serverResponse : ',serverResponse); // 서버측에서 데이터 받기 
             responseDB = serverResponse; // 전역 변수에 서버측 데이터 할당
             const response_DB_Editor = response_DB(); //responseDB 변수 값 확인
             // globalResponseDBValue = response_DB_Editor
@@ -516,7 +516,7 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            console.log(serverResponse); // 서버측에서 데이터 받기
+            console.log('serverResponse : ',serverResponse); // 서버측에서 데이터 받기
             responseDB = serverResponse; // 전역 변수에 서버측 데이터 할당
             const response_DB_Editor = response_DB(); //responseDB 변수 값 확인
             // globalResponseDBValue = response_DB_Editor
@@ -810,7 +810,7 @@ function select() {
 }
 
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -937,6 +937,8 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            console.log('serverResponse : ',data)
+            responseDB = serverResponse;
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -948,7 +950,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 }
 
 function java() {   // select option이 java일때 api java 응답함수
-    const api_key = "sk-"// api key 값
+    const api_key = "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"// api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -1058,6 +1060,7 @@ function java() {   // select option이 java일때 api java 응답함수
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -1067,7 +1070,7 @@ function java() {   // select option이 java일때 api java 응답함수
 }
 
 function python() { // select option이 python일때 api python 응답함수
-    const api_key = "sk-"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -1176,6 +1179,7 @@ function python() { // select option이 python일때 api python 응답함수
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -1185,7 +1189,7 @@ function python() { // select option이 python일때 api python 응답함수
 }
 
 function C_programing() { // select option이 python일때 api python 응답함수
-    const api_key = "sk-"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -1293,6 +1297,7 @@ function C_programing() { // select option이 python일때 api python 응답함�
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
