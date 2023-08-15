@@ -492,6 +492,7 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
             method: 'POST',
             data: { // 서버에 보낼 데이터
                 find_keywords: find_keywords[0],
+                user_input : input_String,
                 select_language: select_Language
             }
         }).done(function (serverResponse) {
@@ -804,11 +805,11 @@ function select() {
             C_programing();
         }
 
-    }
+    }   
 
 
 }
-
+let responseAPI;
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
     const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
@@ -937,8 +938,8 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            console.log('serverResponse : ',data)
-            responseDB = serverResponse;
+            responseAPI = serverResponse;
+            console.log(responseAPI);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -1060,7 +1061,8 @@ function java() {   // select option이 java일때 api java 응답함수
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            responseDB = serverResponse;
+            responseAPI = serverResponse;
+            console.log(responseAPI);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -1179,7 +1181,8 @@ function python() { // select option이 python일때 api python 응답함수
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            responseDB = serverResponse;
+            responseAPI = serverResponse;
+            console.log(responseAPI);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -1297,7 +1300,8 @@ function C_programing() { // select option이 python일때 api python 응답함�
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            responseDB = serverResponse;
+            responseAPI = serverResponse;
+            console.log(responseAPI);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
