@@ -215,7 +215,14 @@
                         {% endif %}
                     </div>
                 </div>
-                <div id="mp_tab-4" class="mp_tab-content"><h2 class = 'mp_h2'>현재 등급</h2><div class="mp_output"></div></div>
+                <!-- 현재 등급 -->
+                <div id="mp_tab-4" class="mp_tab-content">
+                    <h2 class="mp_h2">현재 등급</h2>
+                    <div class="mp_output" id="currentGradeInfo">
+                        <p>현재 등급: <span id="userGrade">{{ userGrade }}</span></p>
+                    </div>
+                </div>
+                
                 <div id="mp_tab-5" class="mp_tab-content"><h2 class = 'mp_h2'>문의할 사항</h2><div class="mp_output" id="mp_questiontext"><textarea name=""  cols="80" rows="20" id="mp_question"></textarea><input type="submit"></div></div>
                 <div id="mp_tab-6" class="mp_tab-content"><h2 class = 'mp_h2'>탈퇴 하기</h2><div class="mp_output" id="mp_secession">
                     <div id= mp_secessionSpace>

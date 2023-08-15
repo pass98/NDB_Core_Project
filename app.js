@@ -14,7 +14,7 @@ app.get('/mypage/reVeiw', (req, res) => {
 
 // Nunjucks 설정
 app.set("view engine", "html");
-nunjucks.configure("views", { express: app, watch: true });
+nunjucks.configure("views", { express: app, watch: true , noCache: true});
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
