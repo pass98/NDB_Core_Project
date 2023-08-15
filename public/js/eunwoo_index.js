@@ -259,39 +259,38 @@ function printHtml() {
 
 // day&night theme 토글 함수
 function is_checked() {
-    // 메인 검색창을 찾습니다.
-    const main_search = document.querySelector(".main_search")
-    // 메인페이지를 찾습니다.
-    const main_wrap = document.querySelector(".main_wrap");
-    // 1. checkbox element를 찾습니다.
-    const checkbox = document.getElementById('main_Nav_themecheck');
+  // 메인 검색창을 찾습니다.
+  const main_search = document.querySelector(".main_search");
+  // 메인페이지를 찾습니다.
+  const main_wrap = document.querySelector(".main_wrap");
+  // 1. checkbox element를 찾습니다.
+  const checkbox = document.getElementById("main_Nav_themecheck");
 
-    // 2. checked 속성을 체크합니다.
-    const is_checked = checkbox.checked;
+  // 2. checked 속성을 체크합니다.
+  const is_checked = checkbox.checked;
 
-    // 3. 결과를 출력합니다.
-    console.log('체크확인', is_checked)
-    console.log('main_wrap 스타일 속성 확인', main_wrap.style)
+  // 3. 결과를 출력합니다.
+  console.log("체크확인", is_checked);
+  console.log("main_wrap 스타일 속성 확인", main_wrap.style);
 
-    // 테마변경
-    if (is_checked) {
-        // 낮
-        window.document.body.classList.add('day');
-        main_search.classList.add('main_search_day');
-        main_search.classList.remove('main_search_night');
-        main_wrap.classList.remove('main_wrap_backImg_night')
-        main_wrap.classList.add('main_wrap_backImg_day')
-        document.querySelector(".main_NavLangDB_Text").style.color = "#212121"
-
-    } else {
-        // 밤
-        window.document.body.classList.remove('day');
-        main_search.classList.remove('main_search_day');
-        main_search.classList.add('main_search_night');
-        main_wrap.classList.remove('main_wrap_backImg_day')
-        main_wrap.classList.add('main_wrap_backImg_night')
-        document.querySelector(".main_NavLangDB_Text").style.color = "white"
-    }
+  // 테마변경
+  if (is_checked) {
+    // 낮
+    window.document.body.classList.add("day");
+    main_search.classList.add("main_search_day");
+    main_search.classList.remove("main_search_night");
+    main_wrap.classList.remove("main_wrap_backImg_night");
+    main_wrap.classList.add("main_wrap_backImg_day");
+    document.querySelector(".main_NavLangDB_Text").style.color = "#212121";
+  } else {
+    // 밤
+    window.document.body.classList.remove("day");
+    main_search.classList.remove("main_search_day");
+    main_search.classList.add("main_search_night");
+    main_wrap.classList.remove("main_wrap_backImg_day");
+    main_wrap.classList.add("main_wrap_backImg_night");
+    document.querySelector(".main_NavLangDB_Text").style.color = "white";
+  }
 }
 // 테마 기능 끝
 
@@ -882,14 +881,11 @@ function getCookie(cookieName) {
     const api_key = "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";
     let keywords = document.getElementsByClassName("main_searchBar")[0];
 
-<<<<<<< HEAD
 
 }
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
     const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
-=======
->>>>>>> bdc1605d2140cf7be84152869df812192259f72a
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
     let user_input2 = keywords2.value;
@@ -1035,7 +1031,6 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
         "\n\n" +
         apitext;
 
-<<<<<<< HEAD
         console.log(pre)
 
         $.ajax({
@@ -1058,30 +1053,6 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
             console.log(responseDB[0].EXAM_CONTENT);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
-=======
-      console.log(pre);
-      console.log();
-      $.ajax({
-        url: "/index/frontinput", // Update this to the URL of your server endpoint
-        method: "POST",
-        data: {
-          f_text: f_text,
-          apitext: apitext,
-          htmlCode: htmlCode,
-          cssCode: cssCode,
-          jsCode: jsCode,
-          user_input: input_String,
-          select_language: select_Language,
-        },
-      })
-        .done(function (serverResponse) {
-          console.log("데이터 서버에 보내기 성공~");
-          responseAPI = serverResponse;
-          console.log(responseAPI);
-        })
-        .fail(function (error) {
-          console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
->>>>>>> bdc1605d2140cf7be84152869df812192259f72a
         });
 
       // result.appendChild(pre)
@@ -1205,7 +1176,6 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 
       pre.innerText = f_text + "\n\n" + javaCode + "\n\n" + apitext;
 
-<<<<<<< HEAD
         console.log(pre)
         //result.appendChild(pre)
         $.ajax({
@@ -1226,29 +1196,6 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
             console.log(responseDB[0].EXAM_JAVA);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
-=======
-      console.log(pre);
-      //result.appendChild(pre)
-      $.ajax({
-        url: "/index/java_input", // Update this to the URL of your server endpoint
-        method: "POST",
-        data: {
-          // 서버에 데이터 전송
-          f_text: f_text,
-          apitext: apitext,
-          javaCode: javaCode,
-          user_input: input_String,
-          select_language: select_Language,
-        },
-      })
-        .done(function (serverResponse) {
-          console.log("데이터 서버에 보내기 성공~");
-          responseAPI = serverResponse;
-          console.log(responseAPI);
-        })
-        .fail(function (error) {
-          console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
->>>>>>> bdc1605d2140cf7be84152869df812192259f72a
         });
 
       document.getElementsByClassName("main_searchbar").value = ""; //검색창 비우기
@@ -1369,7 +1316,6 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 
       pre.innerText = f_text + "\n\n" + pythonCode + "\n\n" + apitext;
 
-<<<<<<< HEAD
         pre.innerText = f_text + "\n\n" + pythonCode + "\n\n" + apitext;
 
         console.log(pre)
@@ -1391,29 +1337,6 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
             console.log(responseDB);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
-=======
-      console.log(pre);
-      //result.appendChild(pre)
-      $.ajax({
-        url: "/index/python_input", // Update this to the URL of your server endpoint
-        method: "POST",
-        data: {
-          // 서버에 데이터 전송
-          f_text: f_text,
-          apitext: apitext,
-          pythonCode: pythonCode,
-          user_input: input_String,
-          select_language: select_Language,
-        },
-      })
-        .done(function (serverResponse) {
-          console.log("데이터 서버에 보내기 성공~");
-          responseAPI = serverResponse;
-          console.log(responseAPI);
-        })
-        .fail(function (error) {
-          console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
->>>>>>> bdc1605d2140cf7be84152869df812192259f72a
         });
 
       document.getElementsByClassName("main_searchbar").value = "";
@@ -1534,7 +1457,6 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 
       pre.innerText = f_text + "\n\n" + c_Code + "\n\n" + apitext;
 
-<<<<<<< HEAD
         console.log(pre)
         //result.appendChild(pre)
         $.ajax({
@@ -1555,29 +1477,6 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
             console.log(responseDB);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
-=======
-      console.log(pre);
-      //result.appendChild(pre)
-      $.ajax({
-        url: "/index/c_input", // Update this to the URL of your server endpoint
-        method: "POST",
-        data: {
-          // 서버에 데이터 전송
-          f_text: f_text,
-          apitext: apitext,
-          c_Code: c_Code,
-          user_input: input_String,
-          select_language: select_Language,
-        },
-      })
-        .done(function (serverResponse) {
-          console.log("데이터 서버에 보내기 성공~");
-          responseAPI = serverResponse;
-          console.log(responseAPI);
-        })
-        .fail(function (error) {
-          console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
->>>>>>> bdc1605d2140cf7be84152869df812192259f72a
         });
       document.getElementsByClassName("main_searchbar").value = "";
     });
