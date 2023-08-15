@@ -242,7 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
 
-   
+
             console.log('전송');
 
         }
@@ -309,7 +309,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     })
     // 순차 실행 test
-    let asycncTest = async function(e){
+    let asycncTest = async function (e) {
         console.log("function 순차 실행");
         let a = await onKeyUp(e);
         let d = await insertHTMLToDiv();
@@ -352,6 +352,20 @@ function user_Btn() { // 라디오 체크에 따라서 함수 호출하기
     }
 }
 
+function getCookie(cookieName) {
+    const name = cookieName + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(";");
+
+    for (let i = 0; i < cookieArray.length; i++) {
+        let cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) === 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
+    }
+
+    return null;
+}
 let responseDB;
 function ex_1() { // DB 테이블에서 문제 제공하는 함수
     let keywords = document.getElementsByClassName('main_searchBar')[0]
@@ -364,7 +378,8 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
     console.log("상단 검색바 사용자선택 언어 : ", language)
     console.log("메인 검색바 사용자선택 언어 : ", language2)
-
+    let specificCookieValue = getCookie("user-email :");
+    console.log("Specific Cookie Value:", specificCookieValue);
 
     let select_Language = ""; // 사용자 선택언어
     let input_String = "";    // 사용자 입력값
@@ -405,7 +420,7 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
             method: 'POST',
             data: { // 서버에 보낼 데이터
                 find_keywords: find_keywords[0],
-                user_input : input_String,
+                user_input: input_String,
                 select_language: select_Language
             }
         }).done(function (serverResponse) {
@@ -417,26 +432,27 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
     }
-        if (find_keywords.length == 2) {// 찾은 키워드가 2개일때
-            $.ajax({
-                url: "/index/ex_2", //
-                method: 'POST',
-                data: { // 서버에 보낼 데이터
-                    find_keywords: find_keywords[0],
-                    find_keywords2: find_keywords[1],
-                    select_language: select_Language,
-                    user_input : input_String
-                
-                }
-            }).done(function (serverResponse) {
-                console.log("데이터 서버에 보내기 성공~");
-                console.log(serverResponse); // 서버측에서 데이터 받기
-                responseDB = serverResponse; // 전역 변수에 서버측 데이터 할당
-                response_DB()
-            }).fail(function (error) {
-                console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
-            });
-        }
+    if (find_keywords.length == 2) {// 찾은 키워드가 2개일때
+        $.ajax({
+            url: "/index/ex_2", //
+            method: 'POST',
+            data: { // 서버에 보낼 데이터
+                find_keywords: find_keywords[0],
+                find_keywords2: find_keywords[1],
+                select_language: select_Language,
+                user_input: input_String,
+                email : specificCookieValue
+
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+            console.log(serverResponse); // 서버측에서 데이터 받기
+            responseDB = serverResponse; // 전역 변수에 서버측 데이터 할당
+            response_DB()
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        });
+    }
 
 }
 
@@ -445,7 +461,7 @@ function response_DB() { // 전역 변수 값 확인해보기~
     // console.log(responseDB.EXAM_HTML);   
     let examName = document.querySelector(".codeExam_examContent > h2");
     let examDetail = document.querySelector(".codeExam_examDetail > span");
-    
+
     let htmlTextarea = document.getElementById("editing_code_html");
     let cssTextarea = document.getElementById("editing_code_Css");
     let jsTextarea = document.getElementById("editing_code_Js");
@@ -498,9 +514,9 @@ function response_DB() { // 전역 변수 값 확인해보기~
         console.log("codemirror 수정_HTML")
         editorJS.setValue(responseDB.EXAM_JS)
         editorJS.save()
-    }else{
+    } else {
         // 다른 언어 내용 삽입
-        if(main_selectLanguage2==="java"){
+        if (main_selectLanguage2 === "java") {
             var editorJAVA = CodeMirror.fromTextArea(javaTextarea, {
                 mode: "clike",
                 theme: "dracula",  //테마는 맘에드는 걸로.
@@ -510,10 +526,10 @@ function response_DB() { // 전역 변수 값 확인해보기~
             console.log("codemirror 수정_JAVA")
             editorJAVA.setValue(responseDB.EXAM_JAVA)
             editorJAVA.save()
-        }else if(main_selectLanguage2==="python"){
+        } else if (main_selectLanguage2 === "python") {
 
-        }else if(main_selectLanguage2==="c_language"){
-            
+        } else if (main_selectLanguage2 === "c_language") {
+
         }
     }
 }
@@ -522,6 +538,10 @@ function response_DB() { // 전역 변수 값 확인해보기~
 // cssTextarea.innerText = responseDB.EXAM_CSS;
 // jsTextarea.innerText = responseDB.EXAM_JS;
 
+// function getAllCookies() {
+//     const cookies = document.cookie;
+//     console.log(cookies);
+//   }
 
 
 
@@ -532,7 +552,6 @@ function select() {
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
     console.log("상단 검색바 사용자선택 언어 : ", language)
     console.log("메인 검색바 사용자선택 언어 : ", language2)
-
     if (language == " ") {
         if (language2 == "html") {
             front();
@@ -573,7 +592,7 @@ function select() {
             C_programing();
         }
 
-    }   
+    }
 
 
 }
@@ -595,7 +614,8 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
     console.log("상단 바 사용자 선택언어:", language)
     console.log("메임검색바 사용자 선택언어:", language2)
 
-
+    let specificCookieValue = getCookie("user-email :");
+    console.log("Specific Cookie Value:", specificCookieValue);
     $('#loading').show();
 
     let select_Language = "";
@@ -702,7 +722,8 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
                 cssCode: cssCode,
                 jsCode: jsCode,
                 user_input: input_String,
-                select_language: select_Language
+                select_language: select_Language,
+                email: specificCookieValue
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
@@ -732,9 +753,11 @@ function java() {   // select option이 java일때 api java 응답함수
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
     let languageElement2 = document.querySelector(".main_searchLanguage2");
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
-    console.log("상단 바 사용자 선택언어 : ", language)
-    console.log("메인 검색바 사용자 선택언어 : ", language2)
+    console.log("상단 바 사용자 선택언어 : ", language);
+    console.log("메인 검색바 사용자 선택언어 : ", language2);
 
+    let specificCookieValue = getCookie("user-email :");
+    console.log("Specific Cookie Value:", specificCookieValue);
 
     $('#loading').show();
 
@@ -825,7 +848,8 @@ function java() {   // select option이 java일때 api java 응답함수
                 apitext: apitext,
                 javaCode: javaCode,
                 user_input: input_String,
-                select_language: select_Language
+                select_language: select_Language,
+                email: specificCookieValue
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
@@ -855,7 +879,8 @@ function python() { // select option이 python일때 api python 응답함수
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
     console.log("상단 바 사용자 선택언어 : ", language)
     console.log("메인 검색바 사용자 선택언어 : ", language2)
-
+    let specificCookieValue = getCookie("user-email :");
+    console.log("Specific Cookie Value:", specificCookieValue);
 
     $('#loading').show();
 
@@ -945,7 +970,8 @@ function python() { // select option이 python일때 api python 응답함수
                 apitext: apitext,
                 pythonCode: pythonCode,
                 user_input: input_String,
-                select_language: select_Language
+                select_language: select_Language,
+                email : specificCookieValue
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
@@ -975,7 +1001,8 @@ function C_programing() { // select option이 python일때 api python 응답함�
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
     console.log("상단 바 사용자 선택언어 : ", language)
     console.log("메인 검색바 사용자 선택언어 : ", language2)
-
+    let specificCookieValue = getCookie("user-email :");
+    console.log("Specific Cookie Value:", specificCookieValue);
 
     $('#loading').show();
 
@@ -1064,7 +1091,8 @@ function C_programing() { // select option이 python일때 api python 응답함�
                 apitext: apitext,
                 c_Code: c_Code,
                 user_input: input_String,
-                select_language: select_Language
+                select_language: select_Language,
+                email:specificCookieValue
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
