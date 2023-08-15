@@ -222,22 +222,54 @@ router.post("/join", (req, res) => {
       return;
     }
 
-    let sql =
-      "INSERT INTO MEMBER (MEMBER_NAME, SIGN_PLATFORM_TYPE, PW, EMAIL) VALUES (?, ?, ?, ?)";
-    conn.query(
-      sql,
-      [join_name, "NDB", join_pass, join_email],
-      function (err, result) {
+    // 기존에 이메일이 이미 존재하는지 확인
+    let checkEmailSql =
+      "SELECT COUNT(*) AS emailCount FROM MEMBER WHERE EMAIL = ?";
+    conn.query(checkEmailSql, [join_email], function (err, result) {
+      if (err) {
+        console.error("Query Error:", err);
+        conn.end();
+        return;
+      }
+
+      if (result[0].emailCount > 0) {
+        // 이미 해당 이메일이 존재하는 경우
+        console.log("Email already exists.");
+        conn.end();
+        return;
+      }
+
+      // 현재 최대 USER_ID 조회
+      let getMaxUserIdSql = "SELECT MAX(USER_ID) AS maxUserId FROM MEMBER";
+      conn.query(getMaxUserIdSql, function (err, result) {
         if (err) {
           console.error("Query Error:", err);
-        } else {
-          console.log("Data inserted successfully:", result);
+          conn.end();
+          return;
         }
 
-        // DB 연결 종료
-        conn.end();
-      }
-    );
+        let nextUserId = result[0].maxUserId + 1; // 다음 USER_ID 값 계산
+
+        let insertSql =
+          "INSERT INTO MEMBER (USER_ID, MEMBER_NAME, SIGN_PLATFORM_TYPE, PW, EMAIL) VALUES (?, ?, ?, ?, ?)";
+
+        // 새로운 회원 정보 삽입
+        conn.query(
+          insertSql,
+          [nextUserId, join_name, "NDB", join_pass, join_email],
+          function (err, result) {
+            if (err) {
+              console.error("Query Error:", err);
+            } else {
+              console.log("Data inserted successfully:", result);
+            }
+
+            // DB 연결 종료
+            conn.end();
+          }
+        );
+      });
+    });
   });
 });
 
@@ -251,7 +283,7 @@ router.get("/setSession", (req, res) => {
 });
 router.post("/index", (req, res) => {
   const email = req.body.email;
-  const password = req.body.pass;
+  const password = req.body.password;
   const query = `SELECT * FROM MEMBER WHERE EMAIL = ? AND PW = ?`;
 
   // DB 연결

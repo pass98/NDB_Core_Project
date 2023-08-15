@@ -387,10 +387,11 @@ a {
 
 /* 낮/밤 모드 전환 버튼 CSS 끝 */
 
-.popularSerch {
+.main_popularSerch {
     box-sizing: border-box;
     padding-right: 32px;
     min-width: 250px;
+    cursor: pointer;
 }
 
 /* 네비게이션 끝 */
@@ -738,11 +739,19 @@ option:hover {
 
 .codeExam_examContent {
     padding: 24px;
+    padding-bottom: 0;
     overflow-y: scroll;
+    overflow-x: hidden;
+    /* [개선필요]문제 설명 부분만 스크롤 하기 위해 flex로 div별 비율 주려 함 */
+    /* display: flex;
+    flex-direction: column; */
 }
 .codeExam_examContent>h2{
     text-align: left;
 }
+/* [개선필요]문제 설명 부분만 스크롤 하기 위해 flex로 div별 비율 주려 함 */
+/* .codeExam_examContent:nth-child(1) { flex-grow: 1; }
+.codeExam_examContent:nth-child(2) { flex-grow: 3; } */
 .scrollbar {
     width: 250px;
     height: 250px;
@@ -767,9 +776,18 @@ option:hover {
     /* font-weight: bold; */
     font-size: 1.5rem;
     text-transform: uppercase;
-
-    padding: 16px 0 0 0;
+    min-height: 100px;
+    min-width: 100px;
 }
+.codeExam_examTitle>h2{
+    text-align: left;
+}
+/* 제목 제외 나머지 부분 선택 div CSS */
+.codeExam_examDetailSize{
+    /* height: 100%; */
+    width: 100%;
+}
+
 
 .codeExam_examDetail {
     padding: 16px 0 16px 0;

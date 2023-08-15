@@ -105,4 +105,8 @@ router.get('/mypage', (req, res) => {
     });
 });
 
-module.exports = router;
+router.get('/index', (req,res) => {
+    res.render('index.html')
+    console.log('마이 인덱스 파일 생성')
+})
+  module.exports = router;

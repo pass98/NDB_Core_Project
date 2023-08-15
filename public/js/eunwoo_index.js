@@ -7,30 +7,14 @@
 
 // textarea내용 iframe에 바로 업로드
 function updateIframeContent() {
-// iframe을 선택합니다.
-const iframe = document.getElementById('main_Nav_iframe'); // 적절한 선택자 사용 필요
+    const textAreaValue = document.getElementById('editing_code_html').value;
+    const iframe = document.getElementById('main_Nav_iframe');
 
-// 스타일과 내용을 포함한 HTML을 작성합니다.
-const iframeContent = `
-    <html>
-    <head>
-        <style>
-           ${responseDB.EXAM_CSS}
-        </style>
-    </head>
-    <body>
-        <!-- 내용을 여기에 작성 -->
-        ${responseDB.EXAM_HTML}
-        <script>
-        ${responseDB.EXAM_JS}
-        </script>
-    </body>
-    </html>
-`;
-console.log('iframeContent',iframeContent)
+    // iframe 내의 document에 접근
+    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-// srcdoc 속성을 사용하여 iframe의 내용을 설정합니다.
-iframe.setAttribute('srcdoc', iframeContent);
+    // iframe 내용 업데이트 (예: body의 내용을 textarea의 값으로 설정)
+    iframeDocument.body.innerHTML = textAreaValue;
 }
 
 // 코드 하이라이팅 효과 시작
@@ -152,6 +136,13 @@ function insertHTMLToDiv() {
     }
 
 }
+// codeExam_StartAndSave>button 클릭시 textarea내용 iframe에 출력
+function printHtml() {
+    const htmlContent = document.getElementById("editing_code_html");
+    const cssContent = document.getElementById("editing_code_Css");
+    const jsContent = document.getElementById("editing_code_Js");
+}
+
 // day&night theme 토글 함수
 function is_checked() {
     // 메인 검색창을 찾습니다.
@@ -258,7 +249,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    document.querySelector(".main_search_button").addEventListener('Click', function (e) {
+    document.querySelector(".main_search_button").addEventListener('click', function (e) {
         e.preventDefault();
     })
     document.querySelector(".main_search_button").addEventListener("Click", goToScroll);
@@ -321,7 +312,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let asycncTest = async function (e) {
         console.log("function 순차 실행");
         let a = await onKeyUp(e);
-        let b = await insertHTMLToDiv();
+        let d = await insertHTMLToDiv();
     }
 
     // 함수 호출
@@ -361,9 +352,21 @@ function user_Btn() { // 라디오 체크에 따라서 함수 호출하기
     }
 }
 
-// DB값 사용 위한 전역변수 설정
-let responseDB;
+function getCookie(cookieName) {
+    const name = cookieName + "=";
+    const decodedCookie = decodeURIComponent(document.cookie);
+    const cookieArray = decodedCookie.split(";");
 
+    for (let i = 0; i < cookieArray.length; i++) {
+        let cookie = cookieArray[i].trim();
+        if (cookie.indexOf(name) === 0) {
+            return cookie.substring(name.length, cookie.length);
+        }
+    }
+
+    return null;
+}
+let responseDB;
 function ex_1() { // DB 테이블에서 문제 제공하는 함수
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
@@ -375,7 +378,8 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
     console.log("상단 검색바 사용자선택 언어 : ", language)
     console.log("메인 검색바 사용자선택 언어 : ", language2)
-
+    let specificCookieValue = getCookie("user-email :");
+    console.log("Specific Cookie Value:", specificCookieValue);
 
     let select_Language = ""; // 사용자 선택언어
     let input_String = "";    // 사용자 입력값
@@ -416,6 +420,7 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
             method: 'POST',
             data: { // 서버에 보낼 데이터
                 find_keywords: find_keywords[0],
+                user_input: input_String,
                 select_language: select_Language
             }
         }).done(function (serverResponse) {
@@ -434,7 +439,10 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
             data: { // 서버에 보낼 데이터
                 find_keywords: find_keywords[0],
                 find_keywords2: find_keywords[1],
-                select_language: select_Language
+                select_language: select_Language,
+                user_input: input_String,
+                email : specificCookieValue
+
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
@@ -447,10 +455,6 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
     }
 
 }
-// SessionStorage 사용 위한 전역변수 설정
-let codeData;
-let retrievedData;
-
 
 // DB에서 값가져오기
 function response_DB() { // 전역 변수 값 확인해보기~
@@ -461,7 +465,9 @@ function response_DB() { // 전역 변수 값 확인해보기~
     let htmlTextarea = document.getElementById("editing_code_html");
     let cssTextarea = document.getElementById("editing_code_Css");
     let jsTextarea = document.getElementById("editing_code_Js");
-    let codeTextarea = document.getElementById("codeExam_codeLanguage");
+    let javaTextarea = document.getElementById("codeExam_codeLanguage");
+    let pythonTextarea = document.getElementById("codeExam_codeLanguage");
+    let cTextarea = document.getElementById("codeExam_codeLanguage");
     // index.html 요소 선택
     var main_searchLanguage2 = document.querySelector(".main_searchLanguage2");
     var main_selectLanguage2 = main_searchLanguage2.options[main_searchLanguage2.selectedIndex].value;
@@ -471,11 +477,7 @@ function response_DB() { // 전역 변수 값 확인해보기~
     console.log(responseDB.EXAM_CONTENT)
     examDetail.innerText = `${responseDB.EXAM_CONTENT}`;
     if (main_selectLanguage2 === "html" | main_selectLanguage2 === "css" | main_selectLanguage2 === "javascript") {
-        // Session에 데이터 저장
-        codeData = [responseDB.EXAM_HTML, responseDB.EXAM_CSS, responseDB.EXAM_JS]
-        sessionStorage.setItem('codeExam', JSON.stringify(codeData));
-        retrievedData = JSON.parse(sessionStorage.getItem('codeExam'));
-        console.log(retrievedData);
+
         // index.html에 내용 삽입
         htmlTextarea.innerText = responseDB.EXAM_HTML;
         cssTextarea.innerText = responseDB.EXAM_CSS;
@@ -499,7 +501,7 @@ function response_DB() { // 전역 변수 값 확인해보기~
             lineNumbers: true,
             lineWrapping: true //줄바꿈. 음.. break-word;
         });
-        console.log("codemirror 수정_CSS")
+        console.log("codemirror 수정_HTML")
         editorCSS.setValue(responseDB.EXAM_CSS)
         editorCSS.save()
         // JS
@@ -509,14 +511,13 @@ function response_DB() { // 전역 변수 값 확인해보기~
             lineNumbers: true,
             lineWrapping: true //줄바꿈. 음.. break-word;
         });
-        console.log("codemirror 수정_JS")
+        console.log("codemirror 수정_HTML")
         editorJS.setValue(responseDB.EXAM_JS)
         editorJS.save()
-        updateIframeContent();
     } else {
         // 다른 언어 내용 삽입
         if (main_selectLanguage2 === "java") {
-            var editorJAVA = CodeMirror.fromTextArea(codeTextarea, {
+            var editorJAVA = CodeMirror.fromTextArea(javaTextarea, {
                 mode: "clike",
                 theme: "dracula",  //테마는 맘에드는 걸로.
                 lineNumbers: true,
@@ -526,25 +527,9 @@ function response_DB() { // 전역 변수 값 확인해보기~
             editorJAVA.setValue(responseDB.EXAM_JAVA)
             editorJAVA.save()
         } else if (main_selectLanguage2 === "python") {
-            var editorPYTHON = CodeMirror.fromTextArea(codeTextarea, {
-                mode: "clike",
-                theme: "dracula",  //테마는 맘에드는 걸로.
-                lineNumbers: true,
-                lineWrapping: true //줄바꿈. 음.. break-word;
-            });
-            console.log("codemirror 수정_PYTHON")
-            editorPYTHON.setValue(responseDB.EXAM_PYTHON)
-            editorPYTHON.save()
+
         } else if (main_selectLanguage2 === "c_language") {
-            var editorC = CodeMirror.fromTextArea(codeTextarea, {
-                mode: "clike",
-                theme: "dracula",  //테마는 맘에드는 걸로.
-                lineNumbers: true,
-                lineWrapping: true //줄바꿈. 음.. break-word;
-            });
-            console.log("codemirror 수정_C")
-            editorC.setValue(responseDB.EXAM_C)
-            editorC.save()
+
         }
     }
 }
@@ -553,6 +538,10 @@ function response_DB() { // 전역 변수 값 확인해보기~
 // cssTextarea.innerText = responseDB.EXAM_CSS;
 // jsTextarea.innerText = responseDB.EXAM_JS;
 
+// function getAllCookies() {
+//     const cookies = document.cookie;
+//     console.log(cookies);
+//   }
 
 
 
@@ -563,7 +552,6 @@ function select() {
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
     console.log("상단 검색바 사용자선택 언어 : ", language)
     console.log("메인 검색바 사용자선택 언어 : ", language2)
-
     if (language == " ") {
         if (language2 == "html") {
             front();
@@ -608,9 +596,8 @@ function select() {
 
 
 }
-
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -626,7 +613,8 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
     console.log("상단 바 사용자 선택언어:", language)
     console.log("메임검색바 사용자 선택언어:", language2)
 
-
+    let specificCookieValue = getCookie("user-email :");
+    console.log("Specific Cookie Value:", specificCookieValue);
     $('#loading').show();
 
     let select_Language = "";
@@ -733,10 +721,14 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
                 cssCode: cssCode,
                 jsCode: jsCode,
                 user_input: input_String,
-                select_language: select_Language
+                select_language: select_Language,
+                email: specificCookieValue
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
+            console.log(responseDB);
+            console.log(responseDB[0].EXAM_CONTENT);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -748,7 +740,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 }
 
 function java() {   // select option이 java일때 api java 응답함수
-    const api_key = "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"// api key 값
+    const api_key = "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"// api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -761,9 +753,11 @@ function java() {   // select option이 java일때 api java 응답함수
     let language = languageElement.options[languageElement.selectedIndex].value; // select 태그 사용자 선택 value값 가져오기
     let languageElement2 = document.querySelector(".main_searchLanguage2");
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
-    console.log("상단 바 사용자 선택언어 : ", language)
-    console.log("메인 검색바 사용자 선택언어 : ", language2)
+    console.log("상단 바 사용자 선택언어 : ", language);
+    console.log("메인 검색바 사용자 선택언어 : ", language2);
 
+    let specificCookieValue = getCookie("user-email :");
+    console.log("Specific Cookie Value:", specificCookieValue);
 
     $('#loading').show();
 
@@ -854,10 +848,14 @@ function java() {   // select option이 java일때 api java 응답함수
                 apitext: apitext,
                 javaCode: javaCode,
                 user_input: input_String,
-                select_language: select_Language
+                select_language: select_Language,
+                email: specificCookieValue
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
+            console.log(responseDB)
+            console.log(responseDB[0].EXAM_JAVA);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -867,7 +865,7 @@ function java() {   // select option이 java일때 api java 응답함수
 }
 
 function python() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -882,7 +880,8 @@ function python() { // select option이 python일때 api python 응답함수
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
     console.log("상단 바 사용자 선택언어 : ", language)
     console.log("메인 검색바 사용자 선택언어 : ", language2)
-
+    let specificCookieValue = getCookie("user-email :");
+    console.log("Specific Cookie Value:", specificCookieValue);
 
     $('#loading').show();
 
@@ -972,10 +971,13 @@ function python() { // select option이 python일때 api python 응답함수
                 apitext: apitext,
                 pythonCode: pythonCode,
                 user_input: input_String,
-                select_language: select_Language
+                select_language: select_Language,
+                email : specificCookieValue
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
+            console.log(responseDB);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -985,7 +987,7 @@ function python() { // select option이 python일때 api python 응답함수
 }
 
 function C_programing() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -1000,7 +1002,8 @@ function C_programing() { // select option이 python일때 api python 응답함�
     let language2 = languageElement2.options[languageElement2.selectedIndex].value;
     console.log("상단 바 사용자 선택언어 : ", language)
     console.log("메인 검색바 사용자 선택언어 : ", language2)
-
+    let specificCookieValue = getCookie("user-email :");
+    console.log("Specific Cookie Value:", specificCookieValue);
 
     $('#loading').show();
 
@@ -1089,10 +1092,14 @@ function C_programing() { // select option이 python일때 api python 응답함�
                 apitext: apitext,
                 c_Code: c_Code,
                 user_input: input_String,
-                select_language: select_Language
+                select_language: select_Language,
+                email:specificCookieValue
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
+            console.log(responseDB);
+            console.log(responseDB);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
