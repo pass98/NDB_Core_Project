@@ -596,7 +596,6 @@ function select() {
 
 
 }
-let responseAPI;
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
     const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
@@ -727,8 +726,9 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            responseAPI = serverResponse;
-            console.log(responseAPI);
+            responseDB = serverResponse;
+            console.log(responseDB);
+            console.log(responseDB[0].EXAM_CONTENT);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -853,8 +853,9 @@ function java() {   // select option이 java일때 api java 응답함수
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            responseAPI = serverResponse;
-            console.log(responseAPI);
+            responseDB = serverResponse;
+            console.log(responseDB)
+            console.log(responseDB[0].EXAM_JAVA);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -975,8 +976,8 @@ function python() { // select option이 python일때 api python 응답함수
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            responseAPI = serverResponse;
-            console.log(responseAPI);
+            responseDB = serverResponse;
+            console.log(responseDB);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -1096,8 +1097,9 @@ function C_programing() { // select option이 python일때 api python 응답함�
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            responseAPI = serverResponse;
-            console.log(responseAPI);
+            responseDB = serverResponse;
+            console.log(responseDB);
+            console.log(responseDB);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
