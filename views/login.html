@@ -81,7 +81,7 @@
             name="password"
             required
           />
-          <span  id = "error-message"class="password_span hidden"
+          <span id="error-message" class="password_span hidden"
             >이메일 및 비밀번호를 확인하세요.</span
           >
           <button type="submit" id="login-button" class="login_button">
@@ -136,5 +136,35 @@
       </footer>
     </div>
     <!-- <script src="/js/login.js"></script> -->
+    <script>
+      // 현재 저장된 모든 쿠키 가져오기
+      function getAllCookies() {
+        const cookies = document.cookie;
+        return cookies;
+      }
+
+      // 특정 쿠키 값 가져오기
+      function getCookie(cookieName) {
+        const name = cookieName + "=";
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookieArray = decodedCookie.split(";");
+
+        for (let i = 0; i < cookieArray.length; i++) {
+          let cookie = cookieArray[i].trim();
+          if (cookie.indexOf(name) === 0) {
+            return cookie.substring(name.length, cookie.length);
+          }
+        }
+
+        return null;
+      }
+
+      // 사용 예시
+      const allCookies = getAllCookies();
+      console.log("All Cookies:", allCookies);
+
+      const specificCookieValue = getCookie("your_cookie_name");
+      console.log("Specific Cookie Value:", specificCookieValue);
+    </script>
   </body>
 </html>

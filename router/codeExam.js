@@ -27,7 +27,7 @@ router.post("/index/ex_1", function (req, res) {
                 let javaCode = randomRow.EXAM_JAVA;                // java 코드 - O
                 let pythonCode = randomRow.EXAM_PYTHON;              // python 코드 - O
                 //let exam_id = PK(auto_increment);   // 문제 id - PK
-                let user_email = "123@123";           // 유저 id - FK /임의 문제 아이디 
+                let user_email = req.body.email;          // 유저 id - FK /임의 문제 아이디 
                 let exam_desc = randomRow.EXAM_CONTENT;// 문제 + 부가설명 - O
 
                 let sql2 = `INSERT INTO QUESTION (
@@ -86,9 +86,10 @@ router.post("/index/ex_2", function (req, res) {
                 let javaCode = randomRow.EXAM_JAVA;                // java 코드 - O
                 let pythonCode = randomRow.EXAM_PYTHON;              // python 코드 - O
                 //let exam_id = PK(auto_increment);   // 문제 id - PK
-                let user_email = "123@123";           // 유저 id - FK /임의 문제 아이디 
+                let user_email = req.body.email;           // 유저 id - FK /임의 문제 아이디 
                 let exam_desc = randomRow.EXAM_CONTENT;// 문제 + 부가설명 - O
 
+                console.log(user_email)
                 let sql2 = `INSERT INTO QUESTION (
                     EMAIL,EXAM_LANGUAGE, SEARCH_WORD, 
                     EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, 
@@ -129,7 +130,7 @@ router.post("/index/frontinput", function (req, res) {
     let javaCode = "";                // java 코드 - O
     let pythonCode = "";              // python 코드 - O
     //let exam_id = PK(auto_increment);   // 문제 id - PK
-    let EMAIL = '123@123';                    // 유저 id - FK
+    let EMAIL = req.body.email;                    // 유저 id - FK
     let exam_desc = f_text + "\n" + apitext;    // 문제 + 부가설명 - O
 
     let sql = `insert into QUESTION (
@@ -175,7 +176,7 @@ router.post("/index/java_input", function (req, res) {
     let cCode = " ";                   // c 코드 - O
     let pythonCode = " ";              // python 코드 - O
     //let exam_id = PK(auto_increment);   // 문제 id - PK
-    let EMAIL = "123@123";                   // 유저 id - FK
+    let EMAIL = req.body.email;                   // 유저 id - FK
     let exam_desc = f_text + "\n" + apitext;    // 문제 + 부가설명 - O
 
     let sql = `insert into QUESTION (EMAIL,EXAM_LANGUAGE, SEARCH_WORD, EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, EXAM_C, EXAM_PYTHON )values(?,?,?,?,?,?,?,?,?,?)`;
@@ -214,7 +215,7 @@ router.post("/index/python_input", function (req, res) {
     let javaCode = " ";                 // java 코드 - O
     let cCode = " ";                   // c 코드 - O
     //let exam_id = PK(auto_increment);   // 문제 id - PK
-    let EMAIL = "123@123";                    // 유저 id - FK
+    let EMAIL = req.body.email;                    // 유저 id - FK
     let exam_desc = f_text + "\n" + apitext;    // 문제 + 부가설명 - O
 
     let sql = `insert into QUESTION (EMAIL,EXAM_LANGUAGE, SEARCH_WORD,
@@ -255,7 +256,7 @@ router.post("/index/c_input", function (req, res) {
     let javaCode = " ";                 // java 코드 - O
     let pythonCode = " ";              // python 코드 - O
     //let exam_id = PK(auto_increment);   // 문제 id - PK
-    let EMAIL = "123@123";                    // 유저 id - FK
+    let EMAIL = req.body.email;;                    // 유저 id - FK
     let exam_desc = f_text + "\n" + apitext;    // 문제 + 부가설명 - O
 
     let sql = `insert into QUESTION (EMAIL,EXAM_LANGUAGE, SEARCH_WORD, EXAM_CONTENT, 
