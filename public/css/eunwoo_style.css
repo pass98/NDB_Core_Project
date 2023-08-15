@@ -387,10 +387,11 @@ a {
 
 /* 낮/밤 모드 전환 버튼 CSS 끝 */
 
-.popularSerch {
+.main_popularSerch {
     box-sizing: border-box;
     padding-right: 32px;
     min-width: 250px;
+    cursor: pointer;
 }
 
 /* 네비게이션 끝 */
