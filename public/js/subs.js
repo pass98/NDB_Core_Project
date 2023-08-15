@@ -60,43 +60,105 @@ function requestPay1() {
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    const openModalBtn = document.querySelector('.subs_btn_open');
-    const closeModalBtn = document.querySelector(".subs_button_close")
-    const modal = document.querySelector('.subs_modal');
+// document.addEventListener('DOMContentLoaded', function() {
+//     const openModalBtn = document.querySelector('.subs_btn_open');
+//     const closeModalBtn = document.querySelector(".subs_button_close")
+//     const modal = document.querySelector('.subs_modal');
     
-    openModalBtn.addEventListener('click', function() {
-        modal.style.display = 'block';
-    });
+//     openModalBtn.addEventListener('click', function() {
+//         modal.style.display = 'block';
+//     });
 
 
-    closeModalBtn.addEventListener('click', function() {
-        modal.style.display = 'none'; // 모달 숨기기
-    });
-});
+//     closeModalBtn.addEventListener('click', function() {
+//         modal.style.display = 'none'; // 모달 숨기기
+//     });
+// });
 
 
-    $(function(){
-        const openModalBtn = document.querySelector('.subs_btn_open');
-        const modal = document.querySelector('.subs_modal');
-    console.log('Dd')
+
+// $(document).ready(function(){
+//     console.log('Dd');
+//     // 열기 버튼을 클릭하면 모달 창을 보이게 하도록 이벤트 핸들러 추가
+//     $('.subs_btn_open').click(function () {
+//         console.log('사이드바 구독 버튼 클릭');
+//         $('.subs_modal, .overlay').addClass("active");
+//     });
+
+//     //닫기 버튼을 클릭하면 모달 창이 닫히도록 이벤트 핸들러 추가
+
+//     $('.subs_button_close, .overlay').click(function () {
+//         $('.subs_modal, .overlay').removeClass("active");
+//         console.log("어때");
+//     });
+
+//     // 무료 구독창 클릭 시 완료 문구 및 마이페이지로 이동 
+//     document.getElementById("subscribe-link").addEventListener("click", function(event) {
+//         event.preventDefault(); // 링크의 기본 동작 중단
+//         alert("구독이 완료되었습니다! Basic 회원이 되신 걸 축하드립니다!"); // 알림창 표시
+//         window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
+//     });
+//     document.getElementById("mypage_btn_open").addEventListener("click", function (event) {
+//         window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
+//     });
+
+// });
+
+$(document).ready(function() {
+    console.log('Dd');
+
     // 열기 버튼을 클릭하면 모달 창을 보이게 하도록 이벤트 핸들러 추가
     $('.subs_btn_open').click(function () {
-        console.log('사이드바 구독 버튼 클릭')
+        console.log('사이드바 구독 버튼 클릭');
         $('.subs_modal, .overlay').addClass("active");
-});
+      
+    });
 
-// 닫기 버튼을 클릭하면 모달 창이 닫히도록 이벤트 핸들러 추가
+    $('#subscribe-link2').click(function(event) {
+        event.preventDefault(); // 버튼의 기본 동작을 중단
+        requestPay();
+    });
+
+    $('#subscribe-link3').click(function(event) {
+        event.preventDefault(); // 버튼의 기본 동작을 중단
+        requestPay1();
+    });
+
+    $('.subs_modal').click(function(event) {
+        event.stopPropagation();  // 이벤트 버블링 방지
+    });
+    
+
+    // 닫기 버튼을 클릭하면 모달 창이 닫히도록 이벤트 핸들러 추가
     $('.subs_button_close, .overlay').click(function () {
         $('.subs_modal, .overlay').removeClass("active");
-});
+        console.log("어때");
+    });
 
-// 무료 구독창 클릭 시 완료 문구 및 마이페이지로 이동 
-    document.getElementById("subscribe-link").addEventListener("click", function(event) {
-        event.preventDefault(); // 링크의 기본 동작 중단
-        alert("구독이 완료되었습니다! Basic 회원이 되신 걸 축하드립니다!"); // 알림창 표시
-        window.location.href = "http://localhost:3003/mypage"; // 주소로 이동
+    // 무료 구독창 클릭 시 완료 문구 및 마이페이지로 이동 
+    $('#subscribe-link').click(function(event) {
+        event.preventDefault();
+        alert("구독이 완료되었습니다! Basic 회원이 되신 걸 축하드립니다!");
+        window.location.href = "http://localhost:3003/mypage";
+    });
+
+    $('#mypage_btn_open').click(function() {
+        window.location.href = "http://localhost:3003/mypage";
+    });
+
+    $('#btn-pay').click(function() {
+        requestPay();
     });
 
 });
 
+
+
+
+// // 닫기 버튼을 클릭하면 모달 창이 닫히도록 이벤트 핸들러 추가
+// $(document).ready(function() {
+//     $('.subs_button_close, .overlay').click(function () {
+//         $('.subs_modal, .overlay').removeClass("active");
+//         console.log("어때");
+//     });
+// });

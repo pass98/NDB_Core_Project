@@ -1,6 +1,6 @@
 function openChat() {
     document.getElementById('chat-body').style.display = 'block';
-    document.getElementById('chat-input').style.display = 'block';
+    document.getElementById('chat-input').style.display = 'flex';
     document.getElementById('back-button').style.display = 'block';
     document.getElementById('button-container').style.display = 'none';
 }
@@ -119,7 +119,7 @@ function sendMessage() {
 
 function chatGPT(userInput) {
     const loadingMsgBox = createMessage("타이핑중...", "bot-message");
-    const api_key = "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";//본인 api키값 쓸것
+    const api_key = "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";//본인 api키값 쓸것
     const messages = [
         { role: 'system', content: 'You are a NDB code reviewer. Please respond in Korean.' },
         { role: 'user', content: userInput },
