@@ -7,6 +7,7 @@
 
 // 검색한 값 DB에서 가져와 iframe에 바로 업로드
 function updateIframeContent(lang) {
+
   console.log("updateIframeContent 함수 실행");
   // iframe을 선택합니다.
   const iframe = document.getElementById("main_Nav_iframe"); // 적절한 선택자 사용 필요
@@ -16,6 +17,7 @@ function updateIframeContent(lang) {
     // 스타일과 내용을 포함한 HTML을 작성합니다.
     // iframe 변수 선언
     const iframeContentFront = `
+
         <html>
             <head>
                 <style>
@@ -31,6 +33,7 @@ function updateIframeContent(lang) {
             </body>
         </html>
         `;
+
     // srcdoc 속성을 사용하여 iframe의 내용을 설정합니다.
     console.log("iframeContentFront", iframeContentFront);
     iframe.setAttribute("srcdoc", iframeContentFront);
@@ -39,6 +42,7 @@ function updateIframeContent(lang) {
     // JSP 내용 해당 블로그 참조 https://ejfrmjava.tistory.com/14
     if (lang === "java") {
       const iframeContentJava = `
+
             <%-- 지시 태그  --%>
             <%@page import="java.util.ArrayList"%>
             <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -58,10 +62,12 @@ function updateIframeContent(lang) {
                 </body>
             </html>
             `;
+
       console.log("iframeContentJava", iframeContentJava);
       iframe.setAttribute("srcdoc", iframeContentJava);
     } else if (lang === "python") {
       const iframeContentPython = `
+
             <html>
                 <head>
                 <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
@@ -87,10 +93,12 @@ function updateIframeContent(lang) {
                 </body>
             </html>
             `;
+
       console.log("iframeContentPython", iframeContentPython);
       iframe.setAttribute("srcdoc", iframeContentPython);
     } else if (lang === "c_language") {
       const iframeContentC = `
+
             <html>
                 <head>
                     <style>
@@ -106,11 +114,14 @@ function updateIframeContent(lang) {
                 </body>
             </html>
             `;
+
       console.log("iframeContentFront", iframeContentC);
       iframe.setAttribute("srcdoc", iframeContentC);
     }
   }
+
 }
+
 
 // 코드 하이라이팅 효과 시작
 function update_code() {
@@ -237,12 +248,14 @@ function insertHTMLToDiv() {
     `;
   }
 }
+
 // codeExam_StartAndSave>button 클릭시 textarea내용 iframe에 출력
 function printHtml() {
   const htmlContent = document.getElementById("editing_code_html");
   const cssContent = document.getElementById("editing_code_Css");
   const jsContent = document.getElementById("editing_code_Js");
 }
+
 
 // day&night theme 토글 함수
 function is_checked() {
@@ -294,6 +307,7 @@ function goToScroll() {
 
 // 문서 로딩 완료한 뒤 실행
 document.addEventListener("DOMContentLoaded", function () {
+
   // 한글 타이핑 효과
   TypeHangul.type(".main_text p", {
     intervalType: 50,
@@ -348,9 +362,11 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("API에서 응답 받기");
       }
 
+
       console.log("전송");
     }
   }
+
 
   document
     .querySelector(".main_search_button")
@@ -464,6 +480,7 @@ function getCookie(cookieName) {
   function ex_1() {
     // DB 테이블에서 문제 제공하는 함수
     let keywords = document.getElementsByClassName("main_searchBar")[0];
+
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
     let user_input2 = keywords2.value;
@@ -512,6 +529,7 @@ function getCookie(cookieName) {
     // 사용자가 선택할 것 같은 키워드 배열
 
     for (let i = 0; i < user_keywords.length; i++) {
+
       if (input_String.includes(user_keywords[i])) {
         console.log(`찾은 keyword: ${user_keywords[i]}`); //for, 별찍기
         find_keywords.push(user_keywords[i]); //찾은 keyword push
@@ -573,6 +591,7 @@ function getCookie(cookieName) {
   function response_DB() {
     // 전역 변수 값 확인해보기~
     // console.log(responseDB.EXAM_HTML);
+
     let examName = document.querySelector(".codeExam_examTitle > h2");
     let examDetail = document.querySelector(".codeExam_examDetail > span");
 
@@ -590,6 +609,7 @@ function getCookie(cookieName) {
     examName.innerText = `${responseDB.EXAM_LANGUAGE}, ${responseDB.SEARCH_WORD}`;
     console.log(responseDB.EXAM_CONTENT);
     examDetail.innerText = `${responseDB.EXAM_CONTENT}`;
+
     if (
       (main_selectLanguage2 === "html") |
       (main_selectLanguage2 === "css") |
@@ -683,8 +703,10 @@ function getCookie(cookieName) {
         editorVal = editorC;
       }
       updateIframeContent(main_selectLanguage2);
+
     }
   }
+
 
   // htmlTextarea.innerText = responseDB.EXAM_HTML;
   // cssTextarea.innerText = responseDB.EXAM_CSS;
@@ -696,6 +718,7 @@ function getCookie(cookieName) {
     const iframe = document.getElementById("main_Nav_iframe");
     const iframeDocument =
       iframe.contentDocument || iframe.contentWindow.document;
+
 
     // index.html 요소 선택
     var main_searchLanguage2 = document.querySelector(".main_searchLanguage2");
@@ -836,6 +859,7 @@ function getCookie(cookieName) {
       }
     }
     if (language2 == " ") {
+
       if (language == "html") {
         front();
       } else if (language == "css") {
@@ -856,6 +880,7 @@ function getCookie(cookieName) {
     // select option이 html,css,js일때 api html,css,js코드 응답함수
     const api_key = "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";
     let keywords = document.getElementsByClassName("main_searchBar")[0];
+
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
     let user_input2 = keywords2.value;
@@ -1031,10 +1056,12 @@ function getCookie(cookieName) {
     });
   }
 
+
   function java() {
     // select option이 java일때 api java 응답함수
     const api_key = "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"; // api key 값
     let keywords = document.getElementsByClassName("main_searchBar")[0];
+
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
     let user_input2 = keywords2.value;
@@ -1171,10 +1198,12 @@ function getCookie(cookieName) {
     });
   }
 
+
   function python() {
     // select option이 python일때 api python 응답함수
     const api_key = "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"; // api key 값
     let keywords = document.getElementsByClassName("main_searchBar")[0];
+
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
     let user_input2 = keywords2.value;
@@ -1310,10 +1339,12 @@ function getCookie(cookieName) {
     });
   }
 
+
   function C_programing() {
     // select option이 python일때 api python 응답함수
     const api_key = "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"; // api key 값
     let keywords = document.getElementsByClassName("main_searchBar")[0];
+
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
     let user_input2 = keywords2.value;
