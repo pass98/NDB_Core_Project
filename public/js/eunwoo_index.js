@@ -881,6 +881,11 @@ function getCookie(cookieName) {
     const api_key = "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";
     let keywords = document.getElementsByClassName("main_searchBar")[0];
 
+
+}
+function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
+    const api_key = "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"
+    let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
     let user_input2 = keywords2.value;
@@ -1026,28 +1031,28 @@ function getCookie(cookieName) {
         "\n\n" +
         apitext;
 
-      console.log(pre);
-      console.log();
-      $.ajax({
-        url: "/index/frontinput", // Update this to the URL of your server endpoint
-        method: "POST",
-        data: {
-          f_text: f_text,
-          apitext: apitext,
-          htmlCode: htmlCode,
-          cssCode: cssCode,
-          jsCode: jsCode,
-          user_input: input_String,
-          select_language: select_Language,
-        },
-      })
-        .done(function (serverResponse) {
-          console.log("데이터 서버에 보내기 성공~");
-          responseAPI = serverResponse;
-          console.log(responseAPI);
-        })
-        .fail(function (error) {
-          console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        console.log(pre)
+
+        $.ajax({
+            url: "/index/frontinput", // Update this to the URL of your server endpoint
+            method: 'POST',
+            data: {
+                f_text: f_text,
+                apitext: apitext,
+                htmlCode: htmlCode,
+                cssCode: cssCode,
+                jsCode: jsCode,
+                user_input: input_String,
+                select_language: select_Language,
+                email: specificCookieValue
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
+            console.log(responseDB);
+            console.log(responseDB[0].EXAM_CONTENT);
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
 
       // result.appendChild(pre)
@@ -1171,27 +1176,26 @@ function getCookie(cookieName) {
 
       pre.innerText = f_text + "\n\n" + javaCode + "\n\n" + apitext;
 
-      console.log(pre);
-      //result.appendChild(pre)
-      $.ajax({
-        url: "/index/java_input", // Update this to the URL of your server endpoint
-        method: "POST",
-        data: {
-          // 서버에 데이터 전송
-          f_text: f_text,
-          apitext: apitext,
-          javaCode: javaCode,
-          user_input: input_String,
-          select_language: select_Language,
-        },
-      })
-        .done(function (serverResponse) {
-          console.log("데이터 서버에 보내기 성공~");
-          responseAPI = serverResponse;
-          console.log(responseAPI);
-        })
-        .fail(function (error) {
-          console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        console.log(pre)
+        //result.appendChild(pre)
+        $.ajax({
+            url: "/index/java_input", // Update this to the URL of your server endpoint
+            method: 'POST',
+            data: { // 서버에 데이터 전송
+                f_text: f_text,
+                apitext: apitext,
+                javaCode: javaCode,
+                user_input: input_String,
+                select_language: select_Language,
+                email: specificCookieValue
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
+            console.log(responseDB)
+            console.log(responseDB[0].EXAM_JAVA);
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
 
       document.getElementsByClassName("main_searchbar").value = ""; //검색창 비우기
@@ -1312,27 +1316,27 @@ function getCookie(cookieName) {
 
       pre.innerText = f_text + "\n\n" + pythonCode + "\n\n" + apitext;
 
-      console.log(pre);
-      //result.appendChild(pre)
-      $.ajax({
-        url: "/index/python_input", // Update this to the URL of your server endpoint
-        method: "POST",
-        data: {
-          // 서버에 데이터 전송
-          f_text: f_text,
-          apitext: apitext,
-          pythonCode: pythonCode,
-          user_input: input_String,
-          select_language: select_Language,
-        },
-      })
-        .done(function (serverResponse) {
-          console.log("데이터 서버에 보내기 성공~");
-          responseAPI = serverResponse;
-          console.log(responseAPI);
-        })
-        .fail(function (error) {
-          console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        pre.innerText = f_text + "\n\n" + pythonCode + "\n\n" + apitext;
+
+        console.log(pre)
+        //result.appendChild(pre)
+        $.ajax({
+            url: "/index/python_input", // Update this to the URL of your server endpoint
+            method: 'POST',
+            data: { // 서버에 데이터 전송
+                f_text: f_text,
+                apitext: apitext,
+                pythonCode: pythonCode,
+                user_input: input_String,
+                select_language: select_Language,
+                email : specificCookieValue
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
+            console.log(responseDB);
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
 
       document.getElementsByClassName("main_searchbar").value = "";
@@ -1453,27 +1457,26 @@ function getCookie(cookieName) {
 
       pre.innerText = f_text + "\n\n" + c_Code + "\n\n" + apitext;
 
-      console.log(pre);
-      //result.appendChild(pre)
-      $.ajax({
-        url: "/index/c_input", // Update this to the URL of your server endpoint
-        method: "POST",
-        data: {
-          // 서버에 데이터 전송
-          f_text: f_text,
-          apitext: apitext,
-          c_Code: c_Code,
-          user_input: input_String,
-          select_language: select_Language,
-        },
-      })
-        .done(function (serverResponse) {
-          console.log("데이터 서버에 보내기 성공~");
-          responseAPI = serverResponse;
-          console.log(responseAPI);
-        })
-        .fail(function (error) {
-          console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+        console.log(pre)
+        //result.appendChild(pre)
+        $.ajax({
+            url: "/index/c_input", // Update this to the URL of your server endpoint
+            method: 'POST',
+            data: { // 서버에 데이터 전송
+                f_text: f_text,
+                apitext: apitext,
+                c_Code: c_Code,
+                user_input: input_String,
+                select_language: select_Language,
+                email:specificCookieValue
+            }
+        }).done(function (serverResponse) {
+            console.log("데이터 서버에 보내기 성공~");
+            responseDB = serverResponse;
+            console.log(responseDB);
+            console.log(responseDB);
+        }).fail(function (error) {
+            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
       document.getElementsByClassName("main_searchbar").value = "";
     });
