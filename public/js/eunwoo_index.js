@@ -417,26 +417,26 @@ function ex_1() { // DB 테이블에서 문제 제공하는 함수
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
     }
-    if (find_keywords.length == 2) {// 찾은 키워드가 2개일때
-        $.ajax({
-            url: "/index/ex_2", //
-            method: 'POST',
-            data: { // 서버에 보낼 데이터
-                find_keywords: find_keywords[0],
-                find_keywords2: find_keywords[1],
-                select_language: select_Language,
-                user_input : input_String
-            
-            }
-        }).done(function (serverResponse) {
-            console.log("데이터 서버에 보내기 성공~");
-            console.log(serverResponse); // 서버측에서 데이터 받기
-            responseDB = serverResponse; // 전역 변수에 서버측 데이터 할당
-            response_DB()
-        }).fail(function (error) {
-            console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
-        });
-    }
+        if (find_keywords.length == 2) {// 찾은 키워드가 2개일때
+            $.ajax({
+                url: "/index/ex_2", //
+                method: 'POST',
+                data: { // 서버에 보낼 데이터
+                    find_keywords: find_keywords[0],
+                    find_keywords2: find_keywords[1],
+                    select_language: select_Language,
+                    user_input : input_String
+                
+                }
+            }).done(function (serverResponse) {
+                console.log("데이터 서버에 보내기 성공~");
+                console.log(serverResponse); // 서버측에서 데이터 받기
+                responseDB = serverResponse; // 전역 변수에 서버측 데이터 할당
+                response_DB()
+            }).fail(function (error) {
+                console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
+            });
+        }
 
 }
 
@@ -573,13 +573,13 @@ function select() {
             C_programing();
         }
 
-    }
+    }   
 
 
 }
-
+let responseAPI;
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -706,6 +706,8 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
+            responseAPI = serverResponse;
+            console.log(responseAPI);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -717,7 +719,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 }
 
 function java() {   // select option이 java일때 api java 응답함수
-    const api_key = "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"// api key 값
+    const api_key = "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"// api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -836,7 +838,7 @@ function java() {   // select option이 java일때 api java 응답함수
 }
 
 function python() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -954,7 +956,7 @@ function python() { // select option이 python일때 api python 응답함수
 }
 
 function C_programing() { // select option이 python일때 api python 응답함수
-    const api_key = "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"  // api key 값
+    const api_key = "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"  // api key 값
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]

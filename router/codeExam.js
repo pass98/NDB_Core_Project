@@ -2,7 +2,6 @@ const express = require('express')
 const router = express.Router();
 const db = require("../config/datebase");
 let conn = db.init();
-
 router.post("/index/ex_1", function (req, res) {
     let user_keywords = req.body.find_keywords;
     let select_language = req.body.select_language;
@@ -32,7 +31,7 @@ router.post("/index/ex_1", function (req, res) {
                 let exam_desc = randomRow.EXAM_CONTENT;// 문제 + 부가설명 - O
 
                 let sql2 = `INSERT INTO QUESTION (
-                    EXAM_ID,EXAM_LANGUAGE, SEARCH_WORD, 
+                    EMAIL,EXAM_LANGUAGE, SEARCH_WORD, 
                     EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, 
                     EXAM_C, EXAM_PYTHON) VALUES (?,?,?,?,?,?,?,?,?,?)`;
 
@@ -91,7 +90,7 @@ router.post("/index/ex_2", function (req, res) {
                 let exam_desc = randomRow.EXAM_CONTENT;// 문제 + 부가설명 - O
 
                 let sql2 = `INSERT INTO QUESTION (
-                    EXAM_ID,EXAM_LANGUAGE, SEARCH_WORD, 
+                    EMAIL,EXAM_LANGUAGE, SEARCH_WORD, 
                     EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, 
                     EXAM_C, EXAM_PYTHON) VALUES (?,?,?,?,?,?,?,?,?,?)`;
 
@@ -130,20 +129,20 @@ router.post("/index/frontinput", function (req, res) {
     let javaCode = "";                // java 코드 - O
     let pythonCode = "";              // python 코드 - O
     //let exam_id = PK(auto_increment);   // 문제 id - PK
-    let user_id = 789;                    // 유저 id - FK
+    let EMAIL = '123@123';                    // 유저 id - FK
     let exam_desc = f_text + "\n" + apitext;    // 문제 + 부가설명 - O
 
     let sql = `insert into QUESTION (
-        USER_ID,EXAM_LANGUAGE, SEARCH_WORD, 
+        EMAIL,EXAM_LANGUAGE, SEARCH_WORD, 
         EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, 
         EXAM_C, EXAM_PYTHON )values(?,?,?,?,?,?,?,?,?,?)`;
 
-    conn.query(sql, [user_id, select_language, user_input,
+    conn.query(sql, [EMAIL, select_language, user_input,
         exam_desc, htmlCode, cssCode,
         jsCode, javaCode, cCode, pythonCode], function (err, rows) {
             if (!err) {
-                console.log("쿼리문 실행 완료");
-                res.json({ success: true });
+                console.log("쿼리문 실행 완료", rows);
+                res.json(rows);
             } else {
                 console.log("DB 쿼리문 실행 실패", err);
                 res.json({ success: false, error: err });
@@ -164,12 +163,12 @@ router.post("/index/java_input", function (req, res) {
     let cCode = " ";                   // c 코드 - O
     let pythonCode = " ";              // python 코드 - O
     //let exam_id = PK(auto_increment);   // 문제 id - PK
-    let user_id = 789;                    // 유저 id - FK
+    let EMAIL = "123@123";                   // 유저 id - FK
     let exam_desc = f_text + "\n" + apitext;    // 문제 + 부가설명 - O
 
-    let sql = `insert into QUESTION (USER_ID,EXAM_LANGUAGE, SEARCH_WORD, EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, EXAM_C, EXAM_PYTHON )values(?,?,?,?,?,?,?,?,?,?)`;
+    let sql = `insert into QUESTION (EMAIL,EXAM_LANGUAGE, SEARCH_WORD, EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, EXAM_C, EXAM_PYTHON )values(?,?,?,?,?,?,?,?,?,?)`;
 
-    conn.query(sql, [user_id, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
+    conn.query(sql, [EMAIL, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
         if (!err) {
             console.log("쿼리문 실행 완료");
             res.json({ success: true });
@@ -193,12 +192,14 @@ router.post("/index/python_input", function (req, res) {
     let javaCode = " ";                 // java 코드 - O
     let cCode = " ";                   // c 코드 - O
     //let exam_id = PK(auto_increment);   // 문제 id - PK
-    let user_id = 789;                    // 유저 id - FK
+    let EMAIL = "123@123";                    // 유저 id - FK
     let exam_desc = f_text + "\n" + apitext;    // 문제 + 부가설명 - O
 
-    let sql = `insert into QUESTION (USER_ID,EXAM_LANGUAGE, SEARCH_WORD, EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, EXAM_C, EXAM_PYTHON )values(?,?,?,?,?,?,?,?,?,?)`;
+    let sql = `insert into QUESTION (EMAIL,EXAM_LANGUAGE, SEARCH_WORD,
+         EXAM_CONTENT, EXAM_HTML, EXAM_CSS,
+          EXAM_JS, EXAM_JAVA, EXAM_C, EXAM_PYTHON )values(?,?,?,?,?,?,?,?,?,?)`;
 
-    conn.query(sql, [user_id, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
+    conn.query(sql, [EMAIL, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
         if (!err) {
             console.log("쿼리문 실행 완료");
             res.json({ success: true });
@@ -222,12 +223,14 @@ router.post("/index/c_input", function (req, res) {
     let javaCode = " ";                 // java 코드 - O
     let pythonCode = " ";              // python 코드 - O
     //let exam_id = PK(auto_increment);   // 문제 id - PK
-    let user_id = 789;                    // 유저 id - FK
+    let EMAIL = "123@123";                    // 유저 id - FK
     let exam_desc = f_text + "\n" + apitext;    // 문제 + 부가설명 - O
 
-    let sql = `insert into QUESTION (USER_ID,EXAM_LANGUAGE, SEARCH_WORD, EXAM_CONTENT, EXAM_HTML, EXAM_CSS, EXAM_JS, EXAM_JAVA, EXAM_C, EXAM_PYTHON )values(?,?,?,?,?,?,?,?,?,?)`;
+    let sql = `insert into QUESTION (EMAIL,EXAM_LANGUAGE, SEARCH_WORD, EXAM_CONTENT, 
+        EXAM_HTML, EXAM_CSS, EXAM_JS, 
+        EXAM_JAVA, EXAM_C, EXAM_PYTHON )values(?,?,?,?,?,?,?,?,?,?)`;
 
-    conn.query(sql, [user_id, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
+    conn.query(sql, [EMAIL, select_language, user_input, exam_desc, htmlCode, cssCode, jsCode, javaCode, cCode, pythonCode], function (err, rows) {
         if (!err) {
             console.log("쿼리문 실행 완료");
             res.json({ success: true });
