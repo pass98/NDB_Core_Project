@@ -4,7 +4,6 @@
 // hljs.registerLanguage('javascript', require('highlight.js/lib/languages/javascript'));
 // 모든 언어 가져오기
 // const hljs = require('highlight.js');
-
 // textarea내용 iframe에 바로 업로드
 function updateIframeContent(lang) {
     console.log("updateIframeContent 함수 실행")
@@ -19,14 +18,14 @@ function updateIframeContent(lang) {
         <html>
             <head>
                 <style>
-                ${responseDB.EXAM_CSS}
+                ${responseVal.EXAM_CSS}
                 </style>
             </head>
             <body>
                 <!-- 내용을 여기에 작성 -->
-                ${responseDB.EXAM_HTML}
+                ${responseVal.EXAM_HTML}
                 <script>
-                ${responseDB.EXAM_JS}
+                ${responseVal.EXAM_JS}
                 </script>
             </body>
         </html>
@@ -52,7 +51,7 @@ function updateIframeContent(lang) {
                 <body>
                     <!-- 내용을 여기에 작성 -->
                     <h1>JAVA 코드 실행</h1>
-                    <%${responseDB.EXAM_JAVA}%>
+                    <%${responseVal.EXAM_JAVA}%>
                     <script>
                     </script>
                 </body>
@@ -80,7 +79,7 @@ function updateIframeContent(lang) {
                 <body>
                     <!-- 내용을 여기에 작성 -->
                     <py-script>
-                    ${responseDB.EXAM_PYTHON}
+                    ${responseVal.EXAM_PYTHON}
                     </py-script>
                     <script>
                     </script>
@@ -94,14 +93,14 @@ function updateIframeContent(lang) {
             <html>
                 <head>
                     <style>
-                    ${responseDB.EXAM_CSS}
+                    ${responseVal.EXAM_CSS}
                     </style>
                 </head>
                 <body>
                     <!-- 내용을 여기에 작성 -->
-                    ${responseDB.EXAM_C}
+                    ${responseVal.EXAM_C}
                     <script>
-                    ${responseDB.EXAM_JS}
+                    ${responseVal.EXAM_JS}
                     </script>
                 </body>
             </html>
@@ -472,6 +471,7 @@ function getCookie(cookieName) {
 
   return null;
 }
+let responseVal;
 let responseAPI;
 let responseDB;
 
@@ -595,7 +595,7 @@ function response_DB() { // 전역 변수 값 확인해보기~
     // console.log(responseDB.EXAM_HTML);   
     let examName = document.querySelector(".codeExam_examTitle > h2");
     let examDetail = document.querySelector(".codeExam_examDetail > span");
-
+    responseVal = responseDB;
     let htmlTextarea = document.getElementById("editing_code_html");
     let cssTextarea = document.getElementById("editing_code_Css");
     let jsTextarea = document.getElementById("editing_code_Js");
@@ -606,19 +606,19 @@ function response_DB() { // 전역 변수 값 확인해보기~
     var main_selectLanguage2 = main_searchLanguage2.options[main_searchLanguage2.selectedIndex].value;
 
     // 왼쪽 문제 이름 / 문제 설명 창 내용 삽입
-    examName.innerText = `${responseDB.EXAM_LANGUAGE}, ${responseDB.SEARCH_WORD}`
-    console.log(responseDB.EXAM_CONTENT)
-    examDetail.innerText = `${responseDB.EXAM_CONTENT}`;
+    examName.innerText = `${responseVal.EXAM_LANGUAGE}, ${responseVal.SEARCH_WORD}`
+    console.log(responseVal.EXAM_CONTENT)
+    examDetail.innerText = `${responseVal.EXAM_CONTENT}`;
     if (main_selectLanguage2 === "html" | main_selectLanguage2 === "css" | main_selectLanguage2 === "javascript") {
-        // Session에 데이터 저장
-        codeData = [responseDB.EXAM_HTML, responseDB.EXAM_CSS, responseDB.EXAM_JS]
-        sessionStorage.setItem('codeExam', JSON.stringify(codeData));
-        retrievedData = JSON.parse(sessionStorage.getItem('codeExam'));
-        console.log(retrievedData);
+        // // Session에 데이터 저장
+        // codeData = [responseVal.EXAM_HTML, responseVal.EXAM_CSS, responseVal.EXAM_JS]
+        // sessionStorage.setItem('codeExam', JSON.stringify(codeData));
+        // retrievedData = JSON.parse(sessionStorage.getItem('codeExam'));
+        // console.log(retrievedData);
         // index.html에 내용 삽입
-        htmlTextarea.innerText = responseDB.EXAM_HTML;
-        cssTextarea.innerText = responseDB.EXAM_CSS;
-        jsTextarea.innerText = responseDB.EXAM_JS;
+        htmlTextarea.innerText = responseVal.EXAM_HTML;
+        cssTextarea.innerText = responseVal.EXAM_CSS;
+        jsTextarea.innerText = responseVal.EXAM_JS;
         // code mirror 
         // 에디터 설정
         // HTML
@@ -629,7 +629,7 @@ function response_DB() { // 전역 변수 값 확인해보기~
             lineWrapping: true //줄바꿈. 음.. break-word;
         });
         console.log("codemirror 수정_HTML")
-        editorHtml.setValue(responseDB.EXAM_HTML)
+        editorHtml.setValue(responseVal.EXAM_HTML)
         editorHtml.save()
         // CSS
         editorCSS = CodeMirror.fromTextArea(cssTextarea, {
@@ -639,7 +639,7 @@ function response_DB() { // 전역 변수 값 확인해보기~
             lineWrapping: true //줄바꿈. 음.. break-word;
         });
         console.log("codemirror 수정_CSS")
-        editorCSS.setValue(responseDB.EXAM_CSS)
+        editorCSS.setValue(responseVal.EXAM_CSS)
         editorCSS.save()
         // JS
         editorJS = CodeMirror.fromTextArea(jsTextarea, {
@@ -649,7 +649,7 @@ function response_DB() { // 전역 변수 값 확인해보기~
             lineWrapping: true //줄바꿈. 음.. break-word;
         });
         console.log("codemirror 수정_JS")
-        editorJS.setValue(responseDB.EXAM_JS)
+        editorJS.setValue(responseVal.EXAM_JS)
         editorJS.save()
         updateIframeContent(main_selectLanguage2);
         editorValFront = [editorHtml.getDoc().getValue("\n"), editorCSS.getDoc().getValue("\n"), editorJS.getDoc().getValue("\n")]
@@ -663,7 +663,7 @@ function response_DB() { // 전역 변수 값 확인해보기~
                 lineWrapping: true //줄바꿈. 음.. break-word;
             });
             console.log("codemirror 수정_JAVA")
-            editorJAVA.setValue(responseDB.EXAM_JAVA)
+            editorJAVA.setValue(responseVal.EXAM_JAVA)
             editorJAVA.save()
             editorVal = editorJAVA
         } else if (main_selectLanguage2 === "python") {
@@ -674,7 +674,7 @@ function response_DB() { // 전역 변수 값 확인해보기~
                 lineWrapping: true //줄바꿈. 음.. break-word;
             });
             console.log("codemirror 수정_PYTHON")
-            editorPYTHON.setValue(responseDB.EXAM_PYTHON)
+            editorPYTHON.setValue(responseVal.EXAM_PYTHON)
             editorPYTHON.save()
             editorVal = editorPYTHON
         } else if (main_selectLanguage2 === "c_language") {
@@ -685,13 +685,118 @@ function response_DB() { // 전역 변수 값 확인해보기~
                 lineWrapping: true //줄바꿈. 음.. break-word;
             });
             console.log("codemirror 수정_C")
-            editorC.setValue(responseDB.EXAM_C)
+            editorC.setValue(responseVal.EXAM_C)
             editorC.save()
             editorVal = editorC
         }
         updateIframeContent(main_selectLanguage2);
     }
 }
+
+// API에서 값 가져오기
+function response_API() { // 전역 변수 값 확인해보기~
+    // console.log(responseDB.EXAM_HTML);   
+    let examName = document.querySelector(".codeExam_examTitle > h2");
+    let examDetail = document.querySelector(".codeExam_examDetail > span");
+    responseVal = responseAPI[0]
+
+    let htmlTextarea = document.getElementById("editing_code_html");
+    let cssTextarea = document.getElementById("editing_code_Css");
+    let jsTextarea = document.getElementById("editing_code_Js");
+    // textarea의 id가 editing_code_html임
+    let codeTextarea = document.getElementById("editing_code_html");
+    // index.html 요소 선택
+    var main_searchLanguage2 = document.querySelector(".main_searchLanguage2");
+    var main_selectLanguage2 = main_searchLanguage2.options[main_searchLanguage2.selectedIndex].value;
+
+    // 왼쪽 문제 이름 / 문제 설명 창 내용 삽입
+    examName.innerText = `${responseVal.EXAM_LANGUAGE}, ${responseVal.SEARCH_WORD}`
+    console.log(responseVal.EXAM_CONTENT)
+    examDetail.innerText = `${responseVal.EXAM_CONTENT}`;
+    if (main_selectLanguage2 === "html" | main_selectLanguage2 === "css" | main_selectLanguage2 === "javascript") {
+        // Session에 데이터 저장
+        codeData = [responseVal.EXAM_HTML, responseVal.EXAM_CSS, responseVal.EXAM_JS]
+        sessionStorage.setItem('codeExam', JSON.stringify(codeData));
+        retrievedData = JSON.parse(sessionStorage.getItem('codeExam'));
+        console.log(retrievedData);
+        // index.html에 내용 삽입
+        htmlTextarea.innerText = responseVal.EXAM_HTML;
+        cssTextarea.innerText = responseVal.EXAM_CSS;
+        jsTextarea.innerText = responseVal.EXAM_JS;
+        // code mirror 
+        // 에디터 설정
+        // HTML
+        editorHtml = CodeMirror.fromTextArea(htmlTextarea, {
+            mode: "htmlmixed",
+            theme: "dracula",  //테마는 맘에드는 걸로.
+            lineNumbers: true,
+            lineWrapping: true //줄바꿈. 음.. break-word;
+        });
+        console.log("codemirror 수정_HTML")
+        editorHtml.setValue(responseVal.EXAM_HTML)
+        editorHtml.save()
+        // CSS
+        editorCSS = CodeMirror.fromTextArea(cssTextarea, {
+            mode: "css",
+            theme: "dracula",  //테마는 맘에드는 걸로.
+            lineNumbers: true,
+            lineWrapping: true //줄바꿈. 음.. break-word;
+        });
+        console.log("codemirror 수정_CSS")
+        editorCSS.setValue(responseVal.EXAM_CSS)
+        editorCSS.save()
+        // JS
+        editorJS = CodeMirror.fromTextArea(jsTextarea, {
+            mode: "javascript",
+            theme: "dracula",  //테마는 맘에드는 걸로.
+            lineNumbers: true,
+            lineWrapping: true //줄바꿈. 음.. break-word;
+        });
+        console.log("codemirror 수정_JS")
+        editorJS.setValue(responseVal.EXAM_JS)
+        editorJS.save()
+        updateIframeContent(main_selectLanguage2);
+        editorValFront = [editorHtml.getDoc().getValue("\n"), editorCSS.getDoc().getValue("\n"), editorJS.getDoc().getValue("\n")]
+    } else {
+        // 다른 언어 내용 삽입
+        if (main_selectLanguage2 === "java") {
+            var editorJAVA = CodeMirror.fromTextArea(codeTextarea, {
+                mode: "clike",
+                theme: "dracula",  //테마는 맘에드는 걸로.
+                lineNumbers: true,
+                lineWrapping: true //줄바꿈. 음.. break-word;
+            });
+            console.log("codemirror 수정_JAVA")
+            editorJAVA.setValue(responseVal.EXAM_JAVA)
+            editorJAVA.save()
+            editorVal = editorJAVA
+        } else if (main_selectLanguage2 === "python") {
+            var editorPYTHON = CodeMirror.fromTextArea(codeTextarea, {
+                mode: "python",
+                theme: "dracula",  //테마는 맘에드는 걸로.
+                lineNumbers: true,
+                lineWrapping: true //줄바꿈. 음.. break-word;
+            });
+            console.log("codemirror 수정_PYTHON")
+            editorPYTHON.setValue(responseVal.EXAM_PYTHON)
+            editorPYTHON.save()
+            editorVal = editorPYTHON
+        } else if (main_selectLanguage2 === "c_language") {
+            var editorC = CodeMirror.fromTextArea(codeTextarea, {
+                mode: "clike",
+                theme: "dracula",  //테마는 맘에드는 걸로.
+                lineNumbers: true,
+                lineWrapping: true //줄바꿈. 음.. break-word;
+            });
+            console.log("codemirror 수정_C")
+            editorC.setValue(responseVal.EXAM_C)
+            editorC.save()
+            editorVal = editorC
+        }
+        updateIframeContent(main_selectLanguage2);
+    }
+}
+
 // exam content reset
 function resetExam(){
     let examName = document.querySelector(".codeExam_examTitle > h2");
@@ -855,7 +960,7 @@ function select() {
 }
 // 548~ 끝까지 api응답 코드
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -1022,9 +1127,10 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
     })
       .done(function (serverResponse) {
         console.log("데이터 서버에 보내기 성공~");
-        responseDB = serverResponse;
-        console.log(responseDB);
-        console.log(responseDB[0].EXAM_CONTENT);
+        responseAPI = serverResponse;
+        console.log(responseAPI);
+        console.log(responseAPI[0].EXAM_CONTENT);
+        response_API();
       })
       .fail(function (error) {
         console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
@@ -1038,7 +1144,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 
 function java() {
   // select option이 java일때 api java 응답함수
-  const api_key = "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"; // api key 값
+  const api_key = "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"; // api key 값
   let keywords = document.getElementsByClassName("main_searchBar")[0];
   let user_input = keywords.value;
   let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
@@ -1169,9 +1275,10 @@ function java() {
     })
       .done(function (serverResponse) {
         console.log("데이터 서버에 보내기 성공~");
-        responseDB = serverResponse;
-        console.log(responseDB);
-        console.log(responseDB[0].EXAM_JAVA);
+        responseAPI = serverResponse;
+        console.log(responseAPI);
+        console.log(responseAPI[0].EXAM_JAVA);
+        response_API();
       })
       .fail(function (error) {
         console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
@@ -1183,7 +1290,7 @@ function java() {
 
 function python() {
   // select option이 python일때 api python 응답함수
-  const api_key = "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"; // api key 값
+  const api_key = "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"; // api key 값
   let keywords = document.getElementsByClassName("main_searchBar")[0];
   let user_input = keywords.value;
   let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
@@ -1322,7 +1429,7 @@ function python() {
 
 function C_programing() {
   // select option이 python일때 api python 응답함수
-  const api_key = "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"; // api key 값
+  const api_key = "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"; // api key 값
   let keywords = document.getElementsByClassName("main_searchBar")[0];
   let user_input = keywords.value;
   let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
@@ -1450,7 +1557,6 @@ function C_programing() {
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
             responseDB = serverResponse;
-            console.log(responseDB);
             console.log(responseDB);
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
