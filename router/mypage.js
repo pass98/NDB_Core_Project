@@ -108,7 +108,7 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/index", (req, res) => {
+router.post("/index", (req, res) => {
   const query = `SELECT * FROM QUESTION `;
 
   // DB 연결
