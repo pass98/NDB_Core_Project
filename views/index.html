@@ -219,7 +219,7 @@
                     <p class="main_floating_p">
                         <MARQUEE scrollamount="11"> #include <iostream> #include <algorithm> using namespace std; int findMax(int arr[], int size) {return *max_element(arr, arr + size);
                                     } int main() {int numbers[] = {10, 5, 8, 20, 3}; int size = sizeof(numbers) / sizeof(numbers[0]); int maxNumber = findMax(numbers, size);
-                                    cout << "Max: " << maxNumber << endl; return 0; }</MARQUEE>
+                                    cout << "Max: " << maxNumber << endl; return 0; } </MARQUEE>
                         <!-- 스크롤의 속도-->
                     </p>
                     <p class="main_floating_p">
@@ -433,12 +433,12 @@
                     <div class="codeExam_examWrap_night">
                         <div class="codeExam_examContent">
                             <div class="codeExam_examTitle">
-                                <h2 id="mp_reviewName">문제 이름</h2>
+                                <h2 id="mp_reviewName">{{results[8].SEARCH_WORD}}</h2>
                                 <hr>
                             </div>
                             <div class="codeExam_examDetailSize">
                                 <div class="codeExam_examDetail">
-                                    <span id="mp_reviewanswer>문제 설명</span>
+                                    <span id="mp_reviewanswer">{{results[8].EXAM_CONTENT}} </span>
                                 </div>
                                 <div class="codeExam_exam"></div>
                             </div>
