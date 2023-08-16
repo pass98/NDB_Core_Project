@@ -291,7 +291,15 @@ a {
     display: flex;
     align-items: center
 }
-
+.main_navRight>input{
+    all:unset;
+    position: relative;
+    width: 200px;
+    height: 25px;
+    /* background-color: red; */
+    z-index: 2;
+    right: -230px;
+}
 .main_navRight>ul {
     float: left;
     margin: 0;
@@ -393,7 +401,62 @@ a {
     min-width: 250px;
     cursor: pointer;
 }
+#main_popularSerchModal{
+    background-color: white;
+    color: #212121;
+    position: absolute;
+    min-width: 200px;
+    padding: 8px;
+    padding-bottom: 12px;
+    top: 0%;
+    right: calc(0% + 200px);
+    font-size: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;   
+}
+.main_popularSerchModalTransform{
+    transform: translateY(calc(0 - 10px));
+}
+/* [개선필요]굳이 class를 이렇게까지 나눠서 할 필요는 없음.. */
+#main_DownPopularSerchModalAnimation{
+    /* top: 50%; */
+    animation: TB_yMovement_down 1s ease forwards;
+}
+#main_DownPopularSerchModalAnimation{
+    /* top: 50%; */
+    animation: TB_yMovement_up 1s ease forwards;
+}
+@keyframes TB_yMovement_down {
+    to {
+        transform: translateY(calc(0% + 20px));
+    }
+}
+@keyframes TB_yMovement_up {
+    to {
+        transform: translateY(calc(-100% - 10px));
+    }
+}
 
+#main_popularSerchModal>p{
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1rem;
+}
+#main_popularSerchModal>div{
+    width: 100%;
+    display: flex;
+    margin: 4px 0;
+}
+#main_popularSerchModal>div>div {
+    width: 50%;
+    margin: 0;
+    display: inline-block;
+}
 /* 네비게이션 끝 */
 /* 검색창 시작 */
 /* input, select 클릭시 생기는 기본 테두리 제거 */
@@ -420,8 +483,7 @@ select {
     justify-content: center;
     align-items: center;
     /* flex: 1 0 auto; */
-
-
+    position: relative;
 }
 
 /* 다크모드 */
