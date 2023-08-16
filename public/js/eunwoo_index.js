@@ -422,9 +422,7 @@ document.addEventListener("DOMContentLoaded", function () {
     })
     // 함수 최적화를 위한 검색버튼 순차실행 함수
     let SearchBtnasycnc = async function (e) {
-        console.log("function 순차 실행");
         let a = await onKeyUp(e);
-        console.log('onKeyUp값 확인', a)
         let b = await insertHTMLToDiv();
     }
 
@@ -587,7 +585,7 @@ let retrievedData;
 
 // editor값을 가져오기 위한 전역변수 설정
 var editorHtml = null;
-var editorCss = null;
+var editorCSS = null;
 var editorJS = null;
 let editorVal = null;
 
