@@ -301,7 +301,6 @@ router.post("/index", (req, res) => {
         res.cookie("user-email", results[0].EMAIL); // 쿠키에 로그인 정보 저장
         req.session.loggedInUserEmail = email; // 세션에 이메일 저장
 
-        // Store user's email in the session
         const userEmail = (req.session.userEmail = email);
         console.log("user-email", userEmail);
         // 로그인 성공 시 index.html 페이지로 이동
