@@ -544,7 +544,8 @@ function ex_1() {
             data: { // 서버에 보낼 데이터
                 find_keywords: find_keywords[0],
                 user_input: input_String,
-                select_language: select_Language
+                select_language: select_Language,
+                email: specificCookieValue
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
@@ -1163,8 +1164,8 @@ function java() {
         javaCode: javaCode,
         user_input: input_String,
         select_language: select_Language,
-        email: specificCookieValue,
-      },
+        email: specificCookieValue
+      }
     })
       .done(function (serverResponse) {
         console.log("데이터 서버에 보내기 성공~");
