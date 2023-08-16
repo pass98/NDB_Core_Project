@@ -298,7 +298,7 @@ router.post("/index", (req, res) => {
         console.log("쿼리문 실행");
         // console.log(results[0].EMAIL);
         // console.log(results[0].MEMBER_LV);
-        res.cookie("user-email : ", results); // 쿠키에 로그인 정보 저장
+        res.cookie("user-email", results); // 쿠키에 로그인 정보 저장
         req.session.loggedInUserEmail = email; // 세션에 이메일 저장
 
         // Store user's email in the session
