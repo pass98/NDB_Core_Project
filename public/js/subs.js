@@ -152,6 +152,32 @@ $(document).ready(function() {
 
 });
 
+window.addEventListener("DOMContentLoaded", (event) => {
+    // 현재 페이지의 경로를 가져옵니다.
+    const currentPath = window.location.pathname;
+
+    // '/mypage/index' 경로에서만 스크롤 이동하도록 처리합니다.
+    if (currentPath === '/mypage/index') {
+        const element = document.querySelector('.codeExam_container');
+        if (element) {
+            element.scrollIntoView();
+        }
+     // 여기서 서버와 통신하여 데이터베이스 정보를 가져옵니다.
+     const response = fetch('');
+     const data = response.text();  // JSON이 아닌 텍스트로 데이터를 받습니다.
+
+     // 가져온 데이터를 문제 이름과 설명 요소에 적용합니다.
+     const nameElement = document.getElementById('mp_reviewName');
+     const descriptionElement = document.getElementById('mp_reviewanswer');
+
+     if (nameElement && descriptionElement) {
+         // 가져온 데이터를 해당 요소에 직접 삽입합니다.
+         nameElement.textContent = data.split('\n')[0];  // 첫 줄을 문제 이름으로 가정합니다.
+         descriptionElement.textContent = data.split('\n').slice(1).join('\n');  // 나머지를 설명으로 가정합니다.
+     }
+ }
+});    
+
 
 
 
