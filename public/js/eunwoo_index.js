@@ -960,7 +960,7 @@ function select() {
 }
 // 548~ 끝까지 api응답 코드
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -1144,7 +1144,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 
 function java() {
   // select option이 java일때 api java 응답함수
-  const api_key = "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"; // api key 값
+  const api_key = "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"; // api key 값
   let keywords = document.getElementsByClassName("main_searchBar")[0];
   let user_input = keywords.value;
   let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
@@ -1290,7 +1290,7 @@ function java() {
 
 function python() {
   // select option이 python일때 api python 응답함수
-  const api_key = "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"; // api key 값
+  const api_key = "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"; // api key 값
   let keywords = document.getElementsByClassName("main_searchBar")[0];
   let user_input = keywords.value;
   let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
@@ -1417,8 +1417,9 @@ function python() {
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            responseDB = serverResponse;
-            console.log(responseDB);
+            responseAPI = serverResponse;
+            console.log(responseAPI[0]);
+            response_API();
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
@@ -1429,7 +1430,7 @@ function python() {
 
 function C_programing() {
   // select option이 python일때 api python 응답함수
-  const api_key = "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"; // api key 값
+  const api_key = "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"; // api key 값
   let keywords = document.getElementsByClassName("main_searchBar")[0];
   let user_input = keywords.value;
   let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
@@ -1556,8 +1557,9 @@ function C_programing() {
             }
         }).done(function (serverResponse) {
             console.log("데이터 서버에 보내기 성공~");
-            responseDB = serverResponse;
-            console.log(responseDB);
+            responseAPI = serverResponse;
+            console.log(responseAPI[0]);
+            response_API();
         }).fail(function (error) {
             console.error("데이터 서버에 못보냄ㅋ 오류 : ", error);
         });
