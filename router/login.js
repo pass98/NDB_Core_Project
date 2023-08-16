@@ -281,6 +281,7 @@ router.get("/setSession", (req, res) => {
 
   res.send("세션 만들기");
 });
+
 router.post("/index", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
@@ -295,14 +296,16 @@ router.post("/index", (req, res) => {
     conn.query(query, [email, password], (err, results) => {
       if (!err && results.length === 1) {
         console.log("쿼리문 실행");
-        res.cookie("user-email : ", email); // 쿠키에 로그인 정보 저장
+        // console.log(results[0].EMAIL);
+        // console.log(results[0].MEMBER_LV);
+        res.cookie("user-email : ", results); // 쿠키에 로그인 정보 저장
         req.session.loggedInUserEmail = email; // 세션에 이메일 저장
 
         // Store user's email in the session
         const userEmail = (req.session.userEmail = email);
         console.log("user-email", userEmail);
         // 로그인 성공 시 index.html 페이지로 이동
-        res.render("index.html"); // Use res.redirect instead of res.render
+        res.render("index.html", { results: results });
       } else {
         console.log("쿼리문 실패");
         res.write(`<!DOCTYPE html>
@@ -325,10 +328,12 @@ router.post("/index", (req, res) => {
     });
   });
 });
+
 router.get("/getSession", (req, res) => {
   // 세션 생성하기
   let nick = req.session.nickName;
   console.log(nick);
   res.send(nick);
 });
+
 module.exports = router;
