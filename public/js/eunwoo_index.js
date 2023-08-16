@@ -489,7 +489,7 @@ function ex_1() {
     languageElement2.options[languageElement2.selectedIndex].value;
   console.log("상단 검색바 사용자선택 언어 : ", language);
   console.log("메인 검색바 사용자선택 언어 : ", language2);
-  let specificCookieValue = getCookie("user-email :");
+  let specificCookieValue = getCookie("user-email");
   console.log("Specific Cookie Value:", specificCookieValue);
 
   let select_Language = ""; // 사용자 선택언어
@@ -872,7 +872,7 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
   console.log("상단 바 사용자 선택언어:", language);
   console.log("메임검색바 사용자 선택언어:", language2);
 
-  let specificCookieValue = getCookie("user-email :");
+  let specificCookieValue = getCookie("user-email");
   console.log("Specific Cookie Value:", specificCookieValue);
   $("#loading").show();
 
@@ -1055,7 +1055,7 @@ function java() {
   console.log("상단 바 사용자 선택언어 : ", language);
   console.log("메인 검색바 사용자 선택언어 : ", language2);
 
-  let specificCookieValue = getCookie("user-email :");
+  let specificCookieValue = getCookie("user-email");
   console.log("Specific Cookie Value:", specificCookieValue);
 
   $("#loading").show();
@@ -1199,7 +1199,7 @@ function python() {
     languageElement2.options[languageElement2.selectedIndex].value;
   console.log("상단 바 사용자 선택언어 : ", language);
   console.log("메인 검색바 사용자 선택언어 : ", language2);
-  let specificCookieValue = getCookie("user-email :");
+  let specificCookieValue = getCookie("user-email");
   console.log("Specific Cookie Value:", specificCookieValue);
 
   $("#loading").show();
@@ -1338,7 +1338,7 @@ function C_programing() {
     languageElement2.options[languageElement2.selectedIndex].value;
   console.log("상단 바 사용자 선택언어 : ", language);
   console.log("메인 검색바 사용자 선택언어 : ", language2);
-  let specificCookieValue = getCookie("user-email :");
+  let specificCookieValue = getCookie("user-email");
   console.log("Specific Cookie Value:", specificCookieValue);
 
   $("#loading").show();
