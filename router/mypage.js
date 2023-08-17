@@ -89,6 +89,7 @@ router.get("/", (req, res) => {
 
                 res.render("myPage.html", {
                   id: memberData.USER_ID,
+                  email:memberData.EMAIL,
                   name: memberData.MEMBER_NAME,
                   password: memberData.PW,
                   member_lv: memberData.MEMBER_LV,
