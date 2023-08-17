@@ -102,34 +102,38 @@ return text;
 }
 // GPT응답을 사용자에게 바로 보여주는 기능
 function displayResponseInRealTime(message) {
-    console.log("응답을 실시간으로 표시하는 함수가 호출되었습니다.");  // 로깅
+    console.log("응답을 실시간으로 표시 함수가 호출");  // 로깅
 
-const chatBody = document.querySelector(".chat-body");
+    const chatBody = document.querySelector(".chat-body");
+    const botMessageDiv = document.createElement("div");
+    botMessageDiv.classList.add("message", "bot-message");
+    const botContentDiv = document.createElement("div");
+    botContentDiv.classList.add("content");
 
-const botMessageDiv = document.createElement("div");
-botMessageDiv.classList.add("message", "bot-message");
-const botContentDiv = document.createElement("div");
-botContentDiv.classList.add("content");
+    chatBody.appendChild(botMessageDiv);
+    botMessageDiv.appendChild(botContentDiv);
 
-chatBody.appendChild(botMessageDiv);
-botMessageDiv.appendChild(botContentDiv);
+    message = wrapCodeInBlock(message);  // wrapCodeInBlock 함수 호출
 
-message = wrapCodeInBlock(message);  // wrapCodeInBlock 함수 호출
+    let currentText = "";
+    let index = 0;
 
-let currentText = "";
-let index = 0;
-
-function typeMessage() {
-    if (index < message.length) {
-        currentText += message[index];
-        botContentDiv.innerHTML = currentText; // innerHTML로 수정
-        index++;
-        setTimeout(typeMessage, 50);  // 문자 하나 추가하는 속도 설정. 필요시 조절 가능.
+    function typeMessage() {
+        if (index < message.length) {
+            currentText += message[index];
+            botContentDiv.innerHTML = currentText; // innerHTML로 수정
+            index++;
+            setTimeout(typeMessage, 50);  // 문자 하나 추가하는 속도 설정. 필요시 조절 가능.
+        }
+        chatBody.scrollTop = chatBody.scrollHeight;
     }
-    chatBody.scrollTop = chatBody.scrollHeight;
+    typeMessage();
 }
-typeMessage();
-}
+
+// 전역 변수로 메시지 배열 선언
+let messagesHistory = [
+    { role: 'system', content: 'You are a code reviewer. Please respond in Korean.' }
+];
 
 function sendMessage() {
 // 사용자가 입력한 메시지 가져오기
@@ -148,12 +152,13 @@ contentDiv.classList.add("content");
 contentDiv.innerText = userMessage;
 userMessageDiv.appendChild(contentDiv);
 chatBody.appendChild(userMessageDiv);
-
+   // 메시지 배열에 사용자의 메시지 추가
+   messagesHistory.push({ role: 'user', content: userMessage })
 // 입력창 초기화
 userInputElem.value = "";
 
-// GPT에 요청해서 챗봇의 응답을 가져옴
-chatGPT(userMessage);
+ // GPT에 요청해서 챗봇의 응답을 가져옴
+ chatGPT();
 }
 
 const botCodeContainer = document.createElement("div");
@@ -181,8 +186,10 @@ if (code.includes("{") &&
 
 // Python
 if (code.includes("def ") || 
-   code.includes("print(") || 
-   code.includes("import ")) return "Python";
+        code.includes("print(") || 
+        code.includes("import ") ||
+        code.includes("for ") ||
+        code.includes("in ")) return "Python";
 
 // C/C++
 if (code.includes("#include") || 
@@ -196,7 +203,7 @@ function chatGPT(userInput) {
 
     console.log("chatGPT 함수가 호출");  // 로깅
     const loadingMsgBox = createMessage("타이핑중...", "bot-message");
-    const api_key = "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";//본인 api키값 쓸것
+    const api_key = "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";//본인 api키값 쓸것
     const messages = [
         { role: 'system', content: 'You are a code reviewer. Please respond in Korean.' },
         { role: 'user', content: userInput },
@@ -206,7 +213,7 @@ function chatGPT(userInput) {
         model: 'gpt-3.5-turbo',
         temperature: 0.8,
         max_tokens: 1024,
-        messages: messages,
+        messages: messagesHistory, 
         top_p: 1, // 토큰 샘플링 확률을 설정
         frequency_penalty: 0.5 // 일반적으로 나오지 않는 단어를 억제하는 정도
        
@@ -225,35 +232,34 @@ function chatGPT(userInput) {
         console.log(response);  // 응답 로깅
         loadingMsgBox.remove();
         const botResponse = response.choices[0].message.content;
-
-        const chatBody = document.querySelector(".chat-body");
-        const botMessageDiv = document.createElement("div");
-        botMessageDiv.classList.add("message", "bot-message");
-        const botContentDiv = document.createElement("div");
-        botContentDiv.classList.add("content");
-        botMessageDiv.appendChild(botContentDiv);
-        chatBody.appendChild(botMessageDiv);
-
+ // 메시지 배열에 챗봇의 응답 추가
+ messagesHistory.push({ role: 'assistant', content: botResponse });
         const codePattern = /```([\s\S]*?)```/g;
         const codeMatch = codePattern.exec(botResponse);
         
-        if (codeMatch) {  // 코드 부분이 있을 경우
-            const codeContent = codeMatch[1];  // 추출한 코드 부분
+        if (codeMatch) {
+            const codeContent = codeMatch[1];
             const cleanedResponse = botResponse.replace(codePattern, "").trim();
-        
-            // 언어 판별
-            const languageName = detectLanguage(codeContent);
-        
-            const codeDiv = document.createElement("div");
-            codeDiv.classList.add("code-output");
-            botMessageDiv.appendChild(codeDiv);
-            initializeCodeMirror(codeDiv, codeContent, languageName);
-            botContentDiv.innerHTML = cleanedResponse;
+            displayResponseInRealTime(cleanedResponse);  // 코드 제외한 부분을 실시간으로 보여줌
+
+            setTimeout(() => {  // 실시간 메시지 표시 후 코드 부분을 보여주기 위한 시간 지연
+                const chatBody = document.querySelector(".chat-body");
+                const botMessageDiv = document.createElement("div");
+                botMessageDiv.classList.add("message", "bot-message");
+                const codeDiv = document.createElement("div");
+                codeDiv.classList.add("code-output");
+                botMessageDiv.appendChild(codeDiv);
+                chatBody.appendChild(botMessageDiv);
+
+                const languageName = detectLanguage(codeContent);
+                initializeCodeMirror(codeDiv, codeContent, languageName);
+            }, cleanedResponse.length * 50);  // 실시간 표시 속도에 따라 조절
         } else {
-            // 일반 응답 처리
-            botContentDiv.innerHTML = botResponse;
+            displayResponseInRealTime(botResponse);  // 실시간으로 전체 응답을 보여줌
         }
-})
+
+    })
+
 .fail(function (jqXHR, textStatus, errorThrown) { // 에러 처리 부분
     console.log("API 요청 실패:", textStatus, errorThrown);  // 오류 로깅
 loadingMsgBox.querySelector(".content").innerHTML = "응답실패.";

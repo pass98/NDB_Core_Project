@@ -171,6 +171,7 @@ body {
 #join_container {
   width: 27rem;
   height: 300px;
+  
   /* background-color: rgb(55, 65, 81);*/
   border-radius: 3%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -182,6 +183,7 @@ body {
 }
 .join_form > p {
   margin-bottom: 5px;
+  margin-left: 35px;
 }
 
 .join_input {
@@ -193,6 +195,9 @@ body {
   border: none;
   border-radius: 5px;
   background-color: #8ca9bf4b;
+  align-self: center;
+  
+ 
 }
 .join_input:focus {
   background-color: rgba(245, 245, 245, 0.109);
@@ -200,9 +205,10 @@ body {
 }
 
 .join_button {
-  height: 35px;
-  margin-top: 10px;
-  padding: 10px 20px;
+  
+  margin-top: 10px; 
+  margin-left: 10px;
+  padding: 11px 20px;
   background-color: rgba(26, 14, 14, 0.376);
   color: white;
   box-shadow: 0.2px 0.2px 0.5px white;
@@ -217,6 +223,9 @@ body {
   background-color: white;
   font-size: 14px;
   color: #1b3455;
+}
+.box_agreement{
+  margin-left: -30px;
 }
 /* ============================
    ====     계정 찾기      ====
@@ -277,6 +286,7 @@ body {
   position: absolute;
   margin-top: 33rem;
 }
+
 
 /* ===============================
              모달 스타일  
@@ -372,9 +382,9 @@ body {
   background-color: rgba(120, 15, 120, 0.858);
 }
 
-.box_agreement {
+/* .box_agreement {
   margin-left: -45px;
-}
+} */
 .join_agreement a {
   text-decoration: none;
   color: #3c97bf;
