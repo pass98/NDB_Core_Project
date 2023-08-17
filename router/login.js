@@ -263,9 +263,6 @@ router.post("/join", (req, res) => {
             } else {
               console.log("Data inserted successfully:", result);
             }
-
-            // DB 연결 종료
-            conn.end();
           }
         );
       });
