@@ -130,6 +130,10 @@ function displayResponseInRealTime(message) {
     typeMessage();
 }
 
+// 전역 변수로 메시지 배열 선언
+let messagesHistory = [
+    { role: 'system', content: 'You are a code reviewer. Please respond in Korean.' }
+];
 
 function sendMessage() {
 // 사용자가 입력한 메시지 가져오기
@@ -148,12 +152,13 @@ contentDiv.classList.add("content");
 contentDiv.innerText = userMessage;
 userMessageDiv.appendChild(contentDiv);
 chatBody.appendChild(userMessageDiv);
-
+   // 메시지 배열에 사용자의 메시지 추가
+   messagesHistory.push({ role: 'user', content: userMessage })
 // 입력창 초기화
 userInputElem.value = "";
 
-// GPT에 요청해서 챗봇의 응답을 가져옴
-chatGPT(userMessage);
+ // GPT에 요청해서 챗봇의 응답을 가져옴
+ chatGPT();
 }
 
 const botCodeContainer = document.createElement("div");
@@ -198,7 +203,7 @@ function chatGPT(userInput) {
 
     console.log("chatGPT 함수가 호출");  // 로깅
     const loadingMsgBox = createMessage("타이핑중...", "bot-message");
-    const api_key = "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";//본인 api키값 쓸것
+    const api_key = "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";//본인 api키값 쓸것
     const messages = [
         { role: 'system', content: 'You are a code reviewer. Please respond in Korean.' },
         { role: 'user', content: userInput },
@@ -208,7 +213,7 @@ function chatGPT(userInput) {
         model: 'gpt-3.5-turbo',
         temperature: 0.8,
         max_tokens: 1024,
-        messages: messages,
+        messages: messagesHistory, 
         top_p: 1, // 토큰 샘플링 확률을 설정
         frequency_penalty: 0.5 // 일반적으로 나오지 않는 단어를 억제하는 정도
        
@@ -227,7 +232,8 @@ function chatGPT(userInput) {
         console.log(response);  // 응답 로깅
         loadingMsgBox.remove();
         const botResponse = response.choices[0].message.content;
-
+ // 메시지 배열에 챗봇의 응답 추가
+ messagesHistory.push({ role: 'assistant', content: botResponse });
         const codePattern = /```([\s\S]*?)```/g;
         const codeMatch = codePattern.exec(botResponse);
         
