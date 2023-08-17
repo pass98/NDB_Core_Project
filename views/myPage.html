@@ -27,10 +27,7 @@
     
 </head>
 <body>
-    <div id ='mp_page notosanskr'>
-        <main >
-           <!-- 왼쪽 : 사이드바 & 로그 -->
-       <nav id="main_navbar">
+    <nav id="main_navbar">
         <div class="main_navLeft">
 
             <div id="sidebar_toggle">
@@ -39,17 +36,85 @@
     이를 통해 :checked 선택자를 사용
     -->
                 <input type="checkbox" />
-
                 <!--
     햄버거 역할을 하는 몇 개의 span 요소.
     -->
                 <span></span>
                 <span></span>
                 <span></span>
+                <!--사이드바는 버튼 내부에 있어야 함-->
+                <ul id="leftside">
+                    <!-- 회원 정보 섹션 시작 -->
+                    <div class="user-info">
+                        <img src="https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg"
+                            alt="User Profile Picture" class="user-image">
+                        <div class="user-details" >
+                            <p class="user-email" name="email">{{ results[0].EMAIL }}</p>
+                            <p class="user-grade" name="vip">{{ results[0].MEMBER_LV }}</p>
+                        </div>
+                    </div>
+                    <hr> <!-- 구분선 추가 -->
+                    <!-- 회원 정보 섹션 끝 -->
 
-                <!--
-      사이드바는 버튼 내부에 잇어야함
-    --><ul id="leftside">
+                    <a href="http://localhost:3003/mypage" id="mypage_btn_open">
+                        <li>마이페이지</li>
+                    </a>
+                    <a href="#" class="subs_btn_open">
+                        <li>구독</li>
+                    </a>
+                </ul>
+            </div>
+            <div class="main_nav_logo">
+                <a href="http://localhost:3003/index">NDB</a>
+
+            </div>
+            <div class="main_navMiddle">
+                <div class="main_Nav_search">
+                    <select name="main_language" id="main_navSearchbar" class="main_searchLanguage"
+                        style="width:50px;height:30px;">
+                        <option value=" ">언어</option>
+                        <option value="html">html</option>
+                        <option value="css">css</option>
+                        <option value="javascript">javascript</option>
+                        <option value="java">java</option>
+                        <option value="python">python</option>
+                        <option value="c_language">C언어</option>
+                    </select>
+                    <!-- <i class="fa-solid fa-chevron-down" style="color: #d1d1d1;"></i> -->
+                    <input type="text" class="main_searchBar" name="main_searchBar_Name">
+                    <!-- 자동완성 단어 리스트 -->
+                    <div class="main_autocomplete"></div>
+                    <button type="submit" class="main_search_button" onclick="user_Btn()">
+                        <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+        <div class="main_navRight">
+            <input type="checkbox">
+                <ul class="main_popularSerch">
+                    <li>
+                        <span>인기 검색어</span>
+                    </li>
+                    <li>|</li>
+                    <li>
+                        <a>파이썬 반복문</a>
+                    </li>
+                </ul>
+            <div class="checkbox-wrapper-2">
+                <input type="checkbox" id="main_Nav_themecheck" class="sc-gJwTLC ikxBAC" onclick='is_checked()'>
+            </div>
+            <div id="main_btnWrap">
+                <!-- 로그인 버튼 -->
+                <!-- <button type="button" class="main_loginBtn main_modalBtn">로그인</button> -->
+                <!-- 회원가입 버튼 -->
+                <form action="http://localhost:3003/login">
+                    <button type="submit" class="main_signupBtn main_modalBtn">log out</button>
+                </form>
+            </div>
+        </div>
+    </nav>
     <!-- 회원 정보 섹션 시작 -->
     <div class="user-info">
       <img src="https://png.pngtree.com/png-vector/20191009/ourmid/pngtree-user-icon-png-image_1796659.jpg" alt="User Profile Picture" class="user-image">
@@ -63,7 +128,7 @@
 
   <!-- 기존의 메뉴 항목들 -->
   
-                    <a href="http://localhost:3003/mypage" id="mypage_btn_open">
+                    <!-- <a href="http://localhost:3003/mypage" id="mypage_btn_open">
                         <li>마이페이지</li>
                     </a>
                     <a href="#" class="subs_btn_open">
@@ -73,7 +138,7 @@
                 </ul>
             </div>
                 <div class="main_nav_logo">
-                    <a href="http://localhost:3003/index">NDB</a>
+                    <a href="http://localhost:3003/index">NDB</a> -->
 
                 </div>
                 <div class="main_navMiddle">
@@ -97,23 +162,6 @@
                             <i class="fa-solid fa-magnifying-glass" style="color: #d1d1d1;"></i>
                         </button>
                     </div>
-                </div>
-            </div>
-            <div class="main_navRight">
-                <ul class="popularSerch">
-                    <li>
-                        <span>인기 검색어</span>
-                    </li>
-                    <li>|</li>
-                    <li>
-                        <a href="#">파이썬 반복문</a>
-                    </li>
-                </ul>
-                <div id="main_btnWrap">
-                    <!-- 로그인 버튼 -->
-                    <button type="button" class="main_loginBtn main_modalBtn">로그인</button>
-                    <!-- 회원가입 버튼 -->
-                    <button type="button" class="main_signupBtn main_modalBtn">회원가입</button>
                 </div>
             </div>
         </nav>
@@ -190,10 +238,10 @@
                         </div>
                 </div></div>
                 <div id="mp_tab-2" class="mp_tab-content"><h2 class = 'mp_h2'>개인 정보</h2>
-                    <div class="mp_output">
+                    <div class="mp_output" id="mp_frotable">
                     <table class ='mypagefro'>
                         <tr><td >이름     </td><td class ='mp_myInfo'><input class="mp_Info" name="ID" value="{{ name }}" placeholder="이름이 표시될 곳입니다."  ></td></tr>
-                        <tr><td >비밀번호 </td><td class ='mp_myInfo'><input class="mp_Info" name="PW" value="{{ password }}" placeholder="비밀번호가 표시될 곳입니다."  ></td><td><button id="mp_nameCh">변경</button></td></tr>
+                        <tr><td >비밀번호 </td><td class ='mp_myInfo'><input class="mp_Info" name="PW" value="{{ password }}" placeholder="비밀번호가 표시될 곳입니다." type="password"  ></td><td><button id="mp_nameCh">변경</button></td></tr>
                         <tr><td >별명     </td><td class ='mp_myInfo'><input class="mp_Info" name="NICK" value="{{ id }}" placeholder="별명이 표시될 곳입니다." ></td></tr>
                         <tr><td >주소     </td><td class ='mp_myInfo'><input type="text" readonly="yes" placeholder="주소가 표시될 곳입니다." class="mp_Info"></td></tr>
                     </table>
