@@ -465,13 +465,16 @@ async function user_Btn() { // 라디오 체크에 따라서 함수 호출하기
     let a = await checkRadio();
     let b = await goToScroll();
     let c = await resetExam();
+    let d = await insertHTMLToDiv();
+
     if (document.getElementById('main_Nav_DB').checked) {
         ex_1();
-        console.log("DB에서 데이터 꺼내기")
+        console.log("DB에서 데이터 꺼내기")        
     } else if (document.getElementById('main_Nav_API').checked) {
         select();
         console.log("API에서 응답 받기")
     }
+    console.log('전송');
 }
 
 function getCookie(cookieName) {
