@@ -171,7 +171,7 @@ body {
 #join_container {
   width: 27rem;
   height: 300px;
-  
+
   /* background-color: rgb(55, 65, 81);*/
   border-radius: 3%;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
@@ -181,13 +181,22 @@ body {
   flex-direction: column;
   color: #ccc;
 }
-.join_form > p {
+.join_box > p {
+  display: flex;
   margin-bottom: 5px;
-  margin-left: 35px;
+  align-items: flex-start;
+  margin-left: 2.5rem;
+  align-self: flex-start;
 }
-
+.join_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
 .join_input {
-  width: 300px;
+  width: 18rem;
   height: 40px;
   padding: 5px;
   margin-bottom: 10px;
@@ -195,9 +204,7 @@ body {
   border: none;
   border-radius: 5px;
   background-color: #8ca9bf4b;
-  align-self: center;
-  
- 
+  /* align-self: center; */
 }
 .join_input:focus {
   background-color: rgba(245, 245, 245, 0.109);
@@ -205,8 +212,7 @@ body {
 }
 
 .join_button {
-  
-  margin-top: 10px; 
+  margin-top: 10px;
   margin-left: 10px;
   padding: 11px 20px;
   background-color: rgba(26, 14, 14, 0.376);
@@ -224,7 +230,7 @@ body {
   font-size: 14px;
   color: #1b3455;
 }
-.box_agreement{
+.box_agreement {
   margin-left: -30px;
 }
 /* ============================
@@ -286,7 +292,6 @@ body {
   position: absolute;
   margin-top: 33rem;
 }
-
 
 /* ===============================
              모달 스타일  
@@ -419,4 +424,7 @@ footer i {
 footer a {
   color: #3c97bf;
   text-decoration: none;
+}
+
+@media (min-width: 600px) {
 }

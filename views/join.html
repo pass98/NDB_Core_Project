@@ -59,13 +59,14 @@
       <!-- 회원가입 컨테이너  -->
       <div class="join_container">
         <form action="/join" class="join_form" method="post">
-          <p>이름</p>
-          <input type="text" class="join_input" name="name" required />
-          <p>이메일</p>
-          <input type="email" class="join_input" name="email" required />
-          <p>비밀번호</p>
-          <input type="password" class="join_input" name="pass" required />
-
+          <div class="join_box">
+            <p>이름</p>
+            <input type="text" class="join_input" name="name" required />
+            <p>이메일</p>
+            <input type="email" class="join_input" name="email" required />
+            <p>비밀번호</p>
+            <input type="password" class="join_input" name="pass" required />
+          </div>
           <!-- 개인정보 동의 체크버튼 -->
           <div class="box_agreement">
             <ul>
