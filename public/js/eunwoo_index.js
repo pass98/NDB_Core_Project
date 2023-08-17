@@ -980,7 +980,7 @@ function select() {
 }
 // 548~ 끝까지 api응답 코드
 function front() {   // select option이 html,css,js일때 api html,css,js코드 응답함수
-    const api_key = "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"
+    const api_key = "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"
     let keywords = document.getElementsByClassName('main_searchBar')[0]
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName('main_searchBar2')[0]
@@ -1164,7 +1164,8 @@ function front() {   // select option이 html,css,js일때 api html,css,js코드
 
 function java() {
     // select option이 java일때 api java 응답함수
-    const api_key = "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"; // api key 값
+    // api key
+    const api_key = "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"; // api key 값
     let keywords = document.getElementsByClassName("main_searchBar")[0];
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
@@ -1310,7 +1311,8 @@ function java() {
 
 function python() {
     // select option이 python일때 api python 응답함수
-    const api_key = "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"; // api key 값
+    // api key
+    const api_key = "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"; // api key 값
     let keywords = document.getElementsByClassName("main_searchBar")[0];
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
@@ -1450,7 +1452,8 @@ function python() {
 
 function C_programing() {
     // select option이 python일때 api python 응답함수
-    const api_key = "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"; // api key 값
+    // api Key
+    const api_key = "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"; // api key 값
     let keywords = document.getElementsByClassName("main_searchBar")[0];
     let user_input = keywords.value;
     let keywords2 = document.getElementsByClassName("main_searchBar2")[0];
