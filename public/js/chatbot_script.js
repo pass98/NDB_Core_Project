@@ -55,7 +55,42 @@ chatBody.appendChild(messageDiv);
 chatBody.scrollTop = chatBody.scrollHeight;
 return messageDiv;
 }
-// 코드스페닛
+
+function initializeCodeMirror(element, codeContent, language) {
+    let languageMode;
+    switch (language) {
+        case "JavaScript":
+            languageMode = "javascript";
+            break;
+        case "HTML":
+            languageMode = "htmlmixed";
+            break;
+        case "CSS":
+            languageMode = "css";
+            break;
+        case "Python":
+            languageMode = "python";
+            break;
+        case "C/C++":
+            languageMode = "clike";
+            break;
+        default:
+            languageMode = "plaintext";
+            break;
+    }
+
+    // CodeMirror에 코드 부분만 적용
+    const codeMirrorInstance = CodeMirror(element, {
+        value: codeContent,
+        mode: languageMode,
+        lineNumbers: true,
+        readOnly: true,
+        lineWrapping: true,
+        theme: "dracula"
+    });
+}
+
+// 코드스니펫
 function wrapCodeInBlock(text) {
 const codePattern = /(```[\s\S]*?```)/g;
 let match;
@@ -67,6 +102,8 @@ return text;
 }
 // GPT응답을 사용자에게 바로 보여주는 기능
 function displayResponseInRealTime(message) {
+    console.log("응답을 실시간으로 표시하는 함수가 호출되었습니다.");  // 로깅
+
 const chatBody = document.querySelector(".chat-body");
 
 const botMessageDiv = document.createElement("div");
@@ -95,36 +132,76 @@ typeMessage();
 }
 
 function sendMessage() {
-    // 사용자가 입력한 메시지 가져오기
-    const userMessage = document.getElementById("user-input").value;
-    if (userMessage.trim() === "") return;
+// 사용자가 입력한 메시지 가져오기
+const userInputElem = document.getElementById("user-input");
+const userMessage = userInputElem.value;
+if (userMessage.trim() === "") return;
 
-    // 대화창 박스
-    const chatBody = document.querySelector(".chat-body");
+// 대화창 박스
+const chatBody = document.querySelector(".chat-body");
 
-    // 사용자 메시지 표시하는 div 요소
-    const userMessageDiv = document.createElement("div");
-    userMessageDiv.classList.add("message", "user-message");
-    const contentDiv = document.createElement("div");
-    contentDiv.classList.add("content");
-    contentDiv.innerText = userMessage;
-    userMessageDiv.appendChild(contentDiv);
-    chatBody.appendChild(userMessageDiv);
+// 사용자 메시지 표시하는 div 요소
+const userMessageDiv = document.createElement("div");
+userMessageDiv.classList.add("message", "user-message");
+const contentDiv = document.createElement("div");
+contentDiv.classList.add("content");
+contentDiv.innerText = userMessage;
+userMessageDiv.appendChild(contentDiv);
+chatBody.appendChild(userMessageDiv);
 
-    // GPT에 요청해서 챗봇의 응답을 가져옴
-    chatGPT(userMessage);
+// 입력창 초기화
+userInputElem.value = "";
+
+// GPT에 요청해서 챗봇의 응답을 가져옴
+chatGPT(userMessage);
 }
 
+const botCodeContainer = document.createElement("div");
+botCodeContainer.classList.add("code-container");
+botMessageDiv.appendChild(botCodeContainer);
+botCodeContainer.appendChild(codeDiv);
+function detectLanguage(code) {
+   // JavaScript
+   if (code.includes("function") || 
+   code.includes("console.log") || 
+   code.includes("var ") || 
+   code.includes("let ")) return "JavaScript";
 
+// HTML
+if (code.includes("<html") || 
+   code.includes("<div") || 
+   code.includes("<span") || 
+   code.includes("<a ")) return "HTML";
 
+// CSS
+if (code.includes("{") && 
+   (code.includes("color:") || 
+    code.includes("margin:") || 
+    code.includes("padding:"))) return "CSS";
+
+// Python
+if (code.includes("def ") || 
+   code.includes("print(") || 
+   code.includes("import ")) return "Python";
+
+// C/C++
+if (code.includes("#include") || 
+   code.includes("int main()") || 
+   code.includes("printf(")) return "C/C++";
+
+return "Unknown";
+}
 function chatGPT(userInput) {
+   
+
+    console.log("chatGPT 함수가 호출");  // 로깅
     const loadingMsgBox = createMessage("타이핑중...", "bot-message");
-    const api_key = "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";//본인 api키값 쓸것
+    const api_key = "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";//본인 api키값 쓸것
     const messages = [
-        { role: 'system', content: 'You are a NDB code reviewer. Please respond in Korean.' },
+        { role: 'system', content: 'You are a code reviewer. Please respond in Korean.' },
         { role: 'user', content: userInput },
     ];
-
+   
     const data = {
         model: 'gpt-3.5-turbo',
         temperature: 0.8,
@@ -145,16 +222,41 @@ function chatGPT(userInput) {
         },
         data: JSON.stringify(data),
     }).done(function (response) {
+        console.log(response);  // 응답 로깅
         loadingMsgBox.remove();
+        const botResponse = response.choices[0].message.content;
 
-    const botResponse = response.choices[0].message.content;
-    
-    displayResponseInRealTime(botResponse);
-    document.getElementById("user-input").value = "";
+        const chatBody = document.querySelector(".chat-body");
+        const botMessageDiv = document.createElement("div");
+        botMessageDiv.classList.add("message", "bot-message");
+        const botContentDiv = document.createElement("div");
+        botContentDiv.classList.add("content");
+        botMessageDiv.appendChild(botContentDiv);
+        chatBody.appendChild(botMessageDiv);
+
+        const codePattern = /```([\s\S]*?)```/g;
+        const codeMatch = codePattern.exec(botResponse);
+        
+        if (codeMatch) {  // 코드 부분이 있을 경우
+            const codeContent = codeMatch[1];  // 추출한 코드 부분
+            const cleanedResponse = botResponse.replace(codePattern, "").trim();
+        
+            // 언어 판별
+            const languageName = detectLanguage(codeContent);
+        
+            const codeDiv = document.createElement("div");
+            codeDiv.classList.add("code-output");
+            botMessageDiv.appendChild(codeDiv);
+            initializeCodeMirror(codeDiv, codeContent, languageName);
+            botContentDiv.innerHTML = cleanedResponse;
+        } else {
+            // 일반 응답 처리
+            botContentDiv.innerHTML = botResponse;
+        }
 })
-
 .fail(function (jqXHR, textStatus, errorThrown) { // 에러 처리 부분
-loadingMsgBox.querySelector(".content").innerHTML = "응답을 가져오는데 실패했습니다.";
+    console.log("API 요청 실패:", textStatus, errorThrown);  // 오류 로깅
+loadingMsgBox.querySelector(".content").innerHTML = "응답실패.";
 
 });
 }
